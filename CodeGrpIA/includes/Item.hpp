@@ -16,6 +16,16 @@ public:
 	
 	//pas de set, les valeurs ne seront pas forcément modifiables
 
+	inline bool operator == (const Item &b) const
+    {
+        return ( id == b.id && name == b.name);
+    }
+
+    inline bool operator< (const Item &a) const
+    {
+        return id < a.id;
+    }
+
 	~Item(void);
 
 private:

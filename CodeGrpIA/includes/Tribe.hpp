@@ -29,6 +29,8 @@ public:
     int getPopulationSize();
     void welcomeNewMember(Agent a);
     int getQuantityByItem(Item i);
+    int getTribeSize();
+
     void addItemToStock(Item i, int quantity);
 	~Tribe();
 

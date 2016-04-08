@@ -6,7 +6,7 @@ Sentient_Entity::Sentient_Entity(int v, bool g, int a, int agr , int f ,int s, i
 int Sentient_Entity::getVitality(){
     return vitality;
 }
-int Sentient_Entity::getGender(){
+bool Sentient_Entity::getGender(){
     return gender;
 }
 int Sentient_Entity::getAge(){
@@ -45,7 +45,7 @@ void Sentient_Entity::setFitness(int f){
     fitness=f;
 }
 void Sentient_Entity::setAgressiveness(int ag){
-    agressiveness=a;
+    agressiveness=ag;
 }
 void Sentient_Entity::setSatiety(int s){
     satiety=s;

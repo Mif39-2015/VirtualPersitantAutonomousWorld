@@ -26,7 +26,7 @@ void Tribe::setGoalIndex(unsigned int _goal_index){
 }
 int Tribe::getTribeSize(){
     int sizet=0;
-    for(std::vector<Agent>it = population.begin(); it!=population.end(); it++){
+    for(Agent a : population){
         sizet++;
     }
     return sizet;

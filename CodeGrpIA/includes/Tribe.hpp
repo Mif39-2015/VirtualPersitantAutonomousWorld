@@ -20,13 +20,22 @@ public:
 	std::map<Item, int> stock;
 
 	Tribe(unsigned int, std::string, unsigned int);
-
+    unsigned int getId();
+    std::string getName();
+    unsigned int getGoalIndex();
+    void setId(unsigned int _id);
+    void setName(std::string _n);
+    void setGoalIndex(unsigned int _goal_index);
+    int getPopulationSize();
+    void welcomeNewMember(Agent a);
+    int getQuantityByItem(Item i);
+    void addItemToStock(Item i, int quantity);
 	~Tribe();
 
 private:
 	unsigned int id;
 	std::string name;
-	unsigned int goal_index;	
+	unsigned int goal_index;
 };
 
 #endif

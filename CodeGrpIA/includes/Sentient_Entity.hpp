@@ -8,10 +8,32 @@
 
 class Sentient_Entity : public Entity{
 
-	public : 
-		
+	public :
+
 		Sentient_Entity(int, bool, int, int , int ,int, int , int, int, unsigned int, std::string);
-		
+//------------------ Accesseurs -----------------------------------------
+		int getVitality();
+		bool getGender();
+		int getAge();
+		int getAgressiveness();
+		int getFitness();
+		int getSatiety();
+		int getSatietyTreshold();
+		int getReflex();
+		int getPerception();
+//---------------- Mutateurs --------------------------------------------
+        void setVitality(int v);
+        void setGender(bool g);
+        void setAge (int a);
+        void setAgressiveness(int ag);
+        void setFitness(int f);
+        void setSatiety(int s);
+        void setSatietyTreshold(int st);
+        void setReflex (int r);
+        void setPerception (int p);
+
+        bool isHungry();
+        bool isAgressive();
 		//destructor ?
 
 	private :
@@ -24,9 +46,9 @@ class Sentient_Entity : public Entity{
 		int satiety_threshold;
 		int reflex;
 		int perception;
-		//job 
-	
-	
+		//Complex_Behaviour job;
+
+
 
 };
 

@@ -16,6 +16,14 @@ public:
 
 	Entity(unsigned int, std::string);
 
+        int getId();
+        std::string getName();
+        Position getPos();
+        std::map<Item, unsigned int> getInventory();
+        void setId(int i);
+        void setName(std::string n);
+        void setPos(int x, int y);
+        void setInventory(std::map<Item, unsigned int> inv);
 	~Entity(void);
 
 private:

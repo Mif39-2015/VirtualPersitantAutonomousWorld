@@ -23,14 +23,10 @@ class Comportement {
 		Comportement();
 		/*
 		 * vN --> vector (rempli) contenant les noeuds du comportement
-		 * */
-		Comportement(vector<Noeud> vN);
-		/*
-		 * vN --> vector (rempli) contenant les noeuds du comportement
 		 * nD --> noeud de départ du comportement
 		 * nF --> noeud de fin du comportement
 		 * */
-		Comportement(vector<Noeud> vN, Noeud * nD, vector<Noeud> nFs);
+		Comportement(vector<Noeud*> vN, Noeud * nD, vector<Noeud*> nFs);
 		/*
 		 * Ajoute le Noeud n aux noeuds du comportement
 		 * */

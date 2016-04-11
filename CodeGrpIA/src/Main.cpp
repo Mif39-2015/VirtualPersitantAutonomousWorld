@@ -1,18 +1,13 @@
 #include <iostream>
 
-#include "Resource.hpp"
-#include "Agent.hpp"
-#include "Building.hpp"
-#include "Animal.hpp"
+#include "Tools.hpp"
 
 int main(int argc, char const *argv[])
 {
 	/* code */
 	for(int i = 0; i < 15; i++){
-		// Resource r;
-		// Agent ag;
-		// Building b;
-		// Animal an;
+		std::cout << getRandomMaleName() << std::endl;
+		std::cout << getRandomFemaleName() << std::endl << std::endl;
 	}
 
 	return 0;

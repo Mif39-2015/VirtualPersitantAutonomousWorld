@@ -1,14 +1,14 @@
-#ifndef ARRETE_HPP
-#define ARRETE_HPP
+#ifndef ARETE_HPP
+#define ARETE_HPP
 
 #include "Noeud.hpp"
-#include "FunctionCondition.hpp"
+#include "FonctionCondition.hpp"
 
 using namespace std;
 
 class Noeud;
 
-class Arrete{
+class Arete{
 	private :
 
 		Noeud * noeudDepart;
@@ -23,8 +23,8 @@ class Arrete{
 		 * nF --> Noeud de fin de l'arrête
 		 * f --> pointeur sur fonction de la fonction à executer pour savoir si la condition est vraie ou non
 		 * */
-		Arrete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {};
-		Arrete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC);
+		Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {};
+		Arete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC);
 
 		void setNoeudDepart(Noeud * nD);
 		void setNoeudFin(Noeud * nF);

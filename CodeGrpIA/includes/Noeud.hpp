@@ -3,17 +3,17 @@
 
 #include <vector>
 #include "Action.hpp"
-#include "Arrete.hpp"
+#include "Arete.hpp"
 #include "Sentient_Entity.hpp"
 
 using namespace std;
 
-class Arrete;
+class Arete;
 
 class Noeud {
 	private :
-		vector<Arrete *> arretesOut;
-		vector<Arrete *> arretesIn;
+		vector<Arete *> aretesOut;
+		vector<Arete *> aretesIn;
 		Action * action;
 
 	public :

@@ -21,7 +21,7 @@ typedef enum {
 	FONC_NULL
 } Fonction_Int;
 
-class FunctionCondition {
+class FonctionCondition {
 	public :
 		static map<Fonction_Bool,bool(*)(Sentient_Entity * a)> mapFonctionsBool;
 		static map<Fonction_Int,int(*)(Sentient_Entity * a, Entity * e)> mapFonctionsInt;

@@ -12,7 +12,7 @@ make
 make doc # permet la compilation de la doc doxygen qui est dans doc/html/index.html
 ```
 
-#####  Création d'un nouveau test unitaire #####
+##  Création d'un nouveau test unitaire ##
 
 Un exemple de test unitaire est `test/test_foo.cpp` associé à la classe `src/foo.hpp`
 
@@ -23,7 +23,7 @@ Il faut ouvrir `test/CMakeLists.txt` et ajouter `test_bar` dans `TEST_LIST` (jus
 
 Puis il faut regénérer un makefile avec `cmake ..` en étant dans le dossier `build`
 
-##### Compiler un test unitaire spécifique #####
+## Compiler un test unitaire spécifique ##
 
 Être dans `build/test/`
 

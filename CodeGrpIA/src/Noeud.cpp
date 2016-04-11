@@ -13,4 +13,9 @@ Action * Noeud::getAction(){
 }
 
 Noeud * Noeud::executerNoeud(Sentient_Entity * a){
-}
+    for (std::vector<Arrete *>::iterator it = arretesOut.begin() ; it != arretesOut.end(); ++it){
+        if((*it)->isTrue(a)) return (*it)->getNoeudFin();
+    }
+    action->Executer(a);
+    return this;
+ }

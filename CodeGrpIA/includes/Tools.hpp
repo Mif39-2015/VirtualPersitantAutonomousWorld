@@ -4,6 +4,7 @@
 #include <ctime>
 #include <iomanip>
 #include <limits>
+#include <cstdlib>
 
 template<typename T>
 T rand(T min, T max){

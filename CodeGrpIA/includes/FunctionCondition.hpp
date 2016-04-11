@@ -22,7 +22,7 @@ typedef enum {
 } Fonction_Int;
 
 class FunctionCondition {
-	private :
+	public :
 		static map<Fonction_Bool,bool(*)(Sentient_Entity * a)> mapFonctionsBool;
 		static map<Fonction_Int,int(*)(Sentient_Entity * a, Entity * e)> mapFonctionsInt;
 };

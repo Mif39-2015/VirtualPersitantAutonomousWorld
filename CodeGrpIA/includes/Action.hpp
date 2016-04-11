@@ -1,6 +1,6 @@
 #ifndef ACTION_HPP
 #define ACTION_HPP
-
+ 
 //~ #include "Include.hpp"
 #include "Sentient_Entity.hpp"
 //~ #include "Comportement.hpp"

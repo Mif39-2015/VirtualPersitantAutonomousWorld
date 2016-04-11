@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <map>
-#include "Entity.hpp"
+
 #include "Sentient_Entity.hpp"
 
 using namespace std;

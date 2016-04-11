@@ -1,7 +1,9 @@
 #ifndef ARETE_HPP
 #define ARETE_HPP
 
-#include "Noeud.hpp"
+#include <vector>
+
+//~ #include "Noeud.hpp"
 #include "FonctionCondition.hpp"
 
 using namespace std;

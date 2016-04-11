@@ -2,13 +2,13 @@
 #define NOEUD_HPP
 
 #include <vector>
-#include "Action.hpp"
+
 #include "Arete.hpp"
-#include "Sentient_Entity.hpp"
+#include "Action.hpp"
 
 using namespace std;
 
-class Arete;
+class Action;
 
 class Noeud {
 	private :

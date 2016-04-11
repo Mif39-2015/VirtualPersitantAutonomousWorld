@@ -29,11 +29,16 @@ class Comportement {
 		/*
 		 * Ajoute le Noeud n aux noeuds du comportement
 		 * */
-		void AjouterNoeud(Noeud * n);
+		void ajouterNoeud(Noeud * n);
 		/*
 		 * Supprime le Noeud n du comportement et supprime les arrêtes liées à n
 		 * */
-		void SupprimerNoeud(Noeud * n);
+		void supprimerNoeud(Noeud * n);
 
+		void setNoeudDepart(Noeud * nD);
+		void setNoeudFin(vector<Noeud *> nFs);
+
+		Noeud * getNoeudDepart();
+		vector<Noeud *> getNoeudFin();
 };
 #endif

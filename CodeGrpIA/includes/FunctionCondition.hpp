@@ -29,12 +29,12 @@ typedef enum {
 } Operator;
 
 struct struct_condition{
-	Fonction_Int fonc;
-	Entity * e;
+	Fonction_Int fonc1;
+	Entity * e1;
 	Operator op;
-	int comp;
 	Fonction_Int fonc2;
 	Entity * e2;
+	int comp;
 };
 
 class FunctionCondition {

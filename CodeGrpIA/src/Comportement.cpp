@@ -11,3 +11,4 @@ void Comportement::SupprimerNoeud(Noeud * n){
         if(*it == n) noeuds.erase(it);
     }
 }
+

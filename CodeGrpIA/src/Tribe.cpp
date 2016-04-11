@@ -26,12 +26,12 @@ void Tribe::setGoalIndex(unsigned int _goal_index){
 }
 int Tribe::getTribeSize(){
     int sizet=0;
-    for(Agent a : population){
+    for(Sentient_Entity a : population){
         sizet++;
     }
     return sizet;
 }
-void Tribe::welcomeNewMember(Agent a){
+void Tribe::welcomeNewMember(Sentient_Entity a){
     population.push_back(a);
 }
 int Tribe::getQuantityByItem(Item i){

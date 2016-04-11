@@ -1,4 +1,4 @@
-#ifndef ANIMAL_HPP
+/*#ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
 #include <string>
@@ -7,14 +7,15 @@
 
 class Animal : public Sentient_Entity{
 
-	public : 
+	public :
 		Animal(int, bool, int, int, int, int, int, int, int, std::string);
-		
+
 		~Animal(void);
-	
-	protected : 	
+
+	protected :
 		static unsigned int idCount;
 
 };
 
 #endif
+*/

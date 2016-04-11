@@ -5,7 +5,7 @@
 //~ #include "Include.hpp"
 #include "Action.hpp"
 #include "Arrete.hpp"
-#include "Agent.hpp"
+#include "Sentient_Entity.hpp"
 
 using namespace std;
 
@@ -39,6 +39,6 @@ class Noeud {
 		* 	- si une arrête a une condition valide, on execute le Noeud suivant ( = executerNoeud du noeud de l'autre côté de l'arrête)
 		* 	- sinon, on execute l'action de action
 		* */
-		Noeud * executerNoeud(Agent * a);
+		Noeud * executerNoeud(Sentient_Entity * a);
 };
 #endif

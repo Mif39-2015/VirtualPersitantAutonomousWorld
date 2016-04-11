@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <sstream>
 #include "Animal.hpp"
 
@@ -13,3 +13,4 @@ Animal::Animal(int v, bool g, int a, int agr , int f ,int s, int s_t, int r, int
 }
 
 Animal::~Animal(void){}
+*/

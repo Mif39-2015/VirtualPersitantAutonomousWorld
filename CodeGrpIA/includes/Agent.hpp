@@ -1,4 +1,4 @@
-#ifndef AGENT_HPP
+/*#ifndef AGENT_HPP
 #define AGENT_HPP
 
 #include <string>
@@ -45,3 +45,4 @@ class Agent : public Sentient_Entity{
 };
 
 #endif
+*/

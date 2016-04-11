@@ -6,24 +6,7 @@
 
 using namespace std;
 
-//récupere les données des chractéristiques du fichier de description et construit une liste de charactéristiques
-/*
-vector<Characteristics> loadCharacteristicsFile(string fileName){
-	string line;
-	ifstream myfile (fileName);
-	if (myfile.is_open())
-	{
-	while ( getline (myfile,line) )
-	{
-	  cout << line << '\n';
-	}
-	myfile.close();
-	}
 
-	else cout << "Unable to open file"; 
-	return NULL;
-}
-*/
 //getter
 int Characteristics::getId() {
 	return this->id;
@@ -73,4 +56,22 @@ void Characteristics::setDefinition(std::string d) {
 
 void Characteristics::setPrecision(int p) {
 	this->precision = p;
+}
+
+
+//récupere les données des chractéristiques du fichier de description et construit une liste de charactéristiques
+int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
+	std::string line;
+	std::ifstream myfile (fileName, std::ios::in);
+	if (myfile.is_open())
+	{
+            while ( std::getline (myfile,line) )
+            {
+                std::cout << line << '\n';
+            }
+            myfile.close();
+	}
+
+	else std::cout << "Unable to open file"; 
+	return 1;
 }

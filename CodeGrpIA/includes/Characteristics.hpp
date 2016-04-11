@@ -8,11 +8,7 @@ class Characteristics{
 
 public:
 
-	//les characteristiques provenant du fichier
-	static std::vector<Characteristics> listCharacteristics;
-	
-	//cnstruit un vector de charactéristiques à partir du fichier donné
-	std::vector<Characteristics> loadCharacteristics(std::string fileName);
+
 
 
 	int getId();
@@ -43,7 +39,16 @@ private:
 
 };
 
-
+class CharacteristicsList{
+    
+public:
+        //les characteristiques provenant du fichier
+	static std::vector<Characteristics> listCharacteristics;
+	
+	//cnstruit un vector de charactéristiques à partir du fichier donné
+	int loadCharacteristicsFile(std::string fileName);
+    
+};
 
 
 #endif

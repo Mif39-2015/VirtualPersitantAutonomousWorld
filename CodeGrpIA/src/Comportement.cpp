@@ -13,3 +13,17 @@ void Comportement::supprimerNoeud(Noeud * n){
     }
 }
 
+void Comportement::setNoeudDepart(Noeud * nD){
+    noeudDepart = nD;
+}
+void Comportement::setNoeudFin(vector<Noeud *> nFs){
+    noeudsFin = nFs;
+}
+
+Noeud * Comportement::getNoeudDepart(){
+    return noeudDepart;
+}
+vector<Noeud *> Comportement::getNoeudFin(){
+    return noeudsFin;
+}
+

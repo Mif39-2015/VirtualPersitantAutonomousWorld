@@ -30,4 +30,5 @@ class Action {
 	//~ public :
 		//~ void Executer(Agent * agent);
 //~ };
+
 #endif

@@ -26,7 +26,7 @@ public:
         void setInventory(std::map<Item, unsigned int> inv);
 	~Entity(void);
 
-private:
+protected:
 	unsigned int id;
 	std::string name;
 };

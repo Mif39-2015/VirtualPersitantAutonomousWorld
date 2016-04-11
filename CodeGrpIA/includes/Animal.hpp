@@ -12,7 +12,7 @@ class Animal : public Sentient_Entity{
 		
 		~Animal(void);
 	
-	private : 	
+	protected : 	
 
 };
 

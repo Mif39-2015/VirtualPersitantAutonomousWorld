@@ -23,7 +23,7 @@ public:
 	//destruct
 	~Building(void){};
 
-private:
+protected:
 	int orientation; //A voir si on le garde
 	unsigned int structural_point;
 

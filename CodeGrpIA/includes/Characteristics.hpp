@@ -46,7 +46,7 @@ public:
 	static std::vector<Characteristics> listCharacteristics;
 	
 	//cnstruit un vector de charactéristiques à partir du fichier donné
-	int loadCharacteristicsFile(std::string fileName);
+	static int loadCharacteristicsFile(std::string fileName);
     
 };
 

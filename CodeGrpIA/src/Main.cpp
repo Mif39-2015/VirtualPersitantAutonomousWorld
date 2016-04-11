@@ -9,14 +9,15 @@
 int main(int argc, char const *argv[])
 {
 	/* code */
-	for(int i = 0; i < 15; i++){
-		std::cout << getRandomMaleName() << std::endl;
-		std::cout << getRandomFemaleName() << std::endl << std::endl;
-	}
-         */
+	// for(int i = 0; i < 15; i++){
+	// 	std::cout << getRandomMaleName() << std::endl;
+	// 	std::cout << getRandomFemaleName() << std::endl << std::endl;
+	// }
+         
         
-        /*CharacteristicsList cl;
-        cl.loadCharacteristicsFile("..\\data\\descriptionCharacteristics.txt");
-        */ 
+	// CharacteristicsList cl;
+	// cl.loadCharacteristicsFile("..\\data\\descriptionCharacteristics.txt");
+	int a = CharacteristicsList::loadCharacteristicsFile ("data/descriptionCharacteristics.txt");
+	 
 	return 0;
 }

@@ -1,9 +1,11 @@
 #include <iostream>
 #include "Entity.hpp"
 
+unsigned int Entity::idCount = 0;
+
 Entity::Entity(std::string n) : pos(0, 0), name(n){}
 
-std::string Entity::getId(){
+unsigned int Entity::getId(){
 	return id;
 }
 

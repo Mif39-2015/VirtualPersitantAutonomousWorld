@@ -1,5 +1,5 @@
-#ifndef Characteristics_hpp
-#define Characteristics_hpp
+#ifndef CHARACTERISTICS_HPP
+#define CHARACTERISTICS_HPP
 
 #include <vector>
 
@@ -46,4 +46,4 @@ private:
 
 
 
-#endif //Characteristics.hpp
+#endif

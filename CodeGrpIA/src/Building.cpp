@@ -10,11 +10,8 @@ Building::Building(std::string n, int x, int y, int z, int o, unsigned int sp) :
 		size.y = y;
 		size.z = z;
 
-		std::stringstream ss;
-		ss << "buil_" << Building::idCount;
-		id = ss.str();
-		std::cout << id << std::endl;
-		Building::idCount++;
+		id = Entity::idCount;
+		Entity::idCount++;
 	}
 
 	//getters

@@ -8,11 +8,12 @@
 class Animal : public Sentient_Entity{
 
 	public : 
-		Animal(int, bool, int, int, int, int, int, int, int, unsigned int, std::string);
+		Animal(int, bool, int, int, int, int, int, int, int, std::string);
 		
 		~Animal(void);
 	
 	protected : 	
+		static unsigned int idCount;
 
 };
 

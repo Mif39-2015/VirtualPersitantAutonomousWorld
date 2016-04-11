@@ -5,7 +5,7 @@
 
 class Insentient_Entity : public Entity{
 public:
-	Insentient_Entity(unsigned int i, std::string n);
+	Insentient_Entity(std::string n);
 };
 
 #endif

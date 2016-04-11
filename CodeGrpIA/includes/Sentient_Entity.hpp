@@ -10,7 +10,7 @@ class Sentient_Entity : public Entity{
 
 	public:
 
-		Sentient_Entity(int, bool, int, int , int ,int, int , int, int, unsigned int, std::string);
+		Sentient_Entity(int, bool, int, int , int ,int, int , int, int, std::string);
 //------------------ Accesseurs -----------------------------------------
 		int getVitality();
 		bool getGender();

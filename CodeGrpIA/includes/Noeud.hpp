@@ -2,7 +2,6 @@
 #define NOEUD_HPP
 
 #include <vector>
-//~ #include "Include.hpp"
 #include "Action.hpp"
 #include "Arrete.hpp"
 #include "Sentient_Entity.hpp"
@@ -25,7 +24,7 @@ class Noeud {
 		 * */
 		Noeud();
 		Noeud(Action * a);
-                Noeud(Noeud * n);
+		Noeud(Noeud * n);
 
 		void setAction(Action * a);
 		Action * getAction();

@@ -1,4 +1,3 @@
-
 #include "Noeud.hpp"
 
 Noeud::Noeud() {}
@@ -13,7 +12,5 @@ Action * Noeud::getAction(){
     return action;
 }
 
-Noeud * Noeud::executerNoeud(Sentient_Entity * a){
-    for (std::vector<Arrete *>::iterator it = arretesOut.begin() ; it != arretesOut.end(); ++it)
-        return 0;
+Noeud * Noeud::executerNoeud(Agent * a){
 }

@@ -1,7 +1,6 @@
 #ifndef COMPORTEMENT_HPP
 #define COMPORTEMENT_HPP
 
-//~ #include "Include.hpp"
 #include "Noeud.hpp"
 #include <vector>
 

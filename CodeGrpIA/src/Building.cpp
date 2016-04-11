@@ -33,3 +33,5 @@ Building::Building(std::string n, int x, int y, int z, int o, unsigned int sp) :
 	void Building::setStructurationPoint(int _newStructurationPoint){
 		structural_point = _newStructurationPoint;
 	}
+
+//test avec ssh malik

@@ -35,5 +35,6 @@ class Comportement {
 		 * */
 		void SupprimerNoeud(Noeud * n);
 
+                
 };
 #endif

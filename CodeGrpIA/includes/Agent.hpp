@@ -10,7 +10,7 @@ class Agent : public Sentient_Entity{
 
 	public :
 		//------------------ Constructeurs / Destructeurs------------------------
-		Agent(int, int, int, int, int, int, int, bool, int, int, int, int, int, int, int, unsigned int, std::string);
+		Agent(int, int, int, int, int, int, int, bool, int, int, int, int, int, int, int, std::string);
 		~Agent(void);
 		//------------------ Accesseurs -----------------------------------------
 		unsigned short int getIndependence();
@@ -29,6 +29,7 @@ class Agent : public Sentient_Entity{
 
 
 	protected :
+		static unsigned int idCount;
 		// caracteristics
 		unsigned short int independence;
 		unsigned short int charisma;

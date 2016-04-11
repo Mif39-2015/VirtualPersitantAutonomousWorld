@@ -9,7 +9,6 @@ class AgentFactory{
 public:
 	static Agent * createAgent(){
 	}
-
 };
 
 #endif

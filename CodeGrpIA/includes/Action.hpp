@@ -1,7 +1,7 @@
 #ifndef ACTION_HPP
 #define ACTION_HPP
 
-#include "Agent.hpp"
+//~ #include "Agent.hpp"
 #include "Sentient_Entity.hpp"
 
 using namespace std;

@@ -2,17 +2,20 @@
 #define FUNCTION_CONDITION_HPP
 
 #include <map>
-#include "Agent.hpp"
+#include "Entity.hpp"
+
 using namespace std;
 
 typedef enum {
-	Fonction_1,
-	Fonction_2
+	Fonction_BOOL_TRUE,
+	Fonction_BOOL_FALSE
 } Fonction_Bool;
 
 typedef enum {
-	Distance_To,
-	How_Much_In_Inventory,
+	Fonction_INT_1,
+	Fonction_INT_2,
+	Fonction_INT_3,
+	Fonction_INT_4,
 	FONC_NULL
 } Fonction_Int;
 
@@ -36,14 +39,10 @@ struct struct_condition{
 
 class FunctionCondition {
 	private :
-		static map<Fonction_Bool,bool(*)(Agent * a)> mapFonctionsBool;
-		static map<Fonction_Int,int(*)(Agent * a, Entity * e)> mapFonctionsInt;
+		static map<Fonction_Bool,bool(*)(Entity * a)> mapFonctionsBool;
+		static map<Fonction_Int,int(*)(Entity * a, Entity * e)> mapFonctionsInt;
 };
-//~
-//~ bool function1(Agent * a, Fonction_Int fI = FONC_NULL, Entity * e = nullptr, Operator op = OP_NULL, int Comp=-1);
-//~ bool function2(Agent * a, ...);
-//~ int Distance_To(Agent * a, Entity  * e){
-	//~ return a->distanceTo(e);
-//~ }
+
+
 
 #endif

@@ -12,5 +12,5 @@ Action * Noeud::getAction(){
     return action;
 }
 
-Noeud * Noeud::executerNoeud(Agent * a){
+Noeud * Noeud::executerNoeud(Sentient_Entity * a){
 }

@@ -20,6 +20,13 @@ Noeud * Arrete::getNoeudFin(){
 	return noeudFin;
 }
 
+bool Arrete::isTrue(Entity * a){
+	for(auto it=conditions_Simples.begin(); it!=conditions_Simples.end(); ++i){
+		if(!mapFonctionsBool[*it](a)) return false;
+	}
+	return true;
+}
+
 //~ void Arrete::ajouterCondition(bool (*f)){
 	//~ conditions.push_back(f);
 //~ }

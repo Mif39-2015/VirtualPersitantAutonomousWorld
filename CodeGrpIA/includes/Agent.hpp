@@ -8,7 +8,7 @@
 
 class Agent : public Sentient_Entity{
 
-	public : 
+	public :
 		//------------------ Constructeurs / Destructeurs------------------------
 		Agent(int, int, int, int, int, int, int, bool, int, int, int, int, int, int, int, unsigned int, std::string);
 		~Agent(void);
@@ -19,7 +19,7 @@ class Agent : public Sentient_Entity{
 		unsigned short int getStamina();
 		unsigned short int getStamina_threshold();
 		unsigned short int getSanity();
-		//---------------- Mutateurs --------------------------------------------	
+		//---------------- Mutateurs --------------------------------------------
 		void setIndependence(int i);
 		void setCharisma(int c);
 		void setCapacity(int c);
@@ -28,7 +28,7 @@ class Agent : public Sentient_Entity{
 		void setSanity(int s);
 
 
-	protected : 
+	protected :
 		// caracteristics
 		unsigned short int independence;
 		unsigned short int charisma;
@@ -36,10 +36,10 @@ class Agent : public Sentient_Entity{
 		unsigned short int stamina;
 		unsigned short int stamina_threshold;
 		unsigned short int sanity;
-		
+
 		//memory
 		//std::map<std::string, std::string> map;
-		//skills (Map)		
+		//skills (Map)
 
 };
 

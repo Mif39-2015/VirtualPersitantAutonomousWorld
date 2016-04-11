@@ -8,7 +8,7 @@
 
 class Sentient_Entity : public Entity{
 
-	public :
+	public:
 
 		Sentient_Entity(int, bool, int, int , int ,int, int , int, int, unsigned int, std::string);
 //------------------ Accesseurs -----------------------------------------
@@ -36,7 +36,7 @@ class Sentient_Entity : public Entity{
         bool isAgressive();
 		//destructor ?
 
-	private :
+	protected:
 		int vitality;
 		bool gender;
 		int age;

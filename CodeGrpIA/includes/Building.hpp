@@ -12,9 +12,18 @@ public:
 
 	Building(unsigned int i, std::string n, int x, int y, int z, int o, unsigned int sp);
 
+	//getters
+	int getOrientation();
+	int getStructuralPoint();
+	
+	//setters
+	void setOrientation(int _newOrientation);
+	void setStructurationPoint(int _newStructurationPoint);
+
+	//destruct
 	~Building(void){};
 
-private:
+protected:
 	int orientation; //A voir si on le garde
 	unsigned int structural_point;
 

@@ -13,4 +13,7 @@ T rand(T min, T max){
 	return min + (T)rand()/((T)RAND_MAX/(T)(max-min));
 }
 
+std::string getRandomMaleName();
+std::string getRandomFemaleName();
+
 #endif

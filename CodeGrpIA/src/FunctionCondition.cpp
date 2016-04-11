@@ -3,20 +3,21 @@
 #include <map>
 
 using namespace std;
-//~
-//~
-//~ bool function1(Agent * a, Fonction_Int fI, Entity * e, Operator op, int Comp){
-	//~ return a.aFaim();
-	//~ return true;
-//~ }
-//~
-//~ bool function2(Agent * a, ...){
-	//~ return a.aSoif();
-	//~ return false;
-//~ }
-//~
-//~ map<Fonction_Bool, bool(*)(Agent * a, Fonction_Int fI , Entity * e, Operator op, int Comp)> FunctionCondition::mapFonctions = {
-//~ map<Fonction_Bool, bool(*)(Agent * a, ...)> FunctionCondition::mapFonctions = {
-	//~ {Fonction_1, function1},
-	//~ {Fonction_2, function2}
-//~ };
+
+map<Fonction_Bool, bool(*)(Sentient_Entity * a)> FunctionCondition::mapFonctionsBool = {
+	{Fonction_BOOL_TRUE,fonction_true},
+	{Fonction_BOOL_FALSE,fonction_false}
+};
+map<Fonction_Int, int(*)(Sentient_Entity * a, Entity * e)> FunctionCondition::mapFonctionsInt = {
+
+};
+
+bool fonction_true(Sentient_Entity * a){
+	cout << " je suis dans la fonction_true() liée à FONCTION_BOOL_TRUE " << endl;
+	return true;
+}
+
+bool fonction_false(Sentient_Entity * a){
+	cout << " je suis dans la fonction_false() liée à FONCTION_BOOL_FALSE " << endl;
+	return false;
+}

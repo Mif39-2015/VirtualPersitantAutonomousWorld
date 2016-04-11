@@ -24,9 +24,7 @@ class Noeud {
 		 * */
 		Noeud();
 		Noeud(Action * a);
-		Noeud(Action * a, vector<Arrete *> vAO);
-		//~ Noeud(Action * a, vector<Arrete *> vAI);
-		Noeud(Action * a, vector<Arrete> vAO, vector<Arrete> vaI);
+		Noeud(Noeud * n);
 
 		void setAction(Action * a);
 		Action * getAction();

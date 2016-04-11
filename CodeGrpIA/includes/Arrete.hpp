@@ -6,7 +6,7 @@
 
 using namespace std;
 
-//~ class Noeud;
+class Noeud;
 
 class Arrete{
 	private :
@@ -14,7 +14,8 @@ class Arrete{
 		Noeud * noeudDepart;
 		Noeud * noeudFin;
 
-		vector<Fonction_Bool> conditions;
+		vector<Fonction_Bool> conditions_Simples;
+		vector<struct_condition> condition_Complexes;
 
 	public :
 		/*
@@ -34,7 +35,19 @@ class Arrete{
 		/*
 		 * Utilisé pour savoir si la condition est vérifiée ou non
 		 * */
-		bool isTrue();
+		bool isTrue(Agent * a){
+			//~ int val1 = map.find(condition_Complexes[i].fonc)(a,condition_Complexes[i].e1));
+			//~ if(condition_Complexes[i].fonc2!=FONC_NULL)
+				//~ int val2 = map.find(condition_Complexes[i].fonc2)(a,condition_Complexes[i].e2));
+			//~ else int val2 = condition_Complexes[i].comp;
+			//~ switch(condition_Complexes[i].op){
+				//~ case Inf :
+					//~ return val1 < val2;
+					//~ case Inf_Eg
+					//~ return val1 <= val2;
+			//~ }
+			return true;
+		};
 
 };
 #endif

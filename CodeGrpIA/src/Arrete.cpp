@@ -1,7 +1,7 @@
 #include "Arrete.hpp"
 
 Arrete::Arrete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC) : noeudDepart(nD) , noeudFin(nF) {
-	conditions = fC;
+	//~ conditions = fC;
 }
 
 void Arrete::setNoeudDepart(Noeud * nD){

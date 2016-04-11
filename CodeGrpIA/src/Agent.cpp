@@ -1,9 +1,17 @@
 #include <iostream>
+#include <sstream>
 #include "Agent.hpp"
 
-Agent::Agent(int ind, int c, int cap, int st, int st_t, int san, int v, bool g, int a, int agr, int f, int s, int s_t, int r, int p, unsigned int i, std::string n)
-	:Sentient_Entity(v, g, a, agr, f, s, s_t, r, p, i, n), independence(ind), charisma(c), capacity(cap), stamina(st), stamina_threshold(st_t), sanity(san)
+unsigned int Agent::idCount = 0;
+
+Agent::Agent(int ind, int c, int cap, int st, int st_t, int san, int v, bool g, int a, int agr, int f, int s, int s_t, int r, int p, std::string n)
+	:Sentient_Entity(v, g, a, agr, f, s, s_t, r, p, n), independence(ind), charisma(c), capacity(cap), stamina(st), stamina_threshold(st_t), sanity(san)
 {
+	std::stringstream ss;
+	ss << "ag_" << Agent::idCount;
+	id = ss.str();
+	std::cout << id << std::endl;
+	Agent::idCount++;
 	//intialization of memory
 }
 

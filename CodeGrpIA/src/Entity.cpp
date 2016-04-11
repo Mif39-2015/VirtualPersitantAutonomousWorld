@@ -1,9 +1,9 @@
 #include <iostream>
 #include "Entity.hpp"
 
-Entity::Entity(unsigned int i, std::string n) : pos(0, 0), id(i), name(n){}
+Entity::Entity(std::string n) : pos(0, 0), name(n){}
 
-int Entity::getId(){
+std::string Entity::getId(){
 	return id;
 }
 
@@ -15,10 +15,6 @@ Position Entity::getPos(){
 }
 std::map<Item, unsigned int> Entity::getInventory(){
     return inventory;
-}
-
-void Entity::setId(int i){
-	id = i;
 }
 
 void Entity::setName(std::string n){

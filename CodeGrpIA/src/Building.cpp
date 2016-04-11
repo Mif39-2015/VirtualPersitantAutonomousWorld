@@ -4,8 +4,8 @@
 
 unsigned int Building::idCount = 0;
 
-Building::Building(std::string n, int x, int y, int z, int o, unsigned int sp) :
-	Insentient_Entity(n), orientation(o), structural_point(sp){
+Building::Building(int x, int y, int z, int o, unsigned int sp, std::string n, std::string tid) :
+	Insentient_Entity(n, tid), orientation(o), structural_point(sp){
 		size.x = x;
 		size.y = y;
 		size.z = z;

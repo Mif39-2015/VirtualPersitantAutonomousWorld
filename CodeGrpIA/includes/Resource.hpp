@@ -6,7 +6,7 @@
 class Resource : public Insentient_Entity{
 
 public:
-	Resource(unsigned int rr, unsigned int rv, std::string n);
+	Resource(unsigned int rr, unsigned int rv, std::string n, std::string tid);
 
 protected:
 	static unsigned int idCount;

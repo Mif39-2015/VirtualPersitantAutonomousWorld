@@ -14,7 +14,7 @@ public:
 	std::map<Item, unsigned int> inventory;
 	Position pos;
 
-	Entity(std::string);
+	Entity(std::string, std::string);
 
         unsigned int getId();
         std::string getName();
@@ -28,6 +28,7 @@ public:
 protected:
         static unsigned int idCount;
 	unsigned int id;
+        std::string typeId;
 	std::string name;
 };
 

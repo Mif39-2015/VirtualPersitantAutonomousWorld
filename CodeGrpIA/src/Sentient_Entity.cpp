@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(int x, int y, std::string n) : Entity(n), posX(x), posY(y){
+Sentient_Entity::Sentient_Entity(int x, int y, std::string n, std::string tid) : Entity(n, tid), posX(x), posY(y){
     id = Entity::idCount;
     Entity::idCount++;
 }

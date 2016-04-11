@@ -10,7 +10,7 @@ public:
 	Vector3 size;
 	std::map<Item, int> recipe;
 
-	Building(std::string n, int x, int y, int z, int o, unsigned int sp);
+	Building(int x, int y, int z, int o, unsigned int sp, std::string n, std::string tid);
 
 	//getters
 	int getOrientation();

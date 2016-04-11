@@ -1,8 +1,10 @@
 #ifndef FUNCTION_CONDITION_HPP
 #define FUNCTION_CONDITION_HPP
 
+#include <iostream>
 #include <map>
 #include "Entity.hpp"
+#include "Sentient_Entity.hpp"
 
 using namespace std;
 
@@ -19,6 +21,12 @@ typedef enum {
 	FONC_NULL
 } Fonction_Int;
 
+class FunctionCondition {
+	private :
+		static map<Fonction_Bool,bool(*)(Sentient_Entity * a)> mapFonctionsBool;
+		static map<Fonction_Int,int(*)(Sentient_Entity * a, Entity * e)> mapFonctionsInt;
+};
+
 typedef enum {
 	Inf,
 	Inf_Eg,
@@ -29,20 +37,15 @@ typedef enum {
 } Operator;
 
 struct struct_condition{
-	Fonction_Int fonc;
-	Entity * e;
+	Fonction_Int fonc1;
+	Entity * e1;
 	Operator op;
-	int comp;
 	Fonction_Int fonc2;
 	Entity * e2;
+	int comp;
 };
 
-class FunctionCondition {
-	private :
-		static map<Fonction_Bool,bool(*)(Entity * a)> mapFonctionsBool;
-		static map<Fonction_Int,int(*)(Entity * a, Entity * e)> mapFonctionsInt;
-};
-
-
+bool fonction_true(Sentient_Entity * a);
+bool fonction_false(Sentient_Entity * a);
 
 #endif

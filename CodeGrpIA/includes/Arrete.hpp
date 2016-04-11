@@ -35,7 +35,7 @@ class Arrete{
 		/*
 		 * Utilisé pour savoir si la condition est vérifiée ou non
 		 * */
-		bool isTrue(Entity * a){
+		bool isTrue(Entity * a);
 			//~ int val1 = map.find(condition_Complexes[i].fonc)(a,condition_Complexes[i].e1));
 			//~ if(condition_Complexes[i].fonc2!=FONC_NULL)
 				//~ int val2 = map.find(condition_Complexes[i].fonc2)(a,condition_Complexes[i].e2));
@@ -46,8 +46,6 @@ class Arrete{
 					//~ case Inf_Eg
 					//~ return val1 <= val2;
 			//~ }
-			return true;
-		};
 
 };
 #endif

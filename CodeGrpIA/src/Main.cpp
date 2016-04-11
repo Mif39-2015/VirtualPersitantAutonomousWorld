@@ -9,11 +9,9 @@
 int main(int argc, char const *argv[])
 {
 	/* code */
-	/*for(int i = 0; i < 15; i++){
-		// Resource r;
-		// Agent ag;
-		// Building b;
-		// Animal an;
+	for(int i = 0; i < 15; i++){
+		std::cout << getRandomMaleName() << std::endl;
+		std::cout << getRandomFemaleName() << std::endl << std::endl;
 	}
          */
         

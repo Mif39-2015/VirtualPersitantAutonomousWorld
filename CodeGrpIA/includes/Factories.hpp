@@ -7,8 +7,8 @@
 class AgentFactory{
 
 public:
-	static Agent * createAgent(){
-		
+	static Sentient_Entity * createAgent(){
+
 	}
 };
 

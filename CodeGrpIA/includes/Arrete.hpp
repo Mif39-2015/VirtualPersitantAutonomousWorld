@@ -1,19 +1,20 @@
 #ifndef ARRETE_HPP
 #define ARRETE_HPP
 
-//~ #include "Include.hpp"
 #include "Noeud.hpp"
+#include "FunctionCondition.hpp"
 
 using namespace std;
 
-class Noeud;
+//~ class Noeud;
 
 class Arrete{
 	private :
+
 		Noeud * noeudDepart;
 		Noeud * noeudFin;
 
-		bool (*condition);
+		vector<Fonction_Bool> conditions;
 
 	public :
 		/*
@@ -21,17 +22,14 @@ class Arrete{
 		 * nF --> Noeud de fin de l'arrête
 		 * f --> pointeur sur fonction de la fonction à executer pour savoir si la condition est vraie ou non
 		 * */
-		Arrete(Noeud * nD, Noeud * nF);
-		Arrete(Noeud * nD, Noeud * nF, bool (*f));
+		Arrete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {};
+		Arrete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC);
 
 		void setNoeudDepart(Noeud * nD);
-		void setNoeudArrivee(Noeud * nF);
+		void setNoeudFin(Noeud * nF);
 
 		Noeud * getNoeudDepart();
-		Noeud * getNoeudArrivee();
-
-		void setCondition(bool(*f));
-		//bool(*function) getCondition();
+		Noeud * getNoeudFin();
 
 		/*
 		 * Utilisé pour savoir si la condition est vérifiée ou non

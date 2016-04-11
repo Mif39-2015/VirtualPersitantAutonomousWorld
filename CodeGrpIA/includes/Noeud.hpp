@@ -2,7 +2,6 @@
 #define NOEUD_HPP
 
 #include <vector>
-//~ #include "Include.hpp"
 #include "Action.hpp"
 #include "Arrete.hpp"
 #include "Agent.hpp"
@@ -13,8 +12,8 @@ class Arrete;
 
 class Noeud {
 	private :
-		vector<Arrete> arretesOut;
-		vector<Arrete> arretesIn;
+		vector<Arrete *> arretesOut;
+		vector<Arrete *> arretesIn;
 		Action * action;
 
 	public :
@@ -25,8 +24,8 @@ class Noeud {
 		 * */
 		Noeud();
 		Noeud(Action * a);
-		Noeud(Action * a, vector<Arrete> vAO);
-		Noeud(Action * a, vector<Arrete> vAI);
+		Noeud(Action * a, vector<Arrete *> vAO);
+		//~ Noeud(Action * a, vector<Arrete *> vAI);
 		Noeud(Action * a, vector<Arrete> vAO, vector<Arrete> vaI);
 
 		void setAction(Action * a);

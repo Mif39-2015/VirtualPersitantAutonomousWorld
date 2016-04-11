@@ -26,5 +26,7 @@ Puis il faut regénérer un makefile avec `cmake ..` en étant dans le dossier `
 ##### Compiler un test unitaire spécifique #####
 
 Être dans `build/test/`
+
 Puis `make test_foo` pour compiler le test unitaire `test_foo.cpp`
+
 L'exécutable principale est `build/src/exec`

@@ -2,12 +2,13 @@
 #define ACTION_HPP
 
 #include "Agent.hpp"
+#include "Sentient_Entity.hpp"
 
 using namespace std;
 
 class Action {
 	public :
-		void Executer(Agent * agent){}
+		void Executer(Sentient_Entity * agent){}
 };
 
 //~ class ActionSimple : Action {

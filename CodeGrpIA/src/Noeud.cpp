@@ -13,6 +13,4 @@ Action * Noeud::getAction(){
 }
 
 Noeud * Noeud::executerNoeud(Agent * a){
-    for (std::vector<Arrete *>::iterator it = arretesOut.begin() ; it != arretesOut.end(); ++it)
-        return 0;
 }

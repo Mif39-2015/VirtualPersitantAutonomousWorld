@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <sstream>
 #include "Agent.hpp"
 
@@ -42,7 +42,7 @@ unsigned short int Agent::getSanity() {
 	return sanity;
 }
 
-//---------------- Mutateurs --------------------------------------------	
+//---------------- Mutateurs --------------------------------------------
 void Agent::setIndependence(int i) {
 	if (i >= 0)
 		independence = i;
@@ -73,3 +73,4 @@ void Agent::setSanity(int s) {
 		sanity = s;
 }
 
+*/

@@ -1,7 +1,7 @@
 #ifndef TRIBE_HPP
 #define TRIBE_HPP
 
-#include "Sentient_Entity.hpp"
+#include "Entity.hpp"
 // #include "Goal.hpp" //Uncomment when Goal is implemented
 #include "Item.hpp"
 // #include "Complex_Behavior.hpp" //Uncomment when Complex_Behavior is implemented
@@ -13,7 +13,10 @@
 class Tribe {
 public:
 	//Uncomment when Agent, Goal and Complex_Behavior are implemented
-	std::vector<Sentient_Entity> population;
+	/*
+	* C'est l'ensemble de tous les entités dans le clan
+	* */
+	std::vector<Entity> tribe;
 	// std::vector<Goal> goal_list;
 	// std::map<Complex_Behavior, int> job_repartition;
 
@@ -27,7 +30,9 @@ public:
     void setName(std::string _n);
     void setGoalIndex(unsigned int _goal_index);
     int getPopulationSize();
-    void welcomeNewMember(Sentient_Entity a);
+    int getNbBuildings();
+    int getNbRessources();
+    void addNewEntity(Entity a);
     int getQuantityByItem(Item i);
     int getTribeSize();
 

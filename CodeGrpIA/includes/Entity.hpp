@@ -27,7 +27,7 @@ public:
 	string getName();
 	Position getPos();
 	map<Item, unsigned int> getInventory();
-
+    string getTypeId();
 	void setName(std::string n);
 	void setPos(int x, int y);
 	void setInventory(std::map<Item, unsigned int> inv);

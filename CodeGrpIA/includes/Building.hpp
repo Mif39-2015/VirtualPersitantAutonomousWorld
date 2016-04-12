@@ -1,3 +1,4 @@
+/*
 #ifndef BUILDING_HPP
 #define BUILDING_HPP
 
@@ -15,7 +16,7 @@ public:
 	//getters
 	int getOrientation();
 	int getStructuralPoint();
-	
+
 	//setters
 	void setOrientation(int _newOrientation);
 	void setStructurationPoint(int _newStructurationPoint);
@@ -31,3 +32,4 @@ protected:
 };
 
 #endif
+*/

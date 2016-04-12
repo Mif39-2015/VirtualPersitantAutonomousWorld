@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include "Building.hpp"
 #include <sstream>
@@ -18,11 +19,11 @@ Building::Building(int x, int y, int z, int o, unsigned int sp, std::string n, s
 	int Building::getOrientation(){
 		return orientation;
 	}
-	
+
 	int Building::getStructuralPoint(){
 		return structural_point;
 	}
-	
+
 	//setters
 	void Building::setOrientation(int _newOrientation){
 			orientation = _newOrientation;
@@ -32,3 +33,4 @@ Building::Building(int x, int y, int z, int o, unsigned int sp, std::string n, s
 	}
 
 //test avec ssh malik
+*/

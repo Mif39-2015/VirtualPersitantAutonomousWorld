@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include "Resource.hpp"
 #include <sstream>
@@ -14,3 +15,4 @@ Resource::Resource(unsigned int rr, unsigned int rv, std::string n, std::string 
 	Entity::idCount++;
 }
 
+*/

@@ -1,8 +1,9 @@
 #ifndef COMPORTEMENT_HPP
 #define COMPORTEMENT_HPP
 
-#include "Noeud.hpp"
 #include <vector>
+
+#include "Noeud.hpp"
 
 using namespace std;
 

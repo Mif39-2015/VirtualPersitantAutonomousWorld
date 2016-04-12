@@ -2,18 +2,18 @@
 #define NOEUD_HPP
 
 #include <vector>
+
+#include "Arete.hpp"
 #include "Action.hpp"
-#include "Arrete.hpp"
-#include "Sentient_Entity.hpp"
 
 using namespace std;
 
-class Arrete;
+class Action;
 
 class Noeud {
 	private :
-		vector<Arrete *> arretesOut;
-		vector<Arrete *> arretesIn;
+		vector<Arete *> aretesOut;
+		vector<Arete *> aretesIn;
 		Action * action;
 
 	public :

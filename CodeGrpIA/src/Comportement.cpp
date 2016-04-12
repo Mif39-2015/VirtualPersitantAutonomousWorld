@@ -7,6 +7,7 @@ Comportement::Comportement(vector<Noeud*> vN, Noeud * nD, vector<Noeud*> nFs) : 
 void Comportement::ajouterNoeud(Noeud * n){
     noeuds.push_back(n);
 }
+
 void Comportement::supprimerNoeud(Noeud * n){
     for (std::vector<Noeud *>::iterator it = noeuds.begin() ; it != noeuds.end(); ++it){
         if(*it == n) noeuds.erase(it);
@@ -16,6 +17,7 @@ void Comportement::supprimerNoeud(Noeud * n){
 void Comportement::setNoeudDepart(Noeud * nD){
     noeudDepart = nD;
 }
+
 void Comportement::setNoeudFin(vector<Noeud *> nFs){
     noeudsFin = nFs;
 }
@@ -23,6 +25,7 @@ void Comportement::setNoeudFin(vector<Noeud *> nFs){
 Noeud * Comportement::getNoeudDepart(){
     return noeudDepart;
 }
+
 vector<Noeud *> Comportement::getNoeudFin(){
     return noeudsFin;
 }

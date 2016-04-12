@@ -1,14 +1,14 @@
-#include "FunctionCondition.hpp"
+#include "FonctionCondition.hpp"
 
 #include <map>
 
 using namespace std;
 
-map<Fonction_Bool, bool(*)(Sentient_Entity * a)> FunctionCondition::mapFonctionsBool = {
+map<Fonction_Bool, bool(*)(Sentient_Entity * a)> FonctionCondition::mapFonctionsBool = {
 	{Fonction_BOOL_TRUE,fonction_true},
 	{Fonction_BOOL_FALSE,fonction_false}
 };
-map<Fonction_Int, int(*)(Sentient_Entity * a, Entity * e)> FunctionCondition::mapFonctionsInt = {
+map<Fonction_Int, int(*)(Sentient_Entity * a, Entity * e)> FonctionCondition::mapFonctionsInt = {
 
 };
 

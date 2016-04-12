@@ -9,23 +9,21 @@
 
 class Sentient_Entity : public Entity{
 
-public:
+	protected:
+		//idc int c'est l'id de la caractéristique et val 2eme est l'id de ce cen
+		std::map<int, int> charact_correspondence;
 
-Sentient_Entity(int, int, std::string, std::string);
-    int getVal(int id);
-    int setVal(int id, int v);
-    int getPosX();
-    int getPosY();
-    void setPosX(int _x);
-    void setPosY(int _y);
+	public:
+		Sentient_Entity(int, int, std::string, std::string);
 
-protected:
-    int posX;
-    int posY;
+		int getVal(int id);
+		int setVal(int id, int v);
 
-    //idc int c'est l'id de la caractéristique et val 2eme est l'id de ce cen
-    std::map<int, int> charact_correspondence;
+		int getPosX();
+		int getPosY();
 
+		void setPosX(int _x);
+		void setPosY(int _y);
 
 };
 

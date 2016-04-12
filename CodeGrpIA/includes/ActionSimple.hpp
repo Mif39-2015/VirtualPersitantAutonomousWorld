@@ -6,7 +6,8 @@
 class ActionSimple : Action {
 
 	private :
-		void (*function)(...);
+		void (*Sentient_Entity::function1)(Sentient_Entity * agent);
+		void (*Sentient_Entity::function2)(Sentient_Entity * agent, Entity * e);
 
 	public :
 		void Executer(Sentient_Entity * agent);

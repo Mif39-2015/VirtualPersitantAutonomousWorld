@@ -2,17 +2,11 @@
 #define POSITION_HPP
 
 class Position{
+	public:
 
-public:
-	Position(int, int);
-	
+		int x, y;
 
-	~Position(void);
-
-private:
-	int x;
-	int y;
-
+		Position(int a, int b) : x(a) , y(b) {};
 };
 
 #endif

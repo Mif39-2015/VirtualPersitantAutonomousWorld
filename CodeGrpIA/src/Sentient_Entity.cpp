@@ -1,7 +1,8 @@
 #include <iostream>
 #include "Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(int x, int y, std::string n, std::string tid) : Entity(n, tid), posX(x), posY(y){
+Sentient_Entity::Sentient_Entity(Position _pos, std::string n, std::string tid) : Entity(n, tid){
+    pos = _pos;
     id = Entity::idCount;
     Entity::idCount++;
 }
@@ -22,16 +23,16 @@ int Sentient_Entity::setVal(int id, int v){
     charact_correspondence.at(id)=v;
     return 1;
 }
-int Sentient_Entity::getPosX(){
-    return posX;
-}
-int Sentient_Entity::getPosY(){
-    return posY;
-}
 
-void Sentient_Entity::setPosX(int _x){
-    posX=_x;
-}
-void Sentient_Entity::setPosY(int _y){
-    posY=_y;
+void Sentient_Entity::vision(){
+    int vue = 10;
+    for(int x=pos.getX()-vue/2; x<pos.getX()+vue/2; x++){
+        for(int y=pos.getY()-vue/2; y<pos.getY()+vue/2; y++){
+            Position* newPos = new Position(x,y);
+            if(pos.isInCircle(newPos,vue)){
+               // memorisation[newPos] = map.getEntityAt(newPos);
+            }
+        }      
+    }
+    
 }

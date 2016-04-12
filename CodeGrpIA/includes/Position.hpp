@@ -2,11 +2,16 @@
 #define POSITION_HPP
 
 class Position{
-	public:
+public:
+	Position(int, int);
+	~Position(void);
+        
+        int getX();
+        int getY();
+        bool isInCircle(Position* p, int rayon);
 
-		int x, y;
-
-		Position(int a, int b) : x(a) , y(b) {};
+private:
+	int x;
+	int y;
 };
-
 #endif

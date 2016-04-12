@@ -11,28 +11,29 @@ using namespace std;
 
 class Entity{
 
-protected:
-	static unsigned int idCount;
-	unsigned int id;
-	string typeId;
-	string name;
-	map<Item, unsigned int> inventory;
-	Position pos;
+	protected:
+		static unsigned int idCount;
+		unsigned int id;
+		string typeId;
+		string name;
+		map<Item, unsigned int> inventory;
+		Position pos;
 
-public:
+	public:
 
-	Entity(std::string, std::string);
+		Entity(std::string, std::string);
 
-	unsigned int getId();
-	string getName();
-	Position getPos();
-	map<Item, unsigned int> getInventory();
+		unsigned int getId();
+		string getName();
+		Position getPos();
+		map<Item, unsigned int> getInventory();
 
-	void setName(std::string n);
-	void setPos(int x, int y);
-	void setInventory(std::map<Item, unsigned int> inv);
+		string getTypeId();
+		void setName(std::string n);
+		void setPos(int x, int y);
+		void setInventory(std::map<Item, unsigned int> inv);
 
-	~Entity(void);
+		~Entity(void);
 
 };
 

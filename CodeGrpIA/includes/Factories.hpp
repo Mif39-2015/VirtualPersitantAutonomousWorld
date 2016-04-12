@@ -1,18 +1,22 @@
 #ifndef FACTORIES_HPP
 #define FACTORIES_HPP
 
-#include "Agent.hpp"
+#include <fstream>
+#include <iostream>
+#include "Characteristics.hpp"
+#include "Sentient_Entity.hpp"
 #include "Tools.hpp"
 
-class AgentFactory{
+class Factories{
 
 public:
-	static Sentient_Entity * createAgent(){
-		//Charger le fichier qui correspondeau carac de l'agent.
-		//Ce fichier va contenir une liste d'ID de carac.
-		//Avec cette liste d'id de carac,
-		//on va piocher remplir la map des Sentient_Entity avec les id et des valeurs choisi (random ou pas)
-	}
+
+	//Factories permettant de créer les entités conscientes
+
+	static Sentient_Entity * createAgent();
+	
+	static Sentient_Entity * createAnimal();
+
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include "Building.hpp"
 #include "Animal.hpp"
 #include "Characteristics.hpp"
+#include "Factories.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -13,17 +14,10 @@ int main(int argc, char const *argv[])
 	// 	std::cout << getRandomMaleName() << std::endl;
 	// 	std::cout << getRandomFemaleName() << std::endl << std::endl;
 	// }
-         
         
-	// CharacteristicsList cl;
-	// cl.loadCharacteristicsFile("..\\data\\descriptionCharacteristics.txt");
 	int a = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
 
-	if(a != -1){
-		for(Characteristics c : CharacteristicsList::listCharacteristics){
-			std::cout << c.getName() << std::endl;
-		}
-	}
-	 
+	//Factories::createAgent();
+	
 	return 0;
 }

@@ -1,7 +1,7 @@
 #include "Arete.hpp"
 
 Arete::Arete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC) : noeudDepart(nD) , noeudFin(nF) {
-	//~ conditions = fC;
+	conditions_Simples = fC;
 }
 
 void Arete::setNoeudDepart(Noeud * nD){

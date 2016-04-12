@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "Resource.hpp"
 #include "Characteristics.hpp"
 #include "Factories.hpp"
 #include "Comportement.hpp"

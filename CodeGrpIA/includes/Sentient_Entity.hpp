@@ -10,10 +10,6 @@
 class Sentient_Entity : public Entity{
 
 public:
-
-<<<<<<< HEAD
-    Sentient_Entity(int, int, std::string, std::string);
-=======
 	/*
 	* C'est un constructeur avec 3 parametres oú le premier entier c'est la
 	* position de X, le deuxieme c'est la position Y et le troisime c'est
@@ -23,8 +19,7 @@ public:
 	/*
 	* Ce methode renvoie la valeur de la clé id de la map.
 	* Si la clé existe, sa valeur associée est renvoyée, sinon -1
-	* */	
->>>>>>> de703dbe2270e0e8737727b6509161b11a754b27
+	* */
     int getVal(int id);
 	/*
 	* Ce methode met à jour la valeur associée à la clé id si cette derniere

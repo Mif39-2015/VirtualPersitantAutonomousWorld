@@ -1,0 +1,12 @@
+#include "serveur_catch.hpp"
+#include "NetworkAdapter.hpp"
+
+#include <iostream>
+
+TEST_CASE("Test socket", "[foo]")
+{
+    NetworkAdapter netAd(NULL);
+    netAd.Init();
+    netAd.Run();
+
+}

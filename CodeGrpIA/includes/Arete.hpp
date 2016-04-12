@@ -4,19 +4,37 @@
 #include <vector>
 
 #include "Noeud.hpp"
-#include "FonctionCondition.hpp"
+#include "FonctionEnums.hpp"
 
 class Noeud;
 
 using namespace std;
 
 class Arete{
+	typedef enum {
+		Inf
+		,Inf_Eg
+		,Eg
+		,Sup_Eg
+		,Sup
+		,OP_NULL
+	} Operator;
+
+	struct struct_condition{
+		FONC_INT_ENTITY fonc1;
+		Entity * e1;
+		Operator op;
+		FONC_INT_ENTITY fonc2;
+		Entity * e2;
+		int comp;
+	};
+
 	private :
 
 		Noeud * noeudDepart;
 		Noeud * noeudFin;
 
-		vector<Fonction_Bool> conditions_Simples;
+		vector<FONC_BOOL> conditions_Simples;
 		vector<struct_condition> condition_Complexes;
 
 	public :
@@ -26,7 +44,7 @@ class Arete{
 		 * f --> pointeur sur fonction de la fonction à executer pour savoir si la condition est vraie ou non
 		 * */
 		Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {};
-		Arete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC);
+		Arete(Noeud * nD, Noeud * nF, vector<FONC_BOOL> fC);
 
 		void setNoeudDepart(Noeud * nD);
 		void setNoeudFin(Noeud * nF);
@@ -38,16 +56,6 @@ class Arete{
 		 * Utilisé pour savoir si la condition est vérifiée ou non
 		 * */
 		bool isTrue(Sentient_Entity * a);
-			//~ int val1 = map.find(condition_Complexes[i].fonc)(a,condition_Complexes[i].e1));
-			//~ if(condition_Complexes[i].fonc2!=FONC_NULL)
-				//~ int val2 = map.find(condition_Complexes[i].fonc2)(a,condition_Complexes[i].e2));
-			//~ else int val2 = condition_Complexes[i].comp;
-			//~ switch(condition_Complexes[i].op){
-				//~ case Inf :
-					//~ return val1 < val2;
-					//~ case Inf_Eg
-					//~ return val1 <= val2;
-			//~ }
 
 };
 #endif

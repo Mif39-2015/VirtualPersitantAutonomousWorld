@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "Sentient_Entity.hpp"
-#include "Comportement.hpp"
+//~ #include "Comportement.hpp"
 
 class Action {
 	public :

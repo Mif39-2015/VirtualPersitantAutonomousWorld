@@ -4,8 +4,10 @@
 using namespace std;
 
 #include "Action.hpp"
-#include "Comportement.hpp"
+//~ #include "Comportement.hpp"
 #include <utility>
+
+class Comportement;
 
 class ActionComportement : Action {
 

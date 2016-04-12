@@ -1,6 +1,6 @@
 #include "Arete.hpp"
 
-Arete::Arete(Noeud * nD, Noeud * nF, vector<Fonction_Bool> fC) : noeudDepart(nD) , noeudFin(nF) {
+Arete::Arete(Noeud * nD, Noeud * nF, vector<FONC_BOOL> fC) : noeudDepart(nD) , noeudFin(nF) {
 	conditions_Simples = fC;
 }
 
@@ -22,13 +22,13 @@ Noeud * Arete::getNoeudFin(){
 
 bool Arete::isTrue(Sentient_Entity * a){
 	for(auto it=conditions_Simples.begin(); it!=conditions_Simples.end(); ++it){
-		if(!FonctionCondition::mapFonctionsBool[*it](a)) return false;
+		if(!MapEnumPointeur::mapFoncBool[*it](a)) return false;
 	}
 	for(auto it=condition_Complexes.begin(); it!=condition_Complexes.end(); ++it){
-		int val1 = FonctionCondition::mapFonctionsInt[it->fonc1](a,it->e1);
+		int val1 = MapEnumPointeur::mapFoncIntEntity[it->fonc1](a,it->e1);
 		int val2;
-		if(it->fonc2!=FONC_NULL)
-			val2 = FonctionCondition::mapFonctionsInt[it->fonc2](a,it->e2);
+		if(it->fonc2!=FONC_I_E_NULL)
+			val2 = MapEnumPointeur::mapFoncIntEntity[it->fonc2](a,it->e2);
 		else
 			val2 = it->comp;
 		switch (it->op){

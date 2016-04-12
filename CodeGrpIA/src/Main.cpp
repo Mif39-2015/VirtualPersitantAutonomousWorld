@@ -14,11 +14,11 @@ void scenario(){
     Noeud noeudPasFaim;
     Noeud noeudFaim;
 
-    std::vector<Fonction_Bool> vectFctTrue;
+    std::vector<FONC_BOOL> vectFctTrue;
     vectFctTrue.push_back(Fonction_BOOL_TRUE);
     Arete areteTrue(&noeudPasFaim,&noeudFaim,vectFctTrue);
 
-    std::vector<Fonction_Bool> vectFctFalse;
+    std::vector<FONC_BOOL> vectFctFalse;
     vectFctFalse.push_back(Fonction_BOOL_FALSE);
     Arete areteFalse(&noeudFaim,&noeudPasFaim,vectFctFalse);
 
@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
 
     scenario();
     // int loadResult= CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
-    
+
     // if(loadResult != -1){
     //     for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
     //         std::cout <<it->getType() << std::endl ;

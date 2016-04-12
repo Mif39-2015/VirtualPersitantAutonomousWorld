@@ -4,15 +4,17 @@
 using namespace std;
 
 #include "Action.hpp"
-#include "FonctionAction.hpp"
+#include "FonctionEnums.hpp"
+
+#include <stack>
 
 class ActionSimple : Action {
 	private :
 
-		Fonction_Action_Simple fAS;
-		Fonction_Action_Parametre fAP;
+		FONC_VOID fV = FONC_V_NULL;
+		FONC_VOID_ENTITY fVE = FONC_V_E_NULL;
 
-		vector<Fonction_Action_Parametre_Retour> fAPR;
+		stack<FONC_ENTITY_ENTITY> sFEE;
 		Entity * parametreFinal;
 
 	public :

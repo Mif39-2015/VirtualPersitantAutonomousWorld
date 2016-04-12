@@ -1,7 +1,6 @@
 #ifndef FONCTION_CONDITION_HPP
 #define FONCTION_CONDITION_HPP
 
-#include "Includes.hpp"
 
 using namespace std;
 

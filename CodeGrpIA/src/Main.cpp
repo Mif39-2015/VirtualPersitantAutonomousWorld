@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "Resource.hpp"
 #include "Characteristics.hpp"
+#include "Factories.hpp"
 #include "Comportement.hpp"
 #include "Sentient_Entity.hpp"
 
@@ -45,22 +45,7 @@ void scenario(){
 
 int main(int argc, char const *argv[])
 {
-    /* code */
-    // for(int i = 0; i < 15; i++){
-    // 	std::cout << getRandomMaleName() << std::endl;
-    // 	std::cout << getRandomFemaleName() << std::endl << std::endl;
-    // }
 
-
-    // CharacteristicsList cl;
-    // cl.loadCharacteristicsFile("..\\data\\descriptionCharacteristics.txt");
-    /*int a = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
-
-    if(a != -1){
-            for(Characteristics c : CharacteristicsList::listCharacteristics){
-                    std::cout << c.getName() << std::endl;
-            }
-    }*/
     scenario();
 
     return 0;

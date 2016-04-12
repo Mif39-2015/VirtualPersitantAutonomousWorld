@@ -37,7 +37,7 @@ void Tribe::addNewEntity(Entity a){
 int Tribe::getPopulationSize(){
     int sizet=0;
     for(Entity a: tribe){
-        if(a.getTypeId().compare("agent")){
+        if(a.getTypeId().compare("agent")==0){
             sizet++;
         }
     }
@@ -46,7 +46,7 @@ int Tribe::getPopulationSize(){
 int Tribe::getNbBuildings(){
     int sizet=0;
     for(Entity a: tribe){
-        if(a.getTypeId().compare("building")){
+        if(a.getTypeId().compare("building")==0){
             sizet++;
         }
     }
@@ -55,7 +55,7 @@ int Tribe::getNbBuildings(){
 int Tribe::getNbRessources(){
     int sizet=0;
     for(Entity a: tribe){
-        if(a.getTypeId().compare("ressource")){
+        if(a.getTypeId().compare("ressource")==0){
             sizet++;
         }
     }

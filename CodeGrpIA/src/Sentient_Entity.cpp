@@ -36,3 +36,4 @@ void Sentient_Entity::vision(){
     }
     
 }
+

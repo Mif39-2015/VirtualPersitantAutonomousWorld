@@ -11,21 +11,19 @@ class Sentient_Entity : public Entity{
 
 public:
 
-Sentient_Entity(int, int, std::string, std::string);
+Sentient_Entity(std::string, std::string);
     int getVal(int id);
     int setVal(int id, int v);
-    int getPosX();
-    int getPosY();
-    void setPosX(int _x);
-    void setPosY(int _y);
+    /* stockage des alentours de l'agent par rapport à sa position correspondante
+     *  dans la map mémorisation*/
+    void vision();
 
 protected:
-    int posX;
-    int posY;
-
     //idc int c'est l'id de la caractéristique et val 2eme est l'id de ce cen
     std::map<int, int> charact_correspondence;
-
+    /* map de mémorisation de l'agent : on stocke pour chaque position qu'il 
+     * a visionné l'entity présent à cette position à ce moment */
+    std::map<Position, Entity> memorisation;
 
 };
 

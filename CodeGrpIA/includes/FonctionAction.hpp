@@ -3,4 +3,8 @@
 
 using namespace std;
 
+typedef enum{
+	FONCTION_1
+} Fonction_Action;
+
 #endif

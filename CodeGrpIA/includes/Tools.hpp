@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <limits>
 #include <cstdlib>
+#include <vector>
 
 template<typename T>
 T rand(T min, T max){
@@ -15,5 +16,6 @@ T rand(T min, T max){
 
 std::string getRandomMaleName();
 std::string getRandomFemaleName();
+std::vector<std::string> cutString(std::string & str, std::string delimiter);
 
 #endif

@@ -7,10 +7,6 @@
 class Characteristics{
 
 public:
-
-
-
-
 	int getId();
 	int getMin();
 	int getMax();
@@ -34,9 +30,6 @@ private:
 	std::string name;
 	std::string definition;
 	int precision;
-
-
-
 };
 
 class CharacteristicsList{

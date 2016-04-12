@@ -29,6 +29,12 @@ class Noeud {
 		void setAction(Action * a);
 		Action * getAction();
 
+                vector<Arete*> getAretesIn();
+                void setAretesIn(vector<Arete*> aretesIn);
+
+                vector<Arete*> getAretesOut();
+                void setAretesOut(vector<Arete*> aretesOut);
+
 		/*
 		* cette fonction est la fonction primaire du Noeud, elle est à appeller quand l'agent est activement sur ce Noeud.
 		* Elle executera d'elle-même l'Action à executer ou renvera le Noeud sur lequel l'agent se trouve si une condition d'une des arrête se trouve être remplie

@@ -11,6 +11,21 @@ void Noeud::setAction(Action * a) {
 Action * Noeud::getAction(){
     return action;
 }
+vector<Arete*> Noeud::getAretesIn(){
+    return aretesIn;
+}
+
+void Noeud::setAretesIn(vector<Arete*> aretesIn) {
+    this->aretesIn = aretesIn;
+}
+
+vector<Arete*> Noeud::getAretesOut(){
+    return aretesOut;
+}
+
+void Noeud::setAretesOut(vector<Arete*> aretesOut) {
+    this->aretesOut = aretesOut;
+}
 
 Noeud * Noeud::executerNoeud(Sentient_Entity * a){
     for (std::vector<Arete *>::iterator it = aretesOut.begin() ; it != aretesOut.end(); ++it){

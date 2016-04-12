@@ -1,10 +1,11 @@
 #ifndef INSENTIENT_ENTITY_HPP
 #define INSENTIENT_ENTITY_HPP
 
-#include "Entity.hpp"
+#include "Tangible_Entity.hpp"
 #include "Vector3.hpp"
 #include "Characteristics.hpp"
-class Insentient_Entity : public Entity{
+
+class Insentient_Entity : public Tangible_Entity{
     public:
         Vector3 sizeIE;
         Insentient_Entity(std::string n, std::string tid, int o, int x, int y, int z);

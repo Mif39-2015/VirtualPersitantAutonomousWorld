@@ -3,8 +3,7 @@
 
 #include <string>
 
-class Item{
-
+class Item {    
 public:
 	Item(unsigned int, std::string, float);
 

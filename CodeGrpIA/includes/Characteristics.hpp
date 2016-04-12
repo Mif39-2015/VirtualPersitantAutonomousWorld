@@ -11,6 +11,7 @@ public:
 	int getMax();
 	std::string getName();
 	std::string getDefinition();
+        std::string getType();
 	int getPrecision();
 
 	void setId(int i);
@@ -18,6 +19,7 @@ public:
 	void setMax(int m);
 	void setName(std::string n);
 	void setDefinition(std::string d);
+        void setType(std::string t);
 	void setPrecision(int p);
 
 
@@ -28,6 +30,7 @@ private:
 	int max;
 	std::string name;
 	std::string definition;
+        std::string type;
 	int precision;
 };
 

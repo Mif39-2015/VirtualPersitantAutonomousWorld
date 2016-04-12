@@ -42,6 +42,12 @@ int main(int argc, char const *argv[])
 {
 
     scenario();
-
+    int loadResult= CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+    
+    if(loadResult != -1){
+        for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
+            std::cout <<it->getType() << std::endl ;
+        }
+    }
     return 0;
 }

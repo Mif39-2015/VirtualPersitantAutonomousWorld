@@ -7,6 +7,7 @@
 
 using namespace std;
 
+std::vector<Characteristics> CharacteristicsList::listCharacteristics;
 
 //getter
 int Characteristics::getId() {
@@ -78,7 +79,7 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
             charac.setMax(std::stoi(resline[2]));
             charac.setPrecision(std::stoi(resline[5]));
 
-            // CharacteristicsList::listCharacteristics.push_back(charac);
+            CharacteristicsList::listCharacteristics.push_back(charac);
         }
         myfile.close();
 	}

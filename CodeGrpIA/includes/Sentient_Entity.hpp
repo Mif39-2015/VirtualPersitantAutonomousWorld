@@ -8,8 +8,7 @@
 //#include "Characteristic.hpp"
 
 class Sentient_Entity : public Entity{
-
-	protected:
+public:
 	/*
 	* C'est un constructeur avec 3 parametres oú le premier entier c'est la
 	* position de X, le deuxieme c'est la position Y et le troisime c'est

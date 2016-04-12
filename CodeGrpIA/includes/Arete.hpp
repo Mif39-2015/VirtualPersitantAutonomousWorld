@@ -3,12 +3,12 @@
 
 #include <vector>
 
-//~ #include "Noeud.hpp"
+#include "Noeud.hpp"
 #include "FonctionCondition.hpp"
 
-using namespace std;
-
 class Noeud;
+
+using namespace std;
 
 class Arete{
 	private :

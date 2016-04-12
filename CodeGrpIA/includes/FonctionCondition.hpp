@@ -1,12 +1,16 @@
-#ifndef FUNCTION_CONDITION_HPP
-#define FUNCTION_CONDITION_HPP
+#ifndef FONCTION_CONDITION_HPP
+#define FONCTION_CONDITION_HPP
+
+#include "Includes.hpp"
+
+using namespace std;
 
 #include <iostream>
 #include <map>
 
-#include "Sentient_Entity.hpp"
+#include "Entity.hpp"
 
-using namespace std;
+class Sentient_Entity;
 
 typedef enum {
 	Fonction_BOOL_TRUE,

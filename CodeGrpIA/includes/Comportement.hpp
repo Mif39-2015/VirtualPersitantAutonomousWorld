@@ -1,11 +1,12 @@
 #ifndef COMPORTEMENT_HPP
 #define COMPORTEMENT_HPP
 
-#include <vector>
+using namespace std;
 
+#include <vector>
 #include "Noeud.hpp"
 
-using namespace std;
+class Noeud;
 
 class Comportement {
 	/*

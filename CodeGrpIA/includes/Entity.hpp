@@ -33,7 +33,6 @@ public:
 	void setInventory(std::map<Item, unsigned int> inv);
 
 	~Entity(void);
-
 };
 
 #endif

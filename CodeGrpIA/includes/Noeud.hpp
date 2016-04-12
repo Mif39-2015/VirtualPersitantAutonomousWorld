@@ -1,14 +1,14 @@
 #ifndef NOEUD_HPP
 #define NOEUD_HPP
 
-#include <vector>
+using namespace std;
 
+#include <vector>
 #include "Arete.hpp"
 #include "Action.hpp"
 
-using namespace std;
-
 class Action;
+class Arete;
 
 class Noeud {
 	private :
@@ -28,6 +28,12 @@ class Noeud {
 
 		void setAction(Action * a);
 		Action * getAction();
+
+                vector<Arete*> getAretesIn();
+                void setAretesIn(vector<Arete*> aretesIn);
+
+                vector<Arete*> getAretesOut();
+                void setAretesOut(vector<Arete*> aretesOut);
 
 		/*
 		* cette fonction est la fonction primaire du Noeud, elle est à appeller quand l'agent est activement sur ce Noeud.

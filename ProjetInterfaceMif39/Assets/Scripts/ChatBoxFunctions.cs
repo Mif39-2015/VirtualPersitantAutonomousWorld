@@ -19,10 +19,10 @@ public class ChatBoxFunctions : MonoBehaviour {
 		isChatShowing = !isChatShowing;
 		if(isChatShowing){
 			contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-			showHideButtonText.text = "Cacher Chat";
+			showHideButtonText.text = "Hide Chat";
 		} else {
 			contentSizeFitter.verticalFit = ContentSizeFitter.FitMode.MinSize;
-			showHideButtonText.text = "Afficher Chat";
+			showHideButtonText.text = "Show Chat";
 		}
 	}
 

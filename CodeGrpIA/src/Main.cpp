@@ -10,7 +10,7 @@
 void scenario(){
     std::string name = "Mykaz";
     std::string tid = "agent";
-    Sentient_Entity* agent = new Sentient_Entity(0,0,name,tid);
+    Sentient_Entity* agent = new Sentient_Entity(Position(0, 0),name,tid);
     Comportement comp;
     Noeud noeudPasFaim;
     Noeud noeudFaim;

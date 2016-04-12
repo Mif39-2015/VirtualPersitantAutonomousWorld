@@ -11,7 +11,7 @@ class Sentient_Entity : public Entity{
 
 public:
 
-Sentient_Entity(int, int, std::string, std::string);
+    Sentient_Entity(int, int, std::string, std::string);
     int getVal(int id);
     int setVal(int id, int v);
     int getPosX();

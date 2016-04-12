@@ -3,6 +3,7 @@
 #include <fstream>
 
 #include "Characteristics.hpp"
+#include "Tools.hpp"
 
 using namespace std;
 
@@ -65,13 +66,26 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
 	std::ifstream myfile (fileName, std::ios::in);
 	if (myfile.is_open())
 	{
-            while ( std::getline (myfile,line) )
-            {
-                std::cout << line << '\n';
-            }
-            myfile.close();
+        while(std::getline(myfile,line))
+        {
+            // std::cout << line << '\n';
+            vector<std::string> resline = cutString(line, "\t");
+            Characteristics charac;
+            charac.setDefinition(resline[4]);
+            charac.setName(resline[3]);
+            charac.setId(std::stoi(resline[0]));
+            charac.setMin(std::stoi(resline[1]));
+            charac.setMax(std::stoi(resline[2]));
+            charac.setPrecision(std::stoi(resline[5]));
+
+            // CharacteristicsList::listCharacteristics.push_back(charac);
+        }
+        myfile.close();
 	}
 
-	else std::cout << "Unable to open file"; 
-	return 1;
+	else{
+		std::cout << "Unable to open file" << std::endl;
+		return -1;
+	}
+	return 0;
 }

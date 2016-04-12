@@ -9,6 +9,7 @@ void scenario(){
     std::string name = "Mykaz";
     std::string tid = "agent";
     Sentient_Entity* agent = new Sentient_Entity(Position(0, 0),name,tid);
+
     Comportement comp;
     Noeud noeudPasFaim;
     Noeud noeudFaim;
@@ -36,9 +37,10 @@ void scenario(){
     comp.ajouterNoeud(&noeudPasFaim);
     comp.ajouterNoeud(&noeudFaim);
 
-    std::cout << "Noeud courant : " << noeudCourant << std::endl;
-    noeudCourant = noeudCourant->executerNoeud(agent);
-    std::cout << "Noeud Courant apres : " << noeudCourant << std::endl;
+    for(int i = 0; i < 5; i++){
+	    std::cout << "Noeud courant : " << noeudCourant << std::endl;
+	    noeudCourant = noeudCourant->executerNoeud(agent);
+	}
 }
 
 int main(int argc, char const *argv[])

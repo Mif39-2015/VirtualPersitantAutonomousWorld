@@ -31,6 +31,6 @@ Noeud * Noeud::executerNoeud(Sentient_Entity * a){
     for (std::vector<Arete *>::iterator it = aretesOut.begin() ; it != aretesOut.end(); ++it){
         if((*it)->isTrue(a)) return (*it)->getNoeudFin();
     }
-    action->Executer(a);
+    // action->Executer(a);
     return this;
  }

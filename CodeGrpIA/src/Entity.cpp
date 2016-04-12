@@ -3,7 +3,7 @@
 
 unsigned int Entity::idCount = 0;
 
-Entity::Entity(std::string n, std::string tid) : pos(0, 0),  typeId(tid), name(n){}
+Entity::Entity(std::string n, std::string tid) : typeId(tid), name(n), pos(0, 0){}
 
 unsigned int Entity::getId(){
 	return id;

@@ -1,19 +1,19 @@
-0	0	100	vitality	PointsDeVie	1
-1	0	1	gender	Genre	1
-2	0	100	Age	Age	1
-3	0	100	Agressiveness	Agressivité	1
-4	0	100	Fitness	Forme	1
-5	0	100	Satiety	Faim	1
-6	0	100	StatietyTreshold	SeuilFaim	1
-7	0	100	Reflex	Reflexes	1
-8	0	100	Perception	Perception	1
-9	0       100     Independence	Indépendance	1
-10 	0	100	Charisma	Charisme	1
-11	0	100	Capacity	Capacité	1
-12	0	100	Stamina		Endurance	1
-13	0	100	StaminaThreshold	SeuilEndurance	1
-14	0	100	Sanity		Sanité	1
-15	0	100	RespawnRate	TauxRepop	1
-16	0	100	RespawnValue	ValeurRepop	1
-17	0	100	Orientation	Orientation	1
-18	0	100	StructuralPoints	PointsdeStructure	1	
+0;0;100;vitality;PointsDeVie;1
+1;0;1;gender;Genre;1
+2;0;100;Age;Age;1
+3;0;100;Agressiveness;Agressivité;1
+4;0;100;Fitness;Forme;1
+5;0;100;Satiety;Faim;1
+6;0;100;StatietyTreshold;SeuilFaim;1
+7;0;100;Reflex;Reflexes;1
+8;0;100;Perception;Perception;1
+9;0;100;Independence;Indépendance;1
+10 ;0;100;Charisma;Charisme;1
+11;0;100;Capacity;Capacité;1
+12;0;100;Stamina;Endurance;1
+13;0;100;StaminaThreshold;SeuilEndurance;1
+14;0;100;Sanity;Sanité;1
+15;0;100;RespawnRate;TauxRepop;1
+16;0;100;RespawnValue;ValeurRepop;1
+17;0;100;Orientation;Orientation;1
+18;0;100;StructuralPoints;PointsdeStructure;1

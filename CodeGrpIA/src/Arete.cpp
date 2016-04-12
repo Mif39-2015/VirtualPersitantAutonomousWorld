@@ -26,14 +26,3 @@ bool Arete::isTrue(Sentient_Entity * a){
 	}
 	return true;
 }
-
-//~ void Arete::ajouterCondition(bool (*f)){
-	//~ conditions.push_back(f);
-//~ }
-//~
-//~ void Arete::ajouterCondition(vector<bool (*)> vC){
-	//~ for( size_t i=0; i<vC.size(); ++i){
-		//~ conditions.push_back(vC[i]);
-	//~ }
-//~ }
-

@@ -5,34 +5,34 @@
 
 class Characteristics{
 
-public:
-	int getId();
-	int getMin();
-	int getMax();
-	std::string getName();
-	std::string getDefinition();
-        std::string getType();
-	int getPrecision();
+	public:
+		int getId();
+		int getMin();
+		int getMax();
+		std::string getName();
+		std::string getDefinition();
+		std::string getType();
+		int getPrecision();
 
-	void setId(int i);
-	void setMin(int m);
-	void setMax(int m);
-	void setName(std::string n);
-	void setDefinition(std::string d);
-        void setType(std::string t);
-	void setPrecision(int p);
+		void setId(int i);
+		void setMin(int m);
+		void setMax(int m);
+		void setName(std::string n);
+		void setDefinition(std::string d);
+		void setType(std::string t);
+		void setPrecision(int p);
 
 
 
-private:
-	int id;
-	int min;
-	int max;
-	std::string name;
-	std::string definition;
-        std::string type;
-	int precision;
-};
+	private:
+		int id;
+		int min;
+		int max;
+		std::string name;
+		std::string definition;
+			std::string type;
+		int precision;
+	};
 
 class CharacteristicsList{
 

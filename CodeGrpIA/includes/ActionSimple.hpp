@@ -7,13 +7,13 @@ using namespace std;
 #include "FonctionAction.hpp"
 
 class ActionSimple : Action {
-
 	private :
-		//~ void (*Sentient_Entity::function1)(Sentient_Entity * agent);
-		//~ void (*Sentient_Entity::function2)(Sentient_Entity * agent, Entity * e);
 
-		//~ Fonction_Action fA;
-		//~ vector<Fonction_Entite> vfE;
+		Fonction_Action_Simple fAS;
+		Fonction_Action_Parametre fAP;
+
+		vector<Fonction_Action_Parametre_Retour> fAPR;
+		Entity * parametreFinal;
 
 	public :
 		void Executer(Sentient_Entity * agent);

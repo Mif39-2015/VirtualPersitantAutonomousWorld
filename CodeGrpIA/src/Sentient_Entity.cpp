@@ -32,8 +32,9 @@ void Sentient_Entity::vision(){
             if(pos.isInCircle(newPos,vue)){
                // memorisation[newPos] = map.getEntityAt(newPos);
             }
-        }      
+        }
     }
-    
+
 }
 
+void Sentient_Entity::addToTrace(Comportement * c, Noeud * n){}

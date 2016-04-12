@@ -1,11 +1,9 @@
 #include <iostream>
 
 #include "Resource.hpp"
-#include "Agent.hpp"
-#include "Building.hpp"
-#include "Animal.hpp"
 #include "Characteristics.hpp"
 #include "Comportement.hpp"
+#include "Sentient_Entity.hpp"
 
 void scenario(){
     std::string name = "Mykaz";

@@ -8,13 +8,12 @@
 //#include "Characteristic.hpp"
 
 class Sentient_Entity : public Entity{
-
 public:
 	/*
 	* C'est un constructeur avec 3 parametres oú le premier entier c'est la
 	* position de X, le deuxieme c'est la position Y et le troisime c'est
 	* le nom de sentient entity concerné
-	* */	
+	* */
 	Sentient_Entity(int, int, std::string, std::string);
 	/*
 	* Ce methode renvoie la valeur de la clé id de la map.
@@ -54,10 +53,9 @@ protected:
     int posY;
     /*
      * Cet attribut represente un map de correspondance entre la caracteristique et le sentient
-     * entity. 
+     * entity.
      * */
     std::map<int, int> charact_correspondence;
-
 
 };
 

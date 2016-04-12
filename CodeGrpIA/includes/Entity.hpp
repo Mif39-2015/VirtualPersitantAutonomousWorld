@@ -7,29 +7,33 @@
 #include "Position.hpp"
 #include "Item.hpp"
 
+using namespace std;
 
 class Entity{
 
-public:
-	std::map<Item, unsigned int> inventory;
+protected:
+	static unsigned int idCount;
+	unsigned int id;
+	string typeId;
+	string name;
+	map<Item, unsigned int> inventory;
 	Position pos;
+
+public:
 
 	Entity(std::string, std::string);
 
-        unsigned int getId();
-        std::string getName();
-        Position getPos();
-        std::map<Item, unsigned int> getInventory();
-        void setName(std::string n);
-        void setPos(int x, int y);
-        void setInventory(std::map<Item, unsigned int> inv);
+	unsigned int getId();
+	string getName();
+	Position getPos();
+	map<Item, unsigned int> getInventory();
+
+	void setName(std::string n);
+	void setPos(int x, int y);
+	void setInventory(std::map<Item, unsigned int> inv);
+
 	~Entity(void);
 
-protected:
-        static unsigned int idCount;
-	unsigned int id;
-        std::string typeId;
-	std::string name;
 };
 
 #endif

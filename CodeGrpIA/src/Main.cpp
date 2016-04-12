@@ -1,16 +1,15 @@
 #include <iostream>
 
 #include "Resource.hpp"
-#include "Agent.hpp"
-#include "Building.hpp"
-#include "Animal.hpp"
 #include "Characteristics.hpp"
 #include "Comportement.hpp"
+#include "Sentient_Entity.hpp"
 
 void scenario(){
     std::string name = "Mykaz";
     std::string tid = "agent";
-    Sentient_Entity* agent = new Sentient_Entity(0,0,name,tid);
+    Position p = {0,0};
+    Sentient_Entity* agent = new Sentient_Entity(p,name,tid);
     Comportement comp;
     Noeud noeudPasFaim;
     Noeud noeudFaim;

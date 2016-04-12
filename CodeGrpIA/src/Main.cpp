@@ -17,7 +17,13 @@ int main(int argc, char const *argv[])
         
 	// CharacteristicsList cl;
 	// cl.loadCharacteristicsFile("..\\data\\descriptionCharacteristics.txt");
-	int a = CharacteristicsList::loadCharacteristicsFile ("data/descriptionCharacteristics.txt");
+	int a = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+
+	if(a != -1){
+		for(Characteristics c : CharacteristicsList::listCharacteristics){
+			std::cout << c.getName() << std::endl;
+		}
+	}
 	 
 	return 0;
 }

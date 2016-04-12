@@ -1,7 +1,8 @@
 #include <iostream>
 #include "Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(std::string n, std::string tid) : Entity(n, tid){
+Sentient_Entity::Sentient_Entity(Position _pos, std::string n, std::string tid) : Entity(n, tid){
+    pos = _pos;
     id = Entity::idCount;
     Entity::idCount++;
 }

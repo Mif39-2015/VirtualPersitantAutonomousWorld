@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(vpaw)
 
 # librairie
-add_library(serv foo)
+add_library(serv foo WorldChangesListener NetworkAdapter AuthenticationModule message/Message message/WorldChangeMessage UdpBroadcaster)
 set_target_properties(serv PROPERTIES LINKER_LANGUAGE CXX)
 
 # executable serveur

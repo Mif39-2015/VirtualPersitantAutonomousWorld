@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "foo.hpp"
+#include "WorldChangesListener.hpp"
 
 int main(void)
 {
-    Foo a;
-    std::cout << "serveur" << std::endl;
+    std::cout << "___ Server running ___" << std::endl;
+    WorldChangesListener worldChangesListener;
+    
     return 0;
 }

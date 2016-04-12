@@ -8,13 +8,13 @@ using namespace std;
 #include <stack>
 #include <utility>
 
-#include "Entity.hpp"
+#include "Tangible_Entity.hpp"
 #include "Comportement.hpp"
 
 class Comportement;
 class Noeud;
 
-class Sentient_Entity : public Entity{
+class Sentient_Entity : public Tangible_Entity{
 	protected:
 		/*
 		 * Cet attribut represente un map de correspondance entre la caracteristique et le sentient

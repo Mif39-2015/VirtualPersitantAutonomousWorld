@@ -18,6 +18,7 @@ protected:
 	string name;
 	map<Item, unsigned int> inventory;
 	Position pos;
+        bool modif;
 
 public:
 
@@ -26,8 +27,10 @@ public:
 	unsigned int getId();
 	string getName();
 	Position getPos();
+        bool getModif();
 	map<Item, unsigned int> getInventory();
     	string getTypeId();
+        void setModif(bool m);
 	void setName(std::string n);
 	void setPos(int x, int y);
 	void setInventory(std::map<Item, unsigned int> inv);

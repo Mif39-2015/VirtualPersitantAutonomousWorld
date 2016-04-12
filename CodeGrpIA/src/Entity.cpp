@@ -33,5 +33,12 @@ void Entity::setInventory(std::map<Item, unsigned int> inv){
     inventory = inv;
 }
 
+bool Entity::getModif(){
+    return modif;
+}
+
+void Entity::setModif(bool m){
+    modif = m;
+}
 
 Entity::~Entity(void) {}

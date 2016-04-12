@@ -34,3 +34,23 @@ Noeud * Noeud::executerNoeud(Sentient_Entity * a){
     // action->Executer(a);
     return this;
  }
+
+void Noeud::addAreteIn(Arete * a){
+    aretesIn.push_back(a);
+}
+
+void Noeud::addAreteOut(Arete * a){
+    aretesOut.push_back(a);
+}
+
+void Noeud::delAreteIn(Arete * a){
+    for(std::vector<Arete *>::iterator it = aretesIn.begin(); it != aretesIn.end(); it++){
+        if((*it) == a){ aretesIn.erase(it); break;}
+    }
+}
+
+void Noeud::delAreteOut(Arete * a){
+    for(std::vector<Arete *>::iterator it = aretesOut.begin(); it != aretesOut.end(); it++){
+        if((*it) == a){ aretesOut.erase(it); break;}
+    }
+}

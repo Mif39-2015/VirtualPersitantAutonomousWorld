@@ -14,23 +14,18 @@ void scenario(){
     Noeud noeudPasFaim;
     Noeud noeudFaim;
 
-    std::vector<Fonction_Bool> vecteur1;
-    vecteur1.push_back(Fonction_BOOL_TRUE);
-    Arete aretePasFaim(&noeudPasFaim,&noeudFaim,vecteur1);
+    std::vector<Fonction_Bool> vectFctTrue;
+    vectFctTrue.push_back(Fonction_BOOL_TRUE);
+    Arete areteTrue(&noeudPasFaim,&noeudFaim,vectFctTrue);
 
-    std::vector<Fonction_Bool> vecteur2;
-    vecteur2.push_back(Fonction_BOOL_FALSE);
-    Arete areteFaim(&noeudFaim,&noeudPasFaim,vecteur2);
+    std::vector<Fonction_Bool> vectFctFalse;
+    vectFctFalse.push_back(Fonction_BOOL_FALSE);
+    Arete areteFalse(&noeudFaim,&noeudPasFaim,vectFctFalse);
 
-    std::vector<Arete*> vecteurArete1;
-    vecteurArete1.push_back(&aretePasFaim);
-    std::vector<Arete*> vecteurArete2;
-    vecteurArete2.push_back(&areteFaim);
-
-    noeudPasFaim.setAretesIn(vecteurArete2);
-    noeudPasFaim.setAretesOut(vecteurArete1);
-    noeudFaim.setAretesIn(vecteurArete1);
-    noeudFaim.setAretesOut(vecteurArete2);
+    noeudPasFaim.addAreteIn(&areteFalse);
+    noeudPasFaim.addAreteOut(&areteTrue);
+    noeudFaim.addAreteIn(&areteTrue);
+    noeudFaim.addAreteOut(&areteFalse);
 
     Noeud* noeudCourant = &noeudPasFaim;
 

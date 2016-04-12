@@ -1,7 +1,7 @@
 //test
 #include <iostream>
 #include <fstream>
-
+#include <string>
 #include "Characteristics.hpp"
 #include "Tools.hpp"
 
@@ -30,6 +30,10 @@ std::string Characteristics::getDefinition() {
 	return this->definition;
 }
 
+std::string Characteristics::getType() {
+	return this->type;
+}
+
 int Characteristics::getPrecision() {
 	return this->precision;
 }
@@ -56,6 +60,10 @@ void Characteristics::setDefinition(std::string d) {
 	this->definition = d;
 }
 
+void Characteristics::setType(std::string t) {
+	this->type = t;
+}
+
 void Characteristics::setPrecision(int p) {
 	this->precision = p;
 }
@@ -69,7 +77,7 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
 	{
         while(std::getline(myfile,line))
         {
-            // std::cout << line << '\n';
+            std::cout << line << '\n';
             vector<std::string> resline = cutString(line, ";");
             Characteristics charac;
             charac.setDefinition(resline[4]);
@@ -77,7 +85,8 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
             charac.setId(std::stoi(resline[0]));
             charac.setMin(std::stoi(resline[1]));
             charac.setMax(std::stoi(resline[2]));
-            charac.setPrecision(std::stoi(resline[5]));
+            charac.setType(resline[5]);
+            charac.setPrecision(std::stoi(resline[6]));
 
             CharacteristicsList::listCharacteristics.push_back(charac);
         }

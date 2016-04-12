@@ -12,16 +12,16 @@ make
 make doc # permet la compilation de la doc doxygen qui est dans doc/html/index.html
 ```
 
-##  Création d'un nouveau test unitaire ##
+[![asciicast](https://asciinema.org/a/egf9jz3w2weccq0kmhcjcw2ig.png)](https://asciinema.org/a/egf9jz3w2weccq0kmhcjcw2ig)
 
-Un exemple de test unitaire est `test/test_foo.cpp` associé à la classe `src/foo.hpp`
+##  Création d'un nouveau test unitaire ##
 
 Petit tutorial ici : https://github.com/philsquared/Catch/blob/master/docs/tutorial.md
 
-Pour ajouter un nouveau test unitaire, par exemple `test/test_bar.cpp`
-Il faut ouvrir `test/CMakeLists.txt` et ajouter `test_bar` dans `TEST_LIST` (juste en dessous de `test_foo`)
+Pour ajouter un nouveau test unitaire, par exemple `test/test_socket.cpp`
+Il faut ouvrir `test/CMakeLists.txt` et ajouter `test_socket` dans `TEST_LIST`
 
-Puis il faut regénérer un makefile avec `cmake ..` en étant dans le dossier `build`
+Puis il faut regénérer le makefile avec `cmake ..` en étant dans le dossier `build`
 
 ## Compiler un test unitaire spécifique ##
 

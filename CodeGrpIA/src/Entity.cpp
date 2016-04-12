@@ -26,7 +26,9 @@ void Entity::setName(std::string n){
 void Entity::setPos(int x, int y){
     pos = Position(x,y);
 }
-
+std::string Entity::getTypeId(){
+    return typeId;
+}
 void Entity::setInventory(std::map<Item, unsigned int> inv){
     inventory = inv;
 }

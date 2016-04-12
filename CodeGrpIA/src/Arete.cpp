@@ -25,12 +25,27 @@ bool Arete::isTrue(Sentient_Entity * a){
 		if(!MapEnumPointeur::mapFoncBool[*it](a)) return false;
 	}
 	for(auto it=condition_Complexes.begin(); it!=condition_Complexes.end(); ++it){
-		int val1 = MapEnumPointeur::mapFoncIntEntity[it->fonc1](a,it->e1);
+		Entity * e = it->e1;
+		while(!it->fEE1.empty()) {
+			e = MapEnumPointeur::mapFoncEntityEntity[it->fEE1.top()](a,e);
+			it->fEE1.pop();
+		}
+
+		int val1 = MapEnumPointeur::mapFoncIntEntity[it->fIE1](a,e);
+
 		int val2;
-		if(it->fonc2!=FONC_I_E_NULL)
-			val2 = MapEnumPointeur::mapFoncIntEntity[it->fonc2](a,it->e2);
-		else
+		if(it->fIE2!=FONC_I_E_NULL){
+			e = it->e2;
+			while(!it->fEE2.empty()) {
+				e = MapEnumPointeur::mapFoncEntityEntity[it->fEE2.top()](a,e);
+				it->fEE2.pop();
+			}
+			val2 = MapEnumPointeur::mapFoncIntEntity[it->fIE2](a,e);
+		}
+		else {
 			val2 = it->comp;
+		}
+
 		switch (it->op){
 			case Inf :
 				if(!val1<val2) return false;

@@ -2,6 +2,7 @@
 #define ARETE_HPP
 
 #include <vector>
+#include <stack>
 
 #include "Noeud.hpp"
 #include "FonctionEnums.hpp"
@@ -21,10 +22,12 @@ class Arete{
 	} Operator;
 
 	struct struct_condition{
-		FONC_INT_ENTITY fonc1;
+		FONC_INT_ENTITY fIE1;
+		stack<FONC_ENTITY_ENTITY> fEE1;
 		Entity * e1;
 		Operator op;
-		FONC_INT_ENTITY fonc2;
+		FONC_INT_ENTITY fIE2;
+		stack<FONC_ENTITY_ENTITY> fEE2;
 		Entity * e2;
 		int comp;
 	};

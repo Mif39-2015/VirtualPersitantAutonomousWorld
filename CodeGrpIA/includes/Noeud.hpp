@@ -1,14 +1,14 @@
 #ifndef NOEUD_HPP
 #define NOEUD_HPP
 
-#include <vector>
+using namespace std;
 
+#include <vector>
 #include "Arete.hpp"
 #include "Action.hpp"
 
-using namespace std;
-
 class Action;
+class Arete;
 
 class Noeud {
 	private :

@@ -7,13 +7,13 @@ class Item{
 
 public:
 	Item(unsigned int, std::string, float);
-	
+
 	const unsigned int& getID();
-	
+
 	const std::string& getName();
-	
+
 	const float& getWeight();
-	
+
 	//pas de set, les valeurs ne seront pas forcément modifiables
 
 	inline bool operator == (const Item &b) const

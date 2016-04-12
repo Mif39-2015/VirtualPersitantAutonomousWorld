@@ -70,7 +70,7 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
         while(std::getline(myfile,line))
         {
             // std::cout << line << '\n';
-            vector<std::string> resline = cutString(line, "\t");
+            vector<std::string> resline = cutString(line, ";");
             Characteristics charac;
             charac.setDefinition(resline[4]);
             charac.setName(resline[3]);

@@ -15,9 +15,13 @@ int main(int argc, char const *argv[])
 	// 	std::cout << getRandomFemaleName() << std::endl << std::endl;
 	// }
         
-	int a = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+        // Chargement de la liste des carac
+	CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
 
-	//Factories::createAgent();
+	
+	Sentient_Entity* ag1 = Factories::createAgent();
+	
+	Sentient_Entity* an1 = Factories::createAnimal();
 	
 	return 0;
 }

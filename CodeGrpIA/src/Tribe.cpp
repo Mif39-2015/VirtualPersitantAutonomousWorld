@@ -26,13 +26,40 @@ void Tribe::setGoalIndex(unsigned int _goal_index){
 }
 int Tribe::getTribeSize(){
     int sizet=0;
-    for(Sentient_Entity a : population){
+    for(Entity a : tribe){
         sizet++;
     }
     return sizet;
 }
-void Tribe::welcomeNewMember(Sentient_Entity a){
-    population.push_back(a);
+void Tribe::addNewEntity(Entity a){
+            tribe.push_back(a);
+}
+int Tribe::getPopulationSize(){
+    int sizet=0;
+    for(Entity a: tribe){
+        if(a.getTypeId().compare("agent")){
+            sizet++;
+        }
+    }
+    return sizet;
+}
+int Tribe::getNbBuildings(){
+    int sizet=0;
+    for(Entity a: tribe){
+        if(a.getTypeId().compare("building")){
+            sizet++;
+        }
+    }
+    return sizet;
+}
+int Tribe::getNbRessources(){
+    int sizet=0;
+    for(Entity a: tribe){
+        if(a.getTypeId().compare("ressource")){
+            sizet++;
+        }
+    }
+    return sizet;
 }
 int Tribe::getQuantityByItem(Item i){
     return stock.at(i);

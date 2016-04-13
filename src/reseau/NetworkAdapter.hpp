@@ -14,6 +14,8 @@
 #include <arpa/inet.h> //inet_addr
 #include <unistd.h>    //write
 #include <pthread.h> //for threading , link with lpthread
+#include <fstream>
+#include <string>
 #include "message/Message.hpp"
 #include "message/WorldChangeMessage.hpp"
 #include "WorldChangesListener.hpp"

@@ -36,6 +36,12 @@ int SQLiteAccess::sqlRequest(std::string sqlStatement){
 	return rc;
 }
 
+int SQLiteAccess::sqlAddUser(std::string username, std::string password, std::string addmail){
+	std::string adduser = "INSERT into user values((Select (max(id)+1) from user),'"+username+"','"+password+"','"+addmail+"',1);";
+	return sqlRequest(adduser);
+}
+
+
 /*fonction affichage de la réponse de la requete (fonction de débug)*/
 static int callback(void *data, int argc, char **argv, char **azColName){
 	int i;

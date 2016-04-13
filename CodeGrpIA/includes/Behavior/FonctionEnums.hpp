@@ -12,7 +12,8 @@ class Sentient_Entity;
 using namespace std;
 
 //La nomination des enum est faite ainsi : FONC + type de retour + type de paramètre (s'il y en a un autre que la Sentient_Entity, qui est obligatoire
-typedef enum {
+
+typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
 	IDLE
 	,DORMIR
 	,GOTO_HAUT

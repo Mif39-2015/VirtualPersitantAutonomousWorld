@@ -10,7 +10,7 @@ using namespace std;
 
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/Comportement.hpp"
-
+#include "Behavior/EtatEnum.hpp"
 class Comportement;
 class Noeud;
 
@@ -21,6 +21,9 @@ class Sentient_Entity : public Tangible_Entity{
 		 * entity.
 		 * */
 		std::map<int, int> charact_correspondence;
+                
+                ETAT etat_entity  ;
+                
 		/*
 		 * map de mémorisation de l'agent : on stocke pour chaque position qu'il
 		 * a visionné l'entity présent à cette position à ce moment

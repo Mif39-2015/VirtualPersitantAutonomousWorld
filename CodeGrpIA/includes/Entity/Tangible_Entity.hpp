@@ -8,7 +8,7 @@ using namespace std;
 class Tangible_Entity : public Entity {
 
 public:
-    Tangible_Entity(std::string, type);
+    Tangible_Entity(std::string, int);
 
 
 };

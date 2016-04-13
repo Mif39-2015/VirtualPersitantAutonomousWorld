@@ -77,7 +77,7 @@ int main(int argc, char const *argv[])
 {
 
     // scenario();
-    // int loadResult= CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+    int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
 
     // if(loadResult != -1){
     //     for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
@@ -85,6 +85,9 @@ int main(int argc, char const *argv[])
     //     }
     // }
 
-    testMsgpack();
+    // testMsgpack();
+
+    Sentient_Entity * agent = Factories::createAgent();
+    std::cout << agent->getName() << std::endl;
     return 0;
 }

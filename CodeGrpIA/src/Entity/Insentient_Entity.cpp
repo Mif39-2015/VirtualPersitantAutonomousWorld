@@ -3,7 +3,7 @@
 
 unsigned int Insentient_Entity::idCount = 0;
 
-Insentient_Entity::Insentient_Entity(std::string n, type tid, int o, int x, int y, int z) : Tangible_Entity(n, tid),
+Insentient_Entity::Insentient_Entity(std::string n, int tid, int o, int x, int y, int z) : Tangible_Entity(n, tid),
     orientation(o){
         sizeIE.x=x;
         sizeIE.y=y;

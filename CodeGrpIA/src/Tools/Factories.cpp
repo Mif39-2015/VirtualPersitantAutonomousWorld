@@ -20,6 +20,8 @@ Sentient_Entity * Factories::createAgent(){
 		return nullptr;
 	}
 
+	// for(int i : characs) std::cout << i << std::endl;
+
 	std::map<int, int> characs_val;
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{

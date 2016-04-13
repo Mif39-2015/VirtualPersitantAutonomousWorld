@@ -2,6 +2,7 @@
 #define CHARACTERISTICS_HPP
 
 #include <vector>
+#include <iostream>
 
 class Characteristics{
 
@@ -22,7 +23,15 @@ class Characteristics{
 		void setType(std::string t);
 		void setPrecision(int p);
 
-
+		friend std::ostream & operator<<(std::ostream & os, Characteristics const & obj){
+		    // write obj to stream
+			os << obj.id << std::endl;
+			os << obj.name << std::endl;
+			os << obj.type << std::endl;
+			os << obj.definition << std::endl;
+			os << "Between " << obj.min << " and " << obj.max << std::endl;
+		    return os;
+		}
 
 	private:
 		int id;
@@ -30,7 +39,7 @@ class Characteristics{
 		int max;
 		std::string name;
 		std::string definition;
-			std::string type;
+		std::string type;
 		int precision;
 	};
 
@@ -44,6 +53,9 @@ public:
 	static int loadCharacteristicsFile(std::string fileName);
 
 };
+
+
+
 
 
 #endif

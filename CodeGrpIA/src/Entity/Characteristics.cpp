@@ -88,6 +88,8 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
             charac.setType(resline[5]);
             charac.setPrecision(std::stoi(resline[6]));
 
+            std::cout << charac << std::endl;
+
             CharacteristicsList::listCharacteristics.push_back(charac);
         }
         myfile.close();

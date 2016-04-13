@@ -7,8 +7,8 @@ public static class MeshGenerator {
 		AnimationCurve heightCurve = new AnimationCurve (_heightCurve.keys);
 
 		float tileSize = 1.0f;
-		int width = heightMap.GetLength (0) /2;
-		int height = heightMap.GetLength (1)/2;
+		int width = heightMap.GetLength (0);
+		int height = heightMap.GetLength (1);
 		float topLeftX = (width - 1) / -2f;
 		float topLeftZ = (height - 1) / 2f;
 
@@ -46,6 +46,8 @@ public static class MeshGenerator {
 				meshData.AddTriangle (vertexIndex + 2, vertexIndex + 3, vertexIndex);
 				//}
 
+				//meshData.AddTriangle (vertexIndex, vertexIndex + 3, vertexIndex + 2);
+				//meshData.AddTriangle (vertexIndex, vertexIndex + 2, vertexIndex + 1);
 
 				//Faudra faire gaffe aux bords à droite et en bas
 				//droite
@@ -58,6 +60,17 @@ public static class MeshGenerator {
 					meshData.AddTriangle (vertexIndex + 3, vertexIndex + 2, vertexIndex + verticesPerLine*4 + 1);
 					meshData.AddTriangle (vertexIndex + verticesPerLine*4 + 1, vertexIndex + verticesPerLine*4, vertexIndex + 3);
 				}
+				/*
+				if(x < width - meshSimplificationIncrement)
+				{
+					meshData.AddTriangle (vertexIndex + 2, vertexIndex + 7, vertexIndex + 4);
+					meshData.AddTriangle (vertexIndex + 2, vertexIndex + 4, vertexIndex + 1);
+				}
+				if(y < height - meshSimplificationIncrement) {
+					meshData.AddTriangle (vertexIndex + 3, vertexIndex + verticesPerLine*4, vertexIndex + verticesPerLine*4 + 1);
+					meshData.AddTriangle (vertexIndex + 3, vertexIndex + verticesPerLine*4 + 1, vertexIndex + 2);
+				}*/
+
 				vertexIndex += 4;
 			}
 		}

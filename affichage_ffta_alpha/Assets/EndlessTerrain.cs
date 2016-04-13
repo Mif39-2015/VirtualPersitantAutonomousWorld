@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EndlessTerrain : MonoBehaviour {
 
-	const float scale = 5f;
+	const float scale = 10f;
 
 	const float viewerMoveThresholdForChunkUpdate = 25f;
 	const float sqrViewerMoveThresholdForChunkUpdate = viewerMoveThresholdForChunkUpdate * viewerMoveThresholdForChunkUpdate;
@@ -28,7 +28,7 @@ public class EndlessTerrain : MonoBehaviour {
 		mapGenerator = FindObjectOfType<MapGenerator> ();
 
 		maxViewDst = detailLevels [detailLevels.Length - 1].visibleDstThreshold;
-		chunkSize = MapGenerator.mapChunkSize - 1;
+		chunkSize = MapGenerator.mapChunkSize;
 		chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
 
 		UpdateVisibleChunks ();
@@ -42,21 +42,20 @@ public class EndlessTerrain : MonoBehaviour {
 			UpdateVisibleChunks ();
 		}
 	}
-		
+
 	void UpdateVisibleChunks() {
 
 		for (int i = 0; i < terrainChunksVisibleLastUpdate.Count; i++) {
 			terrainChunksVisibleLastUpdate [i].SetVisible (false);
 		}
 		terrainChunksVisibleLastUpdate.Clear ();
-			
+
 		int currentChunkCoordX = Mathf.RoundToInt (viewerPosition.x / chunkSize);
 		int currentChunkCoordY = Mathf.RoundToInt (viewerPosition.y / chunkSize);
 
 		for (int yOffset = -chunksVisibleInViewDst; yOffset <= chunksVisibleInViewDst; yOffset++) {
 			for (int xOffset = -chunksVisibleInViewDst; xOffset <= chunksVisibleInViewDst; xOffset++) {
 				Vector2 viewedChunkCoord = new Vector2 (currentChunkCoordX + xOffset, currentChunkCoordY + yOffset);
-
 				if (terrainChunkDictionary.ContainsKey (viewedChunkCoord)) {
 					terrainChunkDictionary [viewedChunkCoord].UpdateTerrainChunk ();
 				} else {
@@ -87,6 +86,7 @@ public class EndlessTerrain : MonoBehaviour {
 			this.detailLevels = detailLevels;
 
 			position = coord * size;
+			//Debug.Log("chunk position: x=" + position.x + ", y=" + position.y);
 			bounds = new Bounds(position,Vector2.one * size);
 			Vector3 positionV3 = new Vector3(position.x,0,position.y);
 
@@ -118,7 +118,7 @@ public class EndlessTerrain : MonoBehaviour {
 			UpdateTerrainChunk ();
 		}
 
-	
+
 
 		public void UpdateTerrainChunk() {
 			if (mapDataReceived) {

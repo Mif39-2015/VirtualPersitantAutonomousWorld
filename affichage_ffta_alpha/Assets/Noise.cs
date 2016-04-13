@@ -7,7 +7,8 @@ public static class Noise {
 
 	public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset, NormalizeMode normalizeMode, int nb_subdivision) {
 		float[,] noiseMap = new float[mapWidth,mapHeight];
-
+	//Debug.Log("x: "+ offset.x + "y:" + offset.y);
+	//Debug.Log("mapWidth: "+ mapWidth + "mapHeight:" + mapHeight);
 		System.Random prng = new System.Random (seed);
 		Vector2[] octaveOffsets = new Vector2[octaves];
 
@@ -77,19 +78,20 @@ public static class Noise {
 					//Debug.Log("noiseMap = " + noiseMap[x, y]);
 
 				} else {
-					float normalizedHeight = (noiseMap [x, y] + 1) / (maxPossibleHeight/0.9f);
-					noiseMap [x, y] = Mathf.Clamp(normalizedHeight,0, int.MaxValue);
+					//float normalizedHeight = (noiseMap [x, y] + 1) / (maxPossibleHeight/0.9f);
+					//noiseMap [x, y] = Mathf.Clamp(normalizedHeight,0, int.MaxValue);
+					noiseMap [x, y] = Mathf.InverseLerp (0, 1.0f, noiseMap [x, y]);
 					//noiseMap[x, y] *= ratio;
+					int val = (int) (noiseMap[x, y] * precision);
+					//Debug.Log("val = " + val);
+					int temp = (int) val % (int)echelle;
+					noiseMap[x, y] = val - temp;
+					noiseMap[x, y] /= precision;
+					//Debug.Log("noiseMap = " + noiseMap[x, y]);
 				}
 			}
 		}
-/*
-		for (int y = 0; y < mapHeight - 200; y++) {
-			for (int x = 0; x < mapWidth - 200; x++) {
-				Debug.Log("x: " + x + " y: " + y + "= " + noiseMap[x, y]);
-			}
-		}
-*/
+
 		return noiseMap;
 	}
 

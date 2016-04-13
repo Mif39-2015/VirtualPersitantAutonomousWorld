@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\EndlessTerrain.cs" />
+     <Compile Include="Assets\Map.cs" />
      <Compile Include="Assets\MapDisplay.cs" />
      <Compile Include="Assets\MapGenerator.cs" />
      <Compile Include="Assets\MeshGenerator.cs" />

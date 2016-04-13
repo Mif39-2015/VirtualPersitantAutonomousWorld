@@ -2,7 +2,13 @@
 
 ## Compilation ##
 
-Depuis la racine du projet :
+Depuis la racine du projet,
+
+```
+./install.sh
+```
+
+ou
 
 ```shell
 mkdir build

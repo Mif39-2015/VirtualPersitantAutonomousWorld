@@ -1,2 +1,0 @@
-#include "Behavior/EtatEnum.hpp"
-

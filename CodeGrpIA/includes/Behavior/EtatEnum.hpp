@@ -11,19 +11,24 @@ class Sentient_Entity;
 using namespace std;
 
 typedef enum {
-    NORD
-    ,SUD
-    ,EST
-    ,OUEST        
-    ,MANGER
-    ,COUPER_BOIS
-    ,PRENDRE
-    ,SAUTER
-    ,FRAPPER
-    ,CONSTRUIRE
-    ,A_FAIM
-    ,PAS_FAIM
+    ETAT_NORD
+    ,ETAT_SUD
+    ,ETAT_EST
+    ,ETAT_OUEST        
+    ,ETAT_MANGER
+    ,ETAT_DORMIR
+    ,ETAT_COUPER_BOIS
+    ,ETAT_PRENDRE
+    ,ETAT_SAUTER
+    ,ETAT_A_FAIM
+    ,ETAT_PAS_FAIM
 } ETAT;
+
+
+class MapEnumEtat {
+	public :
+		static map<ETAT,std::string> mapEnumEtatString;
+};
 
 #endif	/* ETATENUM_HPP */
 

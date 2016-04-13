@@ -12,21 +12,36 @@ make
 make doc # permet la compilation de la doc doxygen qui est dans doc/html/index.html
 ```
 
-[![asciicast](https://asciinema.org/a/egf9jz3w2weccq0kmhcjcw2ig.png)](https://asciinema.org/a/egf9jz3w2weccq0kmhcjcw2ig)
+https://asciinema.org/a/egf9jz3w2weccq0kmhcjcw2ig
 
-##  Création d'un nouveau test unitaire ##
+## Gestion des sources ##
 
-Petit tutorial ici : https://github.com/philsquared/Catch/blob/master/docs/tutorial.md
+Les sources se situent dans `src/`
 
-Pour ajouter un nouveau test unitaire, par exemple `test/test_socket.cpp`
-Il faut ouvrir `test/CMakeLists.txt` et ajouter `test_socket` dans `TEST_LIST`
+Le programme principal se situe dans `src/main.cpp`
+
+Chaques modules du programme sont découpés en sous dossier
+
+par exemple : `src/serveur` ; `src/db` ; etc
+
+Le programme compilé est `build/src/exec`
+
+## Test unitaire ##
+
+Syntaxe des tests unitaire : https://github.com/philsquared/Catch/blob/master/docs/tutorial.md
+
+#### Ajouter un nouveau test unitaire ####
+
+Se placer dans un des modules, par exemple pour se placer sur le module `serveur`, aller dans le dossier `test/serveur/`
+
+Puis créer un fichier `test/serveur/test_bar.cpp` qui contiendra le test unitaire `bar`
 
 Puis il faut regénérer le makefile avec `cmake ..` en étant dans le dossier `build`
 
-## Compiler un test unitaire spécifique ##
+L'exécutable correspondant au test unitaire `bar` est `build/test/foo/test_bar`
 
-Être dans `build/test/`
+#### Compiler un test unitaire spécifique ####
 
-Puis `make test_foo` pour compiler le test unitaire `test_foo.cpp`
+Être dans `build/test/serveur/`
 
-L'exécutable principale est `build/src/exec`
+Puis `make nom_du_test` pour compiler le test unitaire `test/foo/nom_du_test.cpp`

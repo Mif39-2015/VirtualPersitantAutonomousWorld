@@ -1,10 +1,16 @@
-#include <stdio.h>
+#include <cstdio>
 #include <sqlite3.h> 
 #include <string> 
 
-using namespace std;
-static int callback(void *data, int argc, char **argv, char **azColName);
-sqlite3* connectDB(string nameBase);
-void sqlRequest(string sqlStatement,sqlite3*db);	
+class SQLiteAccess{
+	private:
+		sqlite3 * db;
 
-sqlite3* disconnectDB(sqlite3* db);
+	public:
+		SQLiteAccess(std::string nameBase);
+		~SQLiteAccess();
+
+		int sqlRequest(std::string sqlStatement);
+};
+
+static int callback(void *data, int argc, char **argv, char **azColName);

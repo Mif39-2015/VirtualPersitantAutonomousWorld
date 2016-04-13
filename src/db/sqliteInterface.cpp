@@ -1,20 +1,10 @@
 #include <stdio.h>
 #include <sqlite3.h> 
 #include <string>
-using namespace std;
+#include "sqliteInterface.hpp"
 
-static int callback(void *data, int argc, char **argv, char **azColName){
-	int i;
-	fprintf(stderr, "%s: ", (const char*)data);
-	for(i=0; i<argc; i++){
-		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-	}
-	printf("\n");
-	return 0;
-}
-sqlite3* connectDB(string nameBase)
-{
-	sqlite3 *db;
+/*constructeur*/
+SQLiteAccess::SQLiteAccess(std::string nameBase){
 	char *zErrMsg = 0;
 	int rc;
 	
@@ -22,14 +12,18 @@ sqlite3* connectDB(string nameBase)
 
 	if( rc ){
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-		return NULL;
 	}else{
 		fprintf(stderr, "Opened database successfully\n");
 	}
-	return db;
 }
 
-void sqlRequest(string sqlStatement,sqlite3*db){
+/*destructeur*/
+SQLiteAccess::~SQLiteAccess(){
+	sqlite3_close(db);
+}
+
+/*execution du code sql pour la base donnée en paramètre*/
+int SQLiteAccess::sqlRequest(std::string sqlStatement){
 	char *zErrMsg = 0;
 	const char* data = "Callback function called";
 	int rc = sqlite3_exec(db, sqlStatement.c_str(), callback, (void*)data, &zErrMsg);
@@ -39,11 +33,16 @@ void sqlRequest(string sqlStatement,sqlite3*db){
 	}else{
 		fprintf(stdout, "Operation done successfully\n");
 	}
-	sqlite3_close(db);
-
+	return rc;
 }
-sqlite3* disconnectDB(sqlite3 * db)
-{
-	sqlite3_close(db);
 
+/*fonction affichage de la réponse de la requete (fonction de débug)*/
+static int callback(void *data, int argc, char **argv, char **azColName){
+	int i;
+	fprintf(stderr, "%s: ", (const char*)data);
+	for(i=0; i<argc; i++){
+		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	}
+	printf("\n");
+	return 0;
 }

@@ -19,11 +19,11 @@ class Logger {
 		string fileName;
 		ofstream file;
 	public:
-		Logger(string _fileName);
+		Logger(const string& _fileName);
 		~Logger();
-		void log(string text);
-		void logLine(string text);
-		ostream& operator<<(string text);
+		bool log(const string& text);
+		bool logLine(const string& text);
+		ostream& operator<<(const string& text);
 };
 
 #endif

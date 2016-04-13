@@ -57,6 +57,32 @@ void retablir_buffer(char * message){
 }
 
 
+
+void envoieMessageFichier(char * fichier, int socket){
+    ifstream file(fichier, ios::in);
+    char *message;
+    cout << "je suis dans la fonction" << endl;
+    std::string ligne;
+    if(file)
+    {
+        while(getline(file, ligne))
+        {
+            cout << ligne << endl; // on l'affiche
+            concat((char *) ligne.c_str(), "\r\n");
+            write(socket , (ligne.c_str()) , strlen(ligne.c_str()));
+            retablir_buffer((char *) ligne.c_str());
+
+        }
+        file.close();  // on ferme le fichier
+    }
+    else
+    {
+        cerr << "Impossible d'ouvrir le fichier !" << endl;
+    }
+
+}
+
+
 void* connection_handler(void *socket_desc)
 {
     //Get the socket descriptor
@@ -66,16 +92,11 @@ void* connection_handler(void *socket_desc)
 
     printf("le numero de la socket est : %d \n", sock.val);
 
-    message = "Now type something and i shall repeat what you type";
-    write(sock.val , message , strlen(message));
-
     //Receive a message from client
     while( (read_size = recv(sock.val , client_message , 2000 , 0)) > 0 )
     {
         //Send the message back to client
-        printf("%s\n",client_message);
-        write(sock.val , client_message , strlen(client_message));
-        retablir_buffer(client_message);
+        envoieMessageFichier("test.txt", sock.val);
     }
 
     if(read_size == 0)
@@ -125,5 +146,7 @@ void NetworkAdapter::Run(){
         return;
     }
 }
+
+
 
 

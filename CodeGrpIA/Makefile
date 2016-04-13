@@ -31,7 +31,7 @@ endif
 #*******
 
 OBJ_DIR = obj
-SRC_DIR = src
+SRC_DIR = src/*
 BIN_DIR = bin
 
 

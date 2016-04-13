@@ -1,30 +1,10 @@
 #include "Behavior/Arete.hpp"
 
-Arete::Arete(Noeud * nD, Noeud * nF, vector<FONC_BOOL> fC) : noeudDepart(nD) , noeudFin(nF) {
-	conditions_Simples = fC;
-}
-
-void Arete::setNoeudDepart(Noeud * nD){
-	noeudDepart = nD;
-}
-
-void Arete::setNoeudFin(Noeud * nF){
-	noeudFin = nF;
-}
-
-Noeud * Arete::getNoeudDepart(){
-	return noeudDepart;
-}
-
-Noeud * Arete::getNoeudFin(){
-	return noeudFin;
-}
-
 bool Arete::isTrue(Sentient_Entity * a){
-	for(auto it=conditions_Simples.begin(); it!=conditions_Simples.end(); ++it){
+	for(auto it=condition_simple.begin(); it!=condition_simple.end(); ++it){
 		if(!MapEnumPointeur::mapFoncBool[*it](a)) return false;
 	}
-	for(auto it=condition_Complexes.begin(); it!=condition_Complexes.end(); ++it){
+	for(auto it=condition_Complexe.begin(); it!=condition_Complexe.end(); ++it){
 		Entity * e = it->e1;
 		while(!it->fEE1.empty()) {
 			e = MapEnumPointeur::mapFoncEntityEntity[it->fEE1.top()](a,e);

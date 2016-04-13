@@ -1,5 +1,11 @@
 # VirtualPersitantAutonomousWorld
 
+## Paquets nécessaires
+
+`libsqlite3-dev`
+
+`libboost-dev` (version >= 1.4)
+
 ## Compilation ##
 
 Depuis la racine du projet,

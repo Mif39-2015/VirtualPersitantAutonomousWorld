@@ -43,7 +43,7 @@ class Sentient_Entity : public Tangible_Entity{
 		* position,le deuxieme est le nom de sentient entity concerné
 		* et le troisieme son id
 		* */
-		Sentient_Entity(Position pos, std::string, std::string);
+		Sentient_Entity(Position pos, std::string, type);
 		/*
 		* Ce methode renvoie la valeur de la clé id de la map.
 		* Si la clé existe, sa valeur associée est renvoyée, sinon -1

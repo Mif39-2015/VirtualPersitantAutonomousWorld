@@ -18,7 +18,7 @@
 class Insentient_Entity : public Tangible_Entity{
     public:
         Vector3 sizeIE;
-        Insentient_Entity(std::string n, std::string tid, int o, int x, int y, int z);
+        Insentient_Entity(std::string n, int tid, int o, int x, int y, int z);
         int getOrientation();
         void setOrientation(int _o);
         unsigned int getStructuralPoint();

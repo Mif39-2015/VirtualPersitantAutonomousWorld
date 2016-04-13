@@ -14,30 +14,42 @@
 #include "Item.hpp"
 
 using namespace std;
+
+enum type{
+    ID_AGENT,
+    ID_ANIMAL,
+    ID_BUILDING,
+    ID_RESSOURCE
+};
+
 /*! 
 * \class Entity
 * \brief classe permettant de représenter les différentes entités (Agent, Animal, Ressource, ...)
 */
 class Entity{
 
-	public:
 
+// using namespace std;
+
+
+	public:
 		/*!
 		 *\brief Constructeur
 	 	 *\param n : le nom de l'entité
 	 	 *\param tid : le type de l'ent'
 	 	 */
-		Entity(std::string n, std::string tid);
+        	Entity(std::string n, int tid);
 
 		//Getters
 		unsigned int getId();
-		string getName();
+		int getTypeId();
+		std::string getName();
 		Position getPos();
 		bool getModif();
+
 		map<Item, unsigned int> getInventory();
 		
 		//Setters
-		string getTypeId();
 		void setModif(bool m);
 		void setName(std::string n);
 		void setPos(int x, int y);
@@ -51,7 +63,7 @@ class Entity{
 	protected:
 		static unsigned int idCount; /*!<Compteur d'entités permettant de générer l'identifiant*/
 		unsigned int id; /*!<Identifiant unique de l'entité*/
-		string typeId; /*!<Identifiant du type de l'entité (Agent, Animal, Resource, ...)'*/
+		int typeId; /*!<Identifiant du type de l'entité (Agent, Animal, Resource, ...)'*/
 		string name; /*!<Nom de l'entité*/
 		map<Item, unsigned int> inventory; /*!<Inventaire de l'entité*/
 		Position pos; /*!<Position de l'entité*/

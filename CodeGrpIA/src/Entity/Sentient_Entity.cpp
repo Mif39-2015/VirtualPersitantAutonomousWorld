@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Entity/Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(Position _pos, std::string n, std::string tid) : Tangible_Entity(n, tid){
+Sentient_Entity::Sentient_Entity(Position _pos, std::string n, int tid) : Tangible_Entity(n, tid){
     pos = _pos;
     id = Entity::idCount;
     Entity::idCount++;
@@ -23,6 +23,20 @@ int Sentient_Entity::setVal(int id, int v){
     charact_correspondence.at(id)=v;
     return 1;
 }
+
+
+ETAT Sentient_Entity::getEtat_Entity(){
+    
+    cout << "je suis dans l'état: " << Sentient_Entity::etat_entity << endl;
+    return Sentient_Entity::etat_entity;
+}
+
+void Sentient_Entity::setEtat_Entity(int new_etat){
+    ETAT newEtat = static_cast<ETAT>(new_etat);
+    Sentient_Entity::etat_entity=newEtat;
+    cout << "nouvelle etat : " << Sentient_Entity::getEtat_Entity()  <<endl;
+}
+
 
 void Sentient_Entity::vision(){
     int vue = 10;

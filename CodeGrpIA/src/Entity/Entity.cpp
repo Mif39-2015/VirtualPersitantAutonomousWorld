@@ -3,7 +3,7 @@
 
 unsigned int Entity::idCount = 0;
 
-Entity::Entity(std::string n, std::string tid) : typeId(tid), name(n), pos(0, 0){}
+Entity::Entity(std::string n, int tid) : typeId(tid), name(n), pos(0, 0){}
 
 unsigned int Entity::getId(){
 	return id;
@@ -26,7 +26,7 @@ void Entity::setName(std::string n){
 void Entity::setPos(int x, int y){
     pos = Position(x,y);
 }
-std::string Entity::getTypeId(){
+int Entity::getTypeId(){
     return typeId;
 }
 void Entity::setInventory(std::map<Item, unsigned int> inv){

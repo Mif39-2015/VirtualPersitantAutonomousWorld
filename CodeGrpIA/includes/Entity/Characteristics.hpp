@@ -8,6 +8,7 @@
  */
 
 #include <vector>
+#include <iostream>
 /*! 
 * \class Characteristics
 * \brief classe permettant de représenter les caractéristiques
@@ -33,7 +34,15 @@ class Characteristics{
 		void setType(std::string t);
 		void setPrecision(int p);
 
-
+		friend std::ostream & operator<<(std::ostream & os, Characteristics const & obj){
+		    // write obj to stream
+			os << obj.id << std::endl;
+			os << obj.name << std::endl;
+			os << obj.type << std::endl;
+			os << obj.definition << std::endl;
+			os << "Between " << obj.min << " and " << obj.max << std::endl;
+		    return os;
+		}
 
 	private:
 		int id; /*!<Identifiant unique de la caractéristique*/
@@ -43,6 +52,7 @@ class Characteristics{
 		std::string definition; /*!<Définition de la caractéritisque*/
 		std::string type; /*!<Type de la caractéristique (pourcentage, valeur fixe)*/
 		int precision; /*!<Précision avec laquelle la valeur doit être interpretée*/
+
 	};
 
 /*! 
@@ -62,6 +72,5 @@ public:
 	static int loadCharacteristicsFile(std::string fileName);
 
 };
-
 
 #endif

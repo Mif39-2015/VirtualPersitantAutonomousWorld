@@ -10,7 +10,7 @@ Sentient_Entity * Factories::createAgent(){
 		while(std::getline(myfile,line))
 		{
 		    characs.push_back(std::stoi(line));
-		    
+
 		}
 		myfile.close();
 	}
@@ -19,7 +19,9 @@ Sentient_Entity * Factories::createAgent(){
 		std::cout << "Unable to open file" << std::endl;
 		return nullptr;
 	}
-	
+
+	// for(int i : characs) std::cout << i << std::endl;
+
 	std::map<int, int> characs_val;
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
@@ -28,18 +30,18 @@ Sentient_Entity * Factories::createAgent(){
 		int val = rand (min, max);
 		characs_val.insert(std::pair<int,int>(*it,val));
 	}
-	
+
 	std::string name;
 	if (characs_val[1] == 0)
 		name = getRandomMaleName();
 	else
 		name = getRandomFemaleName();
-	
-	return new Sentient_Entity(Position(0,0), name, "agent");
+
+	return new Sentient_Entity(Position(0,0), name, ID_AGENT);
 }
 
 Sentient_Entity * Factories::createAnimal(){
-	
+
 	std::vector<int> characs;
 	std::string line;
 	std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
@@ -49,7 +51,7 @@ Sentient_Entity * Factories::createAnimal(){
 		{
 			if (line != "")
 				characs.push_back(std::stoi(line));
-		    
+
 		}
 		myfile.close();
 	}
@@ -58,7 +60,7 @@ Sentient_Entity * Factories::createAnimal(){
 		std::cout << "Unable to open file" << std::endl;
 		return nullptr;
 	}
-	
+
 	std::map<int, int> characs_val;
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
@@ -67,6 +69,6 @@ Sentient_Entity * Factories::createAnimal(){
 		int val = rand (min, max);
 		characs_val.insert(std::pair<int,int>(*it,val));
 	}
-	
-	return new Sentient_Entity(Position(0,0), "mouton", "animal");
+
+	return new Sentient_Entity(Position(0,0), "mouton", ID_ANIMAL);
 }

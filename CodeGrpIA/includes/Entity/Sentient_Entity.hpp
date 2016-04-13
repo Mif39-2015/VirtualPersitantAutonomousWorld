@@ -16,7 +16,7 @@ using namespace std;
 
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/Comportement.hpp"
-
+#include "Behavior/EtatEnum.hpp"
 class Comportement;
 class Noeud;
 
@@ -31,6 +31,13 @@ class Sentient_Entity : public Tangible_Entity{
 		 * entity.
 		 * */
 		std::map<int, int> charact_correspondence;
+                
+                /*
+                 *  Cet attribut permet de donner un état courrant à l'entité
+                 * 
+                 **/
+                ETAT etat_entity = ETAT_MANGER ;
+                
 		/*
 		 * map de mémorisation de l'agent : on stocke pour chaque position qu'il
 		 * a visionné l'entity présent à cette position à ce moment
@@ -46,7 +53,7 @@ class Sentient_Entity : public Tangible_Entity{
 		* position,le deuxieme est le nom de sentient entity concerné
 		* et le troisieme son id
 		* */
-		Sentient_Entity(Position pos, std::string, std::string);
+		Sentient_Entity(Position pos, std::string, int);
 		/*
 		* Ce methode renvoie la valeur de la clé id de la map.
 		* Si la clé existe, sa valeur associée est renvoyée, sinon -1
@@ -60,6 +67,9 @@ class Sentient_Entity : public Tangible_Entity{
 		/* stockage des alentours de l'agent par rapport à sa position correspondante
 		 *  dans la map mémorisation*/
 		void vision();
+                
+                ETAT getEtat_Entity();
+                void setEtat_Entity(int new_etat);
 
 		void addToTrace(Comportement * c, Noeud * n);
 		void removeTopTrace();

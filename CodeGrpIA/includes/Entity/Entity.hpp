@@ -28,7 +28,6 @@ class Entity{
 
 	public:
 
-		//Entity(std::string, std::string);
         Entity(std::string,type);
 
 		unsigned int getId();

@@ -12,7 +12,6 @@ void scenario(){
     std::string name = "Mykaz";
     type tid = ID_AGENT;
     Sentient_Entity* agent = new Sentient_Entity(Position(0, 0),name,tid);
-
     Comportement comp;
     Noeud noeudPasFaim;
     Noeud noeudFaim;
@@ -36,7 +35,8 @@ void scenario(){
     comp.ajouterNoeud(&noeudFaim);
 
     for(int i = 0; i < 5; i++){
-	    std::cout << "Noeud courant : " << noeudCourant << std::endl;
+	    std::cout << "Noeud courant : " << noeudCourant<< agent->getEtat_Entity() << std::endl;
+            agent->setEtat_Entity(3);
 	    noeudCourant = noeudCourant->executerNoeud(agent);
 	}
 }

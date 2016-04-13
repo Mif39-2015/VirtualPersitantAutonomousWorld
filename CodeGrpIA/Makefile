@@ -40,11 +40,11 @@ INCLUDE_DIR = -I/usr/include/ -I./includes
 LIB_DIR = -L/usr/include/
 
 ifeq ($(OS),WIN32)
-	LIBS = 
+	LIBS =
 else
-	LIBS =  #-lsqlite3 
-			#-lSDL2 
-			#-lSDL2_ttf 
+	LIBS =  #-lsqlite3
+			#-lSDL2
+			#-lSDL2_ttf
 			#-lSDL2_image
 			#-L/usr/X11R6/lib
 			#-lGL
@@ -76,7 +76,7 @@ $(BIN_DIR)/$(PROGRAM): $(OBJ)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.$(EXT)
 	$(CC) -c $(CFLAGS) $(INCLUDE_DIR) $< -o $@
 
-	
+
 ###############################
 
 default: $(BIN_DIR)/$(PROGRAM)

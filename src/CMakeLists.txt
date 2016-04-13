@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(vpaw)
 
+include_directories(${PROJECT_SOURCE_DIR}/../includes)
+
 # ${list_src} contiendra toutes les .cpp du repertoire courant ( src/ )
 file(GLOB_RECURSE list_src
   "*.cpp"

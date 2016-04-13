@@ -18,11 +18,11 @@ void scenario(){
 
     std::vector<FONC_BOOL> vectFctTrue;
     vectFctTrue.push_back(Fonction_BOOL_TRUE);
-    Arete areteTrue(&noeudPasFaim,&noeudFaim,vectFctTrue);
+    Arete areteTrue(&noeudPasFaim,&noeudFaim);
 
     std::vector<FONC_BOOL> vectFctFalse;
     vectFctFalse.push_back(Fonction_BOOL_FALSE);
-    Arete areteFalse(&noeudFaim,&noeudPasFaim,vectFctFalse);
+    Arete areteFalse(&noeudFaim,&noeudPasFaim);
 
     noeudPasFaim.addAreteIn(&areteFalse);
     noeudPasFaim.addAreteOut(&areteTrue);

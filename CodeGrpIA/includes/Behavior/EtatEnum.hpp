@@ -14,7 +14,7 @@ typedef enum {
     ETAT_NORD
     ,ETAT_SUD
     ,ETAT_EST
-    ,ETAT_OUEST        
+    ,ETAT_OUEST
     ,ETAT_MANGER
     ,ETAT_DORMIR
     ,ETAT_COUPER_BOIS

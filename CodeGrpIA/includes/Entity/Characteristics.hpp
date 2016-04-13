@@ -1,11 +1,21 @@
 #ifndef CHARACTERISTICS_HPP
 #define CHARACTERISTICS_HPP
 
-#include <vector>
+/*!
+ * \file Characteristics.hpp
+ * \brief Fichier contenant les classes Characteristics et CharacteristicsList
+ * \author Groupe IA
+ */
 
+#include <vector>
+/*! 
+* \class Characteristics
+* \brief classe permettant de représenter les caractéristiques
+*/
 class Characteristics{
 
 	public:
+		//getters
 		int getId();
 		int getMin();
 		int getMax();
@@ -14,6 +24,7 @@ class Characteristics{
 		std::string getType();
 		int getPrecision();
 
+		//setters
 		void setId(int i);
 		void setMin(int m);
 		void setMax(int m);
@@ -25,22 +36,29 @@ class Characteristics{
 
 
 	private:
-		int id;
-		int min;
-		int max;
-		std::string name;
-		std::string definition;
-			std::string type;
-		int precision;
+		int id; /*!<Identifiant unique de la caractéristique*/
+		int min; /*!<Valeur minimale de la caractéristique*/
+		int max; /*!<Valeur maximale de la caractéristique*/
+		std::string name; /*!<Nom de la caractéristique*/
+		std::string definition; /*!<Définition de la caractéritisque*/
+		std::string type; /*!<Type de la caractéristique (pourcentage, valeur fixe)*/
+		int precision; /*!<Précision avec laquelle la valeur doit être interpretée*/
 	};
 
+/*! 
+* \class CharacteristicsList
+* \brief classe permettant de gérer les caractéristiques sous forme d'une liste
+*/
 class CharacteristicsList{
 
 public:
-        //les characteristiques provenant du fichier
-	static std::vector<Characteristics> listCharacteristics;
 
-	//cnstruit un vector de charactéristiques à partir du fichier donné
+	static std::vector<Characteristics> listCharacteristics; /*!<Liste de toutes les caractéristiques existantes*/
+
+	/*!
+	 *  \brief Créé la liste de caractéristiques à partir d'un fichier texte
+	 *  \param fileName : le nom du fichier contenant la description des caractéristiques
+	 */
 	static int loadCharacteristicsFile(std::string fileName);
 
 };

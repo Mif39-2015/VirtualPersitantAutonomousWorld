@@ -1,6 +1,12 @@
 #ifndef TRIBE_HPP
 #define TRIBE_HPP
 
+/*!
+ * \file Tribe.hpp
+ * \brief Fichier contenant la classe Tribe
+ * \author Groupe IA
+ */
+
 #include "Entity/Entity.hpp"
 #include "Entity/Intangible_Entity.hpp"
 // #include "Goal.hpp" //Uncomment when Goal is implemented
@@ -11,6 +17,10 @@
 #include <map>
 #include <vector>
 
+/*! 
+* \class Tribe
+* \brief classe permettant de représenter les clans
+*/
 class Tribe {
 	private:
 		unsigned int id;

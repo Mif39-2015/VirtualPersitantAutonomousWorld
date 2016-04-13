@@ -39,7 +39,6 @@ int Characteristics::getPrecision() {
 }
 
 
-//setter
 void Characteristics::setId(int i) {
 	this->id = i;
 }

@@ -1,6 +1,12 @@
 #ifndef SENTIENT_ENTITY_HPP
 #define SENTIENT_ENTITY_HPP
 
+/*!
+ * \file Sentient_Entity.hpp
+ * \brief Fichier contenant la classe Sentient_Entity
+ * \author Groupe IA
+ */
+
 using namespace std;
 
 #include <string>
@@ -14,6 +20,10 @@ using namespace std;
 class Comportement;
 class Noeud;
 
+/*! 
+* \class Sentient_Entity
+* \brief classe permettant de représenter les entités conscientes
+*/
 class Sentient_Entity : public Tangible_Entity{
 	protected:
 		/*

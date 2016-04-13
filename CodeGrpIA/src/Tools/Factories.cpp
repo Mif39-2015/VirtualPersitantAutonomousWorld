@@ -1,4 +1,4 @@
-#include "Factories.hpp"
+#include "Tools/Factories.hpp"
 
 Sentient_Entity * Factories::createAgent(){
 

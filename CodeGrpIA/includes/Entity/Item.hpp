@@ -1,8 +1,18 @@
 #ifndef ITEM_HPP
 #define ITEM_HPP
 
+/*!
+ * \file Item.hpp
+ * \brief Fichier contenant la classe Item
+ * \author Groupe IA
+ */
+
 #include <string>
 
+/*! 
+* \class Item
+* \brief classe permettant de représenter les items
+*/
 class Item {    
 public:
 	Item(unsigned int, std::string, float);

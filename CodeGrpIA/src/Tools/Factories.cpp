@@ -35,7 +35,7 @@ Sentient_Entity * Factories::createAgent(){
 	else
 		name = getRandomFemaleName();
 
-	return new Sentient_Entity(Position(0,0), name, "agent");
+	return new Sentient_Entity(Position(0,0), name, ID_AGENT);
 }
 
 Sentient_Entity * Factories::createAnimal(){
@@ -68,5 +68,5 @@ Sentient_Entity * Factories::createAnimal(){
 		characs_val.insert(std::pair<int,int>(*it,val));
 	}
 
-	return new Sentient_Entity(Position(0,0), "mouton", "animal");
+	return new Sentient_Entity(Position(0,0), "mouton", ID_ANIMAL);
 }

@@ -10,7 +10,7 @@
 
 void scenario(){
     std::string name = "Mykaz";
-    std::string tid = "agent";
+    type tid = ID_AGENT;
     Sentient_Entity* agent = new Sentient_Entity(Position(0, 0),name,tid);
 
     Comportement comp;

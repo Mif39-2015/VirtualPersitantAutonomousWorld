@@ -4,6 +4,7 @@
  */
 #include "NetworkAdapter.hpp"
 
+
 NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator)
     : NetworkAdapter(_simulator, false)
 {
@@ -20,7 +21,9 @@ NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator, bool logNetwork)
     }
 }
 
+
 void NetworkAdapter::Init(){
+
     //Create socket
     socket_desc = socket(AF_INET , SOCK_STREAM , 0);
     if (socket_desc == -1)
@@ -32,7 +35,7 @@ void NetworkAdapter::Init(){
     //Prepare the sockaddr_in structure
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons( 8888 );
+    server.sin_port = htons( 8887 );
 
     //Bind
     if( bind(socket_desc,(struct sockaddr *)&server , sizeof(server)) < 0)
@@ -64,19 +67,18 @@ void retablir_buffer(char * message){
     memset(message, 0, strlen(message));
 }
 
+
+
 void envoieMessageFichier(const char * fichier, int socket){
     ifstream file(fichier, ios::in);
     char *message;
-    cout << "je suis dans la fonction" << endl;
     std::string ligne;
     if(file)
     {
         while(getline(file, ligne))
         {
-            cout << ligne << endl; // on l'affiche
-
-            // concat((char *) ligne.c_str(), "\r\n");
-            ligne += "\r\n";
+            ligne+="\n";
+            cout << ligne << endl;
 
             write(socket , (ligne.c_str()) , strlen(ligne.c_str()));
             retablir_buffer((char *) ligne.c_str());
@@ -88,6 +90,55 @@ void envoieMessageFichier(const char * fichier, int socket){
     {
         cerr << "Impossible d'ouvrir le fichier !" << endl;
     }
+
+}
+
+int receptionFichier(string filename,int sock){
+	int result =0;
+	char client_message[2000];
+	result = recv(sock , client_message , 2000 , 0);
+        ofstream fichier(filename, ios::out | ios::app);
+        fichier << client_message;
+        cout << client_message;
+        retablir_buffer(client_message);
+        fichier.close();
+	return result ;
+	
+} 
+
+void envoiMessageFichierAvecFlag(string filename,int sock ,string flag ,string flagFin ){
+	
+	int taille = strlen(flag.c_str());
+	int taillefin = strlen(flagFin.c_str());
+	cout<<taille<<endl;
+	write(sock , flag.c_str() ,taille);
+	
+	envoieMessageFichier((char*)filename.c_str(),sock);
+	write(sock,flagFin.c_str(),taillefin);
+	
+}
+
+void envoiMessageFichierUpdate(string filename , int sock){
+	envoiMessageFichierAvecFlag(filename,sock,"UPDATE\n","FINUPDATE\n");
+}
+
+void envoiMessageChaine(string chaine, int sock){
+	int taille = strlen(chaine.c_str());
+	write(sock , (chaine.c_str()) , taille);
+}
+void envoiMessageChaineAvecFlag(string chaine,int sock,string flag,string flagFin){
+	int taille = strlen(flag.c_str());
+	int taillefin = strlen(flagFin.c_str());
+	//cout<<taille<<endl;
+	write(sock , flag.c_str() ,taille);
+	
+	envoiMessageChaine(chaine,sock);
+
+	write(sock,flagFin.c_str(),taillefin);
+}
+
+void envoiMessageChaineUpdate(string chaine,int sock){
+	envoiMessageChaineAvecFlag(chaine,sock,"UPDATE\n","\nFINUPDATE\n");
 }
 
 void* connection_handler(void *socket_desc)
@@ -96,15 +147,23 @@ void* connection_handler(void *socket_desc)
     infos sock = *(infos*)socket_desc;
     int read_size;
     char *message , client_message[2000];
+    read_size = 1;
 
     printf("le numero de la socket est : %d \n", sock.val);
 
     //Receive a message from client
-    while( (read_size = recv(sock.val , client_message , 2000 , 0)) > 0 )
+    //cout << "[DEBUG]" << endl;
+    envoiMessageFichierUpdate("testenvoi.txt", sock.val);
+    envoiMessageChaineUpdate("Ceci est ma chaine", sock.val);
+    cout << "envoie de fichier" << endl;
+
+    while( read_size > 0 )
     {
-        //Send the message back to client
-        envoieMessageFichier("test.txt", sock.val);
+	read_size=receptionFichier("testreception.txt",sock.val);
+
     }
+
+
 
     if(read_size == 0)
     {
@@ -122,7 +181,10 @@ void* connection_handler(void *socket_desc)
     return 0;
 }
 
-void NetworkAdapter::Run() {
+
+
+
+void NetworkAdapter::Run(){
     while( (client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) )
     {
         puts("Connection accepted");
@@ -151,6 +213,6 @@ void NetworkAdapter::Run() {
     }
 }
 
-void NetworkAdapter::broadcastWorldChangesToclients(){
-    // TODO
-}
+
+
+

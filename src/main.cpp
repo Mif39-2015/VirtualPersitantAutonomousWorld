@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "tools/CommandLineOptions.hpp"
+#include "tool/CommandLineOptions.hpp"
 #include "server/WorldSimulator.hpp"
 
 

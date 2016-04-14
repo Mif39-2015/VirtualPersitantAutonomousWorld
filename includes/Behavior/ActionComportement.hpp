@@ -8,7 +8,7 @@ using namespace std;
 
 class Comportement;
 
-class ActionComportement : Action {
+class ActionComportement : public Action {
 
 	private :
 		Comportement * comportement;

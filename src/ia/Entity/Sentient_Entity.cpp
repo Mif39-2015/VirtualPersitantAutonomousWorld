@@ -87,10 +87,12 @@ void Sentient_Entity::run(){
 }
 
 void Sentient_Entity::addToTrace(Comportement * c, Noeud * n, bool b){
-	std::tuple<Comportement *, Noeud *, bool> t2 = trace.top();
-	std::get<2>(t2) = b;
-	trace.pop();
-	trace.push(t2);
+	if(!trace.empty()){
+		std::tuple<Comportement *, Noeud *, bool> t2 = trace.top();
+		std::get<2>(t2) = b;
+		trace.pop();
+		trace.push(t2);
+	}
 
 	std::tuple<Comportement *, Noeud *, bool> t (c, n, false);
 	trace.push(t);

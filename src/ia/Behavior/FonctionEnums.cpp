@@ -27,10 +27,7 @@ map<FONC_BOOL, bool(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncBool = {
 };
 
 map<FONC_INT_ENTITY, int(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur::mapFoncIntEntity = {
-	{Fonction_INT_1,fonction_int_1}
-	,{Fonction_INT_2,fonction_int_2}
-	,{Fonction_INT_3,fonction_int_3}
-	,{Fonction_INT_4,fonction_int_4}
+	{Fonc_GetFaim, fonction_getFaim}
 };
 
 
@@ -45,10 +42,12 @@ void goto_gauche(Sentient_Entity * agent){}
 void goto_droite(Sentient_Entity * agent){}
 
 void faim_p10(Sentient_Entity * agent){
-	agent->setVal(5, agent->getVal(5) + 10);
+	int i = agent->setVal(5, agent->getVal(5) + 10);
+	cout << "pour le setVal(5) on a un retour de : " << i << endl;
 }
 void faim_m5(Sentient_Entity * agent){
-	agent->setVal(5, agent->getVal(5) - 5);
+	int i = agent->setVal(5, agent->getVal(5) - 5);
+	cout << "pour le setVal(5) on a un retour de : " << i << endl;
 }
 
 //FONC_VOID_ENTITY
@@ -70,22 +69,7 @@ bool fonction_false(Sentient_Entity * a){
 }
 
 //FONC_INT_ENTITY
-int fonction_int_1(Sentient_Entity * a, Entity * e){
-	cout << "je suis dans la fonction_int_1 liée à FONCTION_INT_1"<<endl;
-	return 1;
-}
-
-int fonction_int_2(Sentient_Entity * a, Entity * e){
-	cout << "je suis dans la fonction_int_2 liée à FONCTION_INT_2"<<endl;
-	return 2;
-}
-
-int fonction_int_3(Sentient_Entity * a, Entity * e){
-	cout << "je suis dans la fonction_int_3 liée à FONCTION_INT_3"<<endl;
-	return 3;
-}
-
-int fonction_int_4(Sentient_Entity * a, Entity * e){
-	cout << "je suis dans la fonction_int_4 liée à FONCTION_INT_4"<<endl;
-	return 4;
+int fonction_getFaim(Sentient_Entity * a, Entity * e){
+	cout << "Je suis l'agent " << a->getName() << " et j'ai faim à " << a->getVal(5) << " beaucoup" << endl;
+	return a->getVal(5);
 }

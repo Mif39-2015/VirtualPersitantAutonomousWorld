@@ -47,10 +47,7 @@ typedef enum {
 } FONC_BOOl_ENTITY;
 
 typedef enum {
-	Fonction_INT_1
-	,Fonction_INT_2
-	,Fonction_INT_3
-	,Fonction_INT_4
+	Fonc_GetFaim
 	,FONC_I_E_NULL
 } FONC_INT_ENTITY;
 
@@ -68,10 +65,7 @@ bool fonction_true(Sentient_Entity * a);
 bool fonction_false(Sentient_Entity * a);
 
 //FONC_INT_ENTITY
-int fonction_int_1(Sentient_Entity * a, Entity * e);
-int fonction_int_2(Sentient_Entity * a, Entity * e);
-int fonction_int_3(Sentient_Entity * a, Entity * e);
-int fonction_int_4(Sentient_Entity * a, Entity * e);
+int fonction_getFaim(Sentient_Entity * a, Entity * e);
 
 //FONC_VOID
 void idle(Sentient_Entity * agent);

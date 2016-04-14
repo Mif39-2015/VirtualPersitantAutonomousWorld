@@ -12,6 +12,7 @@ using namespace std;
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/Comportement.hpp"
 #include "Behavior/EtatEnum.hpp"
+
 class Comportement;
 class Noeud;
 
@@ -20,11 +21,9 @@ class Sentient_Entity : public Tangible_Entity{
 		
 		std::map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 
-                ETAT etat_entity  ;
-
+        	ETAT etat_entity;
 		
 		std::map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
-
 
 		stack<pair<Comportement *,Noeud *>> trace;
 		
@@ -44,6 +43,7 @@ class Sentient_Entity : public Tangible_Entity{
 		* Si la clé existe, sa valeur associée est renvoyée, sinon -1
 		* */
 		int getVal(int id);
+		
 		/*
 		* Ce methode met à jour la valeur associée à la clé id si cette derniere
 		* existe bien dans la map et renvoie 1 (success) sinon renvoie -1
@@ -63,6 +63,8 @@ class Sentient_Entity : public Tangible_Entity{
 		int compare2Pos(Position p1, Position p2);
 		
 		int distEucli(Position ar);
+
+		void run();
 
 		void addToTrace(Comportement * c, Noeud * n);
 		void removeTopTrace();

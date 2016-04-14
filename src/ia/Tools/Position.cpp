@@ -4,15 +4,19 @@
 
 Position::Position(int a, int b) : x(a), y(b){}
 
+Position::Position(const Position &p){
+	x = p.getX();
+	y = p.getY();
+}
 
 Position::~Position(){}
 
 
-int Position::getX(){
+int Position::getX() const{
     return x;
 }
 
-int Position::getY(){
+int Position::getY() const{
     return y;
 }
 

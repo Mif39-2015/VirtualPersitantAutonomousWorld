@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Entity/Item.hpp"
 
-Item::Item(unsigned int i, std::string n, float w) : id(i), name(n), weight(w){}
+Item::Item(unsigned int i, std::string n, float w, type t) : Entity(n, t), id(i), weight(w){}
 
 const unsigned int& Item::getID() //ref ou pas ref ?
 {

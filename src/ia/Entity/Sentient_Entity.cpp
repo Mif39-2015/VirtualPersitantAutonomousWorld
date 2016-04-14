@@ -1,8 +1,7 @@
 #include <iostream>
 #include "Entity/Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(Position _pos, std::string n, type tid) : Tangible_Entity(n, tid){
-    pos = _pos;
+Sentient_Entity::Sentient_Entity(Position p, std::string n, type tid) : Tangible_Entity(n, tid, p){
     id = Entity::idCount;
     Entity::idCount++;
 }
@@ -13,6 +12,7 @@ int Sentient_Entity::getVal(int id){
     }
     return charact_correspondence.at(id);
 }
+
 int Sentient_Entity::setVal(int id, int v){
     //si la clé n'existe pas on fait rien
     if(charact_correspondence.find(id)==charact_correspondence.end()){
@@ -105,3 +105,8 @@ int Sentient_Entity::distEucli(Position ar)
 //                            openList.ajouter(v)
 //            closedList.ajouter(u)
 //       terminer le programme (avec erreur)
+
+void Sentient_Entity::run(){
+
+}
+

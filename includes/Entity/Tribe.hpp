@@ -2,7 +2,6 @@
 #define TRIBE_HPP
 
 #include "Entity/Entity.hpp"
-#include "Entity/Intangible_Entity.hpp"
 // #include "Goal.hpp" //Uncomment when Goal is implemented
 #include "Item.hpp"
 // #include "Complex_Behavior.hpp" //Uncomment when Complex_Behavior is implemented
@@ -11,7 +10,7 @@
 #include <map>
 #include <vector>
 
-class Tribe {
+class Tribe : public Entity{
 	private:
 		unsigned int id;
 		std::string name;
@@ -29,7 +28,7 @@ class Tribe {
 
 		std::map<Item, int> stock;
 
-		Tribe(unsigned int, std::string, unsigned int);
+		Tribe(unsigned int, std::string, unsigned int, type);
 		unsigned int getId();
 		std::string getName();
 		unsigned int getGoalIndex();

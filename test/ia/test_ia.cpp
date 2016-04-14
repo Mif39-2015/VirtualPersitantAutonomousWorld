@@ -49,18 +49,20 @@ TEST_CASE("Test IA", "[ia]")
 
     SECTION("Scenario 2")
     {
+        // int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
         int loadResult = CharacteristicsList::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
 
-        // if(loadResult != -1){
-        //     for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
-        //         std::cout <<it->getType() << std::endl ;
-        //     }
-        // }
+        REQUIRE( loadResult != -1 );
 
-        // testMsgpack();
+        std::cout << "I loaded the file !" << std::endl;
+
+        for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
+            std::cout <<it->getType() << std::endl ;
+        }
 
         Sentient_Entity * agent = Factories::createAgent();
         std::cout << agent->getName() << std::endl;
+
     }
 
     SECTION("Test de msgpack")

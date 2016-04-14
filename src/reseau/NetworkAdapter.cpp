@@ -4,11 +4,20 @@
  */
 #include "NetworkAdapter.hpp"
 
-
-NetworkAdapter::NetworkAdapter(WorldChangesListener* _worldChangesListener)
-    : auth(), worldChangesListener(_worldChangesListener)
+NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator)
+    : NetworkAdapter(_simulator, false)
 {
-	
+
+}
+
+NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator, bool logNetwork)
+    : auth(), simulator(_simulator)
+{
+    if(logNetwork){
+        networkLogger = new Logger("network.log");
+    } else {
+        networkLogger = NULL;
+    }
 }
 
 void NetworkAdapter::Init(){
@@ -65,10 +74,10 @@ void envoieMessageFichier(const char * fichier, int socket){
         while(getline(file, ligne))
         {
             cout << ligne << endl; // on l'affiche
-            
+
             // concat((char *) ligne.c_str(), "\r\n");
             ligne += "\r\n";
-            
+
             write(socket , (ligne.c_str()) , strlen(ligne.c_str()));
             retablir_buffer((char *) ligne.c_str());
 
@@ -142,3 +151,6 @@ void NetworkAdapter::Run() {
     }
 }
 
+void NetworkAdapter::broadcastWorldChangesToclients(){
+    // TODO
+}

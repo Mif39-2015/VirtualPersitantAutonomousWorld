@@ -24,7 +24,7 @@ class Tribe : public Entity{
 		/*
 		* C'est l'ensemble de tous les entités dans le clan
 		* */
-		std::vector<Entity*> tribe;
+		std::vector<Entity*> members;
 
 		std::map<Item*, int> stock;
 
@@ -42,7 +42,7 @@ class Tribe : public Entity{
 		int getTribeSize();
 
 		void addItemToStock(Item* i, int quantity);
-		
+		void afficheStock();
 		cJSON* toJson();
 		
 		~Tribe();

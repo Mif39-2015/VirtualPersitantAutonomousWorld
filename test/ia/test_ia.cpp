@@ -269,5 +269,20 @@ TEST_CASE("Test IA", "[ia]")
 
 	}
 
-
+	SECTION("TEST ITEM")
+	{
+		cout << "TEST ITEM" << endl;
+		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
+		
+		REQUIRE(ItemList::listItems.size() != 0);
+		
+		Tribe* t = Factories::createTribe();
+		REQUIRE(t != NULL);
+		
+		t->addItemToStock(&(ItemList::listItems[0]), 3);
+		
+		REQUIRE(t->getQuantityByItem(&(ItemList::listItems[0])) == 3);
+		
+		t->afficheStock();
+	}
 }

@@ -3,7 +3,8 @@
 Sentient_Entity * Factories::createAgent(){
     std::vector<int> characs;
     std::string line;
-    std::ifstream myfile ("../../../data/Characteristics_Agent.txt", std::ios::in);
+    std::ifstream myfile ("data/Characteristics_Agent.txt", std::ios::in);
+    // std::ifstream myfile ("../../../data/Characteristics_Agent.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -24,7 +25,7 @@ Sentient_Entity * Factories::createAgent(){
     {
         int min = CharacteristicsList::listCharacteristics[*it].getMin();
         int max = CharacteristicsList::listCharacteristics[*it].getMax();
-        int val = rand (min, max);
+        int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
 
@@ -40,7 +41,8 @@ Sentient_Entity * Factories::createAgent(){
 Sentient_Entity * Factories::createAnimal(){
     std::vector<int> characs;
     std::string line;
-    std::ifstream myfile ("../../../data/Characteristics_Animal.txt", std::ios::in);
+    std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
+    // std::ifstream myfile ("../../../data/Characteristics_Animal.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -61,7 +63,7 @@ Sentient_Entity * Factories::createAnimal(){
     {
         int min = CharacteristicsList::listCharacteristics[*it].getMin();
         int max = CharacteristicsList::listCharacteristics[*it].getMax();
-        int val = rand (min, max);
+        int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
 

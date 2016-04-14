@@ -33,6 +33,8 @@ class ActionSimple : Action {
 		void setFonc_Void_Entity(FONC_VOID_ENTITY foncVoidEntity){fVE = foncVoidEntity;}
 		void setStackFonc_Entity_Entity(stack<FONC_ENTITY_ENTITY> stackFoncEntityEntity){sFEE = stackFoncEntityEntity;}
 		void setParametreFinal(Entity * e){parametreFinal=e;}
+
+		void ajouterFonc_Entity_Entity(FONC_ENTITY_ENTITY foncEntityEntity){sFEE.push(foncEntityEntity);}
 };
 
 #endif

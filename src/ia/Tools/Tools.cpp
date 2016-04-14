@@ -8,7 +8,8 @@ std::string readFileForName(std::string filename){
 		std::vector<std::string> vect;
 		std::string line;
 		while(std::getline(fichier, line)){
-			vect.push_back(line);
+			if (line != "")
+				vect.push_back(line);
 		}
 		fichier.close();  // on ferme le fichier
 
@@ -21,11 +22,13 @@ std::string readFileForName(std::string filename){
 }
 
 std::string getRandomMaleName(){
-	return readFileForName("../../../data/nameListMale.txt");
+	return readFileForName("data/nameListMale.txt");
+	// return readFileForName("../../../data/nameListMale.txt");
 }
 
 std::string getRandomFemaleName(){
-	return readFileForName("../../../data/nameListFemale.txt");
+	return readFileForName("data/nameListFemale.txt");
+	// return readFileForName("../../../data/nameListFemale.txt");
 }
 
 std::vector<std::string> cutString(std::string & str, std::string delimiter){

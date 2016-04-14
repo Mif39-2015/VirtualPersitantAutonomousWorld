@@ -57,3 +57,4 @@ L'exécutable correspondant au test unitaire `bar` est `build/test/foo/test_bar`
 Être dans `build/test/serveur/`
 
 Puis `make nom_du_test` pour compiler le test unitaire `test/foo/nom_du_test.cpp`
+

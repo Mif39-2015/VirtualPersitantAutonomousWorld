@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Entity/Tribe.hpp"
 
-Tribe::Tribe(unsigned int i, std::string n, unsigned int gi) : id(i), name(n), goal_index(gi) {}
+Tribe::Tribe(unsigned int i, std::string n, unsigned int gi, type t) : Entity(n, t), id(i), goal_index(gi) {}
 
 /*getters*/
 unsigned int Tribe::getId(){

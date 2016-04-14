@@ -4,10 +4,11 @@
 class Position{
 public:
 	Position(int, int);
+	Position(const Position&);
 	~Position(void);
         
-        int getX();
-        int getY();
+        int getX() const;
+        int getY() const;
         bool isInCircle(Position* p, int rayon);
 
 private:

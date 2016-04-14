@@ -11,6 +11,7 @@ using namespace std;
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/Comportement.hpp"
 #include "Behavior/EtatEnum.hpp"
+
 class Comportement;
 class Noeud;
 
@@ -29,8 +30,6 @@ class Sentient_Entity : public Tangible_Entity{
 		 * a visionné l'entity présent à cette position à ce moment
 		 * */
 		std::map<Position, Entity> memorisation;
-
-
 		stack<pair<Comportement *,Noeud *>> trace;
 
 	public:
@@ -45,6 +44,7 @@ class Sentient_Entity : public Tangible_Entity{
 		* Si la clé existe, sa valeur associée est renvoyée, sinon -1
 		* */
 		int getVal(int id);
+		
 		/*
 		* Ce methode met à jour la valeur associée à la clé id si cette derniere
 		* existe bien dans la map et renvoie 1 (success) sinon renvoie -1

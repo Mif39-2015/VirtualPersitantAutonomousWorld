@@ -4,15 +4,14 @@
 #include <string>
 #include <map>
 
-#include "Tools/Position.hpp"
-#include "Item.hpp"
-
 using namespace std;
         enum type{
             ID_AGENT,
             ID_ANIMAL,
             ID_BUILDING,
-            ID_RESSOURCE
+            ID_RESSOURCE,
+            ID_ITEM,
+            ID_TRIBE
         };
 class Entity{
 
@@ -22,8 +21,6 @@ class Entity{
 		unsigned int id;
 		type typeId;
 		string name;
-		map<Item, unsigned int> inventory;
-		Position pos;
 		bool modif;
 
 	public:
@@ -32,14 +29,10 @@ class Entity{
 
 		unsigned int getId();
 		string getName();
-		Position getPos();
 		bool getModif();
-		map<Item, unsigned int> getInventory();
 		type getTypeId();
 		void setModif(bool m);
 		void setName(std::string n);
-		void setPos(int x, int y);
-		void setInventory(std::map<Item, unsigned int> inv);
 
 		~Entity(void);
 };

@@ -54,7 +54,7 @@ Sentient_Entity * Factories::createAnimal(){
         myfile.close();
     }
     else{
-        std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
+        std::cout << "Unable to open file for the Animal Characteristics" << std::endl;
         return nullptr;
     }
 

@@ -30,7 +30,7 @@ void Sentient_Entity::vision(){
         for(int y=pos.getY()-vue/2; y<pos.getY()+vue/2; y++){
             Position* newPos = new Position(x,y);
             if(pos.isInCircle(newPos,vue)){
-               // memorisation[newPos] = map.getEntityAt(newPos);
+               //memorisation[newPos] = map.getEntityAt(newPos);
             }
         }
     }
@@ -72,6 +72,12 @@ int Sentient_Entity::distEucli(Position ar)
 	return sqrt(pow((this->getPos().getX()-ar.getX()),2) + pow((this->getPos().getY()-ar.getY()),2));
 }
 
+void Sentient_Entity::run(){
+    //Executer le noeud courant
+    //avancer si on peux, ou rester sur le noeud courant
+
+}
+
 //Structure nœud = {
 //      x, y: Nombre
 //      cout, heuristique: Nombre
@@ -106,7 +112,4 @@ int Sentient_Entity::distEucli(Position ar)
 //            closedList.ajouter(u)
 //       terminer le programme (avec erreur)
 
-void Sentient_Entity::run(){
-
-}
 

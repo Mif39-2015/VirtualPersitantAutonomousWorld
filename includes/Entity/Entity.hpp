@@ -5,14 +5,16 @@
 #include <map>
 
 using namespace std;
-        enum type{
-            ID_AGENT,
-            ID_ANIMAL,
-            ID_BUILDING,
-            ID_RESSOURCE,
-            ID_ITEM,
-            ID_TRIBE
-        };
+
+enum type{
+	ID_AGENT,
+	ID_ANIMAL,
+	ID_BUILDING,
+	ID_RESSOURCE,
+	ID_ITEM,
+	ID_TRIBE
+};
+
 class Entity{
 
 	protected:
@@ -25,7 +27,7 @@ class Entity{
 
 	public:
 
-        Entity(std::string,type);
+		Entity(std::string,type);
 
 		unsigned int getId();
 		string getName();

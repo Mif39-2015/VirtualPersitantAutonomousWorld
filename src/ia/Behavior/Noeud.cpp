@@ -31,6 +31,7 @@ Noeud * Noeud::executerNoeud(Sentient_Entity * a, bool execAct){
     for (auto it = aretesOut.begin() ; it != aretesOut.end(); ++it){
         if((*it)->isTrue(a)) return (*it)->getNoeudFin();
     }
+
     if(execAct){
         action->Executer(a);
     }

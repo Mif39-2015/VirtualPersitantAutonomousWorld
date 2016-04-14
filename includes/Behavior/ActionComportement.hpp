@@ -4,7 +4,6 @@
 using namespace std;
 
 #include "Behavior/Action.hpp"
-//~ #include "Behavior/Comportement.hpp"
 #include <utility>
 
 class Comportement;

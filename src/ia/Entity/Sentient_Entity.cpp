@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Behavior/Noeud.hpp"
 #include "Entity/Sentient_Entity.hpp"
 
 Sentient_Entity::Sentient_Entity(Position p, std::string n, type tid) : Tangible_Entity(n, tid, p){
@@ -76,7 +77,7 @@ void Sentient_Entity::run(){
 	std::tuple<Comportement *, Noeud *, bool> t = trace.top();
 	Noeud * n = std::get<1>(t);
 	Noeud * n2;
-	// n2 = n->executerNoeud(*this, !std::get<2>(t));
+	n2 = n->executerNoeud( this, !std::get<2>(t));
 
 	if(n2 != n){
 		std::get<1>(t) = n2;

@@ -1,4 +1,5 @@
 #include "Behavior/FonctionEnums.hpp"
+#include "Entity/Sentient_Entity.hpp"
 
 map<FONC_VOID, void(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncVoid = {
 	{IDLE, idle}
@@ -44,10 +45,10 @@ void goto_gauche(Sentient_Entity * agent){}
 void goto_droite(Sentient_Entity * agent){}
 
 void faim_p10(Sentient_Entity * agent){
-	// agent->setVal(5, agent->getVal(5) + 10);
+	agent->setVal(5, agent->getVal(5) + 10);
 }
 void faim_m5(Sentient_Entity * agent){
-	// agent->setVal(5, agent->getVal(5) - 5);
+	agent->setVal(5, agent->getVal(5) - 5);
 }
 
 //FONC_VOID_ENTITY

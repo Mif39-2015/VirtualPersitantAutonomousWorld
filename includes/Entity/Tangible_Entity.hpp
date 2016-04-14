@@ -14,7 +14,7 @@ protected:
 	map<Item, unsigned int> inventory;
 
 public:
-    Tangible_Entity(std::string, type, Position);
+    Tangible_Entity(std::string, type,std::map<int, int> charac, Position);
 	Position getPos();
 	map<Item, unsigned int> getInventory();
 	void setPos(int x, int y);

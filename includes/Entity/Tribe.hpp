@@ -24,28 +24,27 @@ class Tribe : public Entity{
 		/*
 		* C'est l'ensemble de tous les entités dans le clan
 		* */
-		std::vector<Entity> tribe;
+		std::vector<Entity*> tribe;
 
-		std::map<Item, int> stock;
+		std::map<Item*, int> stock;
 
-		Tribe(unsigned int, std::string, unsigned int, type);
-		unsigned int getId();
-		std::string getName();
+		Tribe(std::string, unsigned int, type, std::map<int, int> charac);
 		unsigned int getGoalIndex();
 
-		void setId(unsigned int _id);
-		void setName(std::string _n);
 		void setGoalIndex(unsigned int _goal_index);
 
 		int getPopulationSize();
 		int getNbBuildings();
 		int getNbRessources();
 
-		void addNewEntity(Entity a);
-		int getQuantityByItem(Item i);
+		void addNewEntity(Entity* a);
+		int getQuantityByItem(Item* i);
 		int getTribeSize();
 
-		void addItemToStock(Item i, int quantity);
+		void addItemToStock(Item* i, int quantity);
+		
+		cJSON* toJson();
+		
 		~Tribe();
 
 };

@@ -6,15 +6,7 @@
 	
 class Item : public Entity {    
 public:
-	Item(unsigned int, std::string, float, type);
-
-	const unsigned int& getID();
-
-	const std::string& getName();
-
-	const float& getWeight();
-
-	//pas de set, les valeurs ne seront pas forcément modifiables
+	Item(std::string, type,std::map<int, int> charac);
 
 	inline bool operator == (const Item &b) const
     {
@@ -29,9 +21,6 @@ public:
 	~Item(void);
 
 private:
-	unsigned int id;
-	std::string name;
-	float weight;
 
 };
 

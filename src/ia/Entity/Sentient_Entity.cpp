@@ -1,27 +1,9 @@
 #include <iostream>
 #include "Entity/Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(Position p, std::string n, type tid) : Tangible_Entity(n, tid, p){
+Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){
     id = Entity::idCount;
     Entity::idCount++;
-}
-
-int Sentient_Entity::getVal(int id){
-    if(charact_correspondence.find(id)==charact_correspondence.end()){
-        return -1;
-    }
-    return charact_correspondence.at(id);
-}
-
-int Sentient_Entity::setVal(int id, int v){
-    //si la clé n'existe pas on fait rien
-    if(charact_correspondence.find(id)==charact_correspondence.end()){
-        return -1;
-    }
-    //sinon on met à jour la valeur de la clé existante
-
-    charact_correspondence.at(id)=v;
-    return 1;
 }
 
 void Sentient_Entity::vision(){

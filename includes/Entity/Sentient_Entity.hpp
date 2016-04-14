@@ -7,6 +7,7 @@ using namespace std;
 #include <map>
 #include <stack>
 #include <utility>
+#include <cmath>
 
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/Comportement.hpp"
@@ -16,22 +17,20 @@ class Noeud;
 
 class Sentient_Entity : public Tangible_Entity{
 	protected:
-		/*
-		 * Cet attribut represente un map de correspondance entre la caracteristique et le sentient
-		 * entity.
-		 * */
-		std::map<int, int> charact_correspondence;
+		
+		std::map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 
                 ETAT etat_entity  ;
 
-		/*
-		 * map de mémorisation de l'agent : on stocke pour chaque position qu'il
-		 * a visionné l'entity présent à cette position à ce moment
-		 * */
-		std::map<Position, Entity> memorisation;
+		
+		std::map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
 
 
 		stack<pair<Comportement *,Noeud *>> trace;
+		
+		Entity* target; /*!<L'endroit que l'entité souhaite atteindre via le chemin'*/
+		
+		stack<Position> path; /*!<Le chemin a parcourir pour atteindre la cible'*/
 
 	public:
 		/*
@@ -53,6 +52,17 @@ class Sentient_Entity : public Tangible_Entity{
 		/* stockage des alentours de l'agent par rapport à sa position correspondante
 		 *  dans la map mémorisation*/
 		void vision();
+		
+		/*!
+		*\brief Trouve le plus court chemin entre la postion de l'entité et sa cible. Remplit l'attribut Path
+		*\param tar : entité à atteindre
+		*\param map : carte du monde
+		*/
+		void AStar(Entity* tar, vector<vector<int>> map);
+		
+		int compare2Pos(Position p1, Position p2);
+		
+		int distEucli(Position ar);
 
 		void addToTrace(Comportement * c, Noeud * n);
 		void removeTopTrace();

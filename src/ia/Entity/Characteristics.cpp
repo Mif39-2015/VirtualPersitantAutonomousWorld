@@ -94,7 +94,7 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
 	}
 
 	else{
-		std::cout << "Unable to open file" << std::endl;
+		std::cout << "Unable to open general Characteristics file" << std::endl;
 		return -1;
 	}
 	return 0;

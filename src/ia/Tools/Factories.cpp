@@ -3,8 +3,8 @@
 Sentient_Entity * Factories::createAgent(){
     std::vector<int> characs;
     std::string line;
-    std::ifstream myfile ("data/Characteristics_Agent.txt", std::ios::in);
-    // std::ifstream myfile ("../../../data/Characteristics_Agent.txt", std::ios::in);
+    // std::ifstream myfile ("data/Characteristics_Agent.txt", std::ios::in);
+    std::ifstream myfile ("../../../data/Characteristics_Agent.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -16,7 +16,7 @@ Sentient_Entity * Factories::createAgent(){
     }
 
     else{
-        std::cout << "Unable to open file" << std::endl;
+        std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
         return nullptr;
     }
 
@@ -41,8 +41,8 @@ Sentient_Entity * Factories::createAgent(){
 Sentient_Entity * Factories::createAnimal(){
     std::vector<int> characs;
     std::string line;
-    std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
-    // std::ifstream myfile ("../../../data/Characteristics_Animal.txt", std::ios::in);
+    // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
+    std::ifstream myfile ("../../../data/Characteristics_Animal.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -54,7 +54,7 @@ Sentient_Entity * Factories::createAnimal(){
         myfile.close();
     }
     else{
-        std::cout << "Unable to open file" << std::endl;
+        std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
         return nullptr;
     }
 

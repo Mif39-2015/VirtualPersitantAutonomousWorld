@@ -17,7 +17,7 @@ class ActionComportement : Action {
 	public :
 		void Executer(Sentient_Entity * agent);
 
-		ActionComportement(){comportement = NULL;};
+		ActionComportement(){comportement = nullptr;};
 		ActionComportement(Comportement * c) : comportement(c) {};
 
 		Comportement * getComportement(){return comportement;}

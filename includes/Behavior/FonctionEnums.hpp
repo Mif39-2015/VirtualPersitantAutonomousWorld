@@ -1,8 +1,8 @@
 #ifndef FONCTION_ENUM_HPP
 #define FONCTION_ENUM_HPP
 
-//~ #include "Entity/Sentient_Entity.hpp"
 #include "Entity/Entity.hpp"
+// #include "Entity/Sentient_Entity.hpp"
 
 #include <iostream>
 #include <map>
@@ -20,6 +20,8 @@ typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas d
 	,GOTO_BAS
 	,GOTO_GAUCHE
 	,GOTO_DROITE
+	,FONC_FAIM_M5
+	,FONC_FAIM_P10
 	,FONC_V_NULL
 } FONC_VOID;
 
@@ -78,6 +80,8 @@ void goto_haut(Sentient_Entity * agent);
 void goto_bas(Sentient_Entity * agent);
 void goto_gauche(Sentient_Entity * agent);
 void goto_droite(Sentient_Entity * agent);
+void faim_p10(Sentient_Entity * agent);
+void faim_m5(Sentient_Entity * agent);
 
 //FONC_VOID_ENTITY
 void go_to(Sentient_Entity * agent, Entity * e);

@@ -55,7 +55,7 @@ class Sentient_Entity : public Tangible_Entity{
 
 		void run();
 
-		void addToTrace(Comportement * c, Noeud * n);
+		void addToTrace(Comportement * c, Noeud * n, bool b);
 		void removeTopTrace();
 };
 

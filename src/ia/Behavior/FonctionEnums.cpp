@@ -7,6 +7,8 @@ map<FONC_VOID, void(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncVoid = {
 	,{GOTO_DROITE, goto_droite}
 	,{GOTO_GAUCHE, goto_gauche}
 	,{GOTO_BAS, goto_bas}
+	,{FONC_FAIM_P10, faim_p10}
+	,{FONC_FAIM_M5, faim_m5}
 };
 
 map<FONC_VOID_ENTITY, void(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur::mapFoncVoidEntity = {
@@ -40,6 +42,13 @@ void goto_haut(Sentient_Entity * agent){}
 void goto_bas(Sentient_Entity * agent){}
 void goto_gauche(Sentient_Entity * agent){}
 void goto_droite(Sentient_Entity * agent){}
+
+void faim_p10(Sentient_Entity * agent){
+	// agent->setVal(5, agent->getVal(5) + 10);
+}
+void faim_m5(Sentient_Entity * agent){
+	// agent->setVal(5, agent->getVal(5) - 5);
+}
 
 //FONC_VOID_ENTITY
 void go_to(Sentient_Entity * agent, Entity * e){}

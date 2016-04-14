@@ -30,7 +30,7 @@ void Sentient_Entity::vision(){
         for(int y=pos.getY()-vue/2; y<pos.getY()+vue/2; y++){
             Position* newPos = new Position(x,y);
             if(pos.isInCircle(newPos,vue)){
-               // memorisation[newPos] = map.getEntityAt(newPos);
+               //memorisation[newPos] = map.getEntityAt(newPos);
             }
         }
     }
@@ -38,7 +38,8 @@ void Sentient_Entity::vision(){
 }
 
 void Sentient_Entity::run(){
-
+    //Executer le noeud courant
+    //avancer si on peux, ou rester sur le noeud courant
 }
 
 void Sentient_Entity::addToTrace(Comportement * c, Noeud * n){

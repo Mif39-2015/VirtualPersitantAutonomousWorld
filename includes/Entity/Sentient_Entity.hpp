@@ -1,12 +1,11 @@
 #ifndef SENTIENT_ENTITY_HPP
 #define SENTIENT_ENTITY_HPP
 
-using namespace std;
-
 #include <string>
 #include <map>
 #include <stack>
 #include <utility>
+#include <tuple>
 
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/Comportement.hpp"
@@ -30,7 +29,7 @@ class Sentient_Entity : public Tangible_Entity{
 		 * a visionné l'entity présent à cette position à ce moment
 		 * */
 		std::map<Position, Entity> memorisation;
-		stack<pair<Comportement *,Noeud *>> trace;
+		std::stack<std::tuple<Comportement *,Noeud *, bool>> trace;
 
 	public:
 		/*
@@ -44,7 +43,7 @@ class Sentient_Entity : public Tangible_Entity{
 		* Si la clé existe, sa valeur associée est renvoyée, sinon -1
 		* */
 		int getVal(int id);
-		
+
 		/*
 		* Ce methode met à jour la valeur associée à la clé id si cette derniere
 		* existe bien dans la map et renvoie 1 (success) sinon renvoie -1

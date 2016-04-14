@@ -18,7 +18,8 @@
 #include <string>
 #include "message/Message.hpp"
 #include "message/WorldChangeMessage.hpp"
-#include "WorldChangesListener.hpp"
+#include "../server/WorldSimulator.hpp"
+#include "../logging/Logger.hpp"
 #include "AuthenticationModule.hpp"
 
 typedef struct arg{
@@ -26,7 +27,7 @@ typedef struct arg{
     int val;
 } infos;
 
-class WorldChangesListener;
+class WorldSimulator;
 
 using namespace std;
 
@@ -37,16 +38,19 @@ using namespace std;
 class NetworkAdapter {
 	private:
 		AuthenticationModule auth;
-		WorldChangesListener* worldChangesListener;
+		WorldSimulator* simulator;
+		Logger* networkLogger;
         int socket_desc , client_sock , c , *new_sock;
         struct sockaddr_in server , client;
         infos *info;
 
 
 	public:
-		NetworkAdapter(WorldChangesListener* _worldChangesListener);
+		NetworkAdapter(WorldSimulator* _simulator);
+		NetworkAdapter(WorldSimulator* _simulator, bool logNetwork);
         void Init();
         void Run();
+        void broadcastWorldChangesToclients();
 
 };
 

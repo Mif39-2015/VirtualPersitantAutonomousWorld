@@ -7,7 +7,11 @@
 
 #include <iostream>
 #include "WorldSimulator.hpp"
+#include "../reseau/NetworkAdapter.hpp"
 #include "../logging/Logger.hpp"
+
+
+class NetworkAdapter;
 
 using namespace std;
 
@@ -19,10 +23,13 @@ class WorldSimulator {
 	private:
 		Logger* aiLogger;
 		Logger* worldLogger;
+		NetworkAdapter* netAdapter;
 	public:
 		WorldSimulator();
 		WorldSimulator(bool logAi, bool logWorld);
 		void run();
+		void save(const string fileName);
+		void load(const string fileName);
 };
 
 #endif

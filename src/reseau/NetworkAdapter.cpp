@@ -5,10 +5,20 @@
 #include "NetworkAdapter.hpp"
 
 
-NetworkAdapter::NetworkAdapter(WorldChangesListener* _worldChangesListener)
-: auth(), worldChangesListener(_worldChangesListener)
+NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator)
+: NetworkAdapter(_simulator, false)
 {
 	
+}
+
+NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator, bool logNetwork)
+: auth(), simulator(_simulator)
+{
+	if(logNetwork){
+		networkLogger = new Logger("network.log");
+	} else {
+		networkLogger = NULL;
+	}
 }
 
 void NetworkAdapter::Init(){
@@ -145,6 +155,10 @@ void NetworkAdapter::Run(){
         perror("accept failed");
         return;
     }
+}
+
+void NetworkAdapter::broadcastWorldChangesToclients(){
+	// TODO
 }
 
 

@@ -22,7 +22,7 @@ class Sentient_Entity : public Tangible_Entity{
 		 * */
 		std::map<int, int> charact_correspondence;
 
-                ETAT etat_entity  ;
+        ETAT etat_entity;
 
 		/*
 		 * map de mémorisation de l'agent : on stocke pour chaque position qu'il
@@ -53,6 +53,8 @@ class Sentient_Entity : public Tangible_Entity{
 		/* stockage des alentours de l'agent par rapport à sa position correspondante
 		 *  dans la map mémorisation*/
 		void vision();
+
+		void run();
 
 		void addToTrace(Comportement * c, Noeud * n);
 		void removeTopTrace();

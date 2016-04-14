@@ -37,4 +37,10 @@ void Sentient_Entity::vision(){
 
 }
 
-void Sentient_Entity::addToTrace(Comportement * c, Noeud * n){}
+void Sentient_Entity::run(){
+
+}
+
+void Sentient_Entity::addToTrace(Comportement * c, Noeud * n){
+
+}

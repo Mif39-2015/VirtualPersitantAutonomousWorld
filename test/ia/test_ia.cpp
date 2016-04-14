@@ -49,8 +49,7 @@ TEST_CASE("Test IA", "[ia]")
 
     SECTION("Scenario 2")
     {
-        int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
-        // int loadResult = CharacteristicsList::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
+        int loadResult = CharacteristicsList::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
 
         // if(loadResult != -1){
         //     for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {

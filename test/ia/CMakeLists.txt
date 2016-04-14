@@ -5,6 +5,8 @@ include_directories(${PROJECT_SOURCE_DIR}/includes)
 include_directories(${PROJECT_SOURCE_DIR}/test)
 include_directories(${PROJECT_SOURCE_DIR}/lib/msgpack-c/include)
 
+add_definitions( -DPATH_DATA="${PROJECT_SOURCE_DIR}/data" )
+
 file(GLOB list_unit_test
   "*.cpp"
   )

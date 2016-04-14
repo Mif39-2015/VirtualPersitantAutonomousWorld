@@ -6,13 +6,12 @@
 
 
 NetworkAdapter::NetworkAdapter(WorldChangesListener* _worldChangesListener)
-: auth(), worldChangesListener(_worldChangesListener)
+    : auth(), worldChangesListener(_worldChangesListener)
 {
 	
 }
 
 void NetworkAdapter::Init(){
-
     //Create socket
     socket_desc = socket(AF_INET , SOCK_STREAM , 0);
     if (socket_desc == -1)
@@ -56,9 +55,7 @@ void retablir_buffer(char * message){
     memset(message, 0, strlen(message));
 }
 
-
-
-void envoieMessageFichier(char * fichier, int socket){
+void envoieMessageFichier(const char * fichier, int socket){
     ifstream file(fichier, ios::in);
     char *message;
     cout << "je suis dans la fonction" << endl;
@@ -68,7 +65,10 @@ void envoieMessageFichier(char * fichier, int socket){
         while(getline(file, ligne))
         {
             cout << ligne << endl; // on l'affiche
-            concat((char *) ligne.c_str(), "\r\n");
+            
+            // concat((char *) ligne.c_str(), "\r\n");
+            ligne += "\r\n";
+            
             write(socket , (ligne.c_str()) , strlen(ligne.c_str()));
             retablir_buffer((char *) ligne.c_str());
 
@@ -79,9 +79,7 @@ void envoieMessageFichier(char * fichier, int socket){
     {
         cerr << "Impossible d'ouvrir le fichier !" << endl;
     }
-
 }
-
 
 void* connection_handler(void *socket_desc)
 {
@@ -115,10 +113,7 @@ void* connection_handler(void *socket_desc)
     return 0;
 }
 
-
-
-
-void NetworkAdapter::Run(){
+void NetworkAdapter::Run() {
     while( (client_sock = accept(socket_desc, (struct sockaddr *)&client, (socklen_t*)&c)) )
     {
         puts("Connection accepted");
@@ -146,7 +141,4 @@ void NetworkAdapter::Run(){
         return;
     }
 }
-
-
-
 

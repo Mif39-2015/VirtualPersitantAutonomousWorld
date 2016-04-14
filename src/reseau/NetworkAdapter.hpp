@@ -22,7 +22,7 @@
 #include "AuthenticationModule.hpp"
 
 typedef struct arg{
-    char * nom;
+    const char * nom;
     int val;
 } infos;
 
@@ -35,18 +35,18 @@ using namespace std;
  * \brief Link with the network block
  */
 class NetworkAdapter {
-	private:
-		AuthenticationModule auth;
-		WorldChangesListener* worldChangesListener;
-        int socket_desc , client_sock , c , *new_sock;
-        struct sockaddr_in server , client;
-        infos *info;
+private:
+    AuthenticationModule auth;
+    WorldChangesListener* worldChangesListener;
+    int socket_desc , client_sock , c , *new_sock;
+    struct sockaddr_in server , client;
+    infos *info;
 
 
-	public:
-		NetworkAdapter(WorldChangesListener* _worldChangesListener);
-        void Init();
-        void Run();
+public:
+    NetworkAdapter(WorldChangesListener* _worldChangesListener);
+    void Init();
+    void Run();
 
 };
 

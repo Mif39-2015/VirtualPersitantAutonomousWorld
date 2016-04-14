@@ -2,10 +2,11 @@
 #define ITEM_HPP
 
 #include <string>
-
-class Item {    
+#include "Entity/Entity.hpp"
+	
+class Item : public Entity {    
 public:
-	Item(unsigned int, std::string, float);
+	Item(unsigned int, std::string, float, type);
 
 	const unsigned int& getID();
 

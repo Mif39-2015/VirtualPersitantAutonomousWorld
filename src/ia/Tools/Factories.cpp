@@ -25,7 +25,7 @@ Sentient_Entity * Factories::createAgent(){
     {
         int min = CharacteristicsList::listCharacteristics[*it].getMin();
         int max = CharacteristicsList::listCharacteristics[*it].getMax();
-        int val = rand (min, max);
+        int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
 
@@ -63,7 +63,7 @@ Sentient_Entity * Factories::createAnimal(){
     {
         int min = CharacteristicsList::listCharacteristics[*it].getMin();
         int max = CharacteristicsList::listCharacteristics[*it].getMax();
-        int val = rand (min, max);
+        int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
 

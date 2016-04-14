@@ -8,7 +8,8 @@ std::string readFileForName(std::string filename){
 		std::vector<std::string> vect;
 		std::string line;
 		while(std::getline(fichier, line)){
-			vect.push_back(line);
+			if (line != "")
+				vect.push_back(line);
 		}
 		fichier.close();  // on ferme le fichier
 

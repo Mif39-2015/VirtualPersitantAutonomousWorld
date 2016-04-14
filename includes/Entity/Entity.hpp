@@ -7,23 +7,24 @@
 #include "../../src/tool/cJSON.hpp"
 
 using namespace std;
-        enum type{
-            ID_AGENT,
-            ID_ANIMAL,
-            ID_BUILDING,
-            ID_RESSOURCE,
-            ID_ITEM,
-            ID_TRIBE
-        };
-	static const char* TypeNames[] = { 
-		"ID_AGENT", 
-		"ID_ANIMAL", 
-		"ID_BUILDING", 
-		"ID_RESSOURCE", 
-		"ID_ITEM", 
-		"ID_TRIBE" 
-	};
-	
+
+enum type{
+	ID_AGENT,
+	ID_ANIMAL,
+	ID_BUILDING,
+	ID_RESSOURCE,
+	ID_ITEM,
+	ID_TRIBE
+};
+
+static const char* TypeNames[] = { 
+	"ID_AGENT", 
+	"ID_ANIMAL", 
+	"ID_BUILDING", 
+	"ID_RESSOURCE", 
+	"ID_ITEM", 
+	"ID_TRIBE" 
+};
 class Entity{
 
 	protected:

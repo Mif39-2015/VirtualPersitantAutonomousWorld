@@ -8,7 +8,7 @@ using namespace std;
 
 #include <stack>
 
-class ActionSimple : Action {
+class ActionSimple : public Action {
 	private :
 
 		FONC_VOID fV = FONC_V_NULL;

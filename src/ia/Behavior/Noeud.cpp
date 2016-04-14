@@ -27,11 +27,15 @@ void Noeud::setAretesOut(vector<Arete*> aretesOut) {
     this->aretesOut = aretesOut;
 }
 
-Noeud * Noeud::executerNoeud(Sentient_Entity * a){
+Noeud * Noeud::executerNoeud(Sentient_Entity * a, bool execAct){
     for (auto it = aretesOut.begin() ; it != aretesOut.end(); ++it){
         if((*it)->isTrue(a)) return (*it)->getNoeudFin();
     }
-    // action->Executer(a);
+
+    if(execAct){
+        action->Executer(a);
+    }
+
     return this;
  }
 

@@ -3,7 +3,7 @@
 
 #include "Entity/Entity.hpp"
 // #include "Goal.hpp" //Uncomment when Goal is implemented
-#include "Item.hpp"
+#include "Entity/Item.hpp"
 // #include "Complex_Behavior.hpp" //Uncomment when Complex_Behavior is implemented
 
 #include <string>

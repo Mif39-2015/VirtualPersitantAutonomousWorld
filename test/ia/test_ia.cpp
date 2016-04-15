@@ -22,7 +22,6 @@
 #include "Entity/Tribe.hpp"
 
 #include "Tools/Factories.hpp"
-#include "msgpack.hpp"
 
 using namespace std;
 

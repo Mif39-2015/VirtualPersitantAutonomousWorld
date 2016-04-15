@@ -45,7 +45,7 @@ std::vector<std::string> cutString(std::string & str, std::string delimiter);
 
 template<typename T>
 int findInVector(std::vector<T> v, T element) {
-	for (int i = 0; i < v.size(); ++i) {
+	for (size_t i = 0; i < v.size(); ++i) {
 		if (v[i] == element) {
 			return i;
 		}

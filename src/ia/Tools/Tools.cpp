@@ -22,13 +22,12 @@ std::string readFileForName(std::string filename){
 }
 
 std::string getRandomMaleName(){
-	// return readFileForName("data/nameListMale.txt");
-	return readFileForName("../../../data/nameListMale.txt");
+    return readFileForName(PATH_DATA"/nameListMale.txt");
 }
 
 std::string getRandomFemaleName(){
-	// return readFileForName("data/nameListFemale.txt");
-	return readFileForName("../../../data/nameListFemale.txt");
+    return readFileForName(PATH_DATA"/nameListFemale.txt");
+    // return readFileForName("../../../data/nameListFemale.txt");
 }
 
 std::vector<std::string> cutString(std::string & str, std::string delimiter){

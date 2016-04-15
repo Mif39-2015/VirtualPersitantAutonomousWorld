@@ -218,10 +218,10 @@ TEST_CASE("Test IA", "[ia]")
 
             cout << "On a inséré les actions dans les noeuds" << endl;
 
-            noeudFaimM5.addAreteOut(&areteFaim20);
-            noeudFaimM5.addAreteIn(&areteFaim80);
-            noeudFaimP10.addAreteIn(&areteFaim20);
-            noeudFaimP10.addAreteOut(&areteFaim80);
+            noeudFaimM5.ajouterAreteOut(&areteFaim20);
+            noeudFaimM5.ajouterAreteIn(&areteFaim80);
+            noeudFaimP10.ajouterAreteIn(&areteFaim20);
+            noeudFaimP10.ajouterAreteOut(&areteFaim80);
 
             cout << "On a inséré les aretes dans les noeuds" << endl;
 

@@ -1,57 +1,78 @@
 #include "Behavior/Noeud.hpp"
 
-Noeud::Noeud(Noeud* n) : aretesOut(n->aretesOut), aretesIn(n->aretesIn), action(n->action) {}
+// ******** CONSTRUCTEURS ********
+Noeud::Noeud() {}
+Noeud::Noeud(Action * a) : action(a) {}
 
-void Noeud::setAction(Action * a) {
-    action = a;
+// ******** DESTRUCTEUR ********
+Noeud::~Noeud() {
+	// delete action;
+	for (auto it = aretesOut.begin(); it != aretesOut.end(); ++it) {
+		(*it)->getNoeudFin()->supprimerAreteIn(*it);
+		delete *it;
+	}
+	for (auto it = aretesIn.begin(); it != aretesIn.end(); ++it) {
+		(*it)->getNoeudDepart()->supprimerAreteOut(*it);
+		delete *it;
+	}
 }
 
+// ******** GETTERS ********
+vector<Arete *> Noeud::getAretesOut() {
+	return aretesOut;
+}
+vector<Arete *> Noeud::getAretesIn() {
+	return aretesIn;
+}
 Action * Noeud::getAction() {
-    return action;
-}
-vector<Arete*> Noeud::getAretesIn() {
-    return aretesIn;
+	return action;
 }
 
-void Noeud::setAretesIn(vector<Arete*> aretesIn) {
-    this->aretesIn = aretesIn;
+// ******** SETTERS ********
+void Noeud::setAretesOut(vector<Arete *> aretesOut) {
+	this->aretesOut = aretesOut;
+}
+void Noeud::setAretesIn(vector<Arete *> aretesIn) {
+	this->aretesIn = aretesIn;
+}
+void Noeud::setAction(Action * a) {
+	action = a;
 }
 
-vector<Arete*> Noeud::getAretesOut() {
-    return aretesOut;
+// ******** AJOUTS ********
+void Noeud::ajouterAreteOut(Arete * a) {
+	aretesOut.push_back(a);
+}
+void Noeud::ajouterAreteIn(Arete * a) {
+	aretesIn.push_back(a);
 }
 
-void Noeud::setAretesOut(vector<Arete*> aretesOut) {
-    this->aretesOut = aretesOut;
+// ******** SUPPRESSION ********
+void Noeud::supprimerAreteOut(Arete * a) {
+	for (auto it = aretesOut.begin(); it != aretesOut.end(); ++it) {
+		if (*it == a) {
+			aretesOut.erase(it);
+			return;
+		}
+	}
+}
+void Noeud::supprimerAreteIn(Arete * a) {
+	for (auto it = aretesIn.begin(); it != aretesIn.end(); ++it) {
+		if (*it == a) {
+			aretesIn.erase(it);
+			return;
+		}
+	}
 }
 
+// ******** FONTIONNEMENT ********
 Noeud * Noeud::executerNoeud(Sentient_Entity * a, bool execAct) {
-    for (auto it = aretesOut.begin() ; it != aretesOut.end(); ++it) {
-        if ((*it)->isTrue(a)) return (*it)->getNoeudFin();
-    }
-    if (execAct) {
-        action->Executer(a);
-    }
+	for (auto it = aretesOut.begin() ; it != aretesOut.end(); ++it) {
+		if ((*it)->isTrue(a)) return (*it)->getNoeudFin();
+	}
+	if (execAct) {
+		action->Executer(a);
+	}
 
-    return this;
-}
-
-void Noeud::addAreteIn(Arete * a) {
-    aretesIn.push_back(a);
-}
-
-void Noeud::addAreteOut(Arete * a) {
-    aretesOut.push_back(a);
-}
-
-void Noeud::delAreteIn(Arete * a) {
-    for (std::vector<Arete *>::iterator it = aretesIn.begin(); it != aretesIn.end(); it++) {
-        if ((*it) == a) { aretesIn.erase(it); break;}
-    }
-}
-
-void Noeud::delAreteOut(Arete * a) {
-    for (std::vector<Arete *>::iterator it = aretesOut.begin(); it != aretesOut.end(); it++) {
-        if ((*it) == a) { aretesOut.erase(it); break;}
-    }
+	return this;
 }

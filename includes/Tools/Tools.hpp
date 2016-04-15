@@ -16,14 +16,14 @@
 
 /*!
 *\brief tirage aléatoire entre dans un intervalle
-*\param min : valeur minimum de l'itervalle 
+*\param min : valeur minimum de l'itervalle
 *\param max : valeur maximum de l'intervalle (non compris dans l'intervalle)
 */
 template<typename T>
-T rand(T min, T max){
-	srand (std::time(0) + (int)(rand()*10));
+T rand(T min, T max) {
+	srand (std::time(0) + (int)(rand() * 10));
 
-	return min + (T)rand()/((T)RAND_MAX/(T)((max)-min));
+	return min + (T)rand() / ((T)RAND_MAX / (T)((max) - min));
 }
 
 /*!
@@ -42,5 +42,15 @@ std::string getRandomFemaleName();
 *\param delimiter : séparateur
 */
 std::vector<std::string> cutString(std::string & str, std::string delimiter);
+
+template<typename T>
+int findInVector(std::vector<T> v, T element) {
+	for (int i = 0; i < v.size(); ++i) {
+		if (v[i] == element) {
+			return i;
+		}
+	}
+	return -1;
+}
 
 #endif

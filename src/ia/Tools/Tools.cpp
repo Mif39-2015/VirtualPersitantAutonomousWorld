@@ -1,13 +1,13 @@
 #include "Tools/Tools.hpp"
 #include <fstream>
 
-std::string readFileForName(std::string filename){
+std::string readFileForName(std::string filename) {
 	std::ifstream fichier(filename, std::ios::in);  // on ouvre le fichier en lecture
 
-	if(fichier){  // si l'ouverture a réussi
+	if (fichier) { // si l'ouverture a réussi
 		std::vector<std::string> vect;
 		std::string line;
-		while(std::getline(fichier, line)){
+		while (std::getline(fichier, line)) {
 			if (line != "")
 				vect.push_back(line);
 		}
@@ -21,17 +21,17 @@ std::string readFileForName(std::string filename){
 	else  return "noname";
 }
 
-std::string getRandomMaleName(){
+std::string getRandomMaleName() {
 	// return readFileForName("data/nameListMale.txt");
 	return readFileForName("../../../data/nameListMale.txt");
 }
 
-std::string getRandomFemaleName(){
+std::string getRandomFemaleName() {
 	// return readFileForName("data/nameListFemale.txt");
 	return readFileForName("../../../data/nameListFemale.txt");
 }
 
-std::vector<std::string> cutString(std::string & str, std::string delimiter){
+std::vector<std::string> cutString(std::string & str, std::string delimiter) {
 	size_t pos = 0;
 	std::vector<std::string> res;
 	std::string token;

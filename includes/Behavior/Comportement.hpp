@@ -18,6 +18,9 @@ class Comportement {
 
 	public :
 
+		// ******** STATICS CONTAINERS ********
+		static vector<Comportement *> comportements;
+
 		// ******** CONSTRUCTEUR ********
 		Comportement();
 		Comportement(vector<Noeud *> noeuds);

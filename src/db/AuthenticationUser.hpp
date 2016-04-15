@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-class AuthenticationUser{
+class AuthenticationUser {
 private:
     string dbName;
     string userName;
@@ -12,6 +12,5 @@ private:
 public:
     AuthenticationUser(string dbName,string userName,string userPassword);
     ~AuthenticationUser();
-    string checkUser();	
-
+    string checkUser();
 };

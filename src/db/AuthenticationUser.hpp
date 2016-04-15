@@ -1,39 +1,17 @@
 #include <iostream>
 #include <cstdio>
-#include "sqliteInterface.hpp"
 #include <string>
-#include <vector>
-#include "AuthenticationUser.hpp"
-using namespace std ;
-AuthenticationUser::AuthenticationUser(string dbN,string userN,string userP){
-	dbName=dbN;
-	userName=userN;
-	userPassword=userP;
-}
-AuthenticationUser::~AuthenticationUser(){
+using namespace std;
 
-}
-vector<string>split(string str,char delimiter);
+class AuthenticationUser{
+	private:
+		string dbName;
+		string userName;
+		string userPassword;
 
-string AuthenticationUser::checkUser(){
-	SQLiteAccess sqla=SQLiteAccess(dbName);
-	string result= sqla.sqlGetRequest("Select id from user where nickname = '"+userName+"' and password = '"+userPassword+"'");
-	vector<string>results=split(result,'\n');
-	result=split(results[1],'|')[0];
-	if(result.length()<=0){
-		result="-1";
-	}
-	return result;
-}
+	public:
+		AuthenticationUser(string dbName,string userName,string userPassword);
+		~AuthenticationUser();
+		string checkUser();	
 
-vector<string>split(string str,char delimiter){
-	vector<string>retour;
-	retour.push_back("");
-	for(int i=0;i<str.length();i++){
-		if(str[i]!=delimiter) 
-			retour[retour.size()-1]=retour[retour.size()-1]+str[i];		
-		else
-			retour.push_back("");
-	}
-	return retour;
-}
+};

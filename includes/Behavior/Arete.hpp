@@ -13,14 +13,14 @@ using namespace std;
 
 typedef enum {
 	Inf
-	,Inf_Eg
-	,Eg
-	,Sup_Eg
-	,Sup
-	,OP_NULL
+	, Inf_Eg
+	, Eg
+	, Sup_Eg
+	, Sup
+	, OP_NULL
 } Operator;
 
-struct struct_condition{
+struct struct_condition {
 	FONC_INT_ENTITY fIE1;
 	stack<FONC_ENTITY_ENTITY> fEE1;
 	Entity * e1;
@@ -31,7 +31,7 @@ struct struct_condition{
 	int comp;
 };
 
-class Arete{
+class Arete {
 
 	private :
 		Noeud * noeudDepart;
@@ -44,20 +44,24 @@ class Arete{
 		/*
 		 * nD --> Noeud de départ de l'arrête
 		 * nF --> Noeud de fin de l'arrête
-		 * f --> pointeur sur fonction de la fonction à executer pour savoir si la condition est vraie ou non
 		 * */
+		Arete() {noeudDepart = nullptr; noeudFin = nullptr;}
 		Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {};
 
-		Noeud * getNoeudDepart(){return noeudDepart;}
-		Noeud * getNoeudFin(){return noeudFin;}
-		vector<FONC_BOOL> getConditon_Simple(){return condition_simple;}
-		vector<struct_condition> getCondition_Complexe(){return condition_Complexe;}
 
-		void setNoeudDepart(Noeud * nD){noeudDepart=nD;};
-		void setNoeudFin(Noeud * nF){noeudFin=nF;}
+		Noeud * getNoeudDepart() {return noeudDepart;}
+		Noeud * getNoeudFin() {return noeudFin;}
 
-		void setCondition_Simple(vector<FONC_BOOL> conds){condition_simple = conds;}
-		void setCondition_Complexe(vector<struct_condition> conds){condition_Complexe = conds;}
+		vector<FONC_BOOL> getConditon_Simple() {return condition_simple;}
+		vector<struct_condition> getCondition_Complexe() {return condition_Complexe;}
+
+
+		void setNoeudDepart(Noeud * nD) {noeudDepart = nD;};
+		void setNoeudFin(Noeud * nF) {noeudFin = nF;}
+
+		void setCondition_Simple(vector<FONC_BOOL> conds) {condition_simple = conds;}
+		void setCondition_Complexe(vector<struct_condition> conds) {condition_Complexe = conds;}
+
 		/*
 		 * Utilisé pour savoir si la condition est vérifiée ou non
 		 * */

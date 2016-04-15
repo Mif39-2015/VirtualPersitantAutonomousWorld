@@ -7,7 +7,7 @@ using namespace std;
 
 class Action {
 	public :
-		virtual void Executer(Sentient_Entity * agent){};
+		virtual void Executer(Sentient_Entity * agent) {};
 };
 
 #endif

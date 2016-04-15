@@ -102,6 +102,11 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "declaration des Aretes" << endl;
 
+        noeudFaimM5.ajouterAreteOut(&areteFaim20);
+        noeudFaimM5.ajouterAreteIn(&areteFaim80);
+        noeudFaimP10.ajouterAreteIn(&areteFaim20);
+        noeudFaimP10.ajouterAreteOut(&areteFaim80);
+
 		ActionSimple actionFaimM5;
 		ActionSimple actionFaimP10;
 
@@ -114,13 +119,6 @@ TEST_CASE("Test_Comportement", "[comp]")
 		noeudFaimP10.setAction(&actionFaimP10);
 
 		cout << "On a inséré les actions dans les noeuds" << endl;
-
-		noeudFaimM5.addAreteOut(&areteFaim20);
-		noeudFaimM5.addAreteIn(&areteFaim80);
-		noeudFaimP10.addAreteIn(&areteFaim20);
-		noeudFaimP10.addAreteOut(&areteFaim80);
-
-		cout << "On a inséré les aretes dans les noeuds" << endl;
 
 		vector<struct_condition> vecStructCondFaim20;
 		struct_condition condFaim20;

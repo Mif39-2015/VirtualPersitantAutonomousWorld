@@ -1,0 +1,44 @@
+{ "pops_up" : [
+	{
+		"Id":"DESTRUCTION",
+		"Debut_Texte":"Le clan ",
+		"Milieu_Texte":" à été détruit par le clan ",
+		"Fin_Texte":"."
+	},
+	{
+		"Id":"GUERRE",
+		"Debut_Texte":"Le clan ",
+		"Milieu_Texte":" entre en guerre avec le clan ",
+		"Fin_Texte":"."
+	},
+	{
+		"Id":"FIN_GUERRE",
+		"Debut_Texte":"Le clan ",
+		"Milieu_Texte":" n'est plus en guerre avec le clan ",
+		"Fin_Texte":"."
+	},
+	{
+		"Id":"ALLIANCE",
+		"Debut_Texte":"Le clan ",
+		"Milieu_Texte":" s'est allié au clan ",
+		"Fin_Texte":"."
+	},
+	{
+		"Id":"FIN_ALLIANCE",
+		"Debut_Texte":"Le clan ",
+		"Milieu_Texte":" n'est plus allié au clan ",
+		"Fin_Texte":"."
+	},
+	{
+		"Id":"NOUVEAU_CLAN",
+		"Debut_Texte":"Le clan ",
+		"Milieu_Texte":" à été créé.",
+		"Fin_Texte":NULL
+	},
+	{
+		"Id":"CATASTROPHE_NATURELLE",
+		"Debut_Texte":"Une catastrophe naturelle s'abat.",
+		"Milieu_Texte":NULL,
+		"Fin_Texte":NULL
+	}
+]}

@@ -6,6 +6,8 @@
 
 `libboost-dev` (version >= 1.4)
 
+`libboost-program-options1.58-dev` (ou 1.55)
+
 ## Compilation ##
 
 Depuis la racine du projet,

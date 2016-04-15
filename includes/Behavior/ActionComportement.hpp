@@ -21,10 +21,10 @@ class Comportement;
 class ActionComportement : public Action {
 
 	private :
+	
 		Comportement * comportement;/*!<comportement composant l'action'*/
 
 	public :
-	
 		
 		/*!
 	     	*\brief Constructeur par défaut

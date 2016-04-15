@@ -3,6 +3,4 @@
 
 #include <stdlib.h>
 
-
-
 #endif /*FACADE_HPP*/

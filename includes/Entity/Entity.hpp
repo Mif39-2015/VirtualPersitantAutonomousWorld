@@ -41,33 +41,32 @@ class Entity{
 		* \brief Le constructeur pour l'instanciation d'une entité
 		*/
         	Entity(std::string,type,std::map<int, int> charac);
-        	
+
 		/*!
 		* \brief Renvoie l'id de l'entity
 		*/
 		unsigned int getId();
-		
+
 		/*!
 		* \brief Renvoie le nom de l'entity
-		*/
+		* */
 		string getName();
-		
 		/*!
 		* \brief Renvoie le modificateur de l'entity
 		*/
 		bool getModif();
-		
+
 		/*!
 		* \brief Renvoie le type associé à l'entity
 		*/
 		type getTypeId();
-		
+
 		/*!
 		* \brief Met à jour le modificatuer de l'entity
 		* \param m: le modificateur
 		*/
 		void setModif(bool m);
-		
+
 		/*!
 		* \brief Met à jour le nom de l'entity
 		* \param n: le nom

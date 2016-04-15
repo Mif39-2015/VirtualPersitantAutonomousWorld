@@ -3,87 +3,99 @@
 
 #include <vector>
 
-class Characteristics{
+class Characteristics {
 
-	public:
-		/*!
-		* \brief Renvoie l'id de la caractéristique
-		*/
-		int getId();
-		/*!
-		* \brief Renvoie la valeur minimale de l'intervalle [min, max]
-		*/
-		int getMin();
-		/*!
-		* \brief Renvoie la valeur maximale de l'intervalle [min, max]
-		*/
-		int getMax();
-		/*!
-		* \brief Renvoie le nom de la caractéristique
-		*/
-		std::string getName();
-		/*!
-		* \brief Renvoie la definition
-		*/
-		std::string getDefinition();
-		/*!
-		* \brief Renvoie le type de la caractéristique
-		*/
-		std::string getType();
-		/*!
-		* \brief Renvoie la précision
-		*/
-		int getPrecision();
+public:
 
-		/*!
-		* \brief Met à jour l'id de la caractéristique
-		* \param i: l'id de la caractéristique
-		*/
-		void setId(int i);
-		/*!
-		* \brief Met à jour la valeur minimale de la caractéristique
-		* \param m: la valeur minimale
-		*/
-		void setMin(int m);
-		/*!
-		* \brief Met à jour la valeur maximale de la caractéristique
-		* \param m: la valeur maximale
-		*/
-		void setMax(int m);
-		/*!
-		* \brief Met à jour le nom de la caractéristique
-		* \param n: le nom de la caractéristique
-		*/
-		void setName(std::string n);
-		/*!
-		* \brief Met à jour  la definition de la caractéristique
-		* \param d: la définition
-		*/
-		void setDefinition(std::string d);
-		/*!
-		* \brief Met à jour le type de la caractéristique
-		* \param t: le type
-		*/
-		void setType(std::string t);
-		/*!
-		* \brief Met à jour la précision
-		* \param p: la précision
-		*/
-		void setPrecision(int p);
+	/*!
+	* \brief Les caractéristiques provenant du fichier
+	* */
+	static std::vector<Characteristics> listCharacteristics;
+
+	/*!
+	* \brief Construit un vecteur de caractéristiques à partir du fichier donné
+	* \param fileName: le fichier donné
+	* */
+	static int loadCharacteristicsFile(std::string fileName);
+
+	/*!
+	* \brief Renvoie l'id de la caractéristique
+	* */
+	int getId();
+	/*!
+	* \brief Renvoie la valeur minimale de l'intervalle [min, max]
+	* */
+	int getMin();
+	/*!
+	* \brief Renvoie la valeur maximale de l'intervalle [min, max]
+	* */
+	int getMax();
+	/*!
+	* \brief Renvoie le nom de la caractéristique
+	* */
+	std::string getName();
+	/*!
+	* \brief Renvoie la definition
+	* */
+	std::string getDefinition();
+	/*!
+	* \brief Renvoie le type de la caractéristique
+	* */
+	std::string getType();
+	/*!
+	* \brief Renvoie la précision
+	* */
+	int getPrecision();
+
+	/*!
+	* \brief Met à jour l'id de la caractéristique
+	* \param i: l'id de la caractéristique
+	* */
+	void setId(int i);
+	/*!
+	* \brief Met à jour la valeur minimale de la caractéristique
+	* \param m: la valeur minimale
+	* */
+	void setMin(int m);
+	/*!
+	* \brief Met à jour la valeur maximale de la caractéristique
+	* \param m: la valeur maximale
+	* */
+	void setMax(int m);
+	/*!
+	* \brief Met à jour le nom de la caractéristique
+	* \param n: le nom de la caractéristique
+	* */
+	void setName(std::string n);
+	/*!
+	* \brief Met à jour  la definition de la caractéristique
+	* \param d: la définition
+	* */
+	void setDefinition(std::string d);
+	/*!
+	* \brief Met à jour le type de la caractéristique
+	* \param t: le type
+	* */
+	void setType(std::string t);
+	/*!
+	* \brief Met à jour la précision
+	* \param p: la précision
+	* */
+	void setPrecision(int p);
 
 
 
-	private:
-		int id;/*! <l'id de la caractéristique*/
-		int min;/*! <la valeur minimale de l'intervalle [min, max] parmi les valeurs possibles*/
-		int max;/*!< la valeur maximale de l'intervalle [min, max] parmi les valeurs possibles*/
-		std::string name;/*!< le nom de la caracterstique*/
-		std::string definition;/*!< la definition de la caractéristique*/
-		std::string type;/*! le type de la caractéristique<*/
-		int precision;/*!< la précision */
-	};
+private:
+	int id;/*! <l'id de la caractéristique*/
+	int min;/*! <la valeur minimale de l'intervalle [min, max] parmi les valeurs possibles*/
+	int max;/*!< la valeur maximale de l'intervalle [min, max] parmi les valeurs possibles*/
+	std::string name;/*!< le nom de la caracterstique*/
+	std::string definition;/*!< la definition de la caractéristique*/
+	std::string type;/*! le type de la caractéristique<*/
+	int precision;/*!< la précision */
+};
 
-enum characs{
+enum characs {
 	C_VITALITY           = 0,
 	C_GENDER             = 1,
 	C_AGE  	             = 2,
@@ -105,24 +117,25 @@ enum characs{
 	C_STRUCTURAL_POINT   = 18,
 	C_WEIGHT             = 19
 };
+
 /*! \class CharacteristicsList
    * \brief Classe contenant les methodes nécessaires pour la gestion du fichier des caractéristiques
    */
-class CharacteristicsList{
+// class CharacteristicsList {
 
-public:
+// public:
 	/*!
 	* \brief Les caractéristiques provenant du fichier
 	* */
-	static std::vector<Characteristics> listCharacteristics;
+	// static std::vector<Characteristics> listCharacteristics;
 
 	/*!
 	* \brief Construit un vecteur de caractéristiques à partir du fichier donné
 	* \param fileName: le fichier donné
 	* */
-	static int loadCharacteristicsFile(std::string fileName);
+	// static int loadCharacteristicsFile(std::string fileName);
 
-};
+// };
 
 
 #endif

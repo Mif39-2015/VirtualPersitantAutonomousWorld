@@ -48,16 +48,14 @@ std::string readFileForName(std::string filename){
 }
 
 std::string getRandomMaleName(){
-	// return readFileForName("data/nameListMale.txt");
 	return readFileForName(PATH_DATA"/nameListMale.json");
 }
 
 std::string getRandomFemaleName(){
-	// return readFileForName("data/nameListFemale.txt");
 	return readFileForName(PATH_DATA"/nameListFemale.json");
 }
 
-std::vector<std::string> cutString(std::string & str, std::string delimiter){
+std::vector<std::string> cutString(std::string & str, std::string delimiter) {
 	size_t pos = 0;
 	std::vector<std::string> res;
 	std::string token;

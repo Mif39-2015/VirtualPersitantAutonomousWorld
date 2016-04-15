@@ -11,45 +11,50 @@ class Action;
 class Arete;
 
 class Noeud {
+
 	private :
+
 		vector<Arete *> aretesOut;
 		vector<Arete *> aretesIn;
 		Action * action;
 
 	public :
-		/*
-		 * a -> l'action du noeud
-		 * vAO -> le vecteur(rempli) d'arrêtes partant de ce noeud
-		 * vAI -> le vecteur(rempli) d'arrêtes allant à ce noeud
-		 * */
+
+		// ******** CONSTRUCTEURS ********
 		Noeud();
 		Noeud(Action * a);
-		Noeud(Noeud * n);
 
-		void setAction(Action * a);
+		// ******** DESTRUCTEUR ********
+		~Noeud();
+
+		// ******** GETTERS ********
+		vector<Arete *> getAretesOut();
+		vector<Arete *> getAretesIn();
 		Action * getAction();
 
-        vector<Arete*> getAretesIn();
-        void setAretesIn(vector<Arete*> aretesIn);
+		// ******** SETTERS ********
+		void setAretesOut(vector<Arete *> aretesOut);
+		void setAretesIn(vector<Arete *> aretesIn);
+		void setAction(Action * a);
 
-        vector<Arete*> getAretesOut();
-        void setAretesOut(vector<Arete*> aretesOut);
+		// ******** AJOUTS ********
+		void ajouterAreteOut(Arete * a);
+		void ajouterAreteIn(Arete * a);
 
-        void addAreteIn(Arete * a);
-        void addAreteOut(Arete * a);
+		// ******** SUPPRESSION ********
+		void supprimerAreteOut(Arete * a);
+		void supprimerAreteIn(Arete * a);
 
-        void delAreteIn(Arete * a);
-        void delAreteOut(Arete * a);
+		// ******** FONCTIONNEMENT ********
+		/*!
+			\brief La fonction principale de fonctionnement d'un Noeud.
+			\param a : La Sentient_Entity étant sur le noeud et qui doit donc executer l'action.
+			\param execAct : Un booléen indiquant si oui ou non on doit executer l'action contenue dans le noeud au cas où aucune de ses conditions n'est vérifiée
+			\return Noeud * pointant sur le prochain Noeud du comportement à executer par la Sentient_Entity. (Notez bien que c'est le Noeud du comportement et ce ne sera pas le Noeud d'un comportmenet contenu dans l'action)
 
-		/*
-		* cette fonction est la fonction primaire du Noeud, elle est à appeller quand l'agent est activement sur ce Noeud.
-		* Elle executera d'elle-même l'Action à executer ou renvera le Noeud sur lequel l'agent se trouve si une condition d'une des arrête se trouve être remplie
-		* Si l'agent ne doit pas changer de Noeud, le Noeud renvoie un pointeur sur lui-même
-		* //TODO :
-		* 	- checker les condition des arrêtes
-		* 	- si une arrête a une condition valide, on execute le Noeud suivant ( = executerNoeud du noeud de l'autre côté de l'arrête)
-		* 	- sinon, on execute l'action de action
-		* */
-		Noeud * executerNoeud(Sentient_Entity * a, bool execAct);
+			Cette méthode est le coeur du fonctionnement du Noeud dans le comportement. elle regarde si une des conditions sortante est vérifiée (via les AretesOut).
+			Si une arete est vérifiée, la fonction renvoie le Noeud de l'autre côté de l'arete. Sinon, elle execute (ou non) l'action.
+		*/
+		Noeud * executerNoeud(Sentient_Entity * a, bool execAct = true);
 };
 #endif

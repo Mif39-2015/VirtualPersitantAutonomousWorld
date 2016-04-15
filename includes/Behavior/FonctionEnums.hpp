@@ -15,31 +15,31 @@ using namespace std;
 
 typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
 	IDLE
-	,DORMIR
-	,GOTO_HAUT
-	,GOTO_BAS
-	,GOTO_GAUCHE
-	,GOTO_DROITE
-	,FONC_FAIM_M5
-	,FONC_FAIM_P10
-	,FONC_V_NULL
+	, DORMIR
+	, GOTO_HAUT
+	, GOTO_BAS
+	, GOTO_GAUCHE
+	, GOTO_DROITE
+	, FONC_FAIM_M5
+	, FONC_FAIM_P10
+	, FONC_V_NULL
 } FONC_VOID;
 
 typedef enum { //Des fonction d'action prenant un paramètre spécifique(une Entity) et ne renvoyant rien du tout
 	GoTo
-	,FONC_V_E_NULL
+	, FONC_V_E_NULL
 } FONC_VOID_ENTITY;
 
 typedef enum { //Des fonctions prenant un paramètre spécifique et renvoyant une Entity
 	GetHallOf
-	,GetNearestOf
-	,FONC_E_E_NULL
+	, GetNearestOf
+	, FONC_E_E_NULL
 } FONC_ENTITY_ENTITY;
 
 typedef enum {
 	Fonction_BOOL_TRUE
-	,Fonction_BOOL_FALSE
-	,FONC_B_NULL
+	, Fonction_BOOL_FALSE
+	, FONC_B_NULL
 } FONC_BOOL;
 
 typedef enum {
@@ -48,7 +48,7 @@ typedef enum {
 
 typedef enum {
 	Fonc_GetFaim
-	,FONC_I_E_NULL
+	, FONC_I_E_NULL
 } FONC_INT_ENTITY;
 
 class MapEnumPointeur {

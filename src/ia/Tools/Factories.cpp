@@ -1,3 +1,4 @@
+
 #include "Tools/Factories.hpp"
 
 Sentient_Entity * Factories::createAgent(){
@@ -26,13 +27,25 @@ Sentient_Entity * Factories::createAgent(){
 		return nullptr;
 	}
 
-    std::map<int, int> characs_val;
+	std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+    
+    characs_val[C_VITALITY] = 100;
+    characs_val[C_AGE] = 0;
+    characs_val[C_SATIETY] = 100;
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
-        int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+    	if (characs_val.at(*it) == -1)
+    	{
+		    int min = Characteristics::listCharacteristics[*it].getMin();
+		    int max = Characteristics::listCharacteristics[*it].getMax();
+		    int val = rand (min, max+1);
+		    characs_val[*it] = val;
+        }
     }
 
     std::string name;
@@ -69,14 +82,23 @@ Sentient_Entity * Factories::createAnimal(){
         std::cout << "Unable to open file for the Animal Characteristics" << std::endl;
         return nullptr;
 	}
-
+	
     std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+    
+    characs_val[C_VITALITY] = 100;
+    characs_val[C_AGE] = 0;
+    characs_val[C_SATIETY] = 100;
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+        characs_val[*it] = val;
     }
 
     return new Sentient_Entity(Position(0,0), characs_val, "mouton", ID_ANIMAL);
@@ -108,13 +130,18 @@ Item * Factories::createItem(){
 		return nullptr;
 	}
 
-    std::map<int, int> characs_val;
+	std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+	
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+        characs_val[*it] = val;
     }
 
     return new Item("placeholder_item_name", ID_ITEM, characs_val);
@@ -123,7 +150,7 @@ Item * Factories::createItem(){
 
 Tribe * Factories::createTribe(){
     std::vector<int> characs;
-    
+
     ifstream file (PATH_DATA"/Characteristics_Tribe.json", ios::in);
 	if (file.is_open()){
 		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
@@ -150,8 +177,8 @@ Tribe * Factories::createTribe(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -189,8 +216,8 @@ Insentient_Entity * Factories::createResource(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -201,7 +228,7 @@ Insentient_Entity * Factories::createResource(){
     else
         name = getRandomFemaleName();
 
-    return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0, 0, 0);
+    return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0, 0);
 }
 
 Insentient_Entity * Factories::createBuilding(){
@@ -231,12 +258,17 @@ Insentient_Entity * Factories::createBuilding(){
 	}
 
     std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+        characs_val[*it] = val;
     }
 
     std::string name;
@@ -245,5 +277,5 @@ Insentient_Entity * Factories::createBuilding(){
     else
         name = getRandomFemaleName();
 
-    return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0, 0, 0);
+    return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0, 0);
 }

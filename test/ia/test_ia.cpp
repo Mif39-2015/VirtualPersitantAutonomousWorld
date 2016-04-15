@@ -148,20 +148,20 @@ TEST_CASE("Test IA", "[ia]")
 	agent->AStar(animal, map);
 
     }
-    
+
     //~ SECTION("Test de Item + Tribe")
     //~ {
    	//~ std::cout<<"Test de Item + Tribe"<<std::endl;
     	//~ Sentient_Entity * agent = Factories::createAgent();
     	//~ Sentient_Entity * animal = Factories::createAnimal();
     	//~ animal->setPos(7,6);
-    	//~ 
+    	//~
     	//~ vector<vector<int>> map;
-    	//~ 
+    	//~
     	//~ std::string line;
 	//~ std::ifstream myfile ("../../../data/mapTest.txt", std::ios::in);
 	//~ if (myfile.is_open()){
-	//~ 
+	//~
 		//~ while(std::getline(myfile,line)){
 		    //~ if (line != "")
 		    //~ {
@@ -177,13 +177,13 @@ TEST_CASE("Test IA", "[ia]")
 		//~ }
 		//~ myfile.close();
 	//~ }
-//~ 
+//~
 	//~ else{
 		//~ std::cout << "Unable to open file containing map" << std::endl;
 	//~ }
-	//~ 
+	//~
 	//~ agent->AStar(animal, map);
-//~ 
+//~
     //~ }
 	}*/
 
@@ -230,6 +230,7 @@ TEST_CASE("Test IA", "[ia]")
 		condFaim20.e1 = nullptr;
 		condFaim20.op = Inf;
 		condFaim20.comp = 20;
+		condFaim20.fIE2 = FONC_I_E_NULL;
 		vecStructCondFaim20.push_back(condFaim20);
 
 		cout << "on a mis la condition dans le vecteur" << endl;
@@ -244,6 +245,7 @@ TEST_CASE("Test IA", "[ia]")
 		condFaim80.e1 = nullptr;
 		condFaim80.op = Sup;
 		condFaim80.comp = 80;
+		condFaim80.fIE2 = FONC_I_E_NULL;
 		vecStructCondFaim80.push_back(condFaim80);
 		areteFaim80.setCondition_Complexe(vecStructCondFaim80);
 
@@ -262,7 +264,7 @@ TEST_CASE("Test IA", "[ia]")
 
 		cout << "on a ajouté le comportement dans l'agent" << endl;
 
-		for(int i=0;i<20;++i){
+		for(int i=0;i<100;++i){
 			cout << endl << "##### iteration " << i << " : " << endl;
 			agent->run();
 		}

@@ -273,7 +273,7 @@ TEST_CASE("Test IA", "[ia]")
 	SECTION("TEST ITEM")
 	{
 		cout << "TEST ITEM" << endl;
-		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
+		int loadResult = ItemList::loadItemsFile(PATH_DATA"/descriptionItems.txt");
 
 		REQUIRE(ItemList::listItems.size() != 0);
 

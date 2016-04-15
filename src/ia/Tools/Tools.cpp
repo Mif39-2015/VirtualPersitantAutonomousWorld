@@ -27,7 +27,6 @@ std::string getRandomMaleName(){
 
 std::string getRandomFemaleName(){
     return readFileForName(PATH_DATA"/nameListFemale.txt");
-    // return readFileForName("../../../data/nameListFemale.txt");
 }
 
 std::vector<std::string> cutString(std::string & str, std::string delimiter){

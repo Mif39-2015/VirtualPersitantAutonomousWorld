@@ -73,8 +73,7 @@ Sentient_Entity * Factories::createAnimal(){
 Item * Factories::createItem(){
     std::vector<int> characs;
     std::string line;
-    // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
-    std::ifstream myfile ("../../../data/Characteristics_Item.txt", std::ios::in);
+    std::ifstream myfile (PATH_DATA"/Characteristics_Item.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -107,7 +106,7 @@ Tribe * Factories::createTribe(){
     std::vector<int> characs;
     std::string line;
     // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
-    std::ifstream myfile ("../../../data/Characteristics_Tribe.txt", std::ios::in);
+    std::ifstream myfile (PATH_DATA"/Characteristics_Tribe.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))

@@ -8,6 +8,7 @@
 #include "Entity/Sentient_Entity.hpp"
 #include "Entity/Insentient_Entity.hpp"
 #include "Entity/Tribe.hpp"
+#include "Tools/Factories.hpp"
 
 /*!
 * \class Facade
@@ -19,8 +20,9 @@ public:
 	/*!
 	* \brief Initialise la simulation pour l'IA
 	* \param nbAg: Le nombre d'agents au début de la simulation
+	* \param nbAn: Le nombre d'animaux au début de la simulation
 	*/
-	static void initSimulation(int nbAg);
+	static void initSimulation(int nbAg, int nbAn);
 
 	/*!
 	* \brief Permet d'appeler la fonction run pour tout les agents.
@@ -44,10 +46,11 @@ public:
 	*/
 	static Tribe * getTribeById(unsigned int i);
 
-private:
 	static std::vector<Sentient_Entity *> listAgent;
 	static std::vector<Tribe *> listTribe;
 	static std::vector<Insentient_Entity *> listIE;
+
+private:
 };
 
 #endif /*FACADE_HPP*/

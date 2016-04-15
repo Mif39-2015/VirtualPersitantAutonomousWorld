@@ -2,10 +2,7 @@
 #include "Behavior/Noeud.hpp"
 #include "Entity/Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){
-    id = Entity::idCount;
-    Entity::idCount++;
-}
+Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){}
 
 void Sentient_Entity::vision(){
 	int vue = 10;

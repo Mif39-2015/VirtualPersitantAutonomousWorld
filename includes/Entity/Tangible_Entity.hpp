@@ -10,7 +10,8 @@
 #include "Entity/Item.hpp"
 
 using namespace std;
-/*! \class Tangible_Entity
+/*! 
+* \class Tangible_Entity
 * \brief Classe héritant de la classe Entity et contenant les attributs et methodes nécessaires pour la gestion des entités tangibles
 */
 class Tangible_Entity : public Entity {

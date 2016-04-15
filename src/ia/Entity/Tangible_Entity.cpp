@@ -1,9 +1,7 @@
 #include <iostream>
 #include "Entity/Tangible_Entity.hpp"
 
-Tangible_Entity::Tangible_Entity(std::string s, type s2,std::map<int, int> charac, Position p) :
-    Entity(s, s2, charac), pos(p) {
-}
+Tangible_Entity::Tangible_Entity(std::string s, type s2,std::map<int, int> charac, Position p) : Entity(s, s2, charac), pos(p) {}
 
 Position Tangible_Entity::getPos(){
     return pos;

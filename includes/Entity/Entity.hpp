@@ -39,39 +39,46 @@ class Entity{
 	public:
 		/*!
 		* \brief Le constructeur pour l'instanciation d'une entité
-		* */
-        Entity(std::string,type,std::map<int, int> charac);
+		*/
+        	Entity(std::string,type,std::map<int, int> charac);
+        	
 		/*!
 		* \brief Renvoie l'id de l'entity
-		* */
+		*/
 		unsigned int getId();
+		
 		/*!
 		* \brief Renvoie le nom de l'entity
-		* */string getName();
+		*/
+		string getName();
+		
 		/*!
 		* \brief Renvoie le modificateur de l'entity
-		* */
+		*/
 		bool getModif();
+		
 		/*!
 		* \brief Renvoie le type associé à l'entity
-		* */
+		*/
 		type getTypeId();
+		
 		/*!
 		* \brief Met à jour le modificatuer de l'entity
 		* \param m: le modificateur
-		* */
+		*/
 		void setModif(bool m);
+		
 		/*!
 		* \brief Met à jour le nom de l'entity
 		* \param n: le nom
-		* */
+		*/
 		void setName(std::string n);
 
 		/*!
 		* \brief Renvoie la valeur de la clé id de la map.
 		* \param id: la clé dans le map
 		* \return La valeur de la clé existante, -1 sinon
-		* */
+		*/
 		int getVal(int id);
 
 		/*!
@@ -79,7 +86,7 @@ class Entity{
 		* existe bien dans la map et renvoie 1 (success) sinon renvoie -1
 		* \param id: la clé
 		* \param v: la valeur
-		* */
+		*/
 		int setVal(int id, int v);
 
 		cJSON* toJson();

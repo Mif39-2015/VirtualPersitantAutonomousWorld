@@ -19,38 +19,39 @@
 */
 
 class Item : public Entity {
-public:
 
-	/*!
-	*  \brief Constructeur pour la classe Item
-	*/
-	Item(std::string, type,std::map<int, int> charac);
+	public:
 
-	/*!
-	*  \brief Fonction pour l'operateur ==
-	*  return bool
-	*/
-	inline bool operator == (const Item &b) const
-    {
-        return ( id == b.id && name == b.name);
-    }
+		/*!
+		*  \brief Constructeur pour la classe Item
+		*/
+		Item(std::string, type,std::map<int, int> charac);
 
-	/*!
-	*  \brief Fonction pour l'operateur <
-	*  return bool
-	*/
-    inline bool operator< (const Item &a) const
-    {
-        return id < a.id;
-    }
+		/*!
+		*  \brief Fonction pour l'operateur ==
+		*  return bool
+		*/
+		inline bool operator == (const Item &b) const
+	 	{
+			return ( id == b.id && name == b.name);
+		}
 
-	/*!
-	*  \brief Destructeur pour la classe Item
-	*  return bool
-	*/
-	~Item();
+		/*!
+		*  \brief Fonction pour l'operateur <
+		*  return bool
+		*/
+		inline bool operator< (const Item &a) const
+		{
+			return id < a.id;
+	    	}
 
-private:
+		/*!
+		*  \brief Destructeur pour la classe Item
+		*  return bool
+		*/
+		~Item();
+
+	private:
 
 };
 
@@ -60,16 +61,15 @@ private:
 
 class ItemList{
 
-public:
+	public:
 
-	static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
-
-
-	/*!
-	*  \brief Fonction qui construit un vector d'items à partir du fichier donné
-	*  \param fileName: le fichier
-	*/
-	static int loadItemsFile(std::string fileName);
+		static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
+		
+		/*!
+		*  \brief Fonction qui construit un vector d'items à partir du fichier donné
+		*  \param fileName: le fichier
+		*/
+		static int loadItemsFile(std::string fileName);
 
 };
 #endif

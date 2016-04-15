@@ -8,67 +8,67 @@ class Characteristics{
 	public:
 		/*!
 		* \brief Renvoie l'id de la caractéristique
-		* */
+		*/
 		int getId();
 		/*!
 		* \brief Renvoie la valeur minimale de l'intervalle [min, max]
-		* */
+		*/
 		int getMin();
 		/*!
 		* \brief Renvoie la valeur maximale de l'intervalle [min, max]
-		* */
+		*/
 		int getMax();
 		/*!
 		* \brief Renvoie le nom de la caractéristique
-		* */
+		*/
 		std::string getName();
 		/*!
 		* \brief Renvoie la definition
-		* */
+		*/
 		std::string getDefinition();
 		/*!
 		* \brief Renvoie le type de la caractéristique
-		* */
+		*/
 		std::string getType();
 		/*!
 		* \brief Renvoie la précision
-		* */
+		*/
 		int getPrecision();
 
 		/*!
 		* \brief Met à jour l'id de la caractéristique
 		* \param i: l'id de la caractéristique
-		* */
+		*/
 		void setId(int i);
 		/*!
 		* \brief Met à jour la valeur minimale de la caractéristique
 		* \param m: la valeur minimale
-		* */
+		*/
 		void setMin(int m);
 		/*!
 		* \brief Met à jour la valeur maximale de la caractéristique
 		* \param m: la valeur maximale
-		* */
+		*/
 		void setMax(int m);
 		/*!
 		* \brief Met à jour le nom de la caractéristique
 		* \param n: le nom de la caractéristique
-		* */
+		*/
 		void setName(std::string n);
 		/*!
 		* \brief Met à jour  la definition de la caractéristique
 		* \param d: la définition
-		* */
+		*/
 		void setDefinition(std::string d);
 		/*!
 		* \brief Met à jour le type de la caractéristique
 		* \param t: le type
-		* */
+		*/
 		void setType(std::string t);
 		/*!
 		* \brief Met à jour la précision
 		* \param p: la précision
-		* */
+		*/
 		void setPrecision(int p);
 
 

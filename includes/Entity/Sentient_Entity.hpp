@@ -8,9 +8,13 @@
 #include <cmath>
 #include <tuple>
 #include <vector>
-
+#include <stack>
+ 
+ 
 #include "Entity/Tangible_Entity.hpp"
 #include "Behavior/EtatEnum.hpp"
+#include "Tools/Position.hpp"
+#include "Tools/Astar.hpp"
 
 class Comportement;
 class Noeud;
@@ -44,12 +48,11 @@ class Sentient_Entity : public Tangible_Entity{
 		void vision();
 
 		/*!
-		*\brief Trouve le plus court chemin entre
-		* a postion de l'entité et sa cible. Remplit l'attribut Path
-		*\param tar : entité à atteindre
-		*\param map : carte du monde
-		*/
-		void AStar(Entity* tar, vector<vector<int>> map);
+		* \brief Trouve le plus cours chemin jusqu'à une position
+		* \param pos: la position à atteindre
+		* \return un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
+		* */	
+		stack<Position> pathFindTo(Position pos);
 
 		/*!
 		* \brief Compare deux position et sur la base de la proximité avec la position courante

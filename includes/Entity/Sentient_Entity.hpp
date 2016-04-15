@@ -19,7 +19,7 @@ using namespace std;
 
 class Sentient_Entity : public Tangible_Entity{
 	protected:
-	
+
 		ETAT etat_entity;
 		std::map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
 		Entity* target; /*!<L'endroit que l'entité souhaite atteindre via le chemin'*/
@@ -34,15 +34,15 @@ class Sentient_Entity : public Tangible_Entity{
 		* et le troisieme son id
 		* */
 		Sentient_Entity(Position pos, std::map<int, int> charac, std::string, type);
-		
+
 		/*!
-		 * \brief stockage des alentours de 
+		 * \brief stockage des alentours de
 		 * l'agent par rapport à sa position correspondante
 		 *  dans la map mémorisation*/
 		void vision();
 
 		/*!
-		*\brief Trouve le plus court chemin entre 
+		*\brief Trouve le plus court chemin entre
 		* a postion de l'entité et sa cible. Remplit l'attribut Path
 		*\param tar : entité à atteindre
 		*\param map : carte du monde

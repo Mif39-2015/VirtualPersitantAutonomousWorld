@@ -3,6 +3,4 @@
 
 #include <cstdlib>
 
-
-
 #endif /*FACADE_HPP*/

@@ -22,6 +22,14 @@ class Item : public Entity {
 
 	public:
 
+		static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
+
+		/*!
+		*  \brief Fonction qui construit un vector d'items à partir du fichier donné
+		*  \param fileName: le fichier
+		*/
+		static int loadItemsFile(std::string fileName);
+
 		/*!
 		*  \brief Constructeur pour la classe Item
 		*/
@@ -59,17 +67,18 @@ class Item : public Entity {
 *   \brief Classe contenant les methodes et les attributs pour gérér les items dans un fichier
 */
 
-class ItemList{
+// class ItemList{
 
-	public:
+// 	public:
 
-		static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
-		
-		/*!
-		*  \brief Fonction qui construit un vector d'items à partir du fichier donné
-		*  \param fileName: le fichier
+// 		static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
+
+ 		/*!
+ 		*  \brief Fonction qui construit un vector d'items à partir du fichier donné
+ 		*  \param fileName: le fichier
 		*/
-		static int loadItemsFile(std::string fileName);
+// 		static int loadItemsFile(std::string fileName);
 
-};
+// };
+
 #endif

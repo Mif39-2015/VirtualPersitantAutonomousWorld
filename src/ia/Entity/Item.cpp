@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Entity/Item.hpp"
 
-std::vector<Item> ItemList::listItems;
+std::vector<Item> Item::listItems;
 Item::Item(std::string n, type t,std::map<int, int> charac) : Entity(n, t,charac){}
 
 Item::~Item(){}
 
-int ItemList::loadItemsFile(std::string fileName){
+int Item::loadItemsFile(std::string fileName){
 	std::string line;
 	std::ifstream myfile (fileName, std::ios::in);
 	if (myfile.is_open())
@@ -19,9 +19,9 @@ int ItemList::loadItemsFile(std::string fileName){
             charact.insert(std::pair<int, int>(19, std::stoi(resline[1])));
             string name = resline[0];
             Item item(name, type::ID_ITEM, charact);
-            
 
-            ItemList::listItems.push_back(item);
+
+            Item::listItems.push_back(item);
         }
         myfile.close();
 	}

@@ -22,4 +22,4 @@ class SQLiteAccess{
 		void sqlSetTableUp();
 };
 
-static int callback(void *data, int argc, char **argv, char **azColName);
+int callback(void *data, int argc, char **argv, char **azColName);

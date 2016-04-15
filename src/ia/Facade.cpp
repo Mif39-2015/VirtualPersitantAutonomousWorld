@@ -13,7 +13,7 @@ void Facade::updateWorld(){
 	//a chaque tick (ressource, etc)
 }
 
-Sentient_Entity * Facade::getAgentById(int i){
+Sentient_Entity * Facade::getAgentById(unsigned int i){
 	for(Sentient_Entity * se : Facade::listAgent){
 		if(se->getId() == i){
 			return se;
@@ -22,7 +22,7 @@ Sentient_Entity * Facade::getAgentById(int i){
 	return nullptr;
 }
 
-Tribe * Facade::getTribeById(int i){
+Tribe * Facade::getTribeById(unsigned int i){
 	for(Tribe * t : Facade::listTribe){
 		if(t->getId() == i){
 			return t;

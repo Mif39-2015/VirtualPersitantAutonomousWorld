@@ -36,13 +36,13 @@ public:
 	* \brief Retourne un agent selon un id
 	* \param i: l'id recherché
 	*/
-	static Sentient_Entity * getAgentById(int i);
+	static Sentient_Entity * getAgentById(unsigned int i);
 
 	/*!
 	* \brief Retourne un clan selon un id
 	* \param i: l'id recherché
 	*/
-	static Tribe * getTribeById(int i);
+	static Tribe * getTribeById(unsigned int i);
 
 private:
 	static std::vector<Sentient_Entity *> listAgent;

@@ -270,24 +270,6 @@ TEST_CASE("Test IA", "[ia]")
 
 	}
 
-	SECTION("TEST ITEM")
-	{
-		cout << "TEST ITEM" << endl;
-		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
-
-		REQUIRE(ItemList::listItems.size() != 0);
-
-		Tribe* t = Factories::createTribe();
-		REQUIRE(t != NULL);
-
-		t->addItemToStock(&(ItemList::listItems[0]), 3);
-
-		REQUIRE(t->getQuantityByItem(&(ItemList::listItems[0])) == 3);
-
-		t->afficheStock();
-
-
-	}
 	SECTION("TEST TRIBE")
 	{
 		cout << "TEST TRIBE" << endl;
@@ -318,6 +300,34 @@ TEST_CASE("Test IA", "[ia]")
 
 		cout<<"le type de l'entité: " <<agent->getTypeId() <<" -- le type de agent2: "<<animal->getTypeId() <<endl;
 
+
+
+	}
+	
+	SECTION("TEST ITEM")
+	{
+		cout << "TEST ITEM" << endl;
+		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
+
+		REQUIRE(ItemList::listItems.size() != 0);
+
+		Tribe* t = Factories::createTribe();
+		REQUIRE(t != NULL);
+
+		t->addItemToStock(&(ItemList::listItems[0]), 3);
+
+		REQUIRE(t->getQuantityByItem(&(ItemList::listItems[0])) == 3);
+
+		t->afficheStock();
+		
+		Sentient_Entity* ag = Factories::createAgent();
+		REQUIRE(ag != NULL);
+
+		ag->addItemToStock(&(ItemList::listItems[0]), 18);
+
+		REQUIRE(ag->getQuantityByItem(&(ItemList::listItems[0])) == 18);
+
+		ag->afficheStock();
 
 
 	}

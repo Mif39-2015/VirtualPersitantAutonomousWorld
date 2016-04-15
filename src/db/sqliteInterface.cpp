@@ -98,8 +98,9 @@ std::string SQLiteAccess::sqlGetRequest(std::string sql){
 	}
 	return retour;
 }
+
 /*fonction affichage de la réponse de la requete (fonction de débug)*/
-static int callback(void *data, int argc, char **argv, char **azColName){
+int callback(void *data, int argc, char **argv, char **azColName){
 	int i;
 	fprintf(stderr, "%s: ", (const char*)data);
 	for(i=0; i<argc; i++){

@@ -6,6 +6,8 @@ include_directories(${PROJECT_SOURCE_DIR}/test)
 
 add_definitions( -DPATH_DATA="${PROJECT_SOURCE_DIR}/data" )
 
+add_definitions( -DPATH_DATA="${PROJECT_SOURCE_DIR}/data" )
+
 file(GLOB list_unit_test
   "*.cpp"
   )

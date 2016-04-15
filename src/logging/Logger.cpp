@@ -22,7 +22,7 @@ bool Logger::log(const string& text){
 		return true;
 	} else {
 		return false;
-	}
+	}        
 }
 
 bool Logger::logLine(const string& text){
@@ -35,5 +35,5 @@ bool Logger::logLine(const string& text){
 }
 
 ostream& Logger::operator<<(const string& text){
-	this->logLine(text);
+    this->logLine(text);
 }

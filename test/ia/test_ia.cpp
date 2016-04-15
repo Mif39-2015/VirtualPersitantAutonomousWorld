@@ -62,129 +62,129 @@ TEST_CASE("Test IA", "[ia]")
 		}
 	}
 	*/
-/*
-	SECTION("Chargement FICHIER")
-	{
-		// int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
-		int loadResult = CharacteristicsList::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
+	/*
+		SECTION("Chargement FICHIER")
+		{
+			// int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+			int loadResult = CharacteristicsList::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
 
-		REQUIRE( loadResult != -1 );
+			REQUIRE( loadResult != -1 );
 
-		std::cout << "I loaded the file !" << std::endl;
+			std::cout << "I loaded the file !" << std::endl;
 
-		for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
-			std::cout <<it->getType() << std::endl ;
-		}
-
-		Sentient_Entity * agent = Factories::createAgent();
-		std::cout << agent->getName() << std::endl;
-
-	}
-
-	SECTION("Test de msgpack")
-	{
-		msgpack::type::tuple<int, bool, std::string> src(1, true, "example");
-
-		// serialize the object into the buffer.
-		// any classes that implements write(const char*,size_t) can be a buffer.
-		std::stringstream buffer;
-		msgpack::pack(buffer, src);
-
-		// send the buffer ...
-		buffer.seekg(0);
-
-		// deserialize the buffer into msgpack::object instance.
-		std::string str(buffer.str());
-
-		msgpack::object_handle oh =
-			msgpack::unpack(str.data(), str.size());
-
-		// deserialized object is valid during the msgpack::object_handle instance is alive.
-		msgpack::object deserialized = oh.get();
-
-		// msgpack::object supports ostream.
-		std::cout << deserialized << std::endl;
-
-		// convert msgpack::object instance into the original type.
-		// if the type is mismatched, it throws msgpack::type_error exception.
-		msgpack::type::tuple<int, bool, std::string> dst;
-		deserialized.convert(dst);
-	}
-
-	SECTION("Test de A*")
-	{
-	std::cout<<"Test de A*"<<std::endl;
-		Sentient_Entity * agent = Factories::createAgent();
-		Sentient_Entity * animal = Factories::createAnimal();
-		animal->setPos(7,6);
-
-		vector<vector<int>> map;
-
-		std::string line;
-	std::ifstream myfile ("../../../data/mapTest.txt", std::ios::in);
-	if (myfile.is_open()){
-
-		while(std::getline(myfile,line)){
-			if (line != "")
-			{
-				vector<std::string> resline = cutString(line, ";");
-				vector<int> vect;
-				for (vector<std::string>::iterator it = resline.begin(); it != resline.end(); it++)
-				{
-					vect.push_back(stoi(*it));
-				}
-				map.push_back(vect);
-				vect.clear();
+			for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
+				std::cout <<it->getType() << std::endl ;
 			}
+
+			Sentient_Entity * agent = Factories::createAgent();
+			std::cout << agent->getName() << std::endl;
+
 		}
-		myfile.close();
-	}
 
-	else{
-		std::cout << "Unable to open file containing map" << std::endl;
-	}
+		SECTION("Test de msgpack")
+		{
+			msgpack::type::tuple<int, bool, std::string> src(1, true, "example");
 
-	agent->AStar(animal, map);
+			// serialize the object into the buffer.
+			// any classes that implements write(const char*,size_t) can be a buffer.
+			std::stringstream buffer;
+			msgpack::pack(buffer, src);
 
-    }
+			// send the buffer ...
+			buffer.seekg(0);
 
-    //~ SECTION("Test de Item + Tribe")
-    //~ {
-   	//~ std::cout<<"Test de Item + Tribe"<<std::endl;
-    	//~ Sentient_Entity * agent = Factories::createAgent();
-    	//~ Sentient_Entity * animal = Factories::createAnimal();
-    	//~ animal->setPos(7,6);
-    	//~
-    	//~ vector<vector<int>> map;
-    	//~
-    	//~ std::string line;
-	//~ std::ifstream myfile ("../../../data/mapTest.txt", std::ios::in);
-	//~ if (myfile.is_open()){
-	//~
-		//~ while(std::getline(myfile,line)){
-		    //~ if (line != "")
-		    //~ {
-			    //~ vector<std::string> resline = cutString(line, ";");
-			    //~ vector<int> vect;
-			    //~ for (vector<std::string>::iterator it = resline.begin(); it != resline.end(); it++)
+			// deserialize the buffer into msgpack::object instance.
+			std::string str(buffer.str());
+
+			msgpack::object_handle oh =
+				msgpack::unpack(str.data(), str.size());
+
+			// deserialized object is valid during the msgpack::object_handle instance is alive.
+			msgpack::object deserialized = oh.get();
+
+			// msgpack::object supports ostream.
+			std::cout << deserialized << std::endl;
+
+			// convert msgpack::object instance into the original type.
+			// if the type is mismatched, it throws msgpack::type_error exception.
+			msgpack::type::tuple<int, bool, std::string> dst;
+			deserialized.convert(dst);
+		}
+
+		SECTION("Test de A*")
+		{
+		std::cout<<"Test de A*"<<std::endl;
+			Sentient_Entity * agent = Factories::createAgent();
+			Sentient_Entity * animal = Factories::createAnimal();
+			animal->setPos(7,6);
+
+			vector<vector<int>> map;
+
+			std::string line;
+		std::ifstream myfile ("../../../data/mapTest.txt", std::ios::in);
+		if (myfile.is_open()){
+
+			while(std::getline(myfile,line)){
+				if (line != "")
+				{
+					vector<std::string> resline = cutString(line, ";");
+					vector<int> vect;
+					for (vector<std::string>::iterator it = resline.begin(); it != resline.end(); it++)
+					{
+						vect.push_back(stoi(*it));
+					}
+					map.push_back(vect);
+					vect.clear();
+				}
+			}
+			myfile.close();
+		}
+
+		else{
+			std::cout << "Unable to open file containing map" << std::endl;
+		}
+
+		agent->AStar(animal, map);
+
+	    }
+
+	    //~ SECTION("Test de Item + Tribe")
+	    //~ {
+	   	//~ std::cout<<"Test de Item + Tribe"<<std::endl;
+	    	//~ Sentient_Entity * agent = Factories::createAgent();
+	    	//~ Sentient_Entity * animal = Factories::createAnimal();
+	    	//~ animal->setPos(7,6);
+	    	//~
+	    	//~ vector<vector<int>> map;
+	    	//~
+	    	//~ std::string line;
+		//~ std::ifstream myfile ("../../../data/mapTest.txt", std::ios::in);
+		//~ if (myfile.is_open()){
+		//~
+			//~ while(std::getline(myfile,line)){
+			    //~ if (line != "")
 			    //~ {
-			    	//~ vect.push_back(stoi(*it));
+				    //~ vector<std::string> resline = cutString(line, ";");
+				    //~ vector<int> vect;
+				    //~ for (vector<std::string>::iterator it = resline.begin(); it != resline.end(); it++)
+				    //~ {
+				    	//~ vect.push_back(stoi(*it));
+				    //~ }
+				    //~ map.push_back(vect);
+				    //~ vect.clear();
 			    //~ }
-			    //~ map.push_back(vect);
-			    //~ vect.clear();
-		    //~ }
+			//~ }
+			//~ myfile.close();
 		//~ }
-		//~ myfile.close();
-	//~ }
-//~
-	//~ else{
-		//~ std::cout << "Unable to open file containing map" << std::endl;
-	//~ }
 	//~
-	//~ agent->AStar(animal, map);
-//~
-    //~ }
-	}*/
+		//~ else{
+			//~ std::cout << "Unable to open file containing map" << std::endl;
+		//~ }
+		//~
+		//~ agent->AStar(animal, map);
+	//~
+	    //~ }
+		}*/
 
 	SECTION("TEST COMPORTEMENT")
 	{
@@ -273,7 +273,7 @@ TEST_CASE("Test IA", "[ia]")
 	SECTION("TEST ITEM")
 	{
 		cout << "TEST ITEM" << endl;
-		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
+		int loadResult = ItemList::loadItemsFile(PATH_DATA"/descriptionItems.txt");
 
 		REQUIRE(ItemList::listItems.size() != 0);
 

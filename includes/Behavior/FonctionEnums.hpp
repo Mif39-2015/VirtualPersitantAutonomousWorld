@@ -1,8 +1,8 @@
 #ifndef FONCTION_ENUM_HPP
 #define FONCTION_ENUM_HPP
 
-//~ #include "Entity/Sentient_Entity.hpp"
 #include "Entity/Entity.hpp"
+// #include "Entity/Sentient_Entity.hpp"
 
 #include <iostream>
 #include <map>
@@ -15,29 +15,31 @@ using namespace std;
 
 typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
 	IDLE
-	,DORMIR
-	,GOTO_HAUT
-	,GOTO_BAS
-	,GOTO_GAUCHE
-	,GOTO_DROITE
-	,FONC_V_NULL
+	, DORMIR
+	, GOTO_HAUT
+	, GOTO_BAS
+	, GOTO_GAUCHE
+	, GOTO_DROITE
+	, FONC_FAIM_M5
+	, FONC_FAIM_P10
+	, FONC_V_NULL
 } FONC_VOID;
 
 typedef enum { //Des fonction d'action prenant un paramètre spécifique(une Entity) et ne renvoyant rien du tout
 	GoTo
-	,FONC_V_E_NULL
+	, FONC_V_E_NULL
 } FONC_VOID_ENTITY;
 
 typedef enum { //Des fonctions prenant un paramètre spécifique et renvoyant une Entity
 	GetHallOf
-	,GetNearestOf
-	,FONC_E_E_NULL
+	, GetNearestOf
+	, FONC_E_E_NULL
 } FONC_ENTITY_ENTITY;
 
 typedef enum {
 	Fonction_BOOL_TRUE
-	,Fonction_BOOL_FALSE
-	,FONC_B_NULL
+	, Fonction_BOOL_FALSE
+	, FONC_B_NULL
 } FONC_BOOL;
 
 typedef enum {
@@ -45,11 +47,8 @@ typedef enum {
 } FONC_BOOl_ENTITY;
 
 typedef enum {
-	Fonction_INT_1
-	,Fonction_INT_2
-	,Fonction_INT_3
-	,Fonction_INT_4
-	,FONC_I_E_NULL
+	Fonc_GetFaim
+	, FONC_I_E_NULL
 } FONC_INT_ENTITY;
 
 class MapEnumPointeur {
@@ -66,10 +65,7 @@ bool fonction_true(Sentient_Entity * a);
 bool fonction_false(Sentient_Entity * a);
 
 //FONC_INT_ENTITY
-int fonction_int_1(Sentient_Entity * a, Entity * e);
-int fonction_int_2(Sentient_Entity * a, Entity * e);
-int fonction_int_3(Sentient_Entity * a, Entity * e);
-int fonction_int_4(Sentient_Entity * a, Entity * e);
+int fonction_getFaim(Sentient_Entity * a, Entity * e);
 
 //FONC_VOID
 void idle(Sentient_Entity * agent);
@@ -78,6 +74,8 @@ void goto_haut(Sentient_Entity * agent);
 void goto_bas(Sentient_Entity * agent);
 void goto_gauche(Sentient_Entity * agent);
 void goto_droite(Sentient_Entity * agent);
+void faim_p10(Sentient_Entity * agent);
+void faim_m5(Sentient_Entity * agent);
 
 //FONC_VOID_ENTITY
 void go_to(Sentient_Entity * agent, Entity * e);

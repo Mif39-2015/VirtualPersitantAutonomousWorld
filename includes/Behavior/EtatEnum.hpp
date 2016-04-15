@@ -1,5 +1,5 @@
 #ifndef ETATENUM_HPP
-#define	ETATENUM_HPP
+#define ETATENUM_HPP
 
 #include "Entity/Entity.hpp"
 
@@ -11,19 +11,19 @@ class Sentient_Entity;
 using namespace std;
 
 typedef enum {
-    NORD
-    ,SUD
-    ,EST
-    ,OUEST        
-    ,MANGER
-    ,COUPER_BOIS
-    ,PRENDRE
-    ,SAUTER
-    ,FRAPPER
-    ,CONSTRUIRE
-    ,A_FAIM
-    ,PAS_FAIM
+	NORD
+	, SUD
+	, EST
+	, OUEST
+	, MANGER
+	, COUPER_BOIS
+	, PRENDRE
+	, SAUTER
+	, FRAPPER
+	, CONSTRUIRE
+	, A_FAIM
+	, PAS_FAIM
 } ETAT;
 
-#endif	/* ETATENUM_HPP */
+#endif  /* ETATENUM_HPP */
 

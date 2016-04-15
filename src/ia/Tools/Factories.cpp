@@ -3,6 +3,7 @@
 Sentient_Entity * Factories::createAgent(){
     std::vector<int> characs;
     std::string line;
+
     std::ifstream myfile (PATH_DATA"/Characteristics_Agent.txt", std::ios::in);
     if (myfile.is_open())
     {
@@ -14,7 +15,7 @@ Sentient_Entity * Factories::createAgent(){
         myfile.close();
     }
     else{
-        std::cout << "Unable to open ss file" << std::endl;
+        std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
         return nullptr;
     }
 
@@ -33,13 +34,15 @@ Sentient_Entity * Factories::createAgent(){
     else
         name = getRandomFemaleName();
 
-    return new Sentient_Entity(Position(0,0), name, ID_AGENT);
+    return new Sentient_Entity(Position(0,0), characs_val, name,  ID_AGENT);
 }
 
 Sentient_Entity * Factories::createAnimal(){
     std::vector<int> characs;
     std::string line;
+
     std::ifstream myfile (PATH_DATA"/Characteristics_Animal.txt", std::ios::in);
+
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -51,7 +54,7 @@ Sentient_Entity * Factories::createAnimal(){
         myfile.close();
     }
     else{
-        std::cout << "Unable to open file" << std::endl;
+        std::cout << "Unable to open file for the Animal Characteristics" << std::endl;
         return nullptr;
     }
 
@@ -64,5 +67,69 @@ Sentient_Entity * Factories::createAnimal(){
         characs_val.insert(std::pair<int,int>(*it,val));
     }
 
-    return new Sentient_Entity(Position(0,0), "mouton", ID_ANIMAL);
+    return new Sentient_Entity(Position(0,0), characs_val, "mouton", ID_ANIMAL);
+}
+
+Item * Factories::createItem(){
+    std::vector<int> characs;
+    std::string line;
+    std::ifstream myfile (PATH_DATA"/Characteristics_Item.txt", std::ios::in);
+    if (myfile.is_open())
+    {
+        while(std::getline(myfile,line))
+        {
+            if (line != "")
+                characs.push_back(std::stoi(line));
+
+        }
+        myfile.close();
+    }
+    else{
+        std::cout << "Unable to open file for the Item Characteristics" << std::endl;
+        return nullptr;
+    }
+
+    std::map<int, int> characs_val;
+    for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
+    {
+        int min = CharacteristicsList::listCharacteristics[*it].getMin();
+        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int val = rand (min, max+1);
+        characs_val.insert(std::pair<int,int>(*it,val));
+    }
+
+    return new Item("placeholder_item_name", ID_ITEM, characs_val);
+}
+
+
+Tribe * Factories::createTribe(){
+    std::vector<int> characs;
+    std::string line;
+    // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
+    std::ifstream myfile (PATH_DATA"/Characteristics_Tribe.txt", std::ios::in);
+    if (myfile.is_open())
+    {
+        while(std::getline(myfile,line))
+        {
+            if (line != "")
+                characs.push_back(std::stoi(line));
+
+        }
+        myfile.close();
+    }
+    else{
+        std::cout << "Unable to open file for the Tribe Characteristics" << std::endl;
+        return nullptr;
+    }
+
+    std::map<int, int> characs_val;
+    for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
+    {
+        int min = CharacteristicsList::listCharacteristics[*it].getMin();
+        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int val = rand (min, max+1);
+        characs_val.insert(std::pair<int,int>(*it,val));
+    }
+
+    return new Tribe("placeholder_tribe_name", 0, ID_TRIBE, characs_val);
 }

@@ -4,11 +4,10 @@
 using namespace std;
 
 #include "Entity/Sentient_Entity.hpp"
-//~ #include "Behavior/Comportement.hpp"
 
 class Action {
 	public :
-		virtual void Executer(Sentient_Entity * agent){};
+		virtual void Executer(Sentient_Entity * agent) {};
 };
 
 #endif

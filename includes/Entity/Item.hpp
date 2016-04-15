@@ -1,37 +1,75 @@
 #ifndef ITEM_HPP
 #define ITEM_HPP
 
+/*!
+ * \file Item.hpp
+ * \brief contient les classes Item et ItemList
+ * \author Groupe IA
+ */
+
+
 #include <string>
+#include <fstream>
+#include <vector>
+#include "Entity/Entity.hpp"
+#include "Tools/Tools.hpp"
 
-class Item {    
+/*! \class Item
+* \brief Classe contenant les methodes et les attributs pour gérér les articles dans le tribu
+*/
+
+class Item : public Entity {
 public:
-	Item(unsigned int, std::string, float);
 
-	const unsigned int& getID();
+	/*!
+	*  \brief Constructeur pour la classe Item
+	*/
+	Item(std::string, type,std::map<int, int> charac);
 
-	const std::string& getName();
-
-	const float& getWeight();
-
-	//pas de set, les valeurs ne seront pas forcément modifiables
-
+	/*!
+	*  \brief Fonction pour l'operateur ==
+	*  return bool
+	*/
 	inline bool operator == (const Item &b) const
     {
         return ( id == b.id && name == b.name);
     }
 
+	/*!
+	*  \brief Fonction pour l'operateur <
+	*  return bool
+	*/
     inline bool operator< (const Item &a) const
     {
         return id < a.id;
     }
 
-	~Item(void);
+	/*!
+	*  \brief Destructeur pour la classe Item
+	*  return bool
+	*/
+	~Item();
 
 private:
-	unsigned int id;
-	std::string name;
-	float weight;
 
 };
 
+/*! \class ItemList
+*   \brief Classe contenant les methodes et les attributs pour gérér les items dans un fichier
+*/
+
+class ItemList{
+
+public:
+
+	static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
+
+
+	/*!
+	*  \brief Fonction qui construit un vector d'items à partir du fichier donné
+	*  \param fileName: le fichier
+	*/
+	static int loadItemsFile(std::string fileName);
+
+};
 #endif

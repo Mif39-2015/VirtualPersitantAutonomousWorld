@@ -18,6 +18,7 @@ class Noeud;
 using namespace std;
 
 class Sentient_Entity : public Tangible_Entity{
+
 	protected:
 
 		ETAT etat_entity;
@@ -32,13 +33,14 @@ class Sentient_Entity : public Tangible_Entity{
 		* \brief constructeur avec 2 parametres oú le premier est la
 		* position,le deuxieme est le nom de sentient entity concerné
 		* et le troisieme son id
-		* */
+		*/
 		Sentient_Entity(Position pos, std::map<int, int> charac, std::string, type);
 
 		/*!
-		 * \brief stockage des alentours de
-		 * l'agent par rapport à sa position correspondante
-		 *  dans la map mémorisation*/
+		* \brief stockage des alentours de
+		* l'agent par rapport à sa position correspondante
+		*  dans la map mémorisation
+		*/
 		void vision();
 
 		/*!
@@ -49,13 +51,35 @@ class Sentient_Entity : public Tangible_Entity{
 		*/
 		void AStar(Entity* tar, vector<vector<int>> map);
 
+		/*!
+		* \brief Compare deux position et sur la base de la proximité avec la position courante
+		* retourne 1 si si p1 est plus proche de la position courante que p2
+		* retourne 0 si p1 et p2 sont à la même distance de p
+		* retourne -1 sinon
+		* \return integer
+		*/
 		int compare2Pos(Position p1, Position p2);
 
+		/*!
+		* \brief calcul la distance entre une position et la Position courante
+		* \param ar : la position dont on souhaite calculer la distance
+		* \return integer
+		*/
 		int distEucli(Position ar);
 
+		/*!
+		* \brief fait avancer l'agent dans son comportement de un tick d'horloge
+		*/
 		void run();
 
+		/*!
+		* \brief change le comportement courant de l'agent en l'ajoutant à sa pile de comportement'
+		*/
 		void addToTrace(Comportement * c, Noeud * n, bool b);
+		
+		/*!
+		* \brief change le comportement courant de l'agent en retirant le comportement courant du sommet de la pile
+		*/
 		void removeTopTrace();
 };
 

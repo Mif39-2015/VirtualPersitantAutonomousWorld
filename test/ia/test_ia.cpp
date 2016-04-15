@@ -65,14 +65,14 @@ TEST_CASE("Test IA", "[ia]")
 	/*
 		SECTION("Chargement FICHIER")
 		{
-			// int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
-			int loadResult = CharacteristicsList::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
+			// int loadResult = Characteristics::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+			int loadResult = Characteristics::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
 
 			REQUIRE( loadResult != -1 );
 
 			std::cout << "I loaded the file !" << std::endl;
 
-			for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
+			for (auto it = begin (Characteristics::listCharacteristics); it != end (Characteristics::listCharacteristics); ++it) {
 				std::cout <<it->getType() << std::endl ;
 			}
 
@@ -189,7 +189,7 @@ TEST_CASE("Test IA", "[ia]")
 	SECTION("TEST COMPORTEMENT")
 	{
 
-            int loadResult = CharacteristicsList::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
+            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
 
             cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
 
@@ -216,10 +216,10 @@ TEST_CASE("Test IA", "[ia]")
 
             cout << "On a inséré les actions dans les noeuds" << endl;
 
-            noeudFaimM5.addAreteOut(&areteFaim20);
-            noeudFaimM5.addAreteIn(&areteFaim80);
-            noeudFaimP10.addAreteIn(&areteFaim20);
-            noeudFaimP10.addAreteOut(&areteFaim80);
+            noeudFaimM5.ajouterAreteOut(&areteFaim20);
+            noeudFaimM5.ajouterAreteIn(&areteFaim80);
+            noeudFaimP10.ajouterAreteIn(&areteFaim20);
+            noeudFaimP10.ajouterAreteOut(&areteFaim80);
 
             cout << "On a inséré les aretes dans les noeuds" << endl;
 
@@ -270,39 +270,21 @@ TEST_CASE("Test IA", "[ia]")
 
 	}
 
-	SECTION("TEST ITEM")
-	{
-		cout << "TEST ITEM" << endl;
-		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
-
-		REQUIRE(ItemList::listItems.size() != 0);
-
-		Tribe* t = Factories::createTribe();
-		REQUIRE(t != NULL);
-
-		t->addItemToStock(&(ItemList::listItems[0]), 3);
-
-		REQUIRE(t->getQuantityByItem(&(ItemList::listItems[0])) == 3);
-
-		t->afficheStock();
-
-
-	}
 	SECTION("TEST TRIBE")
 	{
 		cout << "TEST TRIBE" << endl;
-		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
+		int loadResult = Item::loadItemsFile("../../../data/descriptionItems.txt");
 
-		REQUIRE(ItemList::listItems.size() != 0);
+		REQUIRE(Item::listItems.size() != 0);
 
 		Tribe* t = Factories::createTribe();
 		REQUIRE(t != NULL);
 		t->setName("Anishinaabe");
 		REQUIRE(t->getName()=="Anishinaabe");
-		t->addItemToStock(&(ItemList::listItems[1]), 5);
+		t->addItemToStock(&(Item::listItems[1]), 5);
 
-		REQUIRE(t->getQuantityByItem(&(ItemList::listItems[1])) == 5);
-		t->addItemToStock(&(ItemList::listItems[0]), 10);
+		REQUIRE(t->getQuantityByItem(&(Item::listItems[1])) == 5);
+		t->addItemToStock(&(Item::listItems[0]), 10);
 		cout<<"Le stock du tribu "<< t->getName() <<" :" << endl;
 		t->afficheStock();
 
@@ -318,6 +300,34 @@ TEST_CASE("Test IA", "[ia]")
 
 		cout<<"le type de l'entité: " <<agent->getTypeId() <<" -- le type de agent2: "<<animal->getTypeId() <<endl;
 
+
+
+	}
+
+	SECTION("TEST ITEM")
+	{
+		cout << "TEST ITEM" << endl;
+		int loadResult = Item::loadItemsFile("../../../data/descriptionItems.txt");
+
+		REQUIRE(Item::listItems.size() != 0);
+
+		Tribe* t = Factories::createTribe();
+		REQUIRE(t != NULL);
+
+		t->addItemToStock(&(Item::listItems[0]), 3);
+
+		REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 3);
+
+		t->afficheStock();
+
+		Sentient_Entity* ag = Factories::createAgent();
+		REQUIRE(ag != NULL);
+
+		ag->addItemToStock(&(Item::listItems[0]), 18);
+
+		REQUIRE(ag->getQuantityByItem(&(Item::listItems[0])) == 18);
+
+		ag->afficheStock();
 
 
 	}

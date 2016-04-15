@@ -9,7 +9,9 @@ using namespace std;
 class Noeud;
 
 class Comportement {
+
 	private :
+
 		vector<Noeud *> noeuds;
 		Noeud * noeudDepart;
 		vector<Noeud *> noeudsFin;

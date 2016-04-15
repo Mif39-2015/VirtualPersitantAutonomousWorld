@@ -1,16 +1,17 @@
 #include "Behavior/Comportement.hpp"
 #include "Tools/Tools.hpp"
+
 // ******** CONSTRUCTEURS ********
 Comportement::Comportement() {}
 Comportement::Comportement(vector<Noeud *> noeuds) : noeuds(noeuds) {}
 Comportement::Comportement(vector<Noeud *> noeuds, Noeud * noeudDepart, Noeud * noeudFin): noeuds(noeuds), noeudDepart(noeudDepart) {
 	noeudsFin.push_back(noeudFin);
 }
-Comportement::Comportement(vector<Noeud *> neouds, Noeud * noeudDepart, vector<Noeud *>noeudFin) : noeuds(noeuds), noeudDepart(noeudDepart), noeudsFin(noeudFin) {}
+Comportement::Comportement(vector<Noeud *> noeuds, Noeud * noeudDepart, vector<Noeud *>noeudFin) : noeuds(noeuds), noeudDepart(noeudDepart), noeudsFin(noeudFin) {}
 
 // ******** DESTRUCTEURS ********
 Comportement::~Comportement() {
-	for (int i = 0; i < noeuds.size(); ++i) {
+	for (size_t i = 0; i < noeuds.size(); ++i) {
 		delete noeuds[i];
 	}
 }
@@ -66,31 +67,3 @@ void Comportement::supprimerNoeudFin(Noeud * n) {
 		}
 	}
 }
-
-
-// void Comportement::ajouterNoeud(Noeud * n) {
-// 	noeuds.push_back(n);
-// }
-
-// void Comportement::supprimerNoeud(Noeud * n) {
-// 	for (std::vector<Noeud *>::iterator it = noeuds.begin() ; it != noeuds.end(); ++it) {
-// 		if (*it == n) noeuds.erase(it);
-// 	}
-// }
-
-// void Comportement::setNoeudDepart(Noeud * nD) {
-// 	noeudDepart = nD;
-// }
-
-// void Comportement::setNoeudFin(vector<Noeud *> nFs) {
-// 	noeudsFin = nFs;
-// }
-
-// Noeud * Comportement::getNoeudDepart() {
-// 	return noeudDepart;
-// }
-
-// vector<Noeud *> Comportement::getNoeudFin() {
-// 	return noeudsFin;
-// }
-

@@ -3,8 +3,8 @@
 Sentient_Entity * Factories::createAgent(){
     std::vector<int> characs;
     std::string line;
-    // std::ifstream myfile ("data/Characteristics_Agent.txt", std::ios::in);
-    std::ifstream myfile ("../../../data/Characteristics_Agent.txt", std::ios::in);
+
+    std::ifstream myfile (PATH_DATA"/Characteristics_Agent.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -14,7 +14,6 @@ Sentient_Entity * Factories::createAgent(){
         }
         myfile.close();
     }
-
     else{
         std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
         return nullptr;
@@ -23,8 +22,8 @@ Sentient_Entity * Factories::createAgent(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -41,8 +40,9 @@ Sentient_Entity * Factories::createAgent(){
 Sentient_Entity * Factories::createAnimal(){
     std::vector<int> characs;
     std::string line;
-    // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
-    std::ifstream myfile ("../../../data/Characteristics_Animal.txt", std::ios::in);
+
+    std::ifstream myfile (PATH_DATA"/Characteristics_Animal.txt", std::ios::in);
+
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -61,8 +61,8 @@ Sentient_Entity * Factories::createAnimal(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -73,8 +73,7 @@ Sentient_Entity * Factories::createAnimal(){
 Item * Factories::createItem(){
     std::vector<int> characs;
     std::string line;
-    // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
-    std::ifstream myfile ("../../../data/Characteristics_Item.txt", std::ios::in);
+    std::ifstream myfile (PATH_DATA"/Characteristics_Item.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -93,8 +92,8 @@ Item * Factories::createItem(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -107,7 +106,7 @@ Tribe * Factories::createTribe(){
     std::vector<int> characs;
     std::string line;
     // std::ifstream myfile ("data/Characteristics_Animal.txt", std::ios::in);
-    std::ifstream myfile ("../../../data/Characteristics_Tribe.txt", std::ios::in);
+    std::ifstream myfile (PATH_DATA"/Characteristics_Tribe.txt", std::ios::in);
     if (myfile.is_open())
     {
         while(std::getline(myfile,line))
@@ -126,8 +125,8 @@ Tribe * Factories::createTribe(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }

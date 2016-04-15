@@ -2,18 +2,15 @@
 #define ITEM_HPP
 
 #include <string>
-
-class Item {    
+#include <fstream>
+#include <vector>
+#include "Entity/Entity.hpp"
+#include "Tools/Tools.hpp"
+	
+class Item : public Entity {    
 public:
-	Item(unsigned int, std::string, float);
 
-	const unsigned int& getID();
-
-	const std::string& getName();
-
-	const float& getWeight();
-
-	//pas de set, les valeurs ne seront pas forcément modifiables
+	Item(std::string, type,std::map<int, int> charac);
 
 	inline bool operator == (const Item &b) const
     {
@@ -28,10 +25,18 @@ public:
 	~Item(void);
 
 private:
-	unsigned int id;
-	std::string name;
-	float weight;
-
+	
 };
 
+
+class ItemList{
+
+public:
+    //les items provenant du fichier
+	static std::vector<Item> listItems;
+
+	//construit un vector d'items à partir du fichier donné
+	static int loadItemsFile(std::string fileName);
+
+};
 #endif

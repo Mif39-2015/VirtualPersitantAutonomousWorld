@@ -17,3 +17,4 @@
 16;0;100;RespawnValue;ValeurRepop;type16;1
 17;0;100;Orientation;Orientation;type17;1
 18;0;100;StructuralPoints;PointsdeStructure;type18;1
+19;0;100;Weight;PoidsItem;type19;1

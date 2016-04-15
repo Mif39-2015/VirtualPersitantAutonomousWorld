@@ -4,12 +4,11 @@
 using namespace std;
 
 #include "Behavior/Action.hpp"
-//~ #include "Behavior/Comportement.hpp"
 #include <utility>
 
 class Comportement;
 
-class ActionComportement : Action {
+class ActionComportement : public Action {
 
 	private :
 		Comportement * comportement;
@@ -17,7 +16,7 @@ class ActionComportement : Action {
 	public :
 		void Executer(Sentient_Entity * agent);
 
-		ActionComportement(){comportement = NULL;};
+		ActionComportement(){comportement = nullptr;};
 		ActionComportement(Comportement * c) : comportement(c) {};
 
 		Comportement * getComportement(){return comportement;}

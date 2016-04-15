@@ -4,16 +4,27 @@
 #include <string>
 #include <map>
 
-#include "Tools/Position.hpp"
-#include "Item.hpp"
+#include "../../src/tool/cJSON.hpp"
 
 using namespace std;
-        enum type{
-            ID_AGENT,
-            ID_ANIMAL,
-            ID_BUILDING,
-            ID_RESSOURCE
-        };
+
+enum type{
+	ID_AGENT,
+	ID_ANIMAL,
+	ID_BUILDING,
+	ID_RESSOURCE,
+	ID_ITEM,
+	ID_TRIBE
+};
+
+static const char* TypeNames[] = { 
+	"ID_AGENT", 
+	"ID_ANIMAL", 
+	"ID_BUILDING", 
+	"ID_RESSOURCE", 
+	"ID_ITEM", 
+	"ID_TRIBE" 
+};
 class Entity{
 
 	protected:
@@ -22,24 +33,33 @@ class Entity{
 		unsigned int id;
 		type typeId;
 		string name;
-		map<Item, unsigned int> inventory;
-		Position pos;
+		std::map<int, int> charact_correspondence; /*!<correspondance entre la caracteristique et le sentient entity.*/
 		bool modif;
 
 	public:
 
-        Entity(std::string,type);
+        Entity(std::string,type,std::map<int, int> charac);
 
 		unsigned int getId();
 		string getName();
-		Position getPos();
 		bool getModif();
-		map<Item, unsigned int> getInventory();
 		type getTypeId();
 		void setModif(bool m);
 		void setName(std::string n);
-		void setPos(int x, int y);
-		void setInventory(std::map<Item, unsigned int> inv);
+		
+		/*!
+		* Renvoie la valeur de la clé id de la map.
+		* Si la clé existe, sa valeur associée est renvoyée, sinon -1
+		* */
+		int getVal(int id);
+
+		/*!
+		* Met à jour la valeur associée à la clé id si cette derniere
+		* existe bien dans la map et renvoie 1 (success) sinon renvoie -1
+		* */
+		int setVal(int id, int v);
+		
+		cJSON* toJson();
 
 		~Entity(void);
 };

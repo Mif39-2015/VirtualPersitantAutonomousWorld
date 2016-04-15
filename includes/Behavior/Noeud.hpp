@@ -50,6 +50,6 @@ class Noeud {
 		* 	- si une arrête a une condition valide, on execute le Noeud suivant ( = executerNoeud du noeud de l'autre côté de l'arrête)
 		* 	- sinon, on execute l'action de action
 		* */
-		Noeud * executerNoeud(Sentient_Entity * a);
+		Noeud * executerNoeud(Sentient_Entity * a, bool execAct);
 };
 #endif

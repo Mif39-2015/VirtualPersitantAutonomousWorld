@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <sqlite3.h> 
 #include <string>
-#include "sqliteInterface.hpp"
 #include <iostream>
 #include <vector>
 #include <map>
+
+#include "sqliteInterface.hpp"
 
 using std::vector;
 using std::map;

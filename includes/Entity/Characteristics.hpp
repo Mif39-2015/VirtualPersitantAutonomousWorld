@@ -3,6 +3,8 @@
 
 #include <vector>
 
+
+
 class Characteristics{
 
 	public:
@@ -37,7 +39,7 @@ class Characteristics{
 class CharacteristicsList{
 
 public:
-        //les characteristiques provenant du fichier
+    //les characteristiques provenant du fichier
 	static std::vector<Characteristics> listCharacteristics;
 
 	//cnstruit un vector de charactéristiques à partir du fichier donné

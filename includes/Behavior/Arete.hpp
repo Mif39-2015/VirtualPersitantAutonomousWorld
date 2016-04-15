@@ -11,27 +11,27 @@ class Noeud;
 
 using namespace std;
 
-class Arete{
-	public :
-		typedef enum {
-			Inf
-			,Inf_Eg
-			,Eg
-			,Sup_Eg
-			,Sup
-			,OP_NULL
-		} Operator;
+typedef enum {
+	Inf
+	,Inf_Eg
+	,Eg
+	,Sup_Eg
+	,Sup
+	,OP_NULL
+} Operator;
 
-		struct struct_condition{
-			FONC_INT_ENTITY fIE1;
-			stack<FONC_ENTITY_ENTITY> fEE1;
-			Entity * e1;
-			Operator op;
-			FONC_INT_ENTITY fIE2;
-			stack<FONC_ENTITY_ENTITY> fEE2;
-			Entity * e2;
-			int comp;
-		};
+struct struct_condition{
+	FONC_INT_ENTITY fIE1;
+	stack<FONC_ENTITY_ENTITY> fEE1;
+	Entity * e1;
+	Operator op;
+	FONC_INT_ENTITY fIE2;
+	stack<FONC_ENTITY_ENTITY> fEE2;
+	Entity * e2;
+	int comp;
+};
+
+class Arete{
 
 	private :
 		Noeud * noeudDepart;
@@ -56,6 +56,8 @@ class Arete{
 		void setNoeudDepart(Noeud * nD){noeudDepart=nD;};
 		void setNoeudFin(Noeud * nF){noeudFin=nF;}
 
+		void setCondition_Simple(vector<FONC_BOOL> conds){condition_simple = conds;}
+		void setCondition_Complexe(vector<struct_condition> conds){condition_Complexe = conds;}
 		/*
 		 * Utilisé pour savoir si la condition est vérifiée ou non
 		 * */

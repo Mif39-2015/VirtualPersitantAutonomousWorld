@@ -6,7 +6,7 @@
 TEST_CASE("Test ClientDataHolder", "[run]")
 {
     ClientDataHolder cdh = ClientDataHolder();
-	string popups = "../../../data/popups.txt";
+	string popups = PATH_DATA"/popups.txt";
     cdh.addFileToList(popups);
     REQUIRE(cdh.getFilesList().size() == 1);
     REQUIRE(cdh.getFilesList()[0] == popups);

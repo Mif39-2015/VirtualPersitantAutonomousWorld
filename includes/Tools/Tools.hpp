@@ -13,6 +13,9 @@
 #include <cstdlib>
 #include <vector>
 
+#include "../src/tool/cJSON.hpp"
+
+using namespace std;
 
 /*!
 *\brief tirage aléatoire entre dans un intervalle

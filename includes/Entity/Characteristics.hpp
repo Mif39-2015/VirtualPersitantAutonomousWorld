@@ -3,6 +3,9 @@
 
 #include <vector>
 
+#include "Tools/Tools.hpp"
+#include "../src/tool/cJSON.hpp"
+
 class Characteristics{
 
 	public:

@@ -6,6 +6,7 @@
 #include <vector>
 #include "Entity/Entity.hpp"
 #include "Tools/Tools.hpp"
+#include "../src/tool/cJSON.hpp"
 	
 class Item : public Entity {    
 public:

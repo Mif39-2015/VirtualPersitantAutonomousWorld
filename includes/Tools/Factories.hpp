@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Entity/Characteristics.hpp"
 #include "Entity/Sentient_Entity.hpp"
+#include "Entity/Insentient_Entity.hpp"
 #include "Entity/Tribe.hpp"
 #include "Entity/Item.hpp"
 #include "Tools/Tools.hpp"
@@ -41,6 +42,16 @@ public:
      	*\brief Factory permettant d'instancier les Clans
      	*/
 	static Tribe * createTribe();
+	
+	/*!
+     	*\brief Factory permettant d'instancier les Ressources
+     	*/
+	static Insentient_Entity * createResource();
+	
+	/*!
+     	*\brief Factory permettant d'instancier les Buildings
+     	*/
+	static Insentient_Entity * createBuilding();
 
 };
 

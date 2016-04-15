@@ -7,5 +7,5 @@ TEST_CASE("Test WorldSimulator", "[run]")
 {
     WorldSimulator simulator = WorldSimulator();
 
-    simulator.run();
+    simulator.run(false);
 }

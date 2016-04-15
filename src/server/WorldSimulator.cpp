@@ -23,10 +23,23 @@ WorldSimulator::WorldSimulator()
 	
 }
 
-void WorldSimulator::run(){
+void WorldSimulator::run(bool multiThread){
 	cout << "Simulation server running" << endl;
 	// TODO
-	
+	if(multiThread){
+		
+	} else {
+		thread worldThread(&WorldSimulator::worldDoOneLoop, this);
+		
+		worldThread.join();
+		
+	}
+}
+
+void WorldSimulator::worldDoOneLoop(){
+	/* World run method */
+	/* Logging AI & World */
+	/* Broadcasting */
 }
 
 void WorldSimulator::save(const string fileName){

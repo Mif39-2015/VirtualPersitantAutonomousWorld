@@ -22,6 +22,8 @@
 #include "Entity/Tribe.hpp"
 
 #include "Tools/Factories.hpp"
+#include "Tools/Position.hpp"
+#include "Tools/Astar.hpp"
 
 using namespace std;
 
@@ -331,4 +333,19 @@ TEST_CASE("Test IA", "[ia]")
 
 
 	}
+	
+    SECTION("AStar")
+    {
+		int xDep = 0;
+		int yDep = 1;
+		int xArr = 5;
+		int yArr = 10;
+	
+		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr);
+		while(!chemin.empty()){
+			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
+			chemin.pop();
+		}
+    }
+	
 }

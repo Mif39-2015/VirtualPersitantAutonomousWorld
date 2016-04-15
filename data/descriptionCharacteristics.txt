@@ -8,13 +8,13 @@
 7;0;100;Reflex;Reflexes;type07;1
 8;0;100;Perception;Perception;type08;1
 9;0;100;Independence;Indépendance;type09;1
-10 ;0;100;Charisma;Charisme;type10;1
+10;0;100;Charisma;Charisme;type10;1
 11;0;100;Capacity;Capacité;type11;1
 12;0;100;Stamina;Endurance;type12;1
 13;0;100;StaminaThreshold;SeuilEndurance;type13;1
 14;0;100;Sanity;Sanité;type14;1
 15;0;100;RespawnRate;TauxRepop;type15;1
 16;0;100;RespawnValue;ValeurRepop;type16;1
-17;0;100;Orientation;Orientation;type17;1
+17;0;3;Orientation;Orientation;type17;1
 18;0;100;StructuralPoints;PointsdeStructure;type18;1
 19;0;100;Weight;PoidsItem;type19;1

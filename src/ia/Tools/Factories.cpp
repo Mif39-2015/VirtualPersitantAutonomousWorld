@@ -1,7 +1,8 @@
+
 #include "Tools/Factories.hpp"
 
 Sentient_Entity * Factories::createAgent(){
-    std::vector<int> characs;
+	std::vector<int> characs;
     std::string line;
 
     std::ifstream myfile (PATH_DATA"/Characteristics_Agent.txt", std::ios::in);
@@ -19,13 +20,25 @@ Sentient_Entity * Factories::createAgent(){
         return nullptr;
     }
 
-    std::map<int, int> characs_val;
+	std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+    
+    characs_val[C_VITALITY] = 100;
+    characs_val[C_AGE] = 0;
+    characs_val[C_SATIETY] = 100;
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = Characteristics::listCharacteristics[*it].getMin();
-        int max = Characteristics::listCharacteristics[*it].getMax();
-        int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+    	if (characs_val.at(*it) == -1)
+    	{
+		    int min = Characteristics::listCharacteristics[*it].getMin();
+		    int max = Characteristics::listCharacteristics[*it].getMax();
+		    int val = rand (min, max+1);
+		    characs_val[*it] = val;
+        }
     }
 
     std::string name;
@@ -57,14 +70,23 @@ Sentient_Entity * Factories::createAnimal(){
         std::cout << "Unable to open file for the Animal Characteristics" << std::endl;
         return nullptr;
     }
-
+    
     std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+    
+    characs_val[C_VITALITY] = 100;
+    characs_val[C_AGE] = 0;
+    characs_val[C_SATIETY] = 100;
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
         int min = Characteristics::listCharacteristics[*it].getMin();
         int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+        characs_val[*it] = val;
     }
 
     return new Sentient_Entity(Position(0,0), characs_val, "mouton", ID_ANIMAL);
@@ -89,13 +111,18 @@ Item * Factories::createItem(){
         return nullptr;
     }
 
-    std::map<int, int> characs_val;
+	std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+	
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
         int min = Characteristics::listCharacteristics[*it].getMin();
         int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+        characs_val[*it] = val;
     }
 
     return new Item("placeholder_item_name", ID_ITEM, characs_val);
@@ -123,12 +150,17 @@ Tribe * Factories::createTribe(){
     }
 
     std::map<int, int> characs_val;
+    for (unsigned int i = 0; i < characs_val.size(); i++)
+    {
+    	characs_val.insert(std::pair<int, int>(characs[i], -1));
+    }
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
         int min = Characteristics::listCharacteristics[*it].getMin();
         int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
-        characs_val.insert(std::pair<int,int>(*it,val));
+        characs_val[*it] = val;
     }
 
     return new Tribe("placeholder_tribe_name", 0, ID_TRIBE, characs_val);

@@ -65,14 +65,14 @@ TEST_CASE("Test IA", "[ia]")
 	/*
 		SECTION("Chargement FICHIER")
 		{
-			// int loadResult = CharacteristicsList::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
-			int loadResult = CharacteristicsList::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
+			// int loadResult = Characteristics::loadCharacteristicsFile("data/descriptionCharacteristics.txt");
+			int loadResult = Characteristics::loadCharacteristicsFile("../../../data/descriptionCharacteristics.txt");
 
 			REQUIRE( loadResult != -1 );
 
 			std::cout << "I loaded the file !" << std::endl;
 
-			for (auto it = begin (CharacteristicsList::listCharacteristics); it != end (CharacteristicsList::listCharacteristics); ++it) {
+			for (auto it = begin (Characteristics::listCharacteristics); it != end (Characteristics::listCharacteristics); ++it) {
 				std::cout <<it->getType() << std::endl ;
 			}
 
@@ -189,7 +189,7 @@ TEST_CASE("Test IA", "[ia]")
 	SECTION("TEST COMPORTEMENT")
 	{
 
-            int loadResult = CharacteristicsList::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
+            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
 
             cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
 

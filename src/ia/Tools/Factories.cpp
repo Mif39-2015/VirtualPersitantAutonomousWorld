@@ -22,8 +22,8 @@ Sentient_Entity * Factories::createAgent(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -61,8 +61,8 @@ Sentient_Entity * Factories::createAnimal(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -92,8 +92,8 @@ Item * Factories::createItem(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }
@@ -125,8 +125,8 @@ Tribe * Factories::createTribe(){
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-        int min = CharacteristicsList::listCharacteristics[*it].getMin();
-        int max = CharacteristicsList::listCharacteristics[*it].getMax();
+        int min = Characteristics::listCharacteristics[*it].getMin();
+        int max = Characteristics::listCharacteristics[*it].getMax();
         int val = rand (min, max+1);
         characs_val.insert(std::pair<int,int>(*it,val));
     }

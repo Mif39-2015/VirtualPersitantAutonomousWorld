@@ -7,7 +7,7 @@
 
 using namespace std;
 
-std::vector<Characteristics> CharacteristicsList::listCharacteristics;
+std::vector<Characteristics> Characteristics::listCharacteristics;
 
 //getter
 int Characteristics::getId() {
@@ -70,7 +70,7 @@ void Characteristics::setPrecision(int p) {
 
 
 //récupere les données des chractéristiques du fichier de description et construit une liste de charactéristiques
-int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
+int Characteristics::loadCharacteristicsFile(std::string fileName){
 	std::string line;
 	std::ifstream myfile (fileName, std::ios::in);
 	if (myfile.is_open())
@@ -88,7 +88,7 @@ int CharacteristicsList::loadCharacteristicsFile(std::string fileName){
             charac.setType(resline[5]);
             charac.setPrecision(std::stoi(resline[6]));
 
-            CharacteristicsList::listCharacteristics.push_back(charac);
+            Characteristics::listCharacteristics.push_back(charac);
         }
         myfile.close();
 	}

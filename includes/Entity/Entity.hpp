@@ -47,7 +47,8 @@ class Entity{
 		unsigned int getId();
 		/*!
 		* \brief Renvoie le nom de l'entity
-		* */string getName();
+		* */
+		string getName();
 		/*!
 		* \brief Renvoie le modificateur de l'entity
 		* */

@@ -273,18 +273,18 @@ TEST_CASE("Test IA", "[ia]")
 	SECTION("TEST TRIBE")
 	{
 		cout << "TEST TRIBE" << endl;
-		int loadResult = ItemList::loadItemsFile("../../../data/descriptionItems.txt");
+		int loadResult = Item::loadItemsFile("../../../data/descriptionItems.txt");
 
-		REQUIRE(ItemList::listItems.size() != 0);
+		REQUIRE(Item::listItems.size() != 0);
 
 		Tribe* t = Factories::createTribe();
 		REQUIRE(t != NULL);
 		t->setName("Anishinaabe");
 		REQUIRE(t->getName()=="Anishinaabe");
-		t->addItemToStock(&(ItemList::listItems[1]), 5);
+		t->addItemToStock(&(Item::listItems[1]), 5);
 
-		REQUIRE(t->getQuantityByItem(&(ItemList::listItems[1])) == 5);
-		t->addItemToStock(&(ItemList::listItems[0]), 10);
+		REQUIRE(t->getQuantityByItem(&(Item::listItems[1])) == 5);
+		t->addItemToStock(&(Item::listItems[0]), 10);
 		cout<<"Le stock du tribu "<< t->getName() <<" :" << endl;
 		t->afficheStock();
 

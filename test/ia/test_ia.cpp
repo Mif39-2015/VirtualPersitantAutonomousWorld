@@ -1,10 +1,13 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <stack>
 
 #include "serveur_catch.hpp"
 #include "Entity/Characteristics.hpp"
 #include "Tools/Factories.hpp"
+#include "Tools/Position.hpp"
+#include "Tools/Astar.hpp"
 #include "Behavior/Comportement.hpp"
 #include "Entity/Sentient_Entity.hpp"
 #include "msgpack.hpp"
@@ -95,40 +98,19 @@ TEST_CASE("Test IA", "[ia]")
         deserialized.convert(dst);
     }
     
-    SECTION("Test de A*")
+    
+    SECTION("AStar")
     {
-   	std::cout<<"Test de A*"<<std::endl;
-    	Sentient_Entity * agent = Factories::createAgent();
-    	Sentient_Entity * animal = Factories::createAnimal();
-    	animal->setPos(7,6);
-    	
-    	vector<vector<int>> map;
-    	
-    	std::string line;
-	std::ifstream myfile ("../../../data/mapTest.txt", std::ios::in);
-	if (myfile.is_open()){
+		int xDep = 0;
+		int yDep = 1;
+		int xArr = 5;
+		int yArr = 10;
 	
-		while(std::getline(myfile,line)){
-		    if (line != "")
-		    {
-			    vector<std::string> resline = cutString(line, ";");
-			    vector<int> vect;
-			    for (vector<std::string>::iterator it = resline.begin(); it != resline.end(); it++)
-			    {
-			    	vect.push_back(stoi(*it));
-			    }
-			    map.push_back(vect);
-			    vect.clear();
-		    }
+		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr);
+		while(!chemin.empty()){
+			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
+			chemin.pop();
 		}
-		myfile.close();
-	}
-
-	else{
-		std::cout << "Unable to open file containing map" << std::endl;
-	}
-	
-	agent->AStar(animal, map);
-
     }
+    
 }

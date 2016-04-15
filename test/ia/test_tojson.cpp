@@ -4,7 +4,7 @@
 
 #include "serveur_catch.hpp"
 #include "Entity/Entity.hpp"
-#include "../../src/tool/cJSON.hpp"
+#include "tool/cJSON.hpp"
 
 TEST_CASE("Test toJSON", "[toJSON]")
 {

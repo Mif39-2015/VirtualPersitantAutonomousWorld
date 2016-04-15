@@ -3,6 +3,8 @@
 
 Tribe::Tribe(std::string n, unsigned int gi, type t, std::map<int, int> charac) : Entity(n, t, charac), goal_index(gi) {}
 
+Tribe::~Tribe(){}
+
 /*getters*/
 unsigned int Tribe::getGoalIndex(){
     return goal_index;
@@ -69,32 +71,32 @@ void Tribe::afficheStock(){
 cJSON* Tribe::toJson(){
 	cJSON *entity = Entity::toJson();
 	/*cJSON_AddNumberToObject(root, "goal_index", this->goal_index);
-	
+
 	cJSON_CreateArray(ids,4);
 	cJSON *members;
 	members = cJSON_CreateArray();
-	
+
 	for(auto it = tribe.begin(); it != members.end(); it++){
 		cJSON_AddItemToArray(members, *(it)->toJson());
 	}
-	
+
 	cJSON_AddItemToObject(entity,"members", members);
-	
+
 	items = cJSON_CreateArray();
-	
+
 	for(auto it = stock.begin(); it != stock.end(); it++){
 		cJSON_AddItemToArray(members, *(it)->toJson());
 	}
-	
+
 	cJSON_AddItemToObject(entity,"members", members);
-		
-		
+
+
 	cJSON *root;
 	root = cJSON_CreateObject();
 	cJSON_AddNumberToObject(root, "id", this->id);
 	cJSON_AddStringToObject(root, "typeId", TypeNames[this->typeId]);
 	cJSON_AddStringToObject(root, "name", this->name.c_str());
 	cout << cJSON_Print(root) << endl;*/
-	
+
 	return entity;
 }

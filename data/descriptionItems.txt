@@ -1,1 +1,2 @@
 Carotte;75
+Tomates;50

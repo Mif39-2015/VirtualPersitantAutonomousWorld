@@ -1,16 +1,17 @@
 #ifndef TRIPLE_HPP
 #define TRIPLE_HPP
 
-// class Triple{
-
-// public:
-// 	Triple(int, int, int);
-// 	~Triple();
-
-// private:
-// 	int x, y, z;
-// };
-
+/*!
+ * \file Vector3.hpp
+ * \brief contient la structure Vector3
+ * \author Groupe IA
+ */
+ 
+ 
+/*!
+ * \struct s_vector3
+ * \brief Objet vecteur avec 3 composantes.
+ */
 typedef struct s_vector3
 {
 	float x, y, z;

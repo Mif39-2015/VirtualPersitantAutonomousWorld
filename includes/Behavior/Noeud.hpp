@@ -22,24 +22,24 @@ class Noeud {
 		 * vAO -> le vecteur(rempli) d'arrêtes partant de ce noeud
 		 * vAI -> le vecteur(rempli) d'arrêtes allant à ce noeud
 		 * */
-		Noeud();
-		Noeud(Action * a);
+		Noeud() {}
+		Noeud(Action * a) : action(a) {}
 		Noeud(Noeud * n);
 
 		void setAction(Action * a);
 		Action * getAction();
 
-        vector<Arete*> getAretesIn();
-        void setAretesIn(vector<Arete*> aretesIn);
+		vector<Arete*> getAretesIn();
+		void setAretesIn(vector<Arete*> aretesIn);
 
-        vector<Arete*> getAretesOut();
-        void setAretesOut(vector<Arete*> aretesOut);
+		vector<Arete*> getAretesOut();
+		void setAretesOut(vector<Arete*> aretesOut);
 
-        void addAreteIn(Arete * a);
-        void addAreteOut(Arete * a);
+		void addAreteIn(Arete * a);
+		void addAreteOut(Arete * a);
 
-        void delAreteIn(Arete * a);
-        void delAreteOut(Arete * a);
+		void delAreteIn(Arete * a);
+		void delAreteOut(Arete * a);
 
 		/*
 		* cette fonction est la fonction primaire du Noeud, elle est à appeller quand l'agent est activement sur ce Noeud.

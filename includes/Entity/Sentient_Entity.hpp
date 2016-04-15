@@ -7,65 +7,79 @@
 #include <utility>
 #include <cmath>
 #include <tuple>
+#include <vector>
 
 #include "Entity/Tangible_Entity.hpp"
-#include "Behavior/Comportement.hpp"
 #include "Behavior/EtatEnum.hpp"
 
 class Comportement;
 class Noeud;
 
+using namespace std;
+
 class Sentient_Entity : public Tangible_Entity{
+
 	protected:
-		
-		std::map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 
-        	ETAT etat_entity;
-		
+		ETAT etat_entity;
 		std::map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
-		
 		Entity* target; /*!<L'endroit que l'entité souhaite atteindre via le chemin'*/
-		
+		std::map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 		stack<Position> path; /*!<Le chemin a parcourir pour atteindre la cible'*/
-
 		std::stack<std::tuple<Comportement *,Noeud *, bool>> trace;
 
 	public:
-		/*
-		* C'est un constructeur avec 2 parametres oú le premier est la
+		/*!
+		* \brief constructeur avec 2 parametres oú le premier est la
 		* position,le deuxieme est le nom de sentient entity concerné
 		* et le troisieme son id
-		* */
-		Sentient_Entity(Position pos, std::string, type);
-		/*
-		* Ce methode renvoie la valeur de la clé id de la map.
-		* Si la clé existe, sa valeur associée est renvoyée, sinon -1
-		* */
-		int getVal(int id);
+		*/
+		Sentient_Entity(Position pos, std::map<int, int> charac, std::string, type);
 
-		/*
-		* Ce methode met à jour la valeur associée à la clé id si cette derniere
-		* existe bien dans la map et renvoie 1 (success) sinon renvoie -1
-		* */
-		int setVal(int id, int v);
-		/* stockage des alentours de l'agent par rapport à sa position correspondante
-		 *  dans la map mémorisation*/
-		void vision();
-		
 		/*!
-		*\brief Trouve le plus court chemin entre la postion de l'entité et sa cible. Remplit l'attribut Path
+		* \brief stockage des alentours de
+		* l'agent par rapport à sa position correspondante
+		*  dans la map mémorisation
+		*/
+		void vision();
+
+		/*!
+		*\brief Trouve le plus court chemin entre
+		* a postion de l'entité et sa cible. Remplit l'attribut Path
 		*\param tar : entité à atteindre
 		*\param map : carte du monde
 		*/
 		void AStar(Entity* tar, vector<vector<int>> map);
-		
+
+		/*!
+		* \brief Compare deux position et sur la base de la proximité avec la position courante
+		* retourne 1 si si p1 est plus proche de la position courante que p2
+		* retourne 0 si p1 et p2 sont à la même distance de p
+		* retourne -1 sinon
+		* \return integer
+		*/
 		int compare2Pos(Position p1, Position p2);
-		
+
+		/*!
+		* \brief calcul la distance entre une position et la Position courante
+		* \param ar : la position dont on souhaite calculer la distance
+		* \return integer
+		*/
 		int distEucli(Position ar);
 
+		/*!
+		* \brief fait avancer l'agent dans son comportement de un tick d'horloge
+		*/
 		void run();
 
+		/*!
+		* \brief change le comportement courant de l'agent en l'ajoutant à sa pile de comportement'
+		*/
 		void addToTrace(Comportement * c, Noeud * n, bool b);
+		
+		/*!
+		* \brief change le comportement courant de l'agent en retirant le comportement courant du sommet de la pile
+		*/
 		void removeTopTrace();
 };
 

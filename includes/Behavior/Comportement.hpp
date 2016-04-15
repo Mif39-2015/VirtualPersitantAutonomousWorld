@@ -9,9 +9,9 @@ using namespace std;
 class Noeud;
 
 class Comportement {
-	/*
-	 * Attention ! bien que l'on passe des pointeurs sur un Noeud, un même Noeud ne peux pas faire partie de plusieurs comportement différents.
-	 * */
+		/*
+		 * Attention ! bien que l'on passe des pointeurs sur un Noeud, un même Noeud ne peux pas faire partie de plusieurs comportement différents.
+		 * */
 	private :
 		vector<Noeud *> noeuds;
 		Noeud * noeudDepart;

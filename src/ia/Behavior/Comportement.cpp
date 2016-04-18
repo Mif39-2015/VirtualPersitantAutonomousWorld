@@ -9,15 +9,6 @@ Comportement::Comportement(vector<Noeud *> noeuds, Noeud * noeudDepart, Noeud * 
 }
 Comportement::Comportement(vector<Noeud *> noeuds, Noeud * noeudDepart, vector<Noeud *>noeudFin) : noeuds(noeuds), noeudDepart(noeudDepart), noeudsFin(noeudFin) {}
 
-// ******** DESTRUCTEURS ********
-Comportement::~Comportement() {
-	cout << "On est dans le destructeur du comportement" << this << endl << "il a " << noeuds.size() << " noeuds" << endl;
-	for (size_t i = 0; i < noeuds.size(); ++i) {
-		cout << "on delete le noeud " << noeuds[i] << endl;
-		delete (noeuds[i]);
-	}
-}
-
 // ******** GETTERS ********
 vector<Noeud *> Comportement::getNoeuds() {
 	return noeuds;

@@ -31,5 +31,11 @@ TEST_CASE("Test_Agent", "[agent]")
 	{
 		Sentient_Entity * agent = Factories::createAgent();
 		REQUIRE(agent != NULL);
+		Sentient_Entity * agent1 = Factories::createAnimal();
+		REQUIRE(agent1 != NULL);
+		Insentient_Entity *building1 = Factories::createBuilding();
+		REQUIRE(building1!=NULL);
+		Insentient_Entity *ress = Factories::createResource(T_BOIS);
+		REQUIRE(ress!=NULL);
 	}
 }

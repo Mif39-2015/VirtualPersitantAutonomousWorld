@@ -23,7 +23,7 @@ NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator, bool logNetwork)
 
 
 void NetworkAdapter::Init(){
-
+	
     //Create socket
     socket_desc = socket(AF_INET , SOCK_STREAM , 0);
     if (socket_desc == -1)
@@ -211,6 +211,19 @@ void NetworkAdapter::Run(){
         perror("accept failed");
         return;
     }
+}
+
+void NetworkAdapter::addClient(Client* _newClient){
+	this->clients.push_back(_newClient);
+}
+
+Client* NetworkAdapter::getClientById(int _clientId){
+	for(Client* cl : this->clients){
+		if(cl->getId() == _clientId){
+			return cl;
+		}
+	}
+	return NULL;
 }
 
 

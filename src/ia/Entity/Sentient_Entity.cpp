@@ -65,3 +65,29 @@ void Sentient_Entity::addToTrace(Comportement * c, Noeud * n, bool b){
 stack<Position> Sentient_Entity::pathFindTo(Position posTo){
 	stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY());
 }
+
+void Sentient_Entity::setCheminMemorise(stack<Position> chemin){
+	cheminMemorise = chemin;
+}
+		
+stack<Position> Sentient_Entity::getCheminMemorise(){
+	return cheminMemorise;
+}
+
+stack<Position> Sentient_Entity::connaitChemin(Position posFinale){
+	stack<Position> cheminTemp = cheminMemorise;
+	stack<Position> cheminInverse;
+	stack<Position> cheminReturn;
+	while(!cheminTemp.empty()){
+		cheminInverse.push(cheminTemp.top());
+		if (cheminTemp.top().getX() == posFinale.getX() && cheminTemp.top().getY() == posFinale.getY() ){
+			 while(!cheminInverse.empty()){
+				 cheminReturn.push(cheminInverse.top());
+				 cheminInverse.pop();
+			 }
+			 return cheminReturn;
+		 }
+		cheminTemp.pop();
+	}
+	return cheminTemp;
+}

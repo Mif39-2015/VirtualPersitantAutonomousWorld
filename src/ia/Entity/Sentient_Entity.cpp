@@ -66,28 +66,37 @@ stack<Position> Sentient_Entity::pathFindTo(Position posTo){
 	stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY());
 }
 
-void Sentient_Entity::setCheminMemorise(stack<Position> chemin){
+void Sentient_Entity::setCheminMemorise(vector<stack<Position>> chemin){
 	cheminMemorise = chemin;
 }
 		
-stack<Position> Sentient_Entity::getCheminMemorise(){
+vector<stack<Position>> Sentient_Entity::getCheminMemorise(){
 	return cheminMemorise;
 }
 
 stack<Position> Sentient_Entity::connaitChemin(Position posFinale){
-	stack<Position> cheminTemp = cheminMemorise;
-	stack<Position> cheminInverse;
-	stack<Position> cheminReturn;
-	while(!cheminTemp.empty()){
-		cheminInverse.push(cheminTemp.top());
-		if (cheminTemp.top().getX() == posFinale.getX() && cheminTemp.top().getY() == posFinale.getY() ){
-			 while(!cheminInverse.empty()){
-				 cheminReturn.push(cheminInverse.top());
-				 cheminInverse.pop();
+	stack<Position> cheminTemp;
+	for (vector<stack<Position>>::iterator it = cheminMemorise.begin() ; it != cheminMemorise.end(); ++it){
+		bool findStart = false;
+		cheminTemp = *it;
+		stack<Position> cheminInverse;
+		stack<Position> cheminReturn;
+		while(!cheminTemp.empty()){	
+			if(cheminTemp.top().getX() == pos.getX() && cheminTemp.top().getY() == pos.getY()){
+				findStart = true;
+			}
+			if(findStart){
+				cheminInverse.push(cheminTemp.top());	
+				if (cheminTemp.top().getX() == posFinale.getX() && cheminTemp.top().getY() == posFinale.getY()){
+					 while(!cheminInverse.empty()){
+						 cheminReturn.push(cheminInverse.top());
+						 cheminInverse.pop();
+					 }
+					 return cheminReturn;
+				 }
 			 }
-			 return cheminReturn;
-		 }
-		cheminTemp.pop();
+			cheminTemp.pop();
+		}
 	}
 	return cheminTemp;
 }

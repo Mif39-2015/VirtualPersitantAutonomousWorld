@@ -31,7 +31,7 @@ class Sentient_Entity : public Tangible_Entity{
 		map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 		stack<Position> path; /*!<Le chemin a parcourir pour atteindre la cible'*/
 		stack<std::tuple<Comportement *,Noeud *, bool>> trace;
-		stack<Position> cheminMemorise;/*!<Le chemin pour aller de la position initiale à la position voulue'*/
+		vector<stack<Position>> cheminMemorise;/*!<Le chemin pour aller de la position initiale à la position voulue'*/
 
 	public:
 		/*!
@@ -87,14 +87,14 @@ class Sentient_Entity : public Tangible_Entity{
 		void removeTopTrace();
 		
 		/*!
-		* \brief Modifie le chemin mémorisé par l'agent
+		* \brief Modifie les chemins mémorisés par l'agent
 		*/
-		void setCheminMemorise(stack<Position>);
+		void setCheminMemorise(vector<stack<Position>>);
 		
 		/*!
-		* \brief Récupère le chemin mémorisé par l'agent
+		* \brief Récupère les chemins mémorisés par l'agent
 		*/
-		stack<Position> getCheminMemorise();
+		vector<stack<Position>> getCheminMemorise();
 		
 		/*!
 		* \brief un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon

@@ -31,12 +31,24 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 {
 	SECTION("AStar")
 	{
+		cout << "AStar" << endl;
 		int xDep = 0;
 		int yDep = 1;
 		int xArr = 5;
 		int yArr = 10;
 
 		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr);
+		while (!chemin.empty()) {
+			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
+			chemin.pop();
+		}
+	}
+
+	SECTION("Memoire chemin agent")
+	{
+		cout << "Memoire chemin agent" << endl;
+		//Sentient_Entity * agent = Factories::createAgent();
+		stack<Position> chemin = pathFind(0,0,15,20);
 		while (!chemin.empty()) {
 			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
 			chemin.pop();

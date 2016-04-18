@@ -124,7 +124,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		std::cout << "TEST LISTE COMPORTEMENT" << std::endl;
 		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		int loadResult2 = Comportement::initVectorComp(PATH_DATA"foo.json");
+		int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
 
 		REQUIRE(loadResult  != -1);
 		REQUIRE(loadResult2 != -1);

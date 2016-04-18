@@ -58,7 +58,11 @@ Sentient_Entity * Factories::createAgent() {
 	else
 		name = getRandomFemaleName();
 
-	return new Sentient_Entity(Position(0, 0), characs_val, name,  ID_AGENT);
+	Sentient_Entity * res = new Sentient_Entity(Position(0, 0), characs_val, name,  ID_AGENT);
+
+	res->setComportement(Comportement::listComportements[0]);
+
+	return res;
 }
 
 Sentient_Entity * Factories::createAnimal() {

@@ -2,7 +2,7 @@
  * \file CommandLineOptions.cpp
  * \brief Implementation of CommandLineOptions.hpp
  */
-#include "CommandLineOptions.hpp"
+#include "tool/CommandLineOptions.hpp"
 
 
 CommandLineOptions::CommandLineOptions(bool _logNetwork, bool _logAi, bool _logWorld) :

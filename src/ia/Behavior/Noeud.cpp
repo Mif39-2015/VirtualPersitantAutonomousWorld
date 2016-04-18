@@ -1,4 +1,4 @@
-#include "Behavior/Noeud.hpp"
+#include "ia/Behavior/Noeud.hpp"
 
 // ******** CONSTRUCTEURS ********
 Noeud::Noeud() {}

@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-#include "sqliteInterface.hpp"
-#include "AuthenticationUser.hpp"
+#include "db/sqliteInterface.hpp"
+#include "db/AuthenticationUser.hpp"
 
 using namespace std;
 

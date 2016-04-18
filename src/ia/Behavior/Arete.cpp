@@ -1,4 +1,4 @@
-#include "Behavior/Arete.hpp"
+#include "ia/Behavior/Arete.hpp"
 
 bool Arete::isTrue(Sentient_Entity * a) {
 	for (auto it = condition_simple.begin(); it != condition_simple.end(); ++it) {

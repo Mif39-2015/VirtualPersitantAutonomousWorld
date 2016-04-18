@@ -2,7 +2,7 @@
  * \file WorldSimulator.cpp
  * \brief Implementation of WorldSimulator.hpp
  */
-#include "WorldSimulator.hpp"
+#include "server/WorldSimulator.hpp"
 
 WorldSimulator::WorldSimulator(bool logAi, bool logWorld)
 : netAdapter(new NetworkAdapter(this))

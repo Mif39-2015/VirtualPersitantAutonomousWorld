@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Entity/Tribe.hpp"
+#include "ia/Entity/Tribe.hpp"
 
 Tribe::Tribe(std::string n, unsigned int gi, type t, std::map<int, int> charac) : Entity(n, t, charac), goal_index(gi) {}
 

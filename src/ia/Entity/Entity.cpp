@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Entity/Entity.hpp"
+#include "ia/Entity/Entity.hpp"
 
 unsigned int Entity::idCount = 0;
 

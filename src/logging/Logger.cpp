@@ -2,7 +2,7 @@
  * \file Logger.cpp
  * \brief Implementation of Logger.hpp
  */
-#include "Logger.hpp"
+#include "logging/Logger.hpp"
 
 
 Logger::Logger(const string& _fileName) :

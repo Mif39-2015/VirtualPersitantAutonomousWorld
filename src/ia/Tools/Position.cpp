@@ -1,12 +1,13 @@
 #include <iostream>
-#include "Tools/Position.hpp"
 #include <cmath>
+
+#include "ia/Tools/Position.hpp"
 
 Position::Position(int a, int b) : x(a), y(b){}
 
 Position::Position(const Position &p){
-	x = p.getX();
-	y = p.getY();
+    x = p.getX();
+    y = p.getY();
 }
 
 Position::~Position(){}

@@ -2,7 +2,7 @@
  * \file WorldChangeMessage.cpp
  * \brief Implementation for WorldChangeMessage.hpp
  */
-#include "WorldChangeMessage.hpp"
+#include "reseau/message/WorldChangeMessage.hpp"
 
 
 WorldChangeMessage::WorldChangeMessage(string _data)

@@ -1,4 +1,4 @@
-#include "Facade.hpp"
+#include "ia/Facade.hpp"
 
 void Facade::runAll(){
 	for(Sentient_Entity * se : Facade::listAgent){
@@ -31,6 +31,20 @@ Tribe * Facade::getTribeById(unsigned int i){
 	return nullptr;
 }
 
-void Facade::initSimulation(int nbAg){
+void Facade::initSimulation(int nbAg, int nbAn){
+	//Création de nbAg agents
+	for(int iag = 0; iag < nbAg; iag++){
+		Facade::listAgent.push_back(Factories::createAgent());
+	}
+
+	//Création de nbAn animaux
+	for(int ian = 0; ian < nbAn; ian++){
+		Facade::listAgent.push_back(Factories::createAnimal());
+	}
+
+	//Création des Ressources en fonction des données de la map
+	//TODO
+
+	//Création de la tribu de neutre (de base)
 
 }

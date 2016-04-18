@@ -2,7 +2,7 @@
  * \file AuthenticationModule.cpp
  * \brief Implementation of AuthenticationModule.hpp
  */
-#include "AuthenticationModule.hpp"
+#include "reseau/AuthenticationModule.hpp"
 
 
 AuthenticationModule::AuthenticationModule(){

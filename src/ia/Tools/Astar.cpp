@@ -44,7 +44,7 @@ bool operator<(Node const &a, Node const& b)
 }
 
 stack<Position> pathFind(const int & xDepart, const int & yDepart, 
-                const int & xArrivee, const int & yArrivee)
+                const int & xArrivee, const int & yArrivee, map<pair<int,int>, char> carte)
 {	
 	map<Node, int> closedList;			
 	priority_queue<Node, vector<Node>, CompareNode> openList;
@@ -92,12 +92,12 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 			for(int x=u.getxPos()-1 ; x<=u.getxPos()+1 ; x++){
 				for(int y=u.getyPos()-1 ; y<=u.getyPos()+1 ; y++){
 					bool nerienfaire = false;
-					if(x != u.getxPos() || y != u.getyPos()) // On vérifie que ce n'est pas la même casemake
+					if(x != u.getxPos() || y != u.getyPos()) // On vérifie que ce n'est pas la même case
 					{
 						Node v = Node(x,y);
 						map<Node, int>::iterator p;
 						// si v est une case libre
-						// if(la case est libre){
+						if(carte[make_pair(x,y)] == '0'){
 							// si v est dans la closedList avec un cout inférieur 
 							for(p = closedList.begin(); p != closedList.end(); p++){
 								if(p->first == v && p->second < u.getCout()){
@@ -124,7 +124,7 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 								openList.push(v);
 								saveOpenList.push_back(v);
 							}		
-						//}	
+						}	
 					}
 				}			
 			}

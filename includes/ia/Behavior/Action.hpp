@@ -27,6 +27,7 @@ class Action {
 		 	*\param agent : agent qui éxecute l'action'
 		 	*/
 		virtual void Executer(Sentient_Entity * agent) {};
+		virtual ~Action(){};
 };
 
 // ******** CLASSE ACTION COMPORTEMENT********

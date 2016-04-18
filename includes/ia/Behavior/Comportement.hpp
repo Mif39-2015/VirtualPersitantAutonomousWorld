@@ -29,9 +29,6 @@ class Comportement {
 		Comportement(vector<Noeud *> noeuds, Noeud * noeudDepart, vector<Noeud *> noeudFin);
 		Comportement(Comportement * c);
 
-		// ******** DESTRUCTEURS ********
-		~Comportement();
-
 		// ******** GETTERS ********
 		vector<Noeud *> getNoeuds();
 		Noeud * getNoeudDepart();

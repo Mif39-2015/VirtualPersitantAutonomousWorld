@@ -62,8 +62,8 @@ void Sentient_Entity::addToTrace(Comportement * c, Noeud * n, bool b){
 	trace.push(t);
 }
 
-stack<Position> Sentient_Entity::pathFindTo(Position posTo){
-	stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY());
+stack<Position> Sentient_Entity::pathFindTo(Position posTo, map<pair<int,int>, char> carte){
+	stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY(), carte);
 }
 
 void Sentient_Entity::setCheminMemorise(vector<stack<Position>> chemin){

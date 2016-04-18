@@ -69,3 +69,26 @@ std::vector<std::string> cutString(std::string & str, std::string delimiter) {
 
     return res;
 }
+
+map<pair<int,int>, char>getMap(string nomFichier){
+	ifstream fichier(nomFichier, ios::in);  // on ouvre	
+	string ligne;
+	map<pair<int,int>, char> carte;
+	int l = 0;
+	if(fichier)
+	{			      
+		while(getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
+		{
+			for(unsigned int i = 0; i < ligne.size(); i++)
+			{   
+				char caractere = ligne.at(i);// notre variable où sera stocké le caractère
+				carte[make_pair(i,l)] = caractere;		
+			}
+			l++;
+		}
+		fichier.close();
+		return carte;
+	}
+	else
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
+}

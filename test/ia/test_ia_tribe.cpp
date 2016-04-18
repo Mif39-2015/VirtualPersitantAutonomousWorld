@@ -37,13 +37,9 @@ TEST_CASE("Test_Tribe", "[tribe]")
 
 		Tribe* t = Factories::createTribe();
 		REQUIRE(t != NULL);
-		t->setName("Anishinaabe");
-		REQUIRE(t->getName() == "Anishinaabe");
-		t->addItemToStock(&(Item::listItems[1]), 5);
 
-		REQUIRE(t->getQuantityByItem(&(Item::listItems[1])) == 5);
 		t->addItemToStock(&(Item::listItems[0]), 10);
-		cout << "Le stock du tribu " << t->getName() << " :" << endl;
+		REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 10);
 		t->afficheStock();
 
 		Sentient_Entity * agent = Factories::createAgent();
@@ -56,6 +52,15 @@ TEST_CASE("Test_Tribe", "[tribe]")
 		cout << "on l'a ajouté l'animal dans le tribe" << endl;
 		cout << "le nb des entités dans tribe: " << t->getTribeSize() << endl;
 
-		cout << "le type de l'entité: " << agent->getTypeId() << " -- le type de agent2: " << animal->getTypeId() << endl;
+		cout << "le type de l'entité: " << agent->getTypeId() << " -- le type de agent2: " << animal->getTypeId()<< endl;
+		Insentient_Entity *b1 = Factories::createResource(T_BOIS);
+        t->addNewEntity(b1);
+        cout << "on l'a ajouté la ressource bois dans le tribe" << endl;
+        Insentient_Entity *building1 = Factories::createBuilding();
+		REQUIRE(building1!=NULL);
+		cout << "on l'a ajouté la ressource building dans le tribe" << endl;
+		t->addNewEntity(building1);
+				cout << "le nb des entités dans tribe: " << t->getTribeSize() << endl;
+
 	}
 }

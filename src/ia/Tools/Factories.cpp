@@ -1,5 +1,7 @@
 #include "ia/Tools/Factories.hpp"
 
+
+
 Sentient_Entity * Factories::createAgent() {
 	std::vector<int> characs;
 
@@ -13,12 +15,15 @@ Sentient_Entity * Factories::createAgent() {
 
 		cJSON *child = cJSON_GetObjectItem(root, "characteristicsAgent");
 		int	nb = cJSON_GetArraySize(child);
+		cJSON *item;
+		cJSON *id;
 		for (int i = 0; i < nb; i++) {
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item, "id");
+			item = cJSON_GetArrayItem(child, i);
+			id = cJSON_GetObjectItem(item, "id");
 			if (id->type == cJSON_Number) {
 				characs.push_back(id->valueint);
 			}
+
 		}
 
 	} else {
@@ -94,10 +99,13 @@ Sentient_Entity * Factories::createAnimal() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
-		int max = Characteristics::listCharacteristics[*it].getMax();
-		int val = rand (min, max + 1);
-		characs_val[*it] = val;
+		if (characs_val[*it] == -1){
+			int min = Characteristics::listCharacteristics[*it].getMin();
+			int max = Characteristics::listCharacteristics[*it].getMax();
+			int val = rand (min, max + 1);
+			characs_val[*it] = val;
+		}
+
 	}
 
 	return new Sentient_Entity(Position(0, 0), characs_val, "mouton", ID_ANIMAL);
@@ -210,17 +218,16 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 		std::cout << "Unable to open file for the Resource Characteristics" << std::endl;
 		return nullptr;
 	}
-
 	std::map<int, int> characs_val;
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
+		if(characs_val[*it]==-1){
+			int min = Characteristics::listCharacteristics[*it].getMin();
 		int max = Characteristics::listCharacteristics[*it].getMax();
 		int val = rand (min, max + 1);
 		characs_val.insert(std::pair<int, int>(*it, val));
+		}
 	}
-
-	std::cout << "Je passe aussi !" << std::endl;
 
 	Insentient_Entity * res = new Insentient_Entity("", ID_RESSOURCE, characs_val, 0, 0, 0);
 
@@ -282,10 +289,13 @@ Insentient_Entity * Factories::createBuilding() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
-		int max = Characteristics::listCharacteristics[*it].getMax();
-		int val = rand (min, max + 1);
-		characs_val[*it] = val;
+		if (characs_val[*it] == -1){
+			int min = Characteristics::listCharacteristics[*it].getMin();
+			int max = Characteristics::listCharacteristics[*it].getMax();
+			int val = rand (min, max + 1);
+			characs_val[*it] = val;
+		}
+
 	}
 
 	std::string name;

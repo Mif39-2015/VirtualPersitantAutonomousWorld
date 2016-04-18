@@ -38,7 +38,7 @@ Sentient_Entity * Factories::createAgent() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		if (characs_val.at(*it) == -1)
+		if (characs_val[*it] == -1)
 		{
 			int min = Characteristics::listCharacteristics[*it].getMin();
 			int max = Characteristics::listCharacteristics[*it].getMax();

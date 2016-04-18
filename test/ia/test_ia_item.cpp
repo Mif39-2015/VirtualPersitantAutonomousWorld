@@ -5,8 +5,6 @@
 #include "serveur_catch.hpp"
 
 #include "ia/Behavior/Action.hpp"
-#include "ia/Behavior/ActionComportement.hpp"
-#include "ia/Behavior/ActionSimple.hpp"
 #include "ia/Behavior/Arete.hpp"
 #include "ia/Behavior/Comportement.hpp"
 #include "ia/Behavior/EtatEnum.hpp"
@@ -32,7 +30,7 @@ TEST_CASE("Test_Item", "[item]")
 	SECTION("TEST ITEM")
 	{
 		cout << "TEST ITEM" << endl;
-		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.txt");
+		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.json");
 
 		REQUIRE(Item::listItems.size() != 0);
 

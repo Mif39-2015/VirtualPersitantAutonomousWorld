@@ -5,8 +5,6 @@
 #include "serveur_catch.hpp"
 
 #include "ia/Behavior/Action.hpp"
-#include "ia/Behavior/ActionComportement.hpp"
-#include "ia/Behavior/ActionSimple.hpp"
 #include "ia/Behavior/Arete.hpp"
 #include "ia/Behavior/Comportement.hpp"
 #include "ia/Behavior/EtatEnum.hpp"
@@ -31,7 +29,7 @@ TEST_CASE("Test_File", "[file]")
 {
 	SECTION("Chargement FICHIER")
 	{
-            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
+            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
 
             REQUIRE( loadResult != -1 );
 

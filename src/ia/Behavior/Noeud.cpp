@@ -6,13 +6,19 @@ Noeud::Noeud(Action * a) : action(a) {}
 
 // ******** DESTRUCTEUR ********
 Noeud::~Noeud() {
-	// delete action;
+    cout << "On est dans le destructeur du noeud " << this << endl ;
+    cout << "il a " << aretesOut.size() << " aretesOut" << " et " ;
+    cout << aretesIn.size() << " aretesIn" << endl;
+    // delete action;
 	for (auto it = aretesOut.begin(); it != aretesOut.end(); ++it) {
+        cout << "on delete l'arete " << *it << endl;
+        cout << " le noeud de fin de l'arete est : " << (*it)->getNoeudFin();
 		(*it)->getNoeudFin()->supprimerAreteIn(*it);
 		delete *it;
 	}
 	for (auto it = aretesIn.begin(); it != aretesIn.end(); ++it) {
-		(*it)->getNoeudDepart()->supprimerAreteOut(*it);
+		cout << "on delete l'arete " << *it << endl;
+        (*it)->getNoeudDepart()->supprimerAreteOut(*it);
 		delete *it;
 	}
 }

@@ -1,5 +1,44 @@
 #include "ia/Behavior/Arete.hpp"
 
+// ******** CONSTRUCTEURS ********
+Arete::Arete() {
+	noeudDepart = nullptr;
+	noeudFin = nullptr;
+}
+Arete::Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {}
+
+// ******** DESTRUCTEURS ********
+Arete::~Arete() {}
+
+// ******** GETTERS ********
+Noeud * Arete::getNoeudDepart() {
+	return noeudDepart;
+}
+Noeud * Arete::getNoeudFin() {
+	return noeudFin;
+}
+vector<FONC_BOOL> Arete::getConditon_Simple() {
+	return condition_simple;
+}
+vector<struct_condition> Arete::getCondition_Complexe() {
+	return condition_Complexe;
+}
+
+// ******** SETTERS ********
+void Arete::setNoeudDepart(Noeud * nD) {
+	noeudDepart = nD;
+}
+void Arete::setNoeudFin(Noeud * nF) {
+	noeudFin = nF;
+}
+void Arete::setCondition_Simple(vector<FONC_BOOL> conds) {
+	condition_simple = conds;
+}
+void Arete::setCondition_Complexe(vector<struct_condition> conds) {
+	condition_Complexe = conds;
+}
+
+// ******** FONCTIONNEMENT ********
 bool Arete::isTrue(Sentient_Entity * a) {
 	for (auto it = condition_simple.begin(); it != condition_simple.end(); ++it) {
 		if (!MapEnumPointeur::mapFoncBool[*it](a)) return false;

@@ -5,8 +5,6 @@
 #include "serveur_catch.hpp"
 
 #include "ia/Behavior/Action.hpp"
-#include "ia/Behavior/ActionComportement.hpp"
-#include "ia/Behavior/ActionSimple.hpp"
 #include "ia/Behavior/Arete.hpp"
 #include "ia/Behavior/Comportement.hpp"
 #include "ia/Behavior/EtatEnum.hpp"
@@ -31,6 +29,7 @@ TEST_CASE("Test_Agent", "[agent]")
 {
 	SECTION("TEST AGENT")
 	{
-
+		Sentient_Entity * agent = Factories::createAgent();
+		REQUIRE(agent != NULL);
 	}
 }

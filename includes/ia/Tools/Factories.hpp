@@ -16,41 +16,47 @@
 #include "ia/Entity/Item.hpp"
 #include "ia/Tools/Tools.hpp"
 
+enum ResourceType {
+	T_BOIS,/*!< Signifie que la ressource contient du bois*/
+	T_PIERRE,/*!< Signifie que la ressource contient de la pierre*/
+	T_METAL/*!< Signifie que la ressource contient du metal*/
+};
+
 /*!
 *\class Factories
 *\brief Classe contenant les outils permettant d'instancier les différentes entités
 */
-class Factories{
+class Factories {
 
 public:
 	/*!
-     	*\brief Factory permettant d'instancier les Agents
-     	*/
+	 	*\brief Factory permettant d'instancier les Agents
+	 	*/
 	static Sentient_Entity * createAgent();
 
 	/*!
-     	*\brief Factory permettant d'instancier les Animaux
-     	*/
+	 	*\brief Factory permettant d'instancier les Animaux
+	 	*/
 	static Sentient_Entity * createAnimal();
 
 	/*!
-     	*\brief Factory permettant d'instancier les Items
-     	*/
+	 	*\brief Factory permettant d'instancier les Items
+	 	*/
 	static Item * createItem();
 
 	/*!
-     	*\brief Factory permettant d'instancier les Clans
-     	*/
+	 	*\brief Factory permettant d'instancier les Clans
+	 	*/
 	static Tribe * createTribe();
-	
+
 	/*!
-     	*\brief Factory permettant d'instancier les Ressources
-     	*/
-	static Insentient_Entity * createResource();
-	
+	 	*\brief Factory permettant d'instancier les Ressources
+	 	*/
+	static Insentient_Entity * createResource(ResourceType type);
+
 	/*!
-     	*\brief Factory permettant d'instancier les Buildings
-     	*/
+	 	*\brief Factory permettant d'instancier les Buildings
+	 	*/
 	static Insentient_Entity * createBuilding();
 
 };

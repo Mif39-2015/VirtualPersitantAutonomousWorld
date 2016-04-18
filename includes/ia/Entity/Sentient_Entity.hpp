@@ -97,6 +97,11 @@ class Sentient_Entity : public Tangible_Entity{
 		vector<stack<Position>> getCheminMemorise();
 		
 		/*!
+		* \brief Ajoute un chemin dans la liste des chemins mémorisés par l'agent
+		*/
+		void addCheminMemorise(stack<Position>);
+		
+		/*!
 		* \brief un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 		*/
 		stack<Position> connaitChemin(Position);

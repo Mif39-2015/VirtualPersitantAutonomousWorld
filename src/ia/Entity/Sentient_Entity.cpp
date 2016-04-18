@@ -74,6 +74,10 @@ vector<stack<Position>> Sentient_Entity::getCheminMemorise(){
 	return cheminMemorise;
 }
 
+void Sentient_Entity::addCheminMemorise(stack<Position> ch){
+	cheminMemorise.push_back(ch);
+}
+
 stack<Position> Sentient_Entity::connaitChemin(Position posFinale){
 	stack<Position> cheminTemp;
 	for (vector<stack<Position>>::iterator it = cheminMemorise.begin() ; it != cheminMemorise.end(); ++it){

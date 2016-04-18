@@ -27,31 +27,11 @@
 
 using namespace std;
 
-TEST_CASE("Test_Item", "[item]")
+TEST_CASE("Test_Agent", "[agent]")
 {
-	SECTION("TEST ITEM")
+	SECTION("TEST AGENT")
 	{
-		cout << "TEST ITEM" << endl;
-		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.json");
-
-		REQUIRE(Item::listItems.size() != 0);
-
-		Tribe* t = Factories::createTribe();
-		REQUIRE(t != NULL);
-
-		t->addItemToStock(&(Item::listItems[0]), 3);
-
-		REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 3);
-
-		t->afficheStock();
-
-		Sentient_Entity* ag = Factories::createAgent();
-		REQUIRE(ag != nullptr);
-
-		ag->addItemToStock(&(Item::listItems[0]), 18);
-
-		REQUIRE(ag->getQuantityByItem(&(Item::listItems[0])) == 18);
-
-		ag->afficheStock();
+		Sentient_Entity * agent = Factories::createAgent();
+		REQUIRE(agent != NULL);
 	}
 }

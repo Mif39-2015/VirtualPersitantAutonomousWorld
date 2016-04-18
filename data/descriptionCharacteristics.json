@@ -179,6 +179,15 @@
 			"definition": "PoidsItem",
 			"type": "type",
 			"precision": 1
+		},
+		{
+			"id": 20,
+			"min": 400,
+			"max": 500,
+			"name": "MaxResStock",
+			"definition": "Le stock maximum d'une ressource",
+			"type": "unite",
+			"precision": 1
 		}
 	]
 }

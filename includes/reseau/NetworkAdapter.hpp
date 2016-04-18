@@ -17,7 +17,7 @@
 #include <fstream>
 #include <string>
 #include "message/Message.hpp"
-#include "Client.hpp"
+#include "reseau/Client.hpp"
 #include "message/WorldChangeMessage.hpp"
 #include "../server/WorldSimulator.hpp"
 #include "../logging/Logger.hpp"

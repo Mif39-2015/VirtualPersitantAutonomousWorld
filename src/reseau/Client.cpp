@@ -2,7 +2,7 @@
  * \file Client.cpp
  * \brief Implementation of Client.hpp
  */
-#include "Client.hpp"
+#include "reseau/Client.hpp"
 
 
 Client::Client(int _socket) :

@@ -38,7 +38,7 @@ bool AuthenticationModule::authClient(string username, string password){
 vector<string> AuthenticationModule::split(string str,char delimiter){
 	vector<string>retour;
 	retour.push_back("");
-	for(int i=0;i<str.length();i++){
+	for(unsigned int i=0;i<str.length();i++){
 		if(str[i]!=delimiter) 
 			retour[retour.size()-1]=retour[retour.size()-1]+str[i];		
 		else

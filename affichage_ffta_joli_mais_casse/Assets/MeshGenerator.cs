@@ -25,7 +25,7 @@ public static class MeshGenerator
 		height 						= _heightMap.GetLength (1);
 		topLeftX 					= (width - 1) / -2f;
 		topLeftZ 					= (height - 1) / 2f;
-		meshSimplificationIncrement = (levelOfDetail == 0)?1:levelOfDetail * 2;
+		meshSimplificationIncrement = (int) Mathf.Pow (2, levelOfDetail);//(levelOfDetail == 0)?1:levelOfDetail * 2;
 		verticesPerLine 			= (width - 1) / meshSimplificationIncrement + 1;
 		meshData 					= new MeshData (verticesPerLine, verticesPerLine);
 		vertexIndex 				= 0;
@@ -41,13 +41,13 @@ public static class MeshGenerator
 			for (x = 0; x < width; x += meshSimplificationIncrement) 
 			{
 				float avr_height_droite = get_height(x, y, x + meshSimplificationIncrement, y);
-				float decallage = - Mathf.Abs(avr_height%meshSimplificationIncrement)/meshSimplificationIncrement;
+				float decallage = Mathf.Abs((avr_height%meshSimplificationIncrement)/meshSimplificationIncrement);
 
 				//
 				//Placage des points
 				//
 				// 0--------1/5
-				//  \        |\
+				//  \     X  |\            coordonnées de X : new Vector3 (topLeftX + x, avr_height, topLeftZ - y);
 				//   \       | \
 				//   3/8-----|--2/4/9
 				//   |       |   |  
@@ -117,10 +117,10 @@ public static class MeshGenerator
 					float distance = Mathf.Abs(avr_height - avr_height_droite);
 					float taille_tile = Mathf.Abs(meshData.vertices [vertexIndex].x - meshData.vertices [vertexIndex + 1].x);
 					float proportion = distance/taille_tile;
-					meshData.uvs [vertexIndex + 4] = new Vector2 (0.0f, decallage);
-					meshData.uvs [vertexIndex + 5] = new Vector2 (0.33f, decallage);
-					meshData.uvs [vertexIndex + 6] = new Vector2 (0.33f, decallage + proportion);
-					meshData.uvs [vertexIndex + 7] = new Vector2 (0.0f, decallage + proportion);
+					meshData.uvs [vertexIndex + 4] = new Vector2 (0.0f, -decallage);
+					meshData.uvs [vertexIndex + 5] = new Vector2 (0.33f, -decallage);
+					meshData.uvs [vertexIndex + 6] = new Vector2 (0.33f, -decallage + proportion);
+					meshData.uvs [vertexIndex + 7] = new Vector2 (0.0f, -decallage + proportion);
 				}
 
 				//

@@ -17,8 +17,6 @@ public class MapGenerator : MonoBehaviour
 	[Range(0,6)]
 	public int editorPreviewLOD;
 	public float noiseScale;
-	[Range(1,100)]
-	public int echelle;
 
 	public int octaves;
 	[Range(0,1)]
@@ -105,7 +103,7 @@ public class MapGenerator : MonoBehaviour
 	}
 
 	MapData GenerateMapData(Vector2 centre) {
-		float[,] noiseMap = Noise.GenerateNoiseMap (mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, centre + offset, normalizeMode, echelle);
+		float[,] noiseMap = Noise.GenerateNoiseMap (mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, centre + offset, normalizeMode);
 
 		Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
 		for (int y = 0; y < mapChunkSize; y++) {

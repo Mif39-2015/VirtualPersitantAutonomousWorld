@@ -19,7 +19,13 @@ Sentient_Entity * Factories::createAgent() {
 			if (id->type == cJSON_Number) {
 				characs.push_back(id->valueint);
 			}
+			
+			delete item;
+			delete id;
 		}
+		
+		delete root;
+		delete child;
 
 	} else {
 		std::cout << "Unable to open file for the Agent Characteristics" << std::endl;

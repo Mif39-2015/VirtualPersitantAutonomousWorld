@@ -1,17 +1,8 @@
 #include <iostream>
-#include "Entity/Insentient_Entity.hpp"
+#include "ia/Entity/Insentient_Entity.hpp"
 
-unsigned int Insentient_Entity::idCount = 0;
+Insentient_Entity::Insentient_Entity(std::string n, type tid,std::map<int, int> charac, int o, int x, int y) : Tangible_Entity(n, tid, charac, Position(x,y)), orientation(o){}
 
-Insentient_Entity::Insentient_Entity(std::string n, type tid,std::map<int, int> charac, int o, int x, int y, int z) : Tangible_Entity(n, tid, charac, Position(x,y))
-    {
-		orientation = o;
-        sizeIE.x=x;
-        sizeIE.y=y;
-        sizeIE.z=z;
-        id = Entity::idCount;
-        Entity::idCount++;
-}
  int Insentient_Entity::getOrientation(){
     return this->orientation;
  }

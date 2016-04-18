@@ -2,7 +2,7 @@
  * \file NetworkAdapter.cpp
  * \brief Implementation of NetworkAdapter.hpp
  */
-#include "NetworkAdapter.hpp"
+#include "reseau/NetworkAdapter.hpp"
 
 
 NetworkAdapter::NetworkAdapter(WorldSimulator* _simulator)

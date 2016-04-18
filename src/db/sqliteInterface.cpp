@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-#include "sqliteInterface.hpp"
+#include "db/sqliteInterface.hpp"
 
 using std::vector;
 using std::map;
@@ -100,7 +100,7 @@ std::string SQLiteAccess::sqlGetRequest(std::string sql){
 }
 
 /*fonction affichage de la réponse de la requete (fonction de débug)*/
-static int callback(void *data, int argc, char **argv, char **azColName){
+int callback(void *data, int argc, char **argv, char **azColName){
 	int i;
 	fprintf(stderr, "%s: ", (const char*)data);
 	for(i=0; i<argc; i++){

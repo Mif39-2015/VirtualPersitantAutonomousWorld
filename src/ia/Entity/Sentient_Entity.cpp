@@ -1,11 +1,8 @@
 #include <iostream>
-#include "Behavior/Noeud.hpp"
-#include "Entity/Sentient_Entity.hpp"
+#include "ia/Behavior/Noeud.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
 
-Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){
-    id = Entity::idCount;
-    Entity::idCount++;
-}
+Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){}
 
 void Sentient_Entity::vision(){
 	int vue = 10;
@@ -17,21 +14,6 @@ void Sentient_Entity::vision(){
 			}
 		}
 	}
-}
-
-void Sentient_Entity::AStar(Entity* tar, vector<vector<int>> map)
-{
-	this->target = tar;
-//	for (int i = 0; i < map.size(); i++)
-//	{
-//		for (int j = 0; j < map[i].size(); j++)
-//		{
-//			std::cout<<map[i][j]<<" ";
-//		}
-//		std::cout<<std::endl;
-//	}
-
-
 }
 
 int Sentient_Entity::compare2Pos(Position p1, Position p2)
@@ -80,36 +62,6 @@ void Sentient_Entity::addToTrace(Comportement * c, Noeud * n, bool b){
 	trace.push(t);
 }
 
-//Structure nœud = {
-//      x, y: Nombre
-//      cout, heuristique: Nombre
-//   }
-//   depart = Nœud(x=_, y=_, cout=0, heuristique=0)
-//   Fonction compare2Noeuds(n1:Nœud, n2:Nœud)
-//       si n1.heuristique < n2.heuristique
-//           retourner 1
-//       ou si n1.heuristique  == n2.heuristique
-//           retourner 0
-//       sinon
-//           retourner -1
-//   Fonction cheminPlusCourt(g:Graphe, objectif:Nœud, depart:Nœud)
-//       closedList = File()
-//       openList = FilePrioritaire(comparateur=compare2Noeuds)
-//       openList.ajouter(depart)
-//       tant que openList n'est pas vide
-//           u = openList.depiler()
-//           si u.x == objectif.x et u.y == objectif.y
-//               reconstituerChemin(u)
-//               terminer le programme (sans erreur)
-//           sinon
-//               pour chaque voisin v de u dans g
-//                   si v est une case libre
-//                       si v existe dans closedList avec un cout inférieur
-//                        ou si v existe dans openList avec un cout inférieur
-//                           neRienFaire()
-//                       sinon
-//                            v.cout = u.cout +1
-//                            v.heuristique = v.cout + distance([v.x, v.y], [objectif.x, objectif.y])
-//                            openList.ajouter(v)
-//            closedList.ajouter(u)
-//       terminer le programme (avec erreur)
+stack<Position> Sentient_Entity::pathFindTo(Position posTo){
+	stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY());
+}

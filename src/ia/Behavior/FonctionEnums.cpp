@@ -1,5 +1,5 @@
-#include "Behavior/FonctionEnums.hpp"
-#include "Entity/Sentient_Entity.hpp"
+#include "ia/Behavior/FonctionEnums.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
 
 map<FONC_VOID, void(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncVoid = {
 	{IDLE, idle}

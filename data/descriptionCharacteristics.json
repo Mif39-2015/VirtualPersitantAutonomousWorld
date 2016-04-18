@@ -1,0 +1,184 @@
+{
+	"characteristics": [
+		{
+			"id": 0,
+			"min": 0,
+			"max": 100,
+			"name": "vitality",
+			"definition": "PointsDeVie",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 1,
+			"min": 0,
+			"max": 1,
+			"name": "gender",
+			"definition": "Genre",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 2,
+			"min": 0,
+			"max": 100,
+			"name": "Age",
+			"definition": "Age",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 3,
+			"min": 0,
+			"max": 100,
+			"name": "Agressiveness",
+			"definition": "Agressivité",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 4,
+			"min": 0,
+			"max": 100,
+			"name": "Fitness",
+			"definition": "Forme",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 5,
+			"min": 0,
+			"max": 100,
+			"name": "Satiety",
+			"definition": "Faim",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 6,
+			"min": 0,
+			"max": 100,
+			"name": "StatietyTreshold",
+			"definition": "SeuilFaim",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 7,
+			"min": 0,
+			"max": 100,
+			"name": "Reflex",
+			"definition": "Reflexes",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 8,
+			"min": 0,
+			"max": 100,
+			"name": "Perception",
+			"definition": "Perception",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 9,
+			"min": 0,
+			"max": 100,
+			"name": "Independence",
+			"definition": "Indépendance",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 10 ,
+			"min": 0,
+			"max": 100,
+			"name": "Charisma",
+			"definition": "Charisme",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 11,
+			"min": 0,
+			"max": 100,
+			"name": "Capacity",
+			"definition": "Capacité",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 12,
+			"min": 0,
+			"max": 100,
+			"name": "Stamina",
+			"definition": "Endurance",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 13,
+			"min": 0,
+			"max": 100,
+			"name": "StaminaThreshold",
+			"definition": "SeuilEndurance",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 14,
+			"min": 0,
+			"max": 100,
+			"name": "Sanity",
+			"definition": "Sanité",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 15,
+			"min": 0,
+			"max": 100,
+			"name": "RespawnRate",
+			"definition": "TauxRepop",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 16,
+			"min": 0,
+			"max": 100,
+			"name": "RespawnValue",
+			"definition": "ValeurRepop",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 17,
+			"min": 0,
+			"max": 3,
+			"name": "Orientation",
+			"definition": "Orientation",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 18,
+			"min": 0,
+			"max": 100,
+			"name": "StructuralPoints",
+			"definition": "PointsdeStructure",
+			"type": "type",
+			"precision": 1
+		},
+		{
+			"id": 19,
+			"min": 0,
+			"max": 100,
+			"name": "Weight",
+			"definition": "PoidsItem",
+			"type": "type",
+			"precision": 1
+		}
+	]
+}

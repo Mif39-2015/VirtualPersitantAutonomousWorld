@@ -3,7 +3,7 @@
 #include <sstream>
 
 #include "serveur_catch.hpp"
-#include "Entity/Entity.hpp"
+#include "ia/Entity/Entity.hpp"
 #include "tool/cJSON.hpp"
 
 TEST_CASE("Test toJSON", "[toJSON]")

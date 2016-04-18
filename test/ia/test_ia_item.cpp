@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+#include "serveur_catch.hpp"
+
+#include "ia/Behavior/Action.hpp"
+#include "ia/Behavior/ActionComportement.hpp"
+#include "ia/Behavior/ActionSimple.hpp"
+#include "ia/Behavior/Arete.hpp"
+#include "ia/Behavior/Comportement.hpp"
+#include "ia/Behavior/EtatEnum.hpp"
+#include "ia/Behavior/FonctionEnums.hpp"
+#include "ia/Behavior/Noeud.hpp"
+
+#include "ia/Entity/Characteristics.hpp"
+#include "ia/Entity/Entity.hpp"
+#include "ia/Entity/Insentient_Entity.hpp"
+#include "ia/Entity/Item.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Tangible_Entity.hpp"
+#include "ia/Entity/Tribe.hpp"
+
+#include "ia/Tools/Factories.hpp"
+#include "ia/Tools/Position.hpp"
+#include "ia/Tools/Astar.hpp"
+
+using namespace std;
+
+TEST_CASE("Test_Item", "[item]")
+{
+	SECTION("TEST ITEM")
+	{
+		cout << "TEST ITEM" << endl;
+		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.txt");
+
+		REQUIRE(Item::listItems.size() != 0);
+
+		Tribe* t = Factories::createTribe();
+		REQUIRE(t != NULL);
+
+		t->addItemToStock(&(Item::listItems[0]), 3);
+
+		REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 3);
+
+		t->afficheStock();
+
+		Sentient_Entity* ag = Factories::createAgent();
+		REQUIRE(ag != nullptr);
+
+		ag->addItemToStock(&(Item::listItems[0]), 18);
+
+		REQUIRE(ag->getQuantityByItem(&(Item::listItems[0])) == 18);
+
+		ag->afficheStock();
+	}
+}

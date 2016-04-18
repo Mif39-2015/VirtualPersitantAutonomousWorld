@@ -28,61 +28,6 @@
 
 using namespace std;
 
-TEST_CASE("Test_File", "[file]")
-{
-	SECTION("Chargement FICHIER")
-	{
-            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
-
-            REQUIRE( loadResult != -1 );
-
-            std::cout << "I loaded the file !" << std::endl;
-
-            for (auto it = begin (Characteristics::listCharacteristics); it != end (Characteristics::listCharacteristics); ++it) {
-                std::cout << it->getType() << std::endl ;
-            }
-
-            Sentient_Entity * agent = Factories::createAgent();
-            std::cout << agent->getName() << std::endl;
-
-	}
-}
-
-TEST_CASE("Test_Tribe", "[tribe]")
-{
-
-	SECTION("TEST TRIBE")
-	{
-		cout << "TEST TRIBE" << endl;
-		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.txt");
-
-		REQUIRE(Item::listItems.size() != 0);
-
-		Tribe* t = Factories::createTribe();
-		REQUIRE(t != NULL);
-		t->setName("Anishinaabe");
-		REQUIRE(t->getName() == "Anishinaabe");
-		t->addItemToStock(&(Item::listItems[1]), 5);
-
-		REQUIRE(t->getQuantityByItem(&(Item::listItems[1])) == 5);
-		t->addItemToStock(&(Item::listItems[0]), 10);
-		cout << "Le stock du tribu " << t->getName() << " :" << endl;
-		t->afficheStock();
-
-		Sentient_Entity * agent = Factories::createAgent();
-		cout << "on a créé l'agent " << endl;
-		Sentient_Entity * animal = Factories::createAnimal();
-		cout << "on a créé l'animal " << endl;
-		t->addNewEntity(agent);
-		cout << "on l'a ajouté l'agent dans le tribe" << endl;
-		t->addNewEntity(animal);
-		cout << "on l'a ajouté l'animal dans le tribe" << endl;
-		cout << "le nb des entités dans tribe: " << t->getTribeSize() << endl;
-
-		cout << "le type de l'entité: " << agent->getTypeId() << " -- le type de agent2: " << animal->getTypeId() << endl;
-	}
-}
-
 TEST_CASE("Test_Comportement", "[comp]")
 {
 	SECTION("TEST COMPORTEMENT")
@@ -164,61 +109,6 @@ TEST_CASE("Test_Comportement", "[comp]")
 			cout << endl << "##### iteration " << i << " : " << endl;
 			agent->run();
 		}
-
-	}
-}
-
-TEST_CASE("Test_Item", "[item]")
-{
-	SECTION("TEST ITEM")
-	{
-		cout << "TEST ITEM" << endl;
-		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.txt");
-
-		REQUIRE(Item::listItems.size() != 0);
-
-		Tribe* t = Factories::createTribe();
-		REQUIRE(t != NULL);
-
-		t->addItemToStock(&(Item::listItems[0]), 3);
-
-		REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 3);
-
-		t->afficheStock();
-
-		Sentient_Entity* ag = Factories::createAgent();
-		REQUIRE(ag != nullptr);
-
-		ag->addItemToStock(&(Item::listItems[0]), 18);
-
-		REQUIRE(ag->getQuantityByItem(&(Item::listItems[0])) == 18);
-
-		ag->afficheStock();
-	}
-}
-
-TEST_CASE("Test_Pathfinding", "[astar]")
-{
-	SECTION("AStar")
-	{
-		int xDep = 0;
-		int yDep = 1;
-		int xArr = 5;
-		int yArr = 10;
-
-		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr);
-		while (!chemin.empty()) {
-			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
-			chemin.pop();
-		}
-	}
-
-}
-
-TEST_CASE("Test_Facade", "[facade]")
-{
-	SECTION("Facade")
-	{
 
 	}
 }

@@ -50,6 +50,13 @@ public:
 	void addItemToStock(Item* i, int quantity);
 
 	/*!
+	* \brief Enlève une certaine quantité d'un objet du stock
+	* \param i: L'item à enlever
+	* \param quantity: la quantité à enlever
+	*/
+	void removeItemFromStock(Item * i, int quantity);
+
+	/*!
     *  \brief Affiche la liste de stock
     */
 	void afficheStock();

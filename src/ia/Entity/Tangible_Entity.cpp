@@ -28,3 +28,7 @@ void Tangible_Entity::afficheStock(){
 		cout << it->first->getName() << ", " << it->second << endl;
 	}
 }
+
+void removeItemFromStock(Item * i, int quantity){
+
+}

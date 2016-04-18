@@ -32,7 +32,7 @@ TEST_CASE("Test_Item", "[item]")
 	SECTION("TEST ITEM")
 	{
 		cout << "TEST ITEM" << endl;
-		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.txt");
+		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.json");
 
 		REQUIRE(Item::listItems.size() != 0);
 

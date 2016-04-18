@@ -25,6 +25,8 @@ Sentient_Entity * Factories::createAgent(){
         std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
         return nullptr;
     }
+    
+    std::cout<<"Le fichier est ouvert"<<std::endl;
 
     std::map<int, int> characs_val;
     for (unsigned int i = 0; i < characs_val.size(); i++)
@@ -32,21 +34,28 @@ Sentient_Entity * Factories::createAgent(){
     	characs_val.insert(std::pair<int, int>(characs[i], -1));
     }
     
+    std::cout<<"La map est créée"<<std::endl;
+    
     characs_val[C_VITALITY] = 100;
     characs_val[C_AGE] = 0;
     characs_val[C_SATIETY] = 100;
     
+    std::cout<<"Les caracs fixes sont remplies"<<std::endl;
+    
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
     {
-    	if (characs_val.at(*it) == -1)
+    	if (characs_val[*it] == -1)
     	{
-            int min = Characteristics::listCharacteristics[*it].getMin();
+    		std::cout<<"J'ai trouvé un rand a tirer"<<std::endl;
+    		int min = Characteristics::listCharacteristics[*it].getMin();
             int max = Characteristics::listCharacteristics[*it].getMax();
             int val = rand (min, max+1);
             characs_val[*it] = val;
         }
     }
 
+	std::cout<<"J'ai fini la distribution des valeurs"<<std::endl;
+	
     std::string name;
     if (characs_val[1] == 0)
         name = getRandomMaleName();

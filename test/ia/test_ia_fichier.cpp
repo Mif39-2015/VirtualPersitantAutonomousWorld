@@ -31,7 +31,7 @@ TEST_CASE("Test_File", "[file]")
 {
 	SECTION("Chargement FICHIER")
 	{
-            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.txt");
+            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
 
             REQUIRE( loadResult != -1 );
 

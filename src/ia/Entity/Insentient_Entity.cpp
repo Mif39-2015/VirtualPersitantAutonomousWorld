@@ -1,20 +1,8 @@
 #include <iostream>
 #include "ia/Entity/Insentient_Entity.hpp"
 
-Insentient_Entity::Insentient_Entity(std::string n, type tid,std::map<int, int> charac, int o, int x, int y) : Tangible_Entity(n, tid, charac, Position(x,y)), orientation(o){}
+Insentient_Entity::Insentient_Entity(std::string n, type tid,std::map<int, int> charac, int o, int x, int y) : Tangible_Entity(n, tid, charac, Position(x,y)){}
 
- int Insentient_Entity::getOrientation(){
-    return this->orientation;
- }
-void Insentient_Entity::setOrientation(int _o){
-    this->orientation=_o;
-}
-unsigned int Insentient_Entity::getStructuralPoint(){
-    return this->structural_point;
-}
-void Insentient_Entity::setStructuralPoint(unsigned int sp){
-    this->structural_point=sp;
-}
 int Insentient_Entity::getValById(int id){
     if(characteristics.find(id)==characteristics.end()){
         return -1;

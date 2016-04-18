@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ia/Entity/Item.hpp"
+#include "ia/Entity/Characteristics.hpp"
 
 std::vector<Item> Item::listItems;
 Item::Item(std::string n, type t,std::map<int, int> charac) : Entity(n, t,charac){}
@@ -13,10 +14,6 @@ Item * Item::getItemByName(std::string n){
 		}
 	}
 	return nullptr;
-}
-
-void updateItem(unsigned int wstime){
-	//TODO
 }
 
 int Item::loadItemsFile(std::string fileName){

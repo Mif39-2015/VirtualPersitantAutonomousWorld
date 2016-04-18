@@ -188,7 +188,6 @@ Tribe * Factories::createTribe() {
 
 Insentient_Entity * Factories::createResource(ResourceType type) {
 	std::vector<int> characs;
-
 	ifstream file (PATH_DATA"/Characteristics_Resource.json", ios::in);
 	if (file.is_open()) {
 		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
@@ -221,26 +220,32 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 		characs_val.insert(std::pair<int, int>(*it, val));
 	}
 
+	std::cout << "Je passe aussi !" << std::endl;
+
+	Insentient_Entity * res = new Insentient_Entity("", ID_RESSOURCE, characs_val, 0, 0, 0);
+
 	std::string name;
+	Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
 	switch (type) {
 	case ResourceType::T_BOIS:
 		name = "Arbre";
+		res->addItemToStock(Item::getItemByName("Bois"), c->getMax());
 		break;
 	case ResourceType::T_PIERRE:
 		name = "Caillou";
+		res->setVal(C_RESPAWN_VALUE, 0);
+		res->addItemToStock(Item::getItemByName("Pierre"), c->getMax());
 		break;
 	case ResourceType::T_METAL:
 		name = "Gisement de metal";
+		res->setVal(C_RESPAWN_VALUE, 0);
+		res->addItemToStock(Item::getItemByName("Metal"), c->getMax());
 		break;
 	}
 
-	/*std::string name;
-	if (characs_val[1] == 0)
-	    name = getRandomMaleName();
-	else
-	    name = getRandomFemaleName();*/
+	res->setName(name);
 
-	return new Insentient_Entity(name, ID_RESSOURCE, characs_val, 0, 0, 0);
+	return res;
 }
 
 Insentient_Entity * Factories::createBuilding() {

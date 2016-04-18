@@ -29,6 +29,11 @@ void Tangible_Entity::afficheStock(){
 	}
 }
 
-void removeItemFromStock(Item * i, int quantity){
-
+void Tangible_Entity::removeItemFromStock(Item * i, int quantity){
+    for(auto it = stock.begin(); it != stock.end(); it++){
+        if(it->first == i){
+            it->second = it->second - quantity;
+            if(it->second < 0) it->second = 0;
+        }
+    }
 }

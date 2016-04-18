@@ -99,7 +99,7 @@ Sentient_Entity * Factories::createAnimal() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		if (characs_val[*it] == -1){
+		if (characs_val[*it] == -1) {
 			int min = Characteristics::listCharacteristics[*it].getMin();
 			int max = Characteristics::listCharacteristics[*it].getMax();
 			int val = rand (min, max + 1);
@@ -221,12 +221,10 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 	std::map<int, int> characs_val;
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		if(characs_val[*it]==-1){
-			int min = Characteristics::listCharacteristics[*it].getMin();
+		int min = Characteristics::listCharacteristics[*it].getMin();
 		int max = Characteristics::listCharacteristics[*it].getMax();
 		int val = rand (min, max + 1);
 		characs_val.insert(std::pair<int, int>(*it, val));
-		}
 	}
 
 	Insentient_Entity * res = new Insentient_Entity("", ID_RESSOURCE, characs_val, 0, 0, 0);
@@ -236,6 +234,7 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 	switch (type) {
 	case ResourceType::T_BOIS:
 		name = "Arbre";
+		res->setVal(C_RESPAWN_VALUE, res->getVal(C_RESPAWN_VALUE) + 5);
 		res->addItemToStock(Item::getItemByName("Bois"), c->getMax());
 		break;
 	case ResourceType::T_PIERRE:
@@ -251,7 +250,6 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 	}
 
 	res->setName(name);
-
 	return res;
 }
 
@@ -289,7 +287,7 @@ Insentient_Entity * Factories::createBuilding() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		if (characs_val[*it] == -1){
+		if (characs_val[*it] == -1) {
 			int min = Characteristics::listCharacteristics[*it].getMin();
 			int max = Characteristics::listCharacteristics[*it].getMax();
 			int val = rand (min, max + 1);

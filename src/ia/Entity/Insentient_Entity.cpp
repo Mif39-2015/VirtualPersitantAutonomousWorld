@@ -23,16 +23,13 @@ int Insentient_Entity::setValById(int id, int v) {
 
 void Insentient_Entity::updateResource(unsigned int wstime) {
 	if (typeId == ID_RESSOURCE) {
-		if (wstime % this->getVal(C_RESPAWN_RATE) == 0) {
+		if (this->getVal(C_RESPAWN_RATE) != 0 && (wstime % this->getVal(C_RESPAWN_RATE)) == 0) {
 			Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
 			for (auto it = stock.begin(); it != stock.end(); it++) {
-				if(it->second < c->getMax()){
-					std::cout << "J'update mon stock : " << it->second << "->";
+				if (it->second < c->getMax()) {
 					it->second = it->second + this->getVal(C_RESPAWN_VALUE);
-					std::cout << it->second << std::endl;
 				}
-				else{
-					std::cout << "Mon stock est plein !" << std::endl;
+				if (it->second >= c->getMax()) {
 					it->second = c->getMax();
 				}
 			}

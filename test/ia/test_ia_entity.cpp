@@ -5,8 +5,6 @@
 #include "serveur_catch.hpp"
 
 #include "ia/Behavior/Action.hpp"
-#include "ia/Behavior/ActionComportement.hpp"
-#include "ia/Behavior/ActionSimple.hpp"
 #include "ia/Behavior/Arete.hpp"
 #include "ia/Behavior/Comportement.hpp"
 #include "ia/Behavior/EtatEnum.hpp"

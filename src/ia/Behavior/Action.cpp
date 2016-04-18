@@ -1,4 +1,9 @@
-#include "ia/Behavior/ActionSimple.hpp"
+#include "ia/Behavior/Comportement.hpp"
+#include "ia/Behavior/Action.hpp"
+
+void ActionComportement::Executer(Sentient_Entity * agent) {
+	agent->addToTrace(comportement, comportement->getNoeudDepart(), true);
+}
 
 void ActionSimple::Executer(Sentient_Entity * agent) {
 	if (fV != FONC_V_NULL) {

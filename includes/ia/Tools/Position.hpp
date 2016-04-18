@@ -37,11 +37,14 @@ class Position {
 		 	*\param rayon : le rayon du cercle à considérer
 		 */
 		bool isInCircle(Position* p, int rayon);
-
+		
+		bool operator<(Position const &) const; 
+		
 		/*!
 		 	*\brief Destructeur
 		 */
 		~Position(void);
+		
 
 
 

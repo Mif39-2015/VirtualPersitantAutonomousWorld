@@ -12,6 +12,9 @@
 #include <limits>
 #include <cstdlib>
 #include <vector>
+#include <map>
+#include <iostream>
+
 
 #include "tool/cJSON.hpp"
 
@@ -55,5 +58,7 @@ int findInVector(std::vector<T> v, T element) {
 	}
 	return -1;
 }
+
+map<pair<int,int>, char>getMap(string);
 
 #endif

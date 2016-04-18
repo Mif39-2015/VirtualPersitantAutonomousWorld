@@ -51,9 +51,10 @@ class Sentient_Entity : public Tangible_Entity{
 		/*!
 		* \brief Trouve le plus cours chemin jusqu'à une position
 		* \param pos: la position à atteindre
+		* \param carte: la carte
 		* \return un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 		* */	
-		stack<Position> pathFindTo(Position pos);
+		stack<Position> pathFindTo(Position pos, map<pair<int,int>, char> carte);
 
 		/*!
 		* \brief Compare deux position et sur la base de la proximité avec la position courante

@@ -26,3 +26,13 @@ bool Position::isInCircle(Position * p, int rayon) {
 		return true;
 	return false;
 }
+
+bool Position::operator<(Position const &p2) const
+{
+    if(getX() < p2.getX())
+		return true;
+	else if(getY() < p2.getY())
+		return true;	
+    return false;	
+}
+

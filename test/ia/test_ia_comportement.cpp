@@ -32,6 +32,10 @@ TEST_CASE("Test_Comportement", "[comp]")
 	{
 
 		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
+		int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
+
+		REQUIRE(loadResult  != -1);
+		REQUIRE(loadResult2 != -1);
 
 		cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
 
@@ -98,8 +102,6 @@ TEST_CASE("Test_Comportement", "[comp]")
 		Sentient_Entity * agent = Factories::createAgent();
 
 		cout << "on a créé l'agent " << endl;
-
-		agent->addToTrace(c, noeudFaimM5, false);
 
 		cout << "on a ajouté le comportement dans l'agent" << endl;
 

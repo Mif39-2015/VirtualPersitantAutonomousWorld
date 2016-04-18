@@ -22,33 +22,38 @@ public:
 	* \param nbAg: Le nombre d'agents au début de la simulation
 	* \param nbAn: Le nombre d'animaux au début de la simulation
 	*/
-	static void initSimulation(int nbAg, int nbAn);
+	void initSimulation(int nbAg, int nbAn);
 
 	/*!
 	* \brief Permet d'appeler la fonction run pour tout les agents.
 	*/
-	static void runAll();
+	void runAll();
 
 	/*!
 	* \brief Permet de faire un tick d'horloge pour tout les insentient_entity de la simulation
 	*/
-	static void updateWorld();
+	void updateWorld();
 
 	/*!
 	* \brief Retourne un agent selon un id
 	* \param i: l'id recherché
 	*/
-	static Sentient_Entity * getAgentById(unsigned int i);
+	Sentient_Entity * getAgentById(unsigned int i);
 
 	/*!
 	* \brief Retourne un clan selon un id
 	* \param i: l'id recherché
 	*/
-	static Tribe * getTribeById(unsigned int i);
+	Tribe * getTribeById(unsigned int i);
+	
+	/*!
+	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération 
+	*/
+	std::vector<Entity *> getChanges();
 
-	static std::vector<Sentient_Entity *> listAgent;
-	static std::vector<Tribe *> listTribe;
-	static std::vector<Insentient_Entity *> listIE;
+	std::vector<Sentient_Entity *> listAgent;
+	std::vector<Tribe *> listTribe;
+	std::vector<Insentient_Entity *> listIE;
 
 private:
 };

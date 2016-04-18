@@ -4,9 +4,14 @@
  */
 #include "server/WorldSimulator.hpp"
 
-WorldSimulator::WorldSimulator(bool logAi, bool logWorld)
-: netAdapter(new NetworkAdapter(this))
+WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool logWorld)
+: 	netAdapter(new NetworkAdapter(this)),
+	simulationTime(0),
+	simulationTimeWarp(100000),
+	facade(new Facade())
 {
+	facade->initSimulation(nbAgents, nbAnimals);
+	
 	aiLogger = NULL;
 	worldLogger = NULL;
 	
@@ -17,8 +22,9 @@ WorldSimulator::WorldSimulator(bool logAi, bool logWorld)
 		worldLogger = new Logger("world.log");
 	}
 }
+
 WorldSimulator::WorldSimulator()
-: WorldSimulator(false, false)
+: WorldSimulator(false, false, 10, 10)
 {
 	
 }
@@ -29,17 +35,51 @@ void WorldSimulator::run(bool multiThread){
 	if(multiThread){
 		
 	} else {
-		thread worldThread(&WorldSimulator::worldDoOneLoop, this);
+		thread worldThread(&WorldSimulator::worldRun, this);
 		
 		worldThread.join();
-		
 	}
 }
 
-void WorldSimulator::worldDoOneLoop(){
+void WorldSimulator::worldRun(){
 	/* World run method */
-	/* Logging AI & World */
-	/* Broadcasting */
+	while(true){
+		// Increase time counter
+		simulationTime++;
+		simulationTime %= simulationTimeWarp;
+		
+		facade->runAll();
+		facade->updateWorld();
+		
+		/* Logging AI & World */
+		if(aiLogger != NULL){
+			aiLogger->log("####################");
+			aiLogger->log("Step n°" + simulationTime);
+			aiLogger->log("Nb agents \t\t= " + facade->listAgent.size());
+			aiLogger->log("Nb tribes \t\t= " + facade->listTribe.size());
+			aiLogger->log("Nb insentient entities \t= " + facade->listIE.size());
+			// Log changes of agents
+			for(Sentient_Entity * a : facade->listAgent){
+				if(a->getModif()){
+					aiLogger->log(a->getName());
+				}
+			}
+			// Log changes of tribes
+			for(Tribe * t : facade->listTribe){
+				if(t->getModif()){
+					aiLogger->log(t->getName());
+				}
+			}
+		}
+		if(worldLogger != NULL){
+			for(Entity* e : facade->getChanges()){
+				worldLogger->log(e->getName());
+			}
+		}
+		
+		/* Broadcasting changes */
+		
+	}
 }
 
 void WorldSimulator::save(const string fileName){

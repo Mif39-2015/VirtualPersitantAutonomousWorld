@@ -42,7 +42,6 @@ void Sentient_Entity::run(){
 	Noeud * n = std::get<1>(t);
 	Noeud * n2;
 	n2 = n->executerNoeud( this, !std::get<2>(t));
-
 	if(n2 != n){
 		std::get<1>(t) = n2;
 		trace.pop();

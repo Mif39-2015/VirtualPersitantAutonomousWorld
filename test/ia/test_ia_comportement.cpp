@@ -115,6 +115,31 @@ TEST_CASE("Test_Comportement", "[comp]")
 		delete areteFaim20;
 		delete actionFaimP10;
 		delete actionFaimM5;
+
+		std::cout << std::endl;
+	}
+
+	SECTION("TEST LISTE COMPORTEMENT")
+	{
+
+		std::cout << "TEST LISTE COMPORTEMENT" << std::endl;
+		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
+		int loadResult2 = Comportement::initVectorComp(PATH_DATA"foo.json");
+
+		REQUIRE(loadResult  != -1);
+		REQUIRE(loadResult2 != -1);
+
+		Sentient_Entity * agent = Factories::createAgent();
+
+		agent->setComportement(Comportement::listComportements[0]);
+
+		int i = 0;
+		while(i < 50){
+			agent->run();
+			i++;
+		}
+
+		std::cout << std::endl;
 	}
 }
 

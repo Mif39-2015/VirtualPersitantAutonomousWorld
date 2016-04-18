@@ -19,8 +19,11 @@ class Comportement {
 	public :
 
 		// ******** STATICS CONTAINERS ********
-		static vector<Comportement *> comportements;
-		static void addToComportements(Comportement * c) {comportements.push_back(c);}
+		static vector<Comportement *> listComportements;
+		static void addToComportements(Comportement * c) {listComportements.push_back(c);}
+
+		// ******** STATICS METHODS ********
+		static int initVectorComp(std::string filename);
 
 		// ******** CONSTRUCTEUR ********
 		Comportement();

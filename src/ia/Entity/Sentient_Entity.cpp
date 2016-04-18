@@ -1,8 +1,13 @@
 #include <iostream>
 #include "ia/Behavior/Noeud.hpp"
 #include "ia/Entity/Sentient_Entity.hpp"
+#include "ia/Behavior/Comportement.hpp"
 
 Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){}
+
+void Sentient_Entity::setComportement(Comportement * comp){
+	addToTrace(comp, comp->getNoeudDepart(), false);
+}
 
 void Sentient_Entity::vision(){
 	int vue = 10;
@@ -68,7 +73,7 @@ stack<Position> Sentient_Entity::pathFindTo(Position posTo, map<pair<int,int>, c
 void Sentient_Entity::setCheminMemorise(vector<stack<Position>> chemin){
 	cheminMemorise = chemin;
 }
-		
+
 vector<stack<Position>> Sentient_Entity::getCheminMemorise(){
 	return cheminMemorise;
 }
@@ -84,12 +89,12 @@ stack<Position> Sentient_Entity::connaitChemin(Position posFinale){
 		cheminTemp = *it;
 		stack<Position> cheminInverse;
 		stack<Position> cheminReturn;
-		while(!cheminTemp.empty()){	
+		while(!cheminTemp.empty()){
 			if(cheminTemp.top().getX() == pos.getX() && cheminTemp.top().getY() == pos.getY()){
 				findStart = true;
 			}
 			if(findStart){
-				cheminInverse.push(cheminTemp.top());	
+				cheminInverse.push(cheminTemp.top());
 				if (cheminTemp.top().getX() == posFinale.getX() && cheminTemp.top().getY() == posFinale.getY()){
 					 while(!cheminInverse.empty()){
 						 cheminReturn.push(cheminInverse.top());

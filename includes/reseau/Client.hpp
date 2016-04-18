@@ -20,23 +20,23 @@ using namespace std;
  * \brief Holds client information
  */
 class Client {
-	public:
-		Client(int _socket);
+public:
+    Client(int _socket);
 		
-		void setId(int _id);
+    void setId(int _id);
 
-		int getId();
-		int getSocket();
-		thread* getThread();
+    int getId();
+    int getSocket();
+    thread* getThread();
 		
-		void listenForRequests(); // Run method
-		void sendMessageToClient(string _message);
+    void listenForRequests(); // Run method
+    void sendMessageToClient(string _message);
 		
-	private:
-		NetworkAdapter* netAdapter; // used to access database
-		int id; // database ID
-		int socket; // Socket fd
-		thread* requestHandler; // Client thread
+private:
+    NetworkAdapter* netAdapter; // used to access database
+    int id; // database ID
+    int socket; // Socket fd
+    thread* requestHandler; // Client thread
 };
 
 #endif

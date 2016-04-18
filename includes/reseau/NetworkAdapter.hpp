@@ -18,8 +18,8 @@
 #include <string>
 #include "message/Message.hpp"
 #include "message/WorldChangeMessage.hpp"
-#include "../server/WorldSimulator.hpp"
-#include "../logging/Logger.hpp"
+#include "server/WorldSimulator.hpp"
+#include "logging/Logger.hpp"
 #include "AuthenticationModule.hpp"
 
 typedef struct arg{

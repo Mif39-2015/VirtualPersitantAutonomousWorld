@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#include "Behavior/Action.hpp"
+#include "ia/Behavior/Action.hpp"
 #include <utility>
 
 class Comportement;

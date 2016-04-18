@@ -1,5 +1,5 @@
-#include "Behavior/Comportement.hpp"
-#include "Tools/Tools.hpp"
+#include "ia/Behavior/Comportement.hpp"
+#include "ia/Tools/Tools.hpp"
 
 // ******** CONSTRUCTEURS ********
 Comportement::Comportement() {}

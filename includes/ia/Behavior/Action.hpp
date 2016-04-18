@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#include "Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
 
 /*!
 *\class Action 

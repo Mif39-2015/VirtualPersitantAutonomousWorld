@@ -4,7 +4,7 @@
 #include <vector>
 #include <map>
 
-#include "sqliteInterface.hpp"
+#include "db/sqliteInterface.hpp"
 
 using std::vector;
 using std::map;

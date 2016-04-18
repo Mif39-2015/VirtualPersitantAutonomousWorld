@@ -1,4 +1,4 @@
-#include "Behavior/ActionSimple.hpp"
+#include "ia/Behavior/ActionSimple.hpp"
 
 void ActionSimple::Executer(Sentient_Entity * agent) {
 	if (fV != FONC_V_NULL) {

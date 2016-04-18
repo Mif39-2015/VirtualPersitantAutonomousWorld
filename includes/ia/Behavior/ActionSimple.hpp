@@ -3,8 +3,8 @@
 
 using namespace std;
 
-#include "Behavior/Action.hpp"
-#include "FonctionEnums.hpp"
+#include "ia/Behavior/Action.hpp"
+#include "ia/Behavior/FonctionEnums.hpp"
 
 #include <stack>
 

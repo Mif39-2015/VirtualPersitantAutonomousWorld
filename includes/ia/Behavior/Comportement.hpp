@@ -4,7 +4,7 @@
 using namespace std;
 
 #include <vector>
-#include "Behavior/Noeud.hpp"
+#include "ia/Behavior/Noeud.hpp"
 
 class Noeud;
 

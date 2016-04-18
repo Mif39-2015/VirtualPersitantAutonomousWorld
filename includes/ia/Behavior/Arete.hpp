@@ -4,8 +4,8 @@
 #include <vector>
 #include <stack>
 
-#include "Behavior/Noeud.hpp"
-#include "FonctionEnums.hpp"
+#include "ia/Behavior/Noeud.hpp"
+#include "ia/Behavior/FonctionEnums.hpp"
 
 class Noeud;
 

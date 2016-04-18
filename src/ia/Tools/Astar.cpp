@@ -1,4 +1,4 @@
-#include "Tools/Astar.hpp"
+#include "ia/Tools/Astar.hpp"
 
 Node::Node(int xp, int yp){
 	xPos=xp; 

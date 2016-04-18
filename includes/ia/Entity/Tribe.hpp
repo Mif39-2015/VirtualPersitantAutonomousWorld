@@ -9,8 +9,8 @@
 
 //#include "Complex_Behavior.hpp" //Uncomment if Complex_Behavior will be implemented
 //#include "Goal.hpp" //Uncomment if Goal will be implemented
-#include "Entity/Entity.hpp"
-#include "Entity/Item.hpp"
+#include "ia/Entity/Entity.hpp"
+#include "ia/Entity/Item.hpp"
 #include <string>
 #include <map>
 #include <vector>

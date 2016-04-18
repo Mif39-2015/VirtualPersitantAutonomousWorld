@@ -13,7 +13,7 @@
 #include <cstdlib>
 #include <vector>
 
-#include "../src/tool/cJSON.hpp"
+#include "tool/cJSON.hpp"
 
 using namespace std;
 

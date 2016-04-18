@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Entity/Characteristics.hpp"
+#include "ia/Entity/Characteristics.hpp"
 
 using namespace std;
 

@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "Tools/Tools.hpp"
-#include "../src/tool/cJSON.hpp"
+#include "ia/Tools/Tools.hpp"
+#include "tool/cJSON.hpp"
 
 class Characteristics {
 

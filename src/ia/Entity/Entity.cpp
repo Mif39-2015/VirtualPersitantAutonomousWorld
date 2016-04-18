@@ -1,9 +1,12 @@
 #include <iostream>
-#include "Entity/Entity.hpp"
+#include "ia/Entity/Entity.hpp"
 
 unsigned int Entity::idCount = 0;
 
-Entity::Entity(std::string n, type tid, std::map<int, int> charac) : typeId(tid), name(n), charact_correspondence(charac) {}
+Entity::Entity(std::string n, type tid, std::map<int, int> charac) : typeId(tid), name(n), charact_correspondence(charac) {
+	id = idCount;
+    	idCount++;
+}
 
 unsigned int Entity::getId(){
 	return id;

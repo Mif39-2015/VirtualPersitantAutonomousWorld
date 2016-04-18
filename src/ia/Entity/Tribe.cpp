@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Entity/Tribe.hpp"
+#include "ia/Entity/Tribe.hpp"
 
 Tribe::Tribe(std::string n, unsigned int gi, type t, std::map<int, int> charac) : Entity(n, t, charac), goal_index(gi) {}
 
@@ -14,6 +14,7 @@ unsigned int Tribe::getGoalIndex(){
 void Tribe::setGoalIndex(unsigned int _goal_index){
     goal_index=_goal_index;
 }
+
 int Tribe::getTribeSize(){
     int sizet=0;
     for(Entity* a : members){
@@ -21,9 +22,11 @@ int Tribe::getTribeSize(){
     }
     return sizet;
 }
+
 void Tribe::addNewEntity(Entity* a){
     members.push_back(a);
 }
+
 int Tribe::getPopulationSize(){
     int sizet=0;
     for(Entity* a: members){
@@ -33,6 +36,7 @@ int Tribe::getPopulationSize(){
     }
     return sizet;
 }
+
 int Tribe::getNbBuildings(){
     int sizet=0;
     for(Entity* a: members){
@@ -42,6 +46,7 @@ int Tribe::getNbBuildings(){
     }
     return sizet;
 }
+
 int Tribe::getNbRessources(){
     int sizet=0;
     for(Entity* a: members){
@@ -51,9 +56,11 @@ int Tribe::getNbRessources(){
     }
     return sizet;
 }
+
 int Tribe::getQuantityByItem(Item* i){
     return stock.at(i);
 }
+
 // Pour ajouter des itemms à un inventaire, il faut utiliser l'adresse de sa case dans la liste globale
 void Tribe::addItemToStock(Item* i, int quantity){
     if(stock.find(i)==stock.end())

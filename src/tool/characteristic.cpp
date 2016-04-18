@@ -1,4 +1,4 @@
-#include "characteristic.hpp"
+#include "tool/characteristic.hpp"
 
 int Characteristic::getId(){
     return this->id;

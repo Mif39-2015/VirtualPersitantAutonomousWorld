@@ -213,19 +213,4 @@ void NetworkAdapter::Run(){
     }
 }
 
-void NetworkAdapter::addClient(Client* _newClient){
-	this->clients.push_back(_newClient);
-}
-
-Client* NetworkAdapter::getClientById(int _clientId){
-	for(Client* cl : this->clients){
-		if(cl->getId() == _clientId){
-			return cl;
-		}
-	}
-	return NULL;
-}
-
-
-
 

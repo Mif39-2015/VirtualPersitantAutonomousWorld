@@ -17,7 +17,6 @@
 #include <fstream>
 #include <string>
 #include "message/Message.hpp"
-#include "reseau/Client.hpp"
 #include "message/WorldChangeMessage.hpp"
 #include "../server/WorldSimulator.hpp"
 #include "../logging/Logger.hpp"
@@ -29,7 +28,6 @@ typedef struct arg{
 } infos;
 
 class WorldSimulator;
-class Client;
 
 using namespace std;
 
@@ -46,18 +44,14 @@ private:
     struct sockaddr_in server , client;
     infos *info;
 	
-	vector<Client*> clients;
 
 public:
     NetworkAdapter(WorldSimulator* _simulator);
     NetworkAdapter(WorldSimulator* _simulator, bool logNetwork);
     void Init();
     void Run();
-    void Run2();
     void broadcastWorldChangesToclients();
-    
-    void addClient(Client* _newClient);
-    Client* getClientById(int _clientId);
+
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Entity/Item.hpp"
+#include "ia/Entity/Item.hpp"
 
 std::vector<Item> Item::listItems;
 Item::Item(std::string n, type t,std::map<int, int> charac) : Entity(n, t,charac){}

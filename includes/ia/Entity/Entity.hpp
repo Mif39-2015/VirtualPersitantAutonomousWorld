@@ -7,7 +7,7 @@
  */
 #include <string>
 #include <map>
-#include "../../src/tool/cJSON.hpp"
+#include "tool/cJSON.hpp"
 
 using namespace std;
 /*!

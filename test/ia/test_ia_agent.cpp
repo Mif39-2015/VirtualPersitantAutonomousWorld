@@ -20,17 +20,15 @@
 #include "ia/Entity/Tribe.hpp"
 
 #include "ia/Tools/Factories.hpp"
+#include "ia/Tools/Position.hpp"
+#include "ia/Tools/Astar.hpp"
 
 using namespace std;
-TEST_CASE("Test tools", "[tools]")
+
+TEST_CASE("Test_Agent", "[agent]")
 {
-	SECTION("Test classe Position")
+	SECTION("TEST AGENT")
 	{
-		Position p1 (0,0);
-		Position* p2 = new Position(2,2);
 
-		REQUIRE(!(p1.isInCircle(p2, 1)));
-
-		REQUIRE(p1.isInCircle(p2, 8));
 	}
 }

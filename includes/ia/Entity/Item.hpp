@@ -11,9 +11,9 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "Entity/Entity.hpp"
-#include "Tools/Tools.hpp"
-#include "../src/tool/cJSON.hpp"
+#include "ia/Entity/Entity.hpp"
+#include "ia/Tools/Tools.hpp"
+#include "tool/cJSON.hpp"
 
 
 /*! \class Item

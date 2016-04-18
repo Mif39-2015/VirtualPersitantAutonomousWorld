@@ -9,7 +9,7 @@
 
 using namespace std;
 
-#include "Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
 #include <stack>
 #include <utility>
 #include "FonctionEnums.hpp"

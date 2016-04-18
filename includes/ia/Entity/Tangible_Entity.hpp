@@ -5,9 +5,9 @@
 * \brief contient la classe Tangible_Entity
 * \author Groupe IA
 */
-#include "Entity/Entity.hpp"
-#include "Tools/Position.hpp"
-#include "Entity/Item.hpp"
+#include "ia/Entity/Entity.hpp"
+#include "ia/Tools/Position.hpp"
+#include "ia/Entity/Item.hpp"
 
 using namespace std;
 /*! 

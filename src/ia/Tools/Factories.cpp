@@ -1,33 +1,32 @@
-
-#include "Tools/Factories.hpp"
+#include "ia/Tools/Factories.hpp"
 
 Sentient_Entity * Factories::createAgent(){
     std::vector<int> characs;
     
     ifstream file (PATH_DATA"/Characteristics_Agent.json", ios::in);
-	if (file.is_open()){
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    if (file.is_open()){
+        string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 		
-		file.close();
+        file.close();
 
-		cJSON *root = cJSON_Parse(str.c_str());
+        cJSON *root = cJSON_Parse(str.c_str());
 		
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsAgent");
-		int	nb = cJSON_GetArraySize(child);
-		for(int i = 0; i < nb; i++){
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item,"id");
-			if(id->type == cJSON_Number){
-				characs.push_back(id->valueint);
-			}
-		}
+        cJSON *child = cJSON_GetObjectItem(root, "characteristicsAgent");
+        int	nb = cJSON_GetArraySize(child);
+        for(int i = 0; i < nb; i++){
+            cJSON *item = cJSON_GetArrayItem(child, i);
+            cJSON *id = cJSON_GetObjectItem(item,"id");
+            if(id->type == cJSON_Number){
+                characs.push_back(id->valueint);
+            }
+        }
 		
-	} else {
-		std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
-		return nullptr;
-	}
+    } else {
+        std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
+        return nullptr;
+    }
 
-	std::map<int, int> characs_val;
+    std::map<int, int> characs_val;
     for (unsigned int i = 0; i < characs_val.size(); i++)
     {
     	characs_val.insert(std::pair<int, int>(characs[i], -1));
@@ -41,10 +40,10 @@ Sentient_Entity * Factories::createAgent(){
     {
     	if (characs_val.at(*it) == -1)
     	{
-		    int min = Characteristics::listCharacteristics[*it].getMin();
-		    int max = Characteristics::listCharacteristics[*it].getMax();
-		    int val = rand (min, max+1);
-		    characs_val[*it] = val;
+            int min = Characteristics::listCharacteristics[*it].getMin();
+            int max = Characteristics::listCharacteristics[*it].getMax();
+            int val = rand (min, max+1);
+            characs_val[*it] = val;
         }
     }
 
@@ -61,27 +60,27 @@ Sentient_Entity * Factories::createAnimal(){
     std::vector<int> characs;
     
     ifstream file (PATH_DATA"/Characteristics_Animal.json", ios::in);
-	if (file.is_open()){
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    if (file.is_open()){
+        string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 		
-		file.close();
+        file.close();
 
-		cJSON *root = cJSON_Parse(str.c_str());
+        cJSON *root = cJSON_Parse(str.c_str());
 		
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsAnimal");
-		int	nb = cJSON_GetArraySize(child);
-		for(int i = 0; i < nb; i++){
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item,"id");
-			if(id->type == cJSON_Number){
-				characs.push_back(id->valueint);
-			}
-		}
+        cJSON *child = cJSON_GetObjectItem(root, "characteristicsAnimal");
+        int	nb = cJSON_GetArraySize(child);
+        for(int i = 0; i < nb; i++){
+            cJSON *item = cJSON_GetArrayItem(child, i);
+            cJSON *id = cJSON_GetObjectItem(item,"id");
+            if(id->type == cJSON_Number){
+                characs.push_back(id->valueint);
+            }
+        }
 		
-	} else {
+    } else {
         std::cout << "Unable to open file for the Animal Characteristics" << std::endl;
         return nullptr;
-	}
+    }
 	
     std::map<int, int> characs_val;
     for (unsigned int i = 0; i < characs_val.size(); i++)
@@ -108,29 +107,29 @@ Item * Factories::createItem(){
     std::vector<int> characs;
     
     ifstream file (PATH_DATA"/Characteristics_Item.json", ios::in);
-	if (file.is_open()){
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    if (file.is_open()){
+        string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 		
-		file.close();
+        file.close();
 
-		cJSON *root = cJSON_Parse(str.c_str());
+        cJSON *root = cJSON_Parse(str.c_str());
 		
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsItem");
-		int	nb = cJSON_GetArraySize(child);
-		for(int i = 0; i < nb; i++){
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item,"id");
-			if(id->type == cJSON_Number){
-				characs.push_back(id->valueint);
-			}
-		}
+        cJSON *child = cJSON_GetObjectItem(root, "characteristicsItem");
+        int	nb = cJSON_GetArraySize(child);
+        for(int i = 0; i < nb; i++){
+            cJSON *item = cJSON_GetArrayItem(child, i);
+            cJSON *id = cJSON_GetObjectItem(item,"id");
+            if(id->type == cJSON_Number){
+                characs.push_back(id->valueint);
+            }
+        }
 		
-	} else {
-		std::cout << "Unable to open file for the Item Characteristics" << std::endl;
-		return nullptr;
-	}
+    } else {
+        std::cout << "Unable to open file for the Item Characteristics" << std::endl;
+        return nullptr;
+    }
 
-	std::map<int, int> characs_val;
+    std::map<int, int> characs_val;
     for (unsigned int i = 0; i < characs_val.size(); i++)
     {
     	characs_val.insert(std::pair<int, int>(characs[i], -1));
@@ -152,27 +151,27 @@ Tribe * Factories::createTribe(){
     std::vector<int> characs;
 
     ifstream file (PATH_DATA"/Characteristics_Tribe.json", ios::in);
-	if (file.is_open()){
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    if (file.is_open()){
+        string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 		
-		file.close();
+        file.close();
 
-		cJSON *root = cJSON_Parse(str.c_str());
+        cJSON *root = cJSON_Parse(str.c_str());
 		
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsTribe");
-		int	nb = cJSON_GetArraySize(child);
-		for(int i = 0; i < nb; i++){
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item,"id");
-			if(id->type == cJSON_Number){
-				characs.push_back(id->valueint);
-			}
-		}
+        cJSON *child = cJSON_GetObjectItem(root, "characteristicsTribe");
+        int	nb = cJSON_GetArraySize(child);
+        for(int i = 0; i < nb; i++){
+            cJSON *item = cJSON_GetArrayItem(child, i);
+            cJSON *id = cJSON_GetObjectItem(item,"id");
+            if(id->type == cJSON_Number){
+                characs.push_back(id->valueint);
+            }
+        }
 		
-	} else {
-		std::cout << "Unable to open file for the Tribe Characteristics" << std::endl;
+    } else {
+        std::cout << "Unable to open file for the Tribe Characteristics" << std::endl;
         return nullptr;
-	}
+    }
 
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
@@ -191,27 +190,27 @@ Insentient_Entity * Factories::createResource(){
     std::vector<int> characs;
     
     ifstream file (PATH_DATA"/Characteristics_Resource.json", ios::in);
-	if (file.is_open()){
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    if (file.is_open()){
+        string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 		
-		file.close();
+        file.close();
 
-		cJSON *root = cJSON_Parse(str.c_str());
+        cJSON *root = cJSON_Parse(str.c_str());
 		
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsResource");
-		int	nb = cJSON_GetArraySize(child);
-		for(int i = 0; i < nb; i++){
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item,"id");
-			if(id->type == cJSON_Number){
-				characs.push_back(id->valueint);
-			}
-		}
+        cJSON *child = cJSON_GetObjectItem(root, "characteristicsResource");
+        int	nb = cJSON_GetArraySize(child);
+        for(int i = 0; i < nb; i++){
+            cJSON *item = cJSON_GetArrayItem(child, i);
+            cJSON *id = cJSON_GetObjectItem(item,"id");
+            if(id->type == cJSON_Number){
+                characs.push_back(id->valueint);
+            }
+        }
 		
-	} else {
-		std::cout << "Unable to open file for the Resource Characteristics" << std::endl;
-		return nullptr;
-	}
+    } else {
+        std::cout << "Unable to open file for the Resource Characteristics" << std::endl;
+        return nullptr;
+    }
 
     std::map<int, int> characs_val;
     for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
@@ -235,27 +234,27 @@ Insentient_Entity * Factories::createBuilding(){
     std::vector<int> characs;
     
     ifstream file (PATH_DATA"/Characteristics_Building.json", ios::in);
-	if (file.is_open()){
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
+    if (file.is_open()){
+        string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 		
-		file.close();
+        file.close();
 
-		cJSON *root = cJSON_Parse(str.c_str());
+        cJSON *root = cJSON_Parse(str.c_str());
 		
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsBuilding");
-		int	nb = cJSON_GetArraySize(child);
-		for(int i = 0; i < nb; i++){
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item,"id");
-			if(id->type == cJSON_Number){
-				characs.push_back(id->valueint);
-			}
-		}
+        cJSON *child = cJSON_GetObjectItem(root, "characteristicsBuilding");
+        int	nb = cJSON_GetArraySize(child);
+        for(int i = 0; i < nb; i++){
+            cJSON *item = cJSON_GetArrayItem(child, i);
+            cJSON *id = cJSON_GetObjectItem(item,"id");
+            if(id->type == cJSON_Number){
+                characs.push_back(id->valueint);
+            }
+        }
 		
-	} else {
-		std::cout << "Unable to open file for the Building Characteristics" << std::endl;
-		return nullptr;
-	}
+    } else {
+        std::cout << "Unable to open file for the Building Characteristics" << std::endl;
+        return nullptr;
+    }
 
     std::map<int, int> characs_val;
     for (unsigned int i = 0; i < characs_val.size(); i++)

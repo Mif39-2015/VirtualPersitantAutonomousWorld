@@ -1,8 +1,7 @@
 #ifndef FONCTION_ENUM_HPP
 #define FONCTION_ENUM_HPP
 
-#include "Entity/Entity.hpp"
-// #include "Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Entity.hpp"
 
 #include <iostream>
 #include <map>

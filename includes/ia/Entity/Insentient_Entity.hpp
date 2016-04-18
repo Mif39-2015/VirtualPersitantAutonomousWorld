@@ -5,9 +5,9 @@
  * \brief contient la classe Insentient_Entity
  * \author Groupe IA
  */
-#include "Entity/Tangible_Entity.hpp"
-#include "Tools/Vector3.hpp"
-#include "Characteristics.hpp"
+#include "ia/Entity/Tangible_Entity.hpp"
+#include "ia/Tools/Vector3.hpp"
+#include "ia/Entity/Characteristics.hpp"
 
 /*! \class Insentient_Entity
    * \brief Classe contenant les attributs et methodes nécessaires pour la gestion des entités tangibles

@@ -9,12 +9,12 @@
 
 #include <fstream>
 #include <iostream>
-#include "Entity/Characteristics.hpp"
-#include "Entity/Sentient_Entity.hpp"
-#include "Entity/Insentient_Entity.hpp"
-#include "Entity/Tribe.hpp"
-#include "Entity/Item.hpp"
-#include "Tools/Tools.hpp"
+#include "ia/Entity/Characteristics.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Insentient_Entity.hpp"
+#include "ia/Entity/Tribe.hpp"
+#include "ia/Entity/Item.hpp"
+#include "ia/Tools/Tools.hpp"
 
 /*!
 *\class Factories

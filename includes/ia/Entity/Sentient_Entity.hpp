@@ -11,10 +11,10 @@
 #include <stack>
  
  
-#include "Entity/Tangible_Entity.hpp"
-#include "Behavior/EtatEnum.hpp"
-#include "Tools/Position.hpp"
-#include "Tools/Astar.hpp"
+#include "ia/Entity/Tangible_Entity.hpp"
+#include "ia/Behavior/EtatEnum.hpp"
+#include "ia/Tools/Position.hpp"
+#include "ia/Tools/Astar.hpp"
 
 class Comportement;
 class Noeud;

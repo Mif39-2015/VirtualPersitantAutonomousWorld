@@ -4,8 +4,8 @@
 using namespace std;
 
 #include <vector>
-#include "Behavior/Arete.hpp"
-#include "Behavior/Action.hpp"
+#include "ia/Behavior/Arete.hpp"
+#include "ia/Behavior/Action.hpp"
 
 class Action;
 class Arete;

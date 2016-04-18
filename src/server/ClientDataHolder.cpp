@@ -2,7 +2,7 @@
  * \file ClientDataHolder.cpp
  * \brief Implementation of ClientDataHolder.hpp
  */
-#include "ClientDataHolder.hpp"
+#include "server/ClientDataHolder.hpp"
 
 ClientDataHolder::ClientDataHolder(){
 	

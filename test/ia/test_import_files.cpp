@@ -6,22 +6,22 @@
 
 #include "serveur_catch.hpp"
 
-#include "Behavior/Action.hpp"
-#include "Behavior/Arete.hpp"
-#include "Behavior/Comportement.hpp"
-#include "Behavior/EtatEnum.hpp"
-#include "Behavior/FonctionEnums.hpp"
-#include "Behavior/Noeud.hpp"
+#include "ia/Behavior/Action.hpp"
+#include "ia/Behavior/Arete.hpp"
+#include "ia/Behavior/Comportement.hpp"
+#include "ia/Behavior/EtatEnum.hpp"
+#include "ia/Behavior/FonctionEnums.hpp"
+#include "ia/Behavior/Noeud.hpp"
 
-#include "Entity/Characteristics.hpp"
-#include "Entity/Entity.hpp"
-#include "Entity/Insentient_Entity.hpp"
-#include "Entity/Item.hpp"
-#include "Entity/Sentient_Entity.hpp"
-#include "Entity/Tangible_Entity.hpp"
-#include "Entity/Tribe.hpp"
+#include "ia/Entity/Characteristics.hpp"
+#include "ia/Entity/Entity.hpp"
+#include "ia/Entity/Insentient_Entity.hpp"
+#include "ia/Entity/Item.hpp"
+#include "ia/Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Tangible_Entity.hpp"
+#include "ia/Entity/Tribe.hpp"
 
-#include "Tools/Factories.hpp"
+#include "ia/Tools/Factories.hpp"
 #include "tool/cJSON.hpp"
 
 using namespace std;

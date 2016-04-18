@@ -1,10 +1,10 @@
-#include <iostream>
-#include "Tools/Position.hpp"
 #include <cmath>
+
+#include "ia/Tools/Position.hpp"
 
 Position::Position(int a, int b) : x(a), y(b) {}
 
-Position::Position(const Position &p) {
+Position::Position(const Position & p) {
 	x = p.getX();
 	y = p.getY();
 }
@@ -20,7 +20,7 @@ int Position::getY() const {
 	return y;
 }
 
-bool Position::isInCircle(Position* p, int rayon) {
+bool Position::isInCircle(Position * p, int rayon) {
 	double dist = sqrt((x - p->getX()) * (x - p->getX()) + (y - p->getY()) * (y - p->getY()));
 	if (dist < rayon)
 		return true;

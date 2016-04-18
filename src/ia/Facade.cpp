@@ -1,4 +1,4 @@
-#include "Facade.hpp"
+#include "ia/Facade.hpp"
 
 void Facade::runAll(){
 	for(Sentient_Entity * se : Facade::listAgent){

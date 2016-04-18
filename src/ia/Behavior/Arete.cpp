@@ -1,4 +1,4 @@
-#include "Behavior/Arete.hpp"
+#include "ia/Behavior/Arete.hpp"
 
 // ******** CONSTRUCTEURS ********
 Arete::Arete() {

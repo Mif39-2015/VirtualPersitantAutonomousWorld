@@ -1,7 +1,7 @@
 #ifndef ETATENUM_HPP
 #define ETATENUM_HPP
 
-#include "Entity/Entity.hpp"
+#include "ia/Entity/Entity.hpp"
 
 #include <iostream>
 #include <map>

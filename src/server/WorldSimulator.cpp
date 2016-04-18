@@ -123,17 +123,17 @@ void WorldSimulator::handleUserCommands(){
 	vector<string> words = StringTool::split(input, ' ');
 	
 	if(words.size() > 0){
-		if(input[0].compare("load")){
+		if(words[0].compare("load")){
 			if(words.size() > 1){
-				this->load(input[1]);
+				this->load(words[1]);
 			}
-		} else if(input[0].compare("pause")){
+		} else if(words[0].compare("pause")){
 			// TODO
-		} else if(input[0].compare("save")){
+		} else if(words[0].compare("save")){
 			if(words.size() > 1){
-				this->save(input[1]);
+				this->save(words[1]);
 			}
-		} else if(input[0].compare("stop")){
+		} else if(words[0].compare("stop")){
 			// TODO
 		}
 	}

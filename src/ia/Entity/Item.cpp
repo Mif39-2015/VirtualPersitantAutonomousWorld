@@ -15,6 +15,10 @@ Item * Item::getItemByName(std::string n){
 	return nullptr;
 }
 
+void updateItem(unsigned int wstime){
+	//TODO
+}
+
 int Item::loadItemsFile(std::string fileName){
 	ifstream file (PATH_DATA"/descriptionItems.json", ios::in);
 	if (file.is_open()){

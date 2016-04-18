@@ -62,6 +62,8 @@ public:
 	*/
 	static Item * getItemByName(std::string n);
 
+	void updateItem(unsigned int wstime);
+
 	/*!
 	*  \brief Destructeur pour la classe Item
 	*  return bool

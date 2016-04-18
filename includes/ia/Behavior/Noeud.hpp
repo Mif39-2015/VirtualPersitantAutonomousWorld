@@ -24,9 +24,6 @@ class Noeud {
 		Noeud();
 		Noeud(Action * a);
 
-		// ******** DESTRUCTEUR ********
-		~Noeud();
-
 		// ******** GETTERS ********
 		vector<Arete *> getAretesOut();
 		vector<Arete *> getAretesIn();

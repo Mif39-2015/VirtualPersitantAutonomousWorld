@@ -36,29 +36,29 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		Comportement * c =  new Comportement();
 
-		Noeud noeudFaimM5;
-		Noeud noeudFaimP10;
+		Noeud * noeudFaimM5 = new Noeud();
+		Noeud * noeudFaimP10 = new Noeud();
 
-		Arete areteFaim20(&noeudFaimM5, &noeudFaimP10);
-		Arete areteFaim80(&noeudFaimP10, &noeudFaimM5);
+		Arete * areteFaim20 = new Arete(noeudFaimM5, noeudFaimP10);
+		Arete * areteFaim80 = new Arete(noeudFaimP10, noeudFaimM5);
 
 		cout << "declaration des Aretes" << endl;
 
-        noeudFaimM5.ajouterAreteOut(&areteFaim20);
-        noeudFaimM5.ajouterAreteIn(&areteFaim80);
-        noeudFaimP10.ajouterAreteIn(&areteFaim20);
-        noeudFaimP10.ajouterAreteOut(&areteFaim80);
+        noeudFaimM5->ajouterAreteOut(areteFaim20);
+        noeudFaimM5->ajouterAreteIn(areteFaim80);
+        noeudFaimP10->ajouterAreteIn(areteFaim20);
+        noeudFaimP10->ajouterAreteOut(areteFaim80);
 
-		ActionSimple actionFaimM5;
-		ActionSimple actionFaimP10;
+		ActionSimple * actionFaimM5 = new ActionSimple();
+		ActionSimple * actionFaimP10 = new ActionSimple();
 
-		actionFaimM5.setFonc_Void(FONC_FAIM_M5);
-		actionFaimP10.setFonc_Void(FONC_FAIM_P10);
+		actionFaimM5->setFonc_Void(FONC_FAIM_M5);
+		actionFaimP10->setFonc_Void(FONC_FAIM_P10);
 
 		cout << "Setup des Actions" << endl;
 
-		noeudFaimM5.setAction(&actionFaimM5);
-		noeudFaimP10.setAction(&actionFaimP10);
+		noeudFaimM5->setAction(actionFaimM5);
+		noeudFaimP10->setAction(actionFaimP10);
 
 		cout << "On a inséré les actions dans les noeuds" << endl;
 
@@ -73,7 +73,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "on a mis la condition dans le vecteur" << endl;
 
-		areteFaim20.setCondition_Complexe(vecStructCondFaim20);
+		areteFaim20->setCondition_Complexe(vecStructCondFaim20);
 
 		cout << "on a mis le vecteur dans l'arete" << endl;
 
@@ -85,12 +85,12 @@ TEST_CASE("Test_Comportement", "[comp]")
 		condFaim80.comp = 80;
 		condFaim80.fIE2 = FONC_I_E_NULL;
 		vecStructCondFaim80.push_back(condFaim80);
-		areteFaim80.setCondition_Complexe(vecStructCondFaim80);
+		areteFaim80->setCondition_Complexe(vecStructCondFaim80);
 
 		cout << "pareil pour l'autre arete " << endl;
 
-		c->ajouterNoeud(&noeudFaimM5);
-		c->ajouterNoeud(&noeudFaimP10);
+		c->ajouterNoeud(noeudFaimM5);
+		c->ajouterNoeud(noeudFaimP10);
 
 		cout << "on ajoute les noeuds dans le comportement " << endl;
 
@@ -98,7 +98,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "on a créé l'agent " << endl;
 
-		agent->addToTrace(c, &noeudFaimM5, false);
+		agent->addToTrace(c, noeudFaimM5, false);
 
 		cout << "on a ajouté le comportement dans l'agent" << endl;
 
@@ -108,6 +108,12 @@ TEST_CASE("Test_Comportement", "[comp]")
 		}
 
 		delete c;
+		delete noeudFaimM5;
+		delete noeudFaimP10;
+		delete areteFaim80;
+		delete areteFaim20;
+		delete actionFaimP10;
+		delete actionFaimM5;
 	}
 }
 

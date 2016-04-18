@@ -11,6 +11,7 @@
 #include "ia/Facade.hpp"
 #include "reseau/NetworkAdapter.hpp"
 #include "logging/Logger.hpp"
+#include "tool/StringTool.hpp"
 
 
 
@@ -82,6 +83,16 @@ class WorldSimulator {
 		 * only one thread or if each agent must have a dedicated thread
 		 **/
 		void run(bool multiThread);
+		
+		/*!
+		 * \brief Catches user commands in the command line and executes it
+		 **/
+		void handleUserCommands();
+		
+		/*!
+		 * \brief Checks whether or not changes occured during previous simulation step
+		 **/
+		bool updatesOccured();
 		
 		/*!
 		 * \brief Saves the state of the entire world.

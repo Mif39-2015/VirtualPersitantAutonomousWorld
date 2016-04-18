@@ -7,7 +7,5 @@ TEST_CASE("Test Logger", "[log]")
 {
     Logger log("logfile.log");
     log.log("first text");
-    log.logLine(", second text");
     log << "third text";
-	
 }

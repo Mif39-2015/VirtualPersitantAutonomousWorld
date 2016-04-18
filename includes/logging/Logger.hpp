@@ -22,7 +22,6 @@ class Logger {
 		Logger(const string& _fileName);
 		~Logger();
 		bool log(const string& text);
-		bool logLine(const string& text);
 		ostream& operator<<(const string& text);
 };
 

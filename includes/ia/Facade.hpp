@@ -16,6 +16,9 @@
 */
 class Facade {
 public:
+	std::vector<Sentient_Entity *> listAgent;
+	std::vector<Tribe *> listTribe;
+	std::vector<Insentient_Entity *> listIE;
 
 	/*!
 	* \brief Initialise la simulation pour l'IA
@@ -49,11 +52,9 @@ public:
 	/*!
 	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération 
 	*/
-	std::vector<Entity *> getChanges();
+	std::vector<Entity *> getUpdatedAgents();
 
-	std::vector<Sentient_Entity *> listAgent;
-	std::vector<Tribe *> listTribe;
-	std::vector<Insentient_Entity *> listIE;
+	
 
 private:
 };

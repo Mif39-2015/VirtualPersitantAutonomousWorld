@@ -133,8 +133,6 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		Sentient_Entity * agent = Factories::createAgent();
 
-		agent->setComportement(Comportement::listComportements[0]);
-
 		int i = 0;
 		while(i < 50){
 			agent->run();

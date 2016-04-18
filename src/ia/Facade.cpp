@@ -49,7 +49,7 @@ void Facade::initSimulation(int nbAg, int nbAn){
 
 }
 
-std::vector<Entity *> Facade::getChanges(){
+std::vector<Entity *> Facade::getUpdatedAgents(){
 	std::vector<Entity *> updatedObjects;
 	for(Tribe * t : Facade::listTribe){
 		if(t->getModif()){

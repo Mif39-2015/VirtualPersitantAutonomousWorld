@@ -1,5 +1,7 @@
 #include "ia/Tools/Factories.hpp"
 
+
+
 Sentient_Entity * Factories::createAgent() {
 	std::vector<int> characs;
 
@@ -94,10 +96,13 @@ Sentient_Entity * Factories::createAnimal() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
-		int max = Characteristics::listCharacteristics[*it].getMax();
-		int val = rand (min, max + 1);
-		characs_val[*it] = val;
+		if (characs_val[*it] == -1){
+			int min = Characteristics::listCharacteristics[*it].getMin();
+			int max = Characteristics::listCharacteristics[*it].getMax();
+			int val = rand (min, max + 1);
+			characs_val[*it] = val;
+		}
+
 	}
 
 	return new Sentient_Entity(Position(0, 0), characs_val, "mouton", ID_ANIMAL);
@@ -211,16 +216,17 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 		std::cout << "Unable to open file for the Resource Characteristics" << std::endl;
 		return nullptr;
 	}
-
 	std::map<int, int> characs_val;
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
+		if(characs_val[*it]==-1){
+			int min = Characteristics::listCharacteristics[*it].getMin();
 		int max = Characteristics::listCharacteristics[*it].getMax();
 		int val = rand (min, max + 1);
 		characs_val.insert(std::pair<int, int>(*it, val));
-	}
+		}
 
+	}
 	std::string name;
 	switch (type) {
 	case ResourceType::T_BOIS:
@@ -277,10 +283,13 @@ Insentient_Entity * Factories::createBuilding() {
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
-		int max = Characteristics::listCharacteristics[*it].getMax();
-		int val = rand (min, max + 1);
-		characs_val[*it] = val;
+		if (characs_val[*it] == -1){
+			int min = Characteristics::listCharacteristics[*it].getMin();
+			int max = Characteristics::listCharacteristics[*it].getMax();
+			int val = rand (min, max + 1);
+			characs_val[*it] = val;
+		}
+
 	}
 
 	std::string name;

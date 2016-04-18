@@ -8,12 +8,14 @@
 #include <iostream>
 #include <thread>
 
-#include "WorldSimulator.hpp"
-#include "../reseau/NetworkAdapter.hpp"
-#include "../logging/Logger.hpp"
+#include "ia/Facade.hpp"
+#include "reseau/NetworkAdapter.hpp"
+#include "logging/Logger.hpp"
+
 
 
 class NetworkAdapter;
+class Facade;
 
 using namespace std;
 
@@ -43,10 +45,25 @@ class WorldSimulator {
 		NetworkAdapter* netAdapter;
 		
 		/*!
+		 * \brief the simulation time (number of steps)
+		 **/
+		unsigned int simulationTime;
+		
+		/*!
+		 * \brief the max value of simulationTime. After this step, simulationTime will warp back to 0
+		 **/
+		unsigned int simulationTimeWarp;
+		
+		/*!
+		 * \brief Facade to access AI simulation metods and agents
+		 **/
+		Facade* facade;
+		
+		/*!
 		 * \brief Runs one step of the world simulation.
 		 * Called every step by the run method when multithread argument is false
 		 **/
-		void worldDoOneLoop();
+		void worldRun();
 	public:
 		/*!
 		 * \brief No-arg constructor. 
@@ -57,7 +74,7 @@ class WorldSimulator {
 		/*!
 		 * \brief Constructor with logging parameters.
 		 **/
-		WorldSimulator(bool logAi, bool logWorld);
+		WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool logWorld);
 		
 		/*!
 		 * \brief Runs the simulation.

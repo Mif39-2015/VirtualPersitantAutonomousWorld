@@ -1,5 +1,5 @@
 #include "ia/Tools/Factories.hpp"
-
+#include "ia/Behavior/Comportement.hpp"
 
 
 Sentient_Entity * Factories::createAgent() {

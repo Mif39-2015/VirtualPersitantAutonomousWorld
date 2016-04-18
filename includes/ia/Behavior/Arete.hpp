@@ -45,9 +45,6 @@ class Arete {
 		Arete();
 		Arete(Noeud * nD, Noeud * nF);
 
-		// ******** DESTRUCTEURS ********
-		~Arete();
-
 		// ******** GETTERS ********
 		Noeud * getNoeudDepart();
 		Noeud * getNoeudFin();

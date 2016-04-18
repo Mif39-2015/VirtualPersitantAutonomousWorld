@@ -221,12 +221,16 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 		characs_val.insert(std::pair<int, int>(*it, val));
 	}
 
+	std::string name;
 	switch (type) {
 	case ResourceType::T_BOIS:
+		name = "Arbre";
 		break;
 	case ResourceType::T_PIERRE:
+		name = "Caillou";
 		break;
 	case ResourceType::T_METAL:
+		name = "Gisement de metal";
 		break;
 	}
 
@@ -236,7 +240,7 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 	else
 	    name = getRandomFemaleName();*/
 
-	return new Insentient_Entity("name",  ID_RESSOURCE, characs_val, 0, 0, 0);
+	return new Insentient_Entity(name, ID_RESSOURCE, characs_val, 0, 0, 0);
 }
 
 Insentient_Entity * Factories::createBuilding() {

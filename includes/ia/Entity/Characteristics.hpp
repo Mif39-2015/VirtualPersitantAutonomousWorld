@@ -118,27 +118,8 @@ enum characs {
 	C_RESPAWN_VALUE      = 16,
 	C_ORIENTATION        = 17,
 	C_STRUCTURAL_POINT   = 18,
-	C_WEIGHT             = 19
+	C_WEIGHT             = 19,
+	C_MAXRESSTOCK        = 20
 };
-
-/*! \class CharacteristicsList
-   * \brief Classe contenant les methodes nécessaires pour la gestion du fichier des caractéristiques
-   */
-// class CharacteristicsList {
-
-// public:
-	/*!
-	* \brief Les caractéristiques provenant du fichier
-	* */
-	// static std::vector<Characteristics> listCharacteristics;
-
-	/*!
-	* \brief Construit un vecteur de caractéristiques à partir du fichier donné
-	* \param fileName: le fichier donné
-	* */
-	// static int loadCharacteristicsFile(std::string fileName);
-
-// };
-
 
 #endif

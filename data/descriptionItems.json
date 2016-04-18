@@ -1,7 +1,19 @@
 {
 	"items": [
 		{
-			"name": "Carotte",
+			"name": "Bois",
+			"weight": 75
+		},
+		{
+			"name": "Pierre",
+			"weight": 75
+		},
+		{
+			"name": "Legume",
+			"weight": 75
+		},
+		{
+			"name": "Viande",
 			"weight": 75
 		}
 	]

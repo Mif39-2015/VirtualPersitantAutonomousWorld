@@ -15,12 +15,15 @@ Sentient_Entity * Factories::createAgent() {
 
 		cJSON *child = cJSON_GetObjectItem(root, "characteristicsAgent");
 		int	nb = cJSON_GetArraySize(child);
+		cJSON *item;
+		cJSON *id;
 		for (int i = 0; i < nb; i++) {
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item, "id");
+			item = cJSON_GetArrayItem(child, i);
+			id = cJSON_GetObjectItem(item, "id");
 			if (id->type == cJSON_Number) {
 				characs.push_back(id->valueint);
 			}
+			
 		}
 
 	} else {

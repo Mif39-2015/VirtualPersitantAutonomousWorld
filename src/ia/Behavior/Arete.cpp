@@ -7,9 +7,6 @@ Arete::Arete() {
 }
 Arete::Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {}
 
-// ******** DESTRUCTEURS ********
-Arete::~Arete() {}
-
 // ******** GETTERS ********
 Noeud * Arete::getNoeudDepart() {
 	return noeudDepart;

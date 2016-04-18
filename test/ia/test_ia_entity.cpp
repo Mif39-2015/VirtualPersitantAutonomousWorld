@@ -29,6 +29,7 @@ TEST_CASE("Test_Agent", "[agent]")
 {
 	SECTION("TEST AGENT")
 	{
-
+		Sentient_Entity * agent = Factories::createAgent();
+		REQUIRE(agent != NULL);
 	}
 }

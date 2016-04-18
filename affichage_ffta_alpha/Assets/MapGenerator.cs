@@ -12,7 +12,10 @@ public class MapGenerator : MonoBehaviour {
 	public Noise.NormalizeMode normalizeMode;
 
 	public const int mapChunkSize = 64;
-	[Range(0,6)]
+
+    public int mapSizeInChunk;
+
+    [Range(0,6)]
 	public int editorPreviewLOD;
 	public float noiseScale;
 	[Range(1,100)]
@@ -47,6 +50,31 @@ public class MapGenerator : MonoBehaviour {
 		} else if (drawMode == DrawMode.Mesh) {
 			display.DrawMesh (MeshGenerator.GenerateTerrainMesh (mapData.heightMap, meshHeightMultiplier, meshHeightCurve, editorPreviewLOD), TextureGenerator.TextureFromColourMap (mapData.colourMap, mapChunkSize, mapChunkSize));
 		}
+	}
+
+	public void DrawMapInEditor(Map map) {
+
+		GameObject chunkContainer = new GameObject("Chunks");
+
+		Chunk[,] chunks = map.getMapChunks();
+		int width = chunks.GetLength (0);
+		int height = chunks.GetLength (1);
+
+		for(int x = 0; x < width; ++x) {
+			for(int y = 0; y < height; ++y) {
+				Vector2 pos = chunks[x, y].getPosition() * MapGenerator.mapChunkSize;
+				MapDisplay md = chunkContainer.AddComponent<MapDisplay>();
+				GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+				plane.transform.localScale = new Vector3(MapGenerator.mapChunkSize, 1, MapGenerator.mapChunkSize);
+				plane.transform.localPosition = new Vector3(pos.x, 0, pos.y);
+				md.transform.localPosition = new Vector3(pos.x, 0, pos.y);
+				md.textureRender = plane.GetComponent<Renderer>();
+
+				md.DrawTexture (TextureGenerator.TextureFromHeightMap (chunks[x, y].getHeightMap()));
+			}
+		}
+
+
 	}
 
 	public void RequestMapData(Vector2 centre, Action<MapData> callback) {
@@ -96,7 +124,7 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	MapData GenerateMapData(Vector2 centre) {
-		float[,] noiseMap = Noise.GenerateNoiseMap (mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, centre + offset, normalizeMode, echelle);
+		float[,] noiseMap = Noise.GenerateNoiseMap (mapChunkSize, mapChunkSize, seed, noiseScale, octaves, persistance, lacunarity, centre + offset, normalizeMode);
 
 		Color[] colourMap = new Color[mapChunkSize * mapChunkSize];
 		for (int y = 0; y < mapChunkSize; y++) {
@@ -123,6 +151,9 @@ public class MapGenerator : MonoBehaviour {
 		if (octaves < 0) {
 			octaves = 0;
 		}
+        if (mapSizeInChunk < 1) {
+            mapSizeInChunk = 1;
+        }
 	}
 
 	struct MapThreadInfo<T> {

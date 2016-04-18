@@ -5,7 +5,7 @@ public static class Noise {
 
 	public enum NormalizeMode {Local, Global};
 
-	public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset, NormalizeMode normalizeMode, int nb_subdivision) {
+	public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset, NormalizeMode normalizeMode) {
 		float[,] noiseMap = new float[mapWidth,mapHeight];
 	//Debug.Log("x: "+ offset.x + "y:" + offset.y);
 	//Debug.Log("mapWidth: "+ mapWidth + "mapHeight:" + mapHeight);

@@ -14,8 +14,14 @@ public class MapGeneratorEditor : Editor {
 			}
 		}
 
-		if (GUILayout.Button ("Generate")) {
+		if (GUILayout.Button ("Generate chunk in Editor")) {
 			mapGen.DrawMapInEditor ();
 		}
+
+		if (GUILayout.Button ("Generate Map file")) {
+			Map map = new Map(mapGen, mapGen.mapSizeInChunk);
+			map.test_write();
+            //map.test_write_JSON();
+        }
 	}
 }

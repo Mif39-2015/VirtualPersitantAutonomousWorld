@@ -26,11 +26,12 @@ class Sentient_Entity : public Tangible_Entity{
 	protected:
 
 		ETAT etat_entity;
-		std::map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
+		map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
 		Entity* target; /*!<L'endroit que l'entité souhaite atteindre via le chemin'*/
-		std::map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
+		map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 		stack<Position> path; /*!<Le chemin a parcourir pour atteindre la cible'*/
-		std::stack<std::tuple<Comportement *,Noeud *, bool>> trace;
+		stack<std::tuple<Comportement *,Noeud *, bool>> trace;
+		vector<stack<Position>> cheminMemorise;/*!<Le chemin pour aller de la position initiale à la position voulue'*/
 
 	public:
 		/*!
@@ -84,6 +85,30 @@ class Sentient_Entity : public Tangible_Entity{
 		* \brief change le comportement courant de l'agent en retirant le comportement courant du sommet de la pile
 		*/
 		void removeTopTrace();
+		
+		/*!
+		* \brief Modifie les chemins mémorisés par l'agent
+		*/
+		void setCheminMemorise(vector<stack<Position>>);
+		
+		/*!
+		* \brief Récupère les chemins mémorisés par l'agent
+		*/
+		vector<stack<Position>> getCheminMemorise();
+		
+		/*!
+		* \brief Ajoute un chemin dans la liste des chemins mémorisés par l'agent
+		*/
+		void addCheminMemorise(stack<Position>);
+		
+		/*!
+		* \brief un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
+		*/
+		stack<Position> connaitChemin(Position);
+		
+		
+		
+		
 };
 
 #endif

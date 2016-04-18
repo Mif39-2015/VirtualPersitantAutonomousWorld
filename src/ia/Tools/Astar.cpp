@@ -85,6 +85,7 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 					}
 				}	
 			}
+			cheminStack.push(Position(chemin.getxPos(), chemin.getyPos()));	
 			return cheminStack;			
 		}
 		else{

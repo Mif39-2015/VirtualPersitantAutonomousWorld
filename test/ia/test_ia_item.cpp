@@ -34,9 +34,14 @@ TEST_CASE("Test_Item", "[item]")
 
 		REQUIRE(Item::listItems.size() != 0);
 
+		Item * item = Item::getItemByName("Viande");
+
+		REQUIRE(item->getName() == "Viande");
+
 		Tribe* t = Factories::createTribe();
 		REQUIRE(t != NULL);
 
+		std::cout << "Stock de t :" << std::endl;
 		t->addItemToStock(&(Item::listItems[0]), 3);
 
 		REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 3);
@@ -46,10 +51,27 @@ TEST_CASE("Test_Item", "[item]")
 		Sentient_Entity* ag = Factories::createAgent();
 		REQUIRE(ag != nullptr);
 
-		ag->addItemToStock(&(Item::listItems[0]), 18);
+		ag->addItemToStock(&(Item::listItems[1]), 18);
+		ag->addItemToStock(Item::getItemByName("Viande"), 25);
 
-		REQUIRE(ag->getQuantityByItem(&(Item::listItems[0])) == 18);
+		REQUIRE(ag->getQuantityByItem(Item::getItemByName("Viande")) == 25);
 
+		std::cout << "Stock de ag :" << std::endl;
 		ag->afficheStock();
+
+		delete ag;
+		delete t;
+
+		std::cout << std::endl;
+	}
+
+	SECTION("TEST ITEM REGEN")
+	{
+		cout << "TEST ITEM REGEN" << endl;
+		int loadResult = Item::loadItemsFile(PATH_DATA"/descriptionItems.json");
+
+
+
+		std::cout << std::endl;
 	}
 }

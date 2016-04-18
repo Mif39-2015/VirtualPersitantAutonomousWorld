@@ -22,65 +22,56 @@
 
 class Item : public Entity {
 
-	public:
+public:
 
-		static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
+	static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
 
-		/*!
-		*  \brief Fonction qui construit un vector d'items à partir du fichier donné
-		*  \param fileName: le fichier
-		*/
-		static int loadItemsFile(std::string fileName);
+	/*!
+	*  \brief Fonction qui construit un vector d'items à partir du fichier donné
+	*  \param fileName: le fichier
+	*/
+	static int loadItemsFile(std::string fileName);
 
-		/*!
-		*  \brief Constructeur pour la classe Item
-		*/
-		Item(std::string, type,std::map<int, int> charac);
+	/*!
+	*  \brief Constructeur pour la classe Item
+	*/
+	Item(std::string, type, std::map<int, int> charac);
 
-		/*!
-		*  \brief Fonction pour l'operateur ==
-		*  return bool
-		*/
-		inline bool operator == (const Item &b) const
-	 	{
-			return ( id == b.id && name == b.name);
-		}
+	/*!
+	*  \brief Fonction pour l'operateur ==
+	*  return bool
+	*/
+	inline bool operator == (const Item &b) const
+	{
+		return ( id == b.id && name == b.name);
+	}
 
-		/*!
-		*  \brief Fonction pour l'operateur <
-		*  return bool
-		*/
-		inline bool operator< (const Item &a) const
-		{
-			return id < a.id;
-	    	}
+	/*!
+	*  \brief Fonction pour l'operateur <
+	*  return bool
+	*/
+	inline bool operator< (const Item &a) const
+	{
+		return id < a.id;
+	}
 
-		/*!
-		*  \brief Destructeur pour la classe Item
-		*  return bool
-		*/
-		~Item();
+	/*!
+	* \brief Fonction qui renvoie un Item de listItem selon un nom
+	* \param n: Le nom de l'Item rechercher
+	* Retourne l'Item correspondant
+	*/
+	static Item * getItemByName(std::string n);
 
-	private:
+	void updateItem(unsigned int wstime);
+
+	/*!
+	*  \brief Destructeur pour la classe Item
+	*  return bool
+	*/
+	~Item();
+
+private:
 
 };
-
-/*! \class ItemList
-*   \brief Classe contenant les methodes et les attributs pour gérér les items dans un fichier
-*/
-
-// class ItemList{
-
-// 	public:
-
-// 		static std::vector<Item> listItems; /*!< liste des items provenant du fichier*/
-
- 		/*!
- 		*  \brief Fonction qui construit un vector d'items à partir du fichier donné
- 		*  \param fileName: le fichier
-		*/
-// 		static int loadItemsFile(std::string fileName);
-
-// };
 
 #endif

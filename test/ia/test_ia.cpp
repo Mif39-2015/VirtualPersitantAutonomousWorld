@@ -5,8 +5,6 @@
 #include "serveur_catch.hpp"
 
 #include "Behavior/Action.hpp"
-#include "Behavior/ActionComportement.hpp"
-#include "Behavior/ActionSimple.hpp"
 #include "Behavior/Arete.hpp"
 #include "Behavior/Comportement.hpp"
 #include "Behavior/EtatEnum.hpp"
@@ -92,7 +90,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
 
-		Comportement c;
+		Comportement * c =  new Comportement();
 
 		Noeud noeudFaimM5;
 		Noeud noeudFaimP10;
@@ -147,8 +145,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "pareil pour l'autre arete " << endl;
 
-		c.ajouterNoeud(&noeudFaimM5);
-		c.ajouterNoeud(&noeudFaimP10);
+		c->ajouterNoeud(&noeudFaimM5);
+		c->ajouterNoeud(&noeudFaimP10);
 
 		cout << "on ajoute les noeuds dans le comportement " << endl;
 
@@ -156,7 +154,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "on a créé l'agent " << endl;
 
-		agent->addToTrace(&c, &noeudFaimM5, false);
+		agent->addToTrace(c, &noeudFaimM5, false);
 
 		cout << "on a ajouté le comportement dans l'agent" << endl;
 
@@ -164,6 +162,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 			cout << endl << "##### iteration " << i << " : " << endl;
 			agent->run();
 		}
+
+		delete c;
 
 	}
 }

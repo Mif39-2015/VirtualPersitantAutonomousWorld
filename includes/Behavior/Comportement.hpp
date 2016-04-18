@@ -20,7 +20,7 @@ class Comportement {
 
 		// ******** STATICS CONTAINERS ********
 		static vector<Comportement *> comportements;
-		static void addToComportements(Comportement * c){comportements.push_back(c);}
+		static void addToComportements(Comportement * c) {comportements.push_back(c);}
 
 		// ******** CONSTRUCTEUR ********
 		Comportement();

@@ -11,8 +11,10 @@ Comportement::Comportement(vector<Noeud *> noeuds, Noeud * noeudDepart, vector<N
 
 // ******** DESTRUCTEURS ********
 Comportement::~Comportement() {
+	cout << "On est dans le destructeur du comportement" << this << endl << "il a " << noeuds.size() << " noeuds" << endl;
 	for (size_t i = 0; i < noeuds.size(); ++i) {
-		delete noeuds[i];
+		cout << "on delete le noeud " << noeuds[i] << endl;
+		delete (noeuds[i]);
 	}
 }
 

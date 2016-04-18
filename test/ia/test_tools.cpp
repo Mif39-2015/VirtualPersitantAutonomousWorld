@@ -5,8 +5,6 @@
 #include "serveur_catch.hpp"
 
 #include "Behavior/Action.hpp"
-#include "Behavior/ActionComportement.hpp"
-#include "Behavior/ActionSimple.hpp"
 #include "Behavior/Arete.hpp"
 #include "Behavior/Comportement.hpp"
 #include "Behavior/EtatEnum.hpp"
@@ -30,9 +28,9 @@ TEST_CASE("Test tools", "[tools]")
 	{
 		Position p1 (0,0);
 		Position* p2 = new Position(2,2);
-	
+
 		REQUIRE(!(p1.isInCircle(p2, 1)));
-	
+
 		REQUIRE(p1.isInCircle(p2, 8));
-	}	
+	}
 }

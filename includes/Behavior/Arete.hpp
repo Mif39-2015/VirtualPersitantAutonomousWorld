@@ -41,31 +41,30 @@ class Arete {
 		vector<struct_condition> condition_Complexe;
 
 	public :
-		/*
-		 * nD --> Noeud de départ de l'arrête
-		 * nF --> Noeud de fin de l'arrête
-		 * */
-		Arete() {noeudDepart = nullptr; noeudFin = nullptr;}
-		Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {};
+		// ******** CONSTRUCTEURS ********
+		Arete();
+		Arete(Noeud * nD, Noeud * nF);
 
+		// ******** DESTRUCTEURS ********
+		~Arete();
 
-		Noeud * getNoeudDepart() {return noeudDepart;}
-		Noeud * getNoeudFin() {return noeudFin;}
+		// ******** GETTERS ********
+		Noeud * getNoeudDepart();
+		Noeud * getNoeudFin();
+		vector<FONC_BOOL> getConditon_Simple();
+		vector<struct_condition> getCondition_Complexe();
 
-		vector<FONC_BOOL> getConditon_Simple() {return condition_simple;}
-		vector<struct_condition> getCondition_Complexe() {return condition_Complexe;}
+		// ******** SETTERS ********
+		void setNoeudDepart(Noeud * nD);
+		void setNoeudFin(Noeud * nF);
+		void setCondition_Simple(vector<FONC_BOOL> conds);
+		void setCondition_Complexe(vector<struct_condition> conds);
 
-
-		void setNoeudDepart(Noeud * nD) {noeudDepart = nD;};
-		void setNoeudFin(Noeud * nF) {noeudFin = nF;}
-
-		void setCondition_Simple(vector<FONC_BOOL> conds) {condition_simple = conds;}
-		void setCondition_Complexe(vector<struct_condition> conds) {condition_Complexe = conds;}
-
+		// ******** FONCTIONNEMENT ********
 		/*
 		 * Utilisé pour savoir si la condition est vérifiée ou non
 		 * */
 		bool isTrue(Sentient_Entity * a);
-
 };
+
 #endif

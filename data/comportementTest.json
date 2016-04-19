@@ -1,0 +1,51 @@
+ {
+ 	"_comment":"Liste des comportements",
+ 	"behaviors":[
+ 	{
+ 		"behavior":[
+ 		{
+ 			"_comment":"Liste des neouds présent dans le comportement",
+ 			"nodes":[
+ 				{
+ 					"id":1,
+ 					"_commentOut":"areteOut contient toutes les infos des arêtes, dont l'id du noeud cible",
+ 					"areteOut":[
+ 						{"id":2}
+ 					],
+ 					"areteIn":[]
+ 				},
+ 				{
+ 					"id":2,
+ 					"areteOut":[
+ 						{"id":3}
+ 					],
+ 					"_commentIn":"areteIn contient que l'id du neoud d ou elle arrive",
+ 					"areteIn":[
+ 						{"id":2}
+ 					]
+ 				},
+ 				{
+ 					"id":3,
+ 					"areteOut":[
+ 						{"id":3},
+ 						{"id":4}
+ 					],
+ 					"areteIn":[
+ 						{"id":4}
+ 					]
+ 				},
+ 				{
+ 					"id":4,
+ 					"areteOut":[],
+ 					"areteIn":[
+ 						{"id":3}
+ 					]
+ 				}
+ 			],
+ 			"startNode":1,
+ 			"endNodes":[
+ 				{"id":4}
+ 			]
+ 		}]
+ 	}
+ ]}

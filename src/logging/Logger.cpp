@@ -15,19 +15,9 @@ Logger::~Logger()
 {
 	file.close();
 }
-
 bool Logger::log(const string& text){
 	if (file.is_open()) {
-		file << text;
-		return true;
-	} else {
-		return false;
-	}        
-}
-
-bool Logger::logLine(const string& text){
-	if (this->log(text)) {
-		file << endl;
+		file << text << endl;
 		return true;
 	} else {
 		return false;
@@ -35,5 +25,5 @@ bool Logger::logLine(const string& text){
 }
 
 ostream& Logger::operator<<(const string& text){
-    this->logLine(text);
+    this->log(text);
 }

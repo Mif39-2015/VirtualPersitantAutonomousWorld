@@ -127,9 +127,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		Sentient_Entity * agent = Factories::createAgent();
 
-		REQUIRE(agent != nullptr);
 
-		agent->setComportement(Comportement::listComportements[0]);
+		REQUIRE(agent != nullptr);
 
 		int i = 0;
 		while(i < 50){

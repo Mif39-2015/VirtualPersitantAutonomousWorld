@@ -31,11 +31,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 	SECTION("TEST COMPORTEMENT")
 	{
 
-		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
-
-		REQUIRE(loadResult  != -1);
-		REQUIRE(loadResult2 != -1);
+		bool loadResult = loadAllFile();
+		REQUIRE(loadResult);
 
 		cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
 
@@ -125,11 +122,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 	{
 
 		std::cout << "TEST LISTE COMPORTEMENT" << std::endl;
-		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
-
-		REQUIRE(loadResult  != -1);
-		REQUIRE(loadResult2 != -1);
+		bool loadResult = loadAllFile();
+		REQUIRE(loadResult);
 
 		Sentient_Entity * agent = Factories::createAgent();
 

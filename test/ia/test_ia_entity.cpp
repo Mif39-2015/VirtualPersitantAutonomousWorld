@@ -29,13 +29,18 @@ TEST_CASE("Test_Agent", "[agent]")
 {
 	SECTION("TEST AGENT")
 	{
+
+		bool loadResult = loadAllFile();
+		REQUIRE(loadResult);
+
+
 		Sentient_Entity * agent = Factories::createAgent();
-		REQUIRE(agent != NULL);
+		REQUIRE(agent != nullptr);
 		Sentient_Entity * agent1 = Factories::createAnimal();
-		REQUIRE(agent1 != NULL);
+		REQUIRE(agent1 != nullptr);
 		Insentient_Entity *building1 = Factories::createBuilding();
-		REQUIRE(building1!=NULL);
+		REQUIRE(building1!=nullptr);
 		Insentient_Entity *ress = Factories::createResource(T_BOIS);
-		REQUIRE(ress!=NULL);
+		REQUIRE(ress!=nullptr);
 	}
 }

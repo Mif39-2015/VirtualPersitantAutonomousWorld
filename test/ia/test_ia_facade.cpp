@@ -29,6 +29,7 @@ TEST_CASE("Test_Facade", "[facade]")
 {
 	SECTION("Facade")
 	{
-
+		bool loadResult = loadAllFile();
+		REQUIRE(loadResult);
 	}
 }

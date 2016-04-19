@@ -27,20 +27,19 @@ using namespace std;
 
 TEST_CASE("Test_File", "[file]")
 {
-	SECTION("Chargement FICHIER")
-	{
-            int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
+    SECTION("Chargement FICHIER")
+    {
+        bool loadResult = loadAllFile();
+        REQUIRE(loadResult);
 
-            REQUIRE( loadResult != -1 );
+        std::cout << "I loaded the file !" << std::endl;
 
-            std::cout << "I loaded the file !" << std::endl;
+        for (auto it = begin (Characteristics::listCharacteristics); it != end (Characteristics::listCharacteristics); ++it) {
+            std::cout << it->getType() << std::endl ;
+        }
 
-            for (auto it = begin (Characteristics::listCharacteristics); it != end (Characteristics::listCharacteristics); ++it) {
-                std::cout << it->getType() << std::endl ;
-            }
+        Sentient_Entity * agent = Factories::createAgent();
+        std::cout << agent->getName() << std::endl;
 
-            Sentient_Entity * agent = Factories::createAgent();
-            std::cout << agent->getName() << std::endl;
-
-	}
+    }
 }

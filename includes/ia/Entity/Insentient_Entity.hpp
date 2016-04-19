@@ -42,6 +42,12 @@ public:
 	* */
 	int setValById(int id, int v);
 
+	/*!
+	* \brief Fonction qui update la ressource, qui regenere ses item etc.
+	* \param wstime: Le temps actuel de la simulation
+	*/
+	void updateResource(unsigned int wstime);
+
 protected:
 	std::map<int, int> characteristics;/*!< la map de correspondance entre l'entité et les caractéristiques*/
 };

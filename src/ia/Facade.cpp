@@ -48,3 +48,24 @@ void Facade::initSimulation(int nbAg, int nbAn){
 	//Création de la tribu de neutre (de base)
 
 }
+
+std::vector<Entity *> Facade::getUpdatedAgents(){
+	std::vector<Entity *> updatedObjects;
+	for(Tribe * t : Facade::listTribe){
+		if(t->getModif()){
+			updatedObjects.push_back(t);
+		}
+	}
+	for(Sentient_Entity * a : Facade::listAgent){
+		if(a->getModif()){
+			updatedObjects.push_back(a);
+		}
+	}
+	for(Insentient_Entity * ie : Facade::listIE){
+		if(ie->getModif()){
+			updatedObjects.push_back(ie);
+		}
+	}
+	
+	return updatedObjects;
+}

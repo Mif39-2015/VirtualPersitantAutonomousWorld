@@ -9,8 +9,8 @@
 #include <tuple>
 #include <vector>
 #include <stack>
- 
- 
+
+
 #include "ia/Entity/Tangible_Entity.hpp"
 #include "ia/Behavior/EtatEnum.hpp"
 #include "ia/Tools/Position.hpp"
@@ -42,6 +42,12 @@ class Sentient_Entity : public Tangible_Entity{
 		Sentient_Entity(Position pos, std::map<int, int> charac, std::string, type);
 
 		/*!
+		* \brief Fixe un comportement comp pour la sentient_entity
+		* \param comp: pointeur vers le comportement à fixer
+		*/
+		void setComportement(Comportement * comp);
+
+		/*!
 		* \brief stockage des alentours de
 		* l'agent par rapport à sa position correspondante
 		*  dans la map mémorisation
@@ -53,7 +59,7 @@ class Sentient_Entity : public Tangible_Entity{
 		* \param pos: la position à atteindre
 		* \param carte: la carte
 		* \return un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
-		* */	
+		* */
 		stack<Position> pathFindTo(Position pos, map<pair<int,int>, char> carte);
 
 		/*!
@@ -81,35 +87,35 @@ class Sentient_Entity : public Tangible_Entity{
 		* \brief change le comportement courant de l'agent en l'ajoutant à sa pile de comportement'
 		*/
 		void addToTrace(Comportement * c, Noeud * n, bool b);
-		
+
 		/*!
 		* \brief change le comportement courant de l'agent en retirant le comportement courant du sommet de la pile
 		*/
 		void removeTopTrace();
-		
+
 		/*!
 		* \brief Modifie les chemins mémorisés par l'agent
 		*/
 		void setCheminMemorise(vector<stack<Position>>);
-		
+
 		/*!
 		* \brief Récupère les chemins mémorisés par l'agent
 		*/
 		vector<stack<Position>> getCheminMemorise();
-		
+
 		/*!
 		* \brief Ajoute un chemin dans la liste des chemins mémorisés par l'agent
 		*/
 		void addCheminMemorise(stack<Position>);
-		
+
 		/*!
 		* \brief un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 		*/
 		stack<Position> connaitChemin(Position);
-		
-		
-		
-		
+
+
+
+
 };
 
 #endif

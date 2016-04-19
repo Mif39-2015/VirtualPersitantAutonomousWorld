@@ -21,6 +21,8 @@ public:
 	* */
 	static int loadCharacteristicsFile(std::string fileName);
 
+	static Characteristics * getCharacById(int c);
+
 	/*!
 	* \brief Renvoie l'id de la caractéristique
 	* */
@@ -98,7 +100,7 @@ private:
 	int precision;/*!< la précision */
 };
 
-enum characs {
+enum Characs {
 	C_VITALITY           = 0,
 	C_GENDER             = 1,
 	C_AGE  	             = 2,

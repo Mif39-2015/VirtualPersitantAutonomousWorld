@@ -18,6 +18,6 @@ TEST_CASE("Test_Simulation", "[init]")
 		int loadResult2 = Comportement::initVectorComp(PATH_DATA"foo.json");
 
         WorldSimulator ws = WorldSimulator(10, 10, true, true);
-		ws.run(false);
+		ws.run();
 	}
 }

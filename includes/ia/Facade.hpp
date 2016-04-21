@@ -35,7 +35,7 @@ public:
 	/*!
 	* \brief Permet de faire un tick d'horloge pour tout les insentient_entity de la simulation
 	*/
-	void updateWorld();
+	void updateWorld(unsigned int wstime);
 
 	/*!
 	* \brief Retourne un agent selon un id
@@ -48,13 +48,13 @@ public:
 	* \param i: l'id recherché
 	*/
 	Tribe * getTribeById(unsigned int i);
-	
+
 	/*!
-	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération 
+	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération
 	*/
 	std::vector<Entity *> getUpdatedAgents();
 
-	
+
 
 private:
 };

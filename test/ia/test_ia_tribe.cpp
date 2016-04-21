@@ -31,7 +31,7 @@ TEST_CASE("Test_Tribe", "[tribe]")
 	SECTION("TEST TRIBE")
 	{
 		cout << "TEST TRIBE" << endl;
-		bool loadResult = loadAllFile();
+		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 		REQUIRE(Item::listItems.size() != 0);
 

@@ -80,7 +80,7 @@ void WorldSimulator::worldRun(){
 		}
 
 		
-		// facade->runAll();
+		facade->runAll();
 		facade->updateWorld();
 		
 		/* Logging AI & World */

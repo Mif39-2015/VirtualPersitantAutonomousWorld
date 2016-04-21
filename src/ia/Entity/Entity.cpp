@@ -41,13 +41,15 @@ int Entity::getVal(int id) {
 
 int Entity::setVal(int id, int v) {
 	//si la clé n'existe pas on fait rien
-	if (charact_correspondence.find(id) == charact_correspondence.end()) {
+	if (getVal(id) == -1) {
 		return -1;
 	}
 	//sinon on met à jour la valeur de la clé existante
-
-	charact_correspondence.at(id) = v;
-	return 1;
+	if (v > Characteristics::listCharacteristics[id].getMax() || v < Characteristics::listCharacteristics[id].getMin()) {
+		charact_correspondence.at(id) = v;
+		return 1;
+	}
+	return -2;
 }
 
 cJSON* Entity::toJson() {

@@ -188,6 +188,24 @@
 			"definition": "Le stock maximum d'une ressource",
 			"type": "unite",
 			"precision": 1
+		},
+		{
+			"id": 21,
+			"min": 5,
+			"max": 15,
+			"name": "SatietyDecade",
+			"definition": "Le taux de décadence de la Satiety d'un agent",
+			"type": "tours",
+			"precision": 1
+		},
+		{
+			"id": 22,
+			"min": 1,
+			"max": 10,
+			"name": "SatietyDecadeValue",
+			"definition": "La valeur de décadence de la Satiety d'un agent",
+			"type": "unite",
+			"precision": 1
 		}
 	]
 }

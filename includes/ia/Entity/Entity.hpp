@@ -85,6 +85,7 @@ public:
 	* existe bien dans la map et renvoie 1 (success) sinon renvoie -1
 	* \param id: la clé
 	* \param v: la valeur
+	* \return -1 si l'id ne correspond pas à l'une des caractéristiques de l'entity, -2 si v est hors des bornes, 1 si tout vas bien
 	*/
 	int setVal(int id, int v);
 

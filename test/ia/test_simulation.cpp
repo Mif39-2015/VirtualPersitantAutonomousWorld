@@ -14,9 +14,6 @@ TEST_CASE("Test_Simulation", "[init]")
 {
 	SECTION("Init")
 	{
-		// Load behaviours
-		// int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		// int loadResult2 = Comportement::initVectorComp(PATH_DATA"foo.json");
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 

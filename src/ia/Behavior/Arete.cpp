@@ -6,7 +6,8 @@ Arete::Arete() {
 	noeudFin = nullptr;
 }
 Arete::Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {
-
+	noeudDepart->ajouterAreteOut(this);
+	noeudFin->ajouterAreteIn(this);
 }
 
 // ******** GETTERS ********

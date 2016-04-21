@@ -23,10 +23,10 @@ int Comportement::initVectorComp(std::string filename) {
 	Arete * areteFaim20 = new Arete(noeudFaimM5, noeudFaimP10);
 	Arete * areteFaim80 = new Arete(noeudFaimP10, noeudFaimM5);
 
-	noeudFaimM5->ajouterAreteOut(areteFaim20);
-	noeudFaimM5->ajouterAreteIn(areteFaim80);
-	noeudFaimP10->ajouterAreteIn(areteFaim20);
-	noeudFaimP10->ajouterAreteOut(areteFaim80);
+	// noeudFaimM5->ajouterAreteOut(areteFaim20);
+	// noeudFaimM5->ajouterAreteIn(areteFaim80);
+	// noeudFaimP10->ajouterAreteIn(areteFaim20);
+	// noeudFaimP10->ajouterAreteOut(areteFaim80);
 
 	ActionSimple * actionFaimM5 = new ActionSimple();
 	ActionSimple * actionFaimP10 = new ActionSimple();

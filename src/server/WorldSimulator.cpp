@@ -20,7 +20,7 @@ WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool log
 	state = SimulationState::IDLE_SIMULATION;
 	aiLogger = NULL;
 	worldLogger = NULL;
-	
+
 	if(logAi){ // Log ai infos
 		aiLogger = new Logger("ai.log");
 	}
@@ -32,7 +32,7 @@ WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool log
 WorldSimulator::WorldSimulator()
 : WorldSimulator(false, false, 10, 10)
 {
-	
+
 }
 
 void WorldSimulator::run(){
@@ -40,12 +40,12 @@ void WorldSimulator::run(){
 
 	// Listen for user commands
 	thread userCommandsHandlerThread(&WorldSimulator::handleUserCommands, this);
-	
+
 	if(multiThread){
 		// TODO
 	} else {
 		thread worldThread(&WorldSimulator::worldRun, this);
-		
+
 		worldThread.join();
 	}
 
@@ -70,7 +70,7 @@ void WorldSimulator::worldRun(){
 				lock_guard<mutex> lk(guardMutex);
 				state = SimulationState::WAITING_SIMULATION;
 			}
-			
+
 			guardCV.notify_one();
 			// Wait for the saving process to end
 			{
@@ -79,10 +79,10 @@ void WorldSimulator::worldRun(){
 	        }
 		}
 
-		
-		// facade->runAll();
+
+		facade->runAll();
 		facade->updateWorld();
-		
+
 		/* Logging AI & World */
 		if(updatesOccured()){
 			if(aiLogger != NULL){
@@ -91,7 +91,7 @@ void WorldSimulator::worldRun(){
 				aiLogger->log("Nb agents \t= " + to_string(facade->listAgent.size()));
 				aiLogger->log("Nb tribes \t= " + to_string(facade->listTribe.size()));
 				aiLogger->log("Nb objects \t= " + to_string(facade->listIE.size()));
-				
+
 				// Log changes of agents
 				aiLogger->log("____________________");
 				aiLogger->log("Updated agents");
@@ -100,7 +100,7 @@ void WorldSimulator::worldRun(){
 						aiLogger->log(a->getName());
 					}
 				}
-				
+
 				// Log changes of tribes
 				aiLogger->log("____________________");
 				aiLogger->log("Updated tribes");
@@ -110,7 +110,7 @@ void WorldSimulator::worldRun(){
 					}
 				}
 			}
-			
+
 			// Log changes to the world
 				aiLogger->log("____________________");
 				aiLogger->log("Updated objects");
@@ -120,12 +120,12 @@ void WorldSimulator::worldRun(){
 				}
 			}
 		}
-		
+
 		/* Broadcasting changes */
-		
+
 		// TODO
-		
-		
+
+
 		/* Reset update flags of world elements (agents, objects, tribes) */
 		for(Sentient_Entity * a : facade->listAgent){
 			a->setModif(false);
@@ -150,7 +150,7 @@ void WorldSimulator::handleUserCommands(){
 		cout << " > ";
 		string input = "";
 		getline(cin, input);
-		
+
 		vector<string> words = StringTool::split(input, ' ');
 		// cout << words.size() << endl;
 		// cout << words[0] << endl;
@@ -193,7 +193,7 @@ void WorldSimulator::handleUserCommands(){
 			// cout << "\tUnknown command. You can list available commands by typing \"help\"" << endl;
 		}
 	}
-	
+
 }
 
 
@@ -236,7 +236,7 @@ void WorldSimulator::save(const string fileName){
 		lock_guard<mutex> lk(guardMutex);
 	    state = SimulationState::RUNNING_SIMULATION;
 	}
-    
+
 
     // Allow simulation to resume
     guardCV.notify_one();
@@ -268,7 +268,7 @@ void WorldSimulator::load(const string fileName){
 		lock_guard<mutex> lk(guardMutex);
 	    state = SimulationState::RUNNING_SIMULATION;
 	}
-    
+
 
     // Allow simulation to resume
     guardCV.notify_one();

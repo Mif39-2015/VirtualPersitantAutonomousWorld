@@ -39,8 +39,26 @@ TEST_CASE("Test_Agent", "[agent]")
 		Sentient_Entity * agent1 = Factories::createAnimal();
 		REQUIRE(agent1 != nullptr);
 		Insentient_Entity *building1 = Factories::createBuilding();
-		REQUIRE(building1!=nullptr);
+		REQUIRE(building1 != nullptr);
 		Insentient_Entity *ress = Factories::createResource(T_BOIS);
-		REQUIRE(ress!=nullptr);
+		REQUIRE(ress != nullptr);
+	}
+
+	SECTION("TEST AGENT LIFE")
+	{
+		bool loadResult = loadAllFiles();
+		REQUIRE(loadResult);
+
+		Sentient_Entity * agent = Factories::createAgent();
+		REQUIRE(agent != nullptr);
+
+		int time = 0;
+		while ( time < 500) {
+			agent->decade(time);
+			agent->setIdle(false);
+			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << std::endl;
+			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << std::endl;
+			time++;
+		}
 	}
 }

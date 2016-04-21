@@ -123,7 +123,9 @@ enum Characs {
 	C_WEIGHT               = 19,
 	C_MAXRESSTOCK          = 20,
 	C_SATIETY_DECADE       = 21,
-	C_SATIETY_DECADE_VALUE = 22
+	C_SATIETY_DECADE_VALUE = 22,
+	C_STAMINA_DECADE       = 23,
+	C_STAMINA_DECADE_VALUE = 24
 };
 
 #endif

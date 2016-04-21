@@ -5,10 +5,10 @@
 #include "reseau/Client.hpp"
 
 
-Client::Client(int _socket)
-    : id(-1), socket(_socket)
+Client::Client(NetworkAdapter* _netAdapter, int _socket):
+netAdapter(_netAdapter), id(-1), socket(_socket)
 {
-    this->requestHandler = new thread(&Client::listenForRequests, this);
+    this->requestHandler = new thread(&Client::handleRequests, this);
 }
 
 void Client::setId(int _id){
@@ -27,12 +27,12 @@ thread* Client::getThread(){
     return this->requestHandler;
 }
 
-void Client::listenForRequests(){
+void Client::handleRequests(){
     while(true){
         // listen for user messages
     }
 }
 
-void sendMessageToClient(string _message){
-	
+void Client::sendMessage(string _message){
+	this->netAdapter->sendMessageToClient(this->socket, _message);
 }

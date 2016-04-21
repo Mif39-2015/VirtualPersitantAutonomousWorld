@@ -21,7 +21,7 @@ using namespace std;
  */
 class Client {
 public:
-    Client(int _socket);
+    Client(NetworkAdapter* _netAdapter, int _socket);
 		
     void setId(int _id);
 
@@ -29,8 +29,8 @@ public:
     int getSocket();
     thread* getThread();
 		
-    void listenForRequests(); // Run method
-    void sendMessageToClient(string _message);
+    void handleRequests(); // Run method
+    void sendMessage(string _message);
 		
 private:
     NetworkAdapter* netAdapter; // used to access database

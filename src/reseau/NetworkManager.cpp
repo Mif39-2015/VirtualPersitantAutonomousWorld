@@ -4,9 +4,18 @@
  */
 #include "reseau/NetworkManager.hpp"
 
+NetworkManager::NetworkManager(WorldSimulator* _simulator):
+simulator(_simulator), netAdapter(new NetworkAdapter(this, true)), authModule(new AuthenticationModule())
+{
 
-void NetworkManager::addClient(Client* _newClient){
-	this->clients.push_back(_newClient);
+}
+
+// void NetworkManager::addClient(Client* _newClient){
+// 	this->clients.push_back(_newClient);
+// }
+
+void NetworkManager::addClient(int socket){
+	this->clients.push_back(new Client(this->netAdapter, socket));
 }
 
 void NetworkManager::deleteClient(int _clientId){

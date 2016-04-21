@@ -5,7 +5,7 @@
 #include "server/WorldSimulator.hpp"
 
 WorldSimulator::WorldSimulator(bool logAi, bool logWorld)
-: netAdapter(new NetworkAdapter(this))
+: netManager(new NetworkManager(this))
 {
 	aiLogger = NULL;
 	worldLogger = NULL;

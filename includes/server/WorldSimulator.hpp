@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include <thread>
+#include <mutex>
+#include <condition_variable>
 
 #include "ia/Facade.hpp"
 #include "reseau/NetworkAdapter.hpp"
@@ -19,6 +21,15 @@ class NetworkAdapter;
 class Facade;
 
 using namespace std;
+
+enum SimulationState {
+	IDLE_SIMULATION,
+	PAUSED_SIMULATION,
+	REQUIRE_WAIT_SIMULATION,
+	RUNNING_SIMULATION,
+	WAITING_SIMULATION,
+	STOPPING_SIMULATION
+};
 
 /**
  * \class WorldSimulator
@@ -59,12 +70,45 @@ class WorldSimulator {
 		 * \brief Facade to access AI simulation metods and agents
 		 **/
 		Facade* facade;
+
+		/*!
+		 * \brief Simulation state
+		 **/
+		 // SimulationState state;
 		
+		/*!
+		 * \brief True if each agent has a dedicated thread
+		 **/
+		 bool multiThread;
+
 		/*!
 		 * \brief Runs one step of the world simulation.
 		 * Called every step by the run method when multithread argument is false
 		 **/
 		void worldRun();
+		
+		/*!
+		 * \brief Catches user commands in the command line and executes it
+		 **/
+		void handleUserCommands();
+
+
+		/*!
+		 * \brief Displays available commands
+		 **/
+		void displayUserCommands();
+
+		/*!
+		 * \brief Prevents data from being saved while the simulation is running (used with savingGuardMutex)
+		 **/
+		// mutex savingGuardMutex;
+
+		/*!
+		 * \brief Protects data from being saved while the simulation is running (used with savingGuardCV)
+		 **/
+		// condition_variable savingGuardCV;
+
+
 	public:
 		/*!
 		 * \brief No-arg constructor. 
@@ -79,15 +123,8 @@ class WorldSimulator {
 		
 		/*!
 		 * \brief Runs the simulation.
-		 * multiThread parameter determines if there must be 
-		 * only one thread or if each agent must have a dedicated thread
 		 **/
-		void run(bool multiThread);
-		
-		/*!
-		 * \brief Catches user commands in the command line and executes it
-		 **/
-		void handleUserCommands();
+		void run();
 		
 		/*!
 		 * \brief Checks whether or not changes occured during previous simulation step

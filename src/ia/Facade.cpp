@@ -1,9 +1,9 @@
 #include "ia/Facade.hpp"
 
-void Facade::runAll() {
+void Facade::runAll(unsigned int wstime) {
 	for (Sentient_Entity * se : Facade::listAgent) {
 		if (se->getTypeId() == type::ID_AGENT || se->getTypeId() == type::ID_ANIMAL) {
-			se->run();
+			se->run(wstime);
 		}
 	}
 }

@@ -27,8 +27,8 @@ map<FONC_BOOL, bool(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncBool = {
 	, {Fonction_BOOL_FALSE, fonction_false}
 	, {FONC_AG_HUNGRY, fct_entity_is_hungry}
 	, {FONC_AG_TIRED, fct_entity_is_tired}
-	, {FONC_AG_NOT_HUNGRY, fct_entity_isnt_hungry_anymore}
-	, {FONC_AG_NOT_TIRED, fct_entity_isnt_tired_anymore}
+	, {FONC_AG_NOT_HUNGRY_ANYMORE, fct_entity_isnt_hungry_anymore}
+	, {FONC_AG_NOT_TIRED_ANYMORE, fct_entity_isnt_tired_anymore}
 };
 
 map<FONC_INT_ENTITY, int(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur::mapFoncIntEntity = {

@@ -81,7 +81,7 @@ class Sentient_Entity : public Tangible_Entity{
 		/*!
 		* \brief fait avancer l'agent dans son comportement de un tick d'horloge
 		*/
-		void run();
+		void run(unsigned int wstime);
 
 		/*!
 		* \brief change le comportement courant de l'agent en l'ajoutant à sa pile de comportement'

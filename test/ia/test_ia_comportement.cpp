@@ -105,7 +105,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		for (int i = 0; i < 100; ++i) {
 			cout << endl << "##### iteration " << i << " : " << endl;
-			agent->run();
+			agent->run(i);
 		}
 
 		delete c;
@@ -133,7 +133,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		int i = 0;
 		while(i < 50){
-			agent->run();
+			agent->run(i);
 			i++;
 		}
 

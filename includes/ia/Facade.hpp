@@ -30,7 +30,7 @@ public:
 	/*!
 	* \brief Permet d'appeler la fonction run pour tout les agents.
 	*/
-	void runAll();
+	void runAll(unsigned int wstime);
 
 	/*!
 	* \brief Permet de faire un tick d'horloge pour tout les insentient_entity de la simulation

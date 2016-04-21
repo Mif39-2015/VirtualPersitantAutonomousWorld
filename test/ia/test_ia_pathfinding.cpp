@@ -45,7 +45,7 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 
 	SECTION("Memoire chemin agent")
 	{
-		bool loadResult = loadAllFile();
+		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
 		map<pair<int,int>, char> carte = getMap(PATH_DATA"/mapTest.txt");

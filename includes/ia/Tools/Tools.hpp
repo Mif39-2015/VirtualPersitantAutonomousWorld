@@ -61,6 +61,6 @@ int findInVector(std::vector<T> v, T element) {
 
 map<pair<int,int>, char>getMap(string);
 
-bool loadAllFile();
+bool loadAllFiles();
 
 #endif

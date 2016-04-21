@@ -1,4 +1,5 @@
 
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -31,7 +32,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 	SECTION("TEST COMPORTEMENT")
 	{
 
-		bool loadResult = loadAllFile();
+		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
 		cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
@@ -122,7 +123,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 	{
 
 		std::cout << "TEST LISTE COMPORTEMENT" << std::endl;
-		bool loadResult = loadAllFile();
+		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
 		Sentient_Entity * agent = Factories::createAgent();

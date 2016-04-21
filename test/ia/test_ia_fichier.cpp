@@ -29,7 +29,7 @@ TEST_CASE("Test_File", "[file]")
 {
     SECTION("Chargement FICHIER")
     {
-        bool loadResult = loadAllFile();
+        bool loadResult = loadAllFiles();
         REQUIRE(loadResult);
 
         std::cout << "I loaded the file !" << std::endl;

@@ -30,7 +30,7 @@ TEST_CASE("Test_Agent", "[agent]")
 	SECTION("TEST AGENT")
 	{
 
-		bool loadResult = loadAllFile();
+		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
 

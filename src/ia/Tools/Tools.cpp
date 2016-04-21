@@ -97,7 +97,7 @@ map<pair<int, int>, char>getMap(string nomFichier) {
 }
 
 
-bool loadAllFile() {
+bool loadAllFiles() {
     int loadResult  = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
     int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
     int loadResult3 = Item::loadItemsFile(PATH_DATA"/descriptionItems.json");

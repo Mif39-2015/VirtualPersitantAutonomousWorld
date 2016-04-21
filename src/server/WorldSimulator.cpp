@@ -79,7 +79,6 @@ void WorldSimulator::worldRun(){
 	        }
 		}
 
-
 		facade->runAll();
 		facade->updateWorld();
 

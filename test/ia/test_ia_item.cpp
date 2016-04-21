@@ -30,7 +30,7 @@ TEST_CASE("Test_Item", "[item]")
 	SECTION("TEST ITEM")
 	{
 		cout << "TEST ITEM" << endl;
-		bool loadResult = loadAllFile();
+		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
 		REQUIRE(Item::listItems.size() != 0);

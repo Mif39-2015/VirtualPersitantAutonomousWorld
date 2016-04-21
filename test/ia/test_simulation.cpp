@@ -14,13 +14,10 @@ TEST_CASE("Test_Simulation", "[init]")
 {
 	SECTION("Init")
 	{
-		// Load behaviours
-		// int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		// int loadResult2 = Comportement::initVectorComp(PATH_DATA"foo.json");
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
-        WorldSimulator ws = WorldSimulator(10, 3, true, true);
+        WorldSimulator ws = WorldSimulator(10, 10, true, true);
 		ws.run();
 	}
 }

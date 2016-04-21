@@ -45,6 +45,9 @@ void Facade::initSimulation(int nbAg, int nbAn) {
 		Facade::listAgent.push_back(Factories::createAnimal());
 	}
 
+	//En attendant la map, je crée une ressource pour les tests
+	Facade::listIE.push_back(Factories::createResource(ResourceType::T_BOIS));
+
 	//Création des Ressources en fonction des données de la map
 	//TODO
 

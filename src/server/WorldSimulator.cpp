@@ -76,7 +76,7 @@ void WorldSimulator::worldRun(){
 	        }
 		} else {
 			facade->runAll();
-			facade->updateWorld();
+			facade->updateWorld(simulationTime);
 
 			/* Logging AI & World */
 			if(updatesOccured()){
@@ -107,8 +107,8 @@ void WorldSimulator::worldRun(){
 				}
 
 				// Log changes to the world
-					aiLogger->log("____________________");
-					aiLogger->log("Updated objects");
+				aiLogger->log("____________________");
+				aiLogger->log("Updated objects");
 				if(worldLogger != NULL){
 					for(Entity* e : facade->getUpdatedAgents()){
 						worldLogger->log(e->getName());

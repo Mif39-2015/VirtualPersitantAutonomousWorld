@@ -8,9 +8,12 @@ void Facade::runAll() {
 	}
 }
 
-void Facade::updateWorld() {
-	//Fonction qui va mettre à jour tout les insentient_entity
-	//a chaque tick (ressource, etc)
+void Facade::updateWorld(unsigned int wstime) {
+	for(Insentient_Entity * ie : Facade::listIE){
+		if(ie->getTypeId() == type::ID_RESSOURCE){
+			ie->updateResource(wstime);
+		}
+	}
 }
 
 Sentient_Entity * Facade::getAgentById(unsigned int i) {
@@ -41,6 +44,9 @@ void Facade::initSimulation(int nbAg, int nbAn) {
 	for (int ian = 0; ian < nbAn; ian++) {
 		Facade::listAgent.push_back(Factories::createAnimal());
 	}
+
+	//En attendant la map, je crée une ressource pour les tests
+	Facade::listIE.push_back(Factories::createResource(ResourceType::T_BOIS));
 
 	//Création des Ressources en fonction des données de la map
 	//TODO

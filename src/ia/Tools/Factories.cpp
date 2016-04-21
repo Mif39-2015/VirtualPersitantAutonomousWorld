@@ -112,7 +112,11 @@ Sentient_Entity * Factories::createAnimal() {
 
 	}
 
-	return new Sentient_Entity(Position(0, 0), characs_val, "mouton", ID_ANIMAL);
+	Sentient_Entity * res = new Sentient_Entity(Position(0, 0), characs_val, "mouton", ID_ANIMAL);
+
+	res->setComportement(Comportement::listComportements[0]);
+
+	return res;
 }
 
 Item * Factories::createItem() {

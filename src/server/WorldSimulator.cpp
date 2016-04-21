@@ -8,12 +8,12 @@ mutex guardMutex;
 condition_variable guardCV;
 SimulationState state;
 
-WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool logWorld)
-: 	netAdapter(new NetworkAdapter(this)),
+
+WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool logWorld):
+	netManager(new NetworkManager(this)),
 	simulationTime(0),
 	simulationTimeWarp(100000),
 	facade(new Facade()),
-	// state(SimulationState::IDLE_SIMULATION),
 	multiThread(false)
 {
 	facade->initSimulation(nbAgents, nbAnimals);

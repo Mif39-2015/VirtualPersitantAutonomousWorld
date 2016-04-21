@@ -6,7 +6,7 @@
 TEST_CASE("Test socket", "[foo]")
 {
     NetworkAdapter netAd(NULL);
-    netAd.Init();
+    netAd.Init(10);
 
     netAd.Run();
 

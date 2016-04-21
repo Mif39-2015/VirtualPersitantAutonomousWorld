@@ -18,17 +18,17 @@
 #include <string>
 #include "message/Message.hpp"
 #include "message/WorldChangeMessage.hpp"
-#include "../server/WorldSimulator.hpp"
-#include "../logging/Logger.hpp"
+#include "server/WorldSimulator.hpp"
+#include "logging/Logger.hpp"
 #include "AuthenticationModule.hpp"
+#include "reseau/NetworkManager.hpp"
 
 typedef struct arg{
     const char * nom;
     int val;
 } infos;
 
-class WorldSimulator;
-
+class NetworkManager;
 using namespace std;
 
 /**
@@ -37,20 +37,22 @@ using namespace std;
  */
 class NetworkAdapter {
 private:
-    AuthenticationModule auth;
-    WorldSimulator* simulator;
+    NetworkManager* netManager;
     Logger* networkLogger;
-    int socket_desc , client_sock , c , *new_sock;
-    struct sockaddr_in server , client;
-    infos *info;
-
+    int listenSocket;
+    // int client_sock, c , *new_sock;
+    // infos *info;
+	
 
 public:
-    NetworkAdapter(WorldSimulator* _simulator);
-    NetworkAdapter(WorldSimulator* _simulator, bool logNetwork);
-    void Init();
+    NetworkAdapter(NetworkManager* _netManager);
+    NetworkAdapter(NetworkManager* _netManager, bool logNetwork);
+    int Init(int maxPendingConnections);
     void Run();
-    void broadcastWorldChangesToclients();
+
+    void sendMessageToClient(int socket, string message);
+    string receiveMessage(int socket);
+
 };
 
 #endif

@@ -16,10 +16,12 @@
 #include "logging/Logger.hpp"
 #include "tool/StringTool.hpp"
 
+#include "server/WorldSimulator.hpp"
+#include "reseau/NetworkManager.hpp"
+#include "logging/Logger.hpp"
 
 
-class NetworkAdapter;
-class Facade;
+class NetworkManager;
 
 using namespace std;
 
@@ -40,23 +42,23 @@ class WorldSimulator {
 	private:
 		/*!
 		 * \brief logs AI changes, states, etc
-		 * /!\ This object will be NULL if corresponding 
-		 * constructor parameter wasn't set to true 
+		 * /!\ This object will be NULL if corresponding
+		 * constructor parameter wasn't set to true
 		 **/
 		Logger* aiLogger;
-		
+
 		/*!
 		 * \brief logs World objects, changes, etc
-		 * /!\ This object will be NULL if corresponding 
-		 * constructor parameter wasn't set to true 
+		 * /!\ This object will be NULL if corresponding
+		 * constructor parameter wasn't set to true
 		 **/
 		Logger* worldLogger;
-		
+
 		/*!
 		 * \brief Sends and receives data to/from clients via the network
 		 **/
-		NetworkAdapter* netAdapter;
-		
+		NetworkManager* netManager;
+
 		/*!
 		 * \brief the simulation time (number of steps)
 		 **/
@@ -101,11 +103,11 @@ class WorldSimulator {
 
 	public:
 		/*!
-		 * \brief No-arg constructor. 
+		 * \brief No-arg constructor.
 		 * Equivalent to WorldSimulator(false, false)
 		 **/
 		WorldSimulator();
-		
+
 		/*!
 		 * \brief Constructor with logging parameters.
 		 **/
@@ -124,11 +126,11 @@ class WorldSimulator {
 		/*!
 		 * \brief Saves the state of the entire world.
 		 * Data is written to the given fileName
-		 * Data written contains world objects, user database 
+		 * Data written contains world objects, user database
 		 * and world global data (items, characteristics, etc...)
 		 **/
 		void save(const string fileName);
-		
+
 		/*!
 		 * \brief Creates a simulation starting from a saved file.
 		 **/

@@ -20,7 +20,7 @@ TEST_CASE("Test_Simulation", "[init]")
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
-        WorldSimulator ws = WorldSimulator(10, 3, true, true);
+        WorldSimulator ws = WorldSimulator(10, 0, true, true);
 		ws.run();
 	}
 }

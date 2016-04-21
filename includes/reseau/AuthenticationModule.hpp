@@ -7,7 +7,8 @@
 
 #include <iostream>
 #include <vector>
-#include "message/WorldChangeMessage.hpp"
+
+//~ #include "../db/sqliteInterface.hpp"
 
 using namespace std;
 
@@ -17,10 +18,14 @@ using namespace std;
  * Authenticate, register account, etc
  */
 class AuthenticationModule {
+	private:
+		//~ SQLiteAccess dbAccess;
+		vector<string> split(string str,char delimiter);
 	public:
 		AuthenticationModule();
-		int registerClient(string username, string password); // Add new client
-		bool removeClient(string username, string password); // Remove client
+		int registerClient(string username, string password); // Add new client and returns his id
+		bool removeClient(string username); // Remove client from username
+		bool removeClient(int id); // Remove client from id
 		bool authClient(string username, string password); // Returns true if client username/password match, false otherwise
 };
 

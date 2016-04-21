@@ -39,6 +39,10 @@ typedef enum {
 	Fonction_BOOL_TRUE
 	, Fonction_BOOL_FALSE
 	, FONC_B_NULL
+	, FONC_AG_HUNGRY
+	, FONC_AG_TIRED
+	, FONC_AG_NOT_HUNGRY
+	, FONC_AG_NOT_TIRED
 } FONC_BOOL;
 
 typedef enum {
@@ -62,6 +66,10 @@ class MapEnumPointeur {
 //FONC_BOOL
 bool fonction_true(Sentient_Entity * a);
 bool fonction_false(Sentient_Entity * a);
+bool fct_entity_is_hungry(Sentient_Entity * a);
+bool fct_entity_is_tired(Sentient_Entity * a);
+bool fct_entity_isnt_hungry_anymore(Sentient_Entity * a);
+bool fct_entity_isnt_tired_anymore(Sentient_Entity * a);
 
 //FONC_INT_ENTITY
 int fonction_getFaim(Sentient_Entity * a, Entity * e);

@@ -37,26 +37,13 @@ int Comportement::initVectorComp(std::string filename) {
 	noeudFaimM5->setAction(actionFaimM5);
 	noeudFaimP10->setAction(actionFaimP10);
 
-	vector<struct_condition> vecStructCondFaim20;
-	struct_condition condFaim20;
-	condFaim20.fIE1 = Fonc_GetFaim;
-	condFaim20.e1 = nullptr;
-	condFaim20.op = Inf;
-	condFaim20.comp = 20;
-	condFaim20.fIE2 = FONC_I_E_NULL;
-	vecStructCondFaim20.push_back(condFaim20);
+	vector<FONC_BOOL> vecStructCondFaim20;
+	vecStructCondFaim20.push_back(FONC_AG_HUNGRY);
+	areteFaim20->setCondition_Simple(vecStructCondFaim20);
 
-	areteFaim20->setCondition_Complexe(vecStructCondFaim20);
-
-	vector<struct_condition> vecStructCondFaim80;
-	struct_condition condFaim80;
-	condFaim80.fIE1 = Fonc_GetFaim;
-	condFaim80.e1 = nullptr;
-	condFaim80.op = Sup;
-	condFaim80.comp = 80;
-	condFaim80.fIE2 = FONC_I_E_NULL;
-	vecStructCondFaim80.push_back(condFaim80);
-	areteFaim80->setCondition_Complexe(vecStructCondFaim80);
+	vector<FONC_BOOL> vecStructCondFaim80;
+	vecStructCondFaim80.push_back(FONC_AG_NOT_HUNGRY);
+	areteFaim80->setCondition_Simple(vecStructCondFaim80);
 
 	c->ajouterNoeud(noeudFaimM5);
 	c->ajouterNoeud(noeudFaimP10);

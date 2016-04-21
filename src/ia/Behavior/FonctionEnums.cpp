@@ -1,5 +1,6 @@
 #include "ia/Behavior/FonctionEnums.hpp"
 #include "ia/Entity/Sentient_Entity.hpp"
+#include "ia/Entity/Characteristics.hpp"
 
 map<FONC_VOID, void(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncVoid = {
 	{IDLE, idle}
@@ -24,6 +25,10 @@ map<FONC_ENTITY_ENTITY, Entity *(*)(Sentient_Entity * a, Entity * e)> MapEnumPoi
 map<FONC_BOOL, bool(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncBool = {
 	{Fonction_BOOL_TRUE, fonction_true}
 	, {Fonction_BOOL_FALSE, fonction_false}
+	, {FONC_AG_HUNGRY, fct_entity_is_hungry}
+	, {FONC_AG_TIRED, fct_entity_is_tired}
+	, {FONC_AG_NOT_HUNGRY, fct_entity_isnt_hungry_anymore}
+	, {FONC_AG_NOT_TIRED, fct_entity_isnt_tired_anymore}
 };
 
 map<FONC_INT_ENTITY, int(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur::mapFoncIntEntity = {
@@ -43,11 +48,9 @@ void goto_droite(Sentient_Entity * agent) {}
 
 void faim_p10(Sentient_Entity * agent) {
 	int i = agent->setVal(5, agent->getVal(5) + 10);
-	cout << "pour le setVal(5) on a un retour de : " << i << endl;
 }
 void faim_m5(Sentient_Entity * agent) {
 	int i = agent->setVal(5, agent->getVal(5) - 5);
-	cout << "pour le setVal(5) on a un retour de : " << i << endl;
 }
 
 //FONC_VOID_ENTITY
@@ -66,6 +69,26 @@ bool fonction_true(Sentient_Entity * a) {
 bool fonction_false(Sentient_Entity * a) {
 	cout << " je suis dans la fonction_false() liée à FONCTION_BOOL_FALSE " << endl;
 	return false;
+}
+
+bool fct_entity_is_hungry(Sentient_Entity * a){
+	cout << a->getName() << " a faim !" << endl;
+	return a->isHungry() == 1;
+}
+
+bool fct_entity_is_tired(Sentient_Entity * a){
+	cout << a->getName() << " est fatigué(e) !" << endl;
+	return a->isTired()  == 1;
+}
+
+bool fct_entity_isnt_hungry_anymore(Sentient_Entity * a){
+	cout << a->getName() << " n'a plus faim !" << endl;
+	return a->getVal(Characs::C_SATIETY) == Characteristics::getCharacById(Characs::C_SATIETY)->getMax();
+}
+
+bool fct_entity_isnt_tired_anymore(Sentient_Entity * a){
+	cout << a->getName() << " n'est plus fatigué(e) !" << endl;
+	return a->getVal(Characs::C_STAMINA) == Characteristics::getCharacById(Characs::C_STAMINA)->getMax();
 }
 
 //FONC_INT_ENTITY

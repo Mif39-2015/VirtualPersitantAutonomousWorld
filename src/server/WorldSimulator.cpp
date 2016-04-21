@@ -36,6 +36,7 @@ WorldSimulator::WorldSimulator()
 }
 
 void WorldSimulator::run(){
+	signal(SIGINT, stopSimulation);
 	state = SimulationState::RUNNING_SIMULATION;
 
 	// Listen for user commands
@@ -183,17 +184,7 @@ void WorldSimulator::handleUserCommands(){
 					cout << "\tMissing parameter \"file\". Usage : save <file>" << endl;
 				}
 			} else if(words[0].compare("stop") == 0 || words[0].compare("s") == 0){
-				if(state == SimulationState::PAUSED_SIMULATION){
-					{
-						lock_guard<mutex> lk(guardMutex);
-						state = SimulationState::STOPPING_SIMULATION;
-					}
-
-				    // Allow simulation to resume
-				    guardCV.notify_one();
-				} else {
-					state = SimulationState::STOPPING_SIMULATION;
-				}
+				stopSimulation(0);
 			} else {
 				cout << "\tUnknown command \"" << words[0] << "\". You can list available commands by typing \"help\"" << endl;
 			}
@@ -286,4 +277,19 @@ void WorldSimulator::load(const string fileName){
 
     // Allow simulation to resume
     guardCV.notify_one();
+}
+
+void WorldSimulator::stopSimulation(int sig_num){
+	cout << "\tStopping simulation" << endl;
+	if(state == SimulationState::PAUSED_SIMULATION){
+		{
+			lock_guard<mutex> lk(guardMutex);
+			state = SimulationState::STOPPING_SIMULATION;
+		}
+
+	    // Allow simulation to resume for a clean exit
+	    guardCV.notify_one();
+	} else {
+		state = SimulationState::STOPPING_SIMULATION;
+	}
 }

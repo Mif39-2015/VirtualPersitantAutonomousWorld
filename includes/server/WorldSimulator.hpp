@@ -9,6 +9,7 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <signal.h>
 
 #include "ia/Facade.hpp"
 #include "reseau/NetworkAdapter.hpp"
@@ -72,11 +73,6 @@ class WorldSimulator {
 		Facade* facade;
 
 		/*!
-		 * \brief Simulation state
-		 **/
-		 // SimulationState state;
-		
-		/*!
 		 * \brief True if each agent has a dedicated thread
 		 **/
 		 bool multiThread;
@@ -92,21 +88,15 @@ class WorldSimulator {
 		 **/
 		void handleUserCommands();
 
-
 		/*!
 		 * \brief Displays available commands
 		 **/
 		void displayUserCommands();
 
 		/*!
-		 * \brief Prevents data from being saved while the simulation is running (used with savingGuardMutex)
+		 * \brief Stops the simulation. Called when ctching ctrl+c signal
 		 **/
-		// mutex savingGuardMutex;
-
-		/*!
-		 * \brief Protects data from being saved while the simulation is running (used with savingGuardCV)
-		 **/
-		// condition_variable savingGuardCV;
+		static void stopSimulation(int sig_num);
 
 
 	public:

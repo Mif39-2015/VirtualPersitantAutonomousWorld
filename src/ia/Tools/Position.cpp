@@ -29,3 +29,13 @@ bool Position::isInCircle(Position * p, int rayon) {
 
 
 
+//cJSON* Position::toJson()
+//{
+//	cJSON* pos = cJSON_CreateObject();
+//	
+//	cJSON_AddNumberToObject(pos, "x", x);
+//	cJSON_AddNumberToObject(pos, "y", y);
+//	
+//	return pos;
+//}
+

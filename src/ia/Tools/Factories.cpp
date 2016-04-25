@@ -4,15 +4,12 @@
 
 Sentient_Entity * Factories::createAgent() {
 	std::vector<int> characs;
-
 	ifstream file (PATH_DATA"/Characteristics_Agent.json", ios::in);
 	if (file.is_open()) {
 		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 
 		file.close();
-
 		cJSON *root = cJSON_Parse(str.c_str());
-
 		cJSON *child = cJSON_GetObjectItem(root, "characteristicsAgent");
 		int	nb = cJSON_GetArraySize(child);
 		cJSON *item;
@@ -23,9 +20,7 @@ Sentient_Entity * Factories::createAgent() {
 			if (id->type == cJSON_Number) {
 				characs.push_back(id->valueint);
 			}
-
 		}
-
 	} else {
 		std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
 		return nullptr;
@@ -277,21 +272,31 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 
 	std::string name;
 	Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
+	int val2 = rand (c->getMin(), c->getMax() + 1);
 	switch (type) {
 	case ResourceType::T_BOIS:
 		name = "Arbre";
 		res->setVal(C_RESPAWN_VALUE, res->getVal(C_RESPAWN_VALUE) + 5);
-		res->addItemToStock(Item::getItemByName("Bois"), c->getMax());
+		res->addItemToStock(Item::getItemByName("Bois"), val2);
 		break;
 	case ResourceType::T_PIERRE:
 		name = "Caillou";
 		res->setVal(C_RESPAWN_VALUE, 0);
-		res->addItemToStock(Item::getItemByName("Pierre"), c->getMax());
+		res->addItemToStock(Item::getItemByName("Pierre"), val2);
 		break;
 	case ResourceType::T_METAL:
 		name = "Gisement de metal";
 		res->setVal(C_RESPAWN_VALUE, 0);
-		res->addItemToStock(Item::getItemByName("Metal"), c->getMax());
+		res->addItemToStock(Item::getItemByName("Metal"), val2);
+		break;
+	case ResourceType::T_LEGUME:
+		name = "Un légume";
+		res->addItemToStock(Item::getItemByName("Legume"), val2);
+		break;
+	case ResourceType::T_VIANDE:
+		name = "Un steak";
+		res->setVal(C_RESPAWN_VALUE, 0);
+		res->addItemToStock(Item::getItemByName("Viande"), val2);
 		break;
 	}
 

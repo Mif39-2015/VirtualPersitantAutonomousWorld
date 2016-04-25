@@ -37,3 +37,27 @@ void Tangible_Entity::removeItemFromStock(Item * i, int quantity){
         }
     }
 }
+
+cJSON* Tangible_Entity::toJson()
+{
+	cJSON *entity = Entity::toJson();
+	
+	//ajout de la position 
+	//cJSON_AddItemToObject(entity, "position", pos.toJson());
+	
+	//ajout des items
+	cJSON * items;
+	items = cJSON_CreateArray();
+
+	for(auto it = stock.begin(); it != stock.end(); it++){
+		cJSON* item = cJSON_CreateObject();
+		cJSON_AddNumberToObject(item, (it->first->getName()).c_str(),it->second);
+		cJSON_AddItemToArray(items, item);
+	}
+
+	cJSON_AddItemToObject(entity,"items", items);
+	
+	return entity;
+}
+
+void Tangible_Entity::affiche(){}

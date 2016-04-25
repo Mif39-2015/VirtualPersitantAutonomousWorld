@@ -16,6 +16,8 @@ Item * Item::getItemByName(std::string n){
 	return nullptr;
 }
 
+void Item::affiche(){}
+
 int Item::loadItemsFile(std::string fileName){
 	ifstream file (PATH_DATA"/descriptionItems.json", ios::in);
 	if (file.is_open()){

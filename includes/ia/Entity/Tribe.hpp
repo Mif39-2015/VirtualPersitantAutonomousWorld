@@ -94,6 +94,10 @@ class Tribe : public Entity{
 	     	*  \brief Affiche la liste de stock
 	     	*/
 		void afficheStock();
+		
+		void afficheMembres();
+		
+		void affiche();
 
 		/*!
 	     	*  \brief Affichage sous le format json

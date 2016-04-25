@@ -1,5 +1,6 @@
 #ifndef POSITION_HPP
 #define POSITION_HPP
+//#include "tool/cJSON.hpp"
 
 /*!
  * \file Position.hpp
@@ -40,6 +41,9 @@ class Position {
 		
 		bool operator<(Position const &) const; 
 		bool operator==(Position const &) const; 
+		
+		//cJSON* toJson();
+		
 		/*!
 		 	*\brief Destructeur
 		 */

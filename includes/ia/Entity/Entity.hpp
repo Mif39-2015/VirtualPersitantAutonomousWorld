@@ -116,10 +116,12 @@ public:
 	* \return 1 si l'entity est fatiguée, 0 si non, et -1 si erreur
 	*/
 	unsigned int isTired(void);
+	
+	virtual void affiche();
 
-	cJSON* toJson();
+	virtual cJSON* toJson();
 
-	~Entity(void);
+	virtual ~Entity(void);
 
 protected:
 

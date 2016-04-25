@@ -1,4 +1,5 @@
 
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -31,11 +32,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 	SECTION("TEST COMPORTEMENT")
 	{
 
-		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
-
-		REQUIRE(loadResult  != -1);
-		REQUIRE(loadResult2 != -1);
+		bool loadResult = loadAllFiles();
+		REQUIRE(loadResult);
 
 		cout << "ICI, ON TESTE LE COMPORTEMENT" << endl;
 
@@ -107,7 +105,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		for (int i = 0; i < 100; ++i) {
 			cout << endl << "##### iteration " << i << " : " << endl;
-			agent->run();
+			agent->run(i);
 		}
 
 		delete c;
@@ -125,11 +123,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 	{
 
 		std::cout << "TEST LISTE COMPORTEMENT" << std::endl;
-		int loadResult = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
-		int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
-
-		REQUIRE(loadResult  != -1);
-		REQUIRE(loadResult2 != -1);
+		bool loadResult = loadAllFiles();
+		REQUIRE(loadResult);
 
 		Sentient_Entity * agent = Factories::createAgent();
 
@@ -138,7 +133,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		int i = 0;
 		while(i < 50){
-			agent->run();
+			agent->run(i);
 			i++;
 		}
 

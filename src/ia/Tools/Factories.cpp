@@ -37,9 +37,14 @@ Sentient_Entity * Factories::createAgent() {
 		characs_val.insert(std::pair<int, int>(characs[i], -1));
 	}
 
-	characs_val[C_VITALITY] = 100;
-	characs_val[C_AGE] = 0;
-	characs_val[C_SATIETY] = 100;
+	characs_val[C_VITALITY]             = 100;
+	characs_val[C_AGE]                  = rand (0, 11);
+	characs_val[C_SATIETY]              = 100;
+	characs_val[C_STAMINA]              = 100;
+	characs_val[C_SATIETY_THRESHOLD]    = rand(20, 31);
+	characs_val[C_STAMINA_THRESHOLD]    = rand(20, 31);
+	characs_val[C_SATIETY_DECADE_VALUE] = 1;
+	characs_val[C_STAMINA_DECADE_VALUE] = 1;
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
@@ -50,6 +55,20 @@ Sentient_Entity * Factories::createAgent() {
 			int val = rand (min, max + 1);
 			characs_val[*it] = val;
 		}
+	}
+
+	int fitness = characs_val[C_FITNESS];
+	if (fitness > 66) {
+		characs_val[C_SATIETY_DECADE] = 15;
+		characs_val[C_STAMINA_DECADE] = 15;
+	}
+	else if (fitness <= 66 && fitness > 33) {
+		characs_val[C_SATIETY_DECADE] = 10;
+		characs_val[C_STAMINA_DECADE] = 10;
+	}
+	else if (fitness <= 33) {
+		characs_val[C_SATIETY_DECADE] = 5;
+		characs_val[C_STAMINA_DECADE] = 5;
 	}
 
 	std::string name;
@@ -97,9 +116,14 @@ Sentient_Entity * Factories::createAnimal() {
 		characs_val.insert(std::pair<int, int>(characs[i], -1));
 	}
 
-	characs_val[C_VITALITY] = 100;
-	characs_val[C_AGE] = 0;
-	characs_val[C_SATIETY] = 100;
+	characs_val[C_VITALITY]             = 100;
+	characs_val[C_AGE]                  = rand (0, 11);
+	characs_val[C_SATIETY]              = 100;
+	characs_val[C_STAMINA]              = 100;
+	characs_val[C_SATIETY_THRESHOLD]    = rand(20, 31);
+	characs_val[C_STAMINA_THRESHOLD]    = rand(20, 31);
+	characs_val[C_SATIETY_DECADE_VALUE] = 1;
+	characs_val[C_STAMINA_DECADE_VALUE] = 1;
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
@@ -112,7 +136,25 @@ Sentient_Entity * Factories::createAnimal() {
 
 	}
 
-	return new Sentient_Entity(Position(0, 0), characs_val, "mouton", ID_ANIMAL);
+	int fitness = characs_val[C_FITNESS];
+	if (fitness > 66) {
+		characs_val[C_SATIETY_DECADE] = 15;
+		characs_val[C_STAMINA_DECADE] = 15;
+	}
+	else if (fitness <= 66 && fitness > 33) {
+		characs_val[C_SATIETY_DECADE] = 10;
+		characs_val[C_STAMINA_DECADE] = 10;
+	}
+	else if (fitness <= 33) {
+		characs_val[C_SATIETY_DECADE] = 5;
+		characs_val[C_STAMINA_DECADE] = 5;
+	}
+
+	Sentient_Entity * res = new Sentient_Entity(Position(0, 0), characs_val, "mouton", ID_ANIMAL);
+
+	res->setComportement(Comportement::listComportements[0]);
+
+	return res;
 }
 
 Item * Factories::createItem() {

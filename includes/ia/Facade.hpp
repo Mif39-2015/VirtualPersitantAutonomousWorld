@@ -30,12 +30,12 @@ public:
 	/*!
 	* \brief Permet d'appeler la fonction run pour tout les agents.
 	*/
-	void runAll();
+	void runAll(unsigned int wstime);
 
 	/*!
 	* \brief Permet de faire un tick d'horloge pour tout les insentient_entity de la simulation
 	*/
-	void updateWorld();
+	void updateWorld(unsigned int wstime);
 
 	/*!
 	* \brief Retourne un agent selon un id
@@ -48,13 +48,13 @@ public:
 	* \param i: l'id recherché
 	*/
 	Tribe * getTribeById(unsigned int i);
-	
+
 	/*!
-	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération 
+	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération
 	*/
 	std::vector<Entity *> getUpdatedAgents();
 
-	
+
 
 private:
 };

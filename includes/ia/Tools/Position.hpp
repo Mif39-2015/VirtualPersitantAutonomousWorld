@@ -39,7 +39,7 @@ class Position {
 		bool isInCircle(Position* p, int rayon);
 		
 		bool operator<(Position const &) const; 
-		
+		bool operator==(Position const &) const; 
 		/*!
 		 	*\brief Destructeur
 		 */

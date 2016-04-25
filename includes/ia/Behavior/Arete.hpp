@@ -43,6 +43,7 @@ class Arete {
 	public :
 		// ******** CONSTRUCTEURS ********
 		Arete();
+
 		Arete(Noeud * nD, Noeud * nF);
 
 		// ******** GETTERS ********

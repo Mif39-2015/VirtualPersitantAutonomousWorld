@@ -40,7 +40,10 @@ int Sentient_Entity::distEucli(Position ar)
 	return sqrt(pow((this->getPos().getX()-ar.getX()),2) + pow((this->getPos().getY()-ar.getY()),2));
 }
 
-void Sentient_Entity::run(){
+void Sentient_Entity::run(unsigned int wstime){
+	//On fait évoluer l'état de l'agent grace à decade()
+	this->decade(wstime);
+
 	//Executer le noeud courant
 	//avancer si on peux, ou rester sur le noeud courant
 	std::tuple<Comportement *, Noeud *, bool> t = trace.top();

@@ -57,6 +57,11 @@ public:
 	bool getModif();
 
 	/*!
+	* \brief Renvoie l'etat Idle de l'entity
+	*/
+	bool getIdle();
+
+	/*!
 	* \brief Renvoie le type associé à l'entity
 	*/
 	type getTypeId();
@@ -66,6 +71,12 @@ public:
 	* \param m: le modificateur
 	*/
 	void setModif(bool m);
+
+	/*!
+	* \brief Met à jour l'etat de l'entity : si il est idle ou non
+	* \param m: le nouvel etat
+	*/
+	void setIdle(bool i);
 
 	/*!
 	* \brief Met à jour le nom de l'entity
@@ -81,12 +92,30 @@ public:
 	int getVal(int id);
 
 	/*!
-	* \brief Met à jour la valeur associée à la clé id si cette derniere
-	* existe bien dans la map et renvoie 1 (success) sinon renvoie -1
+	* \brief Met à jour la valeur associée à la clé id
 	* \param id: la clé
 	* \param v: la valeur
+	* \return -1 si l'id ne correspond pas à l'une des caractéristiques de l'entity, -2 si v est plus grand que le max, -3 si v est plus petit que le min, 1 si tout vas bien
 	*/
 	int setVal(int id, int v);
+
+	/*!
+	* \brief Fait évoluer l'état d'un agent de manière passive
+	* \param wstime: Le temps de la simulation
+	*/
+	void decade(unsigned int wstime);
+
+	/*!
+	* \brief Retourne si une entitée à faim.
+	* \return 1 si l'entity a faim, 0 si non, et -1 si erreur
+	*/
+	unsigned int isHungry(void);
+
+	/*!
+	* \brief Retourne si une entitée est fatiguée.
+	* \return 1 si l'entity est fatiguée, 0 si non, et -1 si erreur
+	*/
+	unsigned int isTired(void);
 
 	cJSON* toJson();
 
@@ -100,6 +129,7 @@ protected:
 	string name; /*!< le nom de l'objet entity*/
 	std::map<int, int> charact_correspondence; /*!<correspondance entre la caracteristique et le sentient entity.*/
 	bool modif;
+	bool idle;
 };
 
 #endif

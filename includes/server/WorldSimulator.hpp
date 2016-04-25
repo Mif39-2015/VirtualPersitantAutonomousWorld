@@ -7,18 +7,32 @@
 
 #include <iostream>
 #include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <signal.h>
 
 #include "ia/Facade.hpp"
 #include "reseau/NetworkAdapter.hpp"
 #include "logging/Logger.hpp"
 #include "tool/StringTool.hpp"
 
+#include "server/WorldSimulator.hpp"
+#include "reseau/NetworkManager.hpp"
+#include "logging/Logger.hpp"
 
 
-class NetworkAdapter;
-class Facade;
+class NetworkManager;
 
 using namespace std;
+
+enum SimulationState {
+	IDLE_SIMULATION,
+	PAUSED_SIMULATION,
+	REQUIRE_WAIT_SIMULATION,
+	RUNNING_SIMULATION,
+	WAITING_SIMULATION,
+	STOPPING_SIMULATION
+};
 
 /**
  * \class WorldSimulator
@@ -28,23 +42,23 @@ class WorldSimulator {
 	private:
 		/*!
 		 * \brief logs AI changes, states, etc
-		 * /!\ This object will be NULL if corresponding 
-		 * constructor parameter wasn't set to true 
+		 * /!\ This object will be NULL if corresponding
+		 * constructor parameter wasn't set to true
 		 **/
 		Logger* aiLogger;
-		
+
 		/*!
 		 * \brief logs World objects, changes, etc
-		 * /!\ This object will be NULL if corresponding 
-		 * constructor parameter wasn't set to true 
+		 * /!\ This object will be NULL if corresponding
+		 * constructor parameter wasn't set to true
 		 **/
 		Logger* worldLogger;
-		
+
 		/*!
 		 * \brief Sends and receives data to/from clients via the network
 		 **/
-		NetworkAdapter* netAdapter;
-		
+		NetworkManager* netManager;
+
 		/*!
 		 * \brief the simulation time (number of steps)
 		 **/
@@ -59,19 +73,41 @@ class WorldSimulator {
 		 * \brief Facade to access AI simulation metods and agents
 		 **/
 		Facade* facade;
-		
+
+		/*!
+		 * \brief True if each agent has a dedicated thread
+		 **/
+		 bool multiThread;
+
 		/*!
 		 * \brief Runs one step of the world simulation.
 		 * Called every step by the run method when multithread argument is false
 		 **/
 		void worldRun();
+		
+		/*!
+		 * \brief Catches user commands in the command line and executes it
+		 **/
+		void handleUserCommands();
+
+		/*!
+		 * \brief Displays available commands
+		 **/
+		void displayUserCommands();
+
+		/*!
+		 * \brief Stops the simulation. Called when ctching ctrl+c signal
+		 **/
+		static void stopSimulation(int sig_num);
+
+
 	public:
 		/*!
-		 * \brief No-arg constructor. 
+		 * \brief No-arg constructor.
 		 * Equivalent to WorldSimulator(false, false)
 		 **/
 		WorldSimulator();
-		
+
 		/*!
 		 * \brief Constructor with logging parameters.
 		 **/
@@ -79,15 +115,8 @@ class WorldSimulator {
 		
 		/*!
 		 * \brief Runs the simulation.
-		 * multiThread parameter determines if there must be 
-		 * only one thread or if each agent must have a dedicated thread
 		 **/
-		void run(bool multiThread);
-		
-		/*!
-		 * \brief Catches user commands in the command line and executes it
-		 **/
-		void handleUserCommands();
+		void run();
 		
 		/*!
 		 * \brief Checks whether or not changes occured during previous simulation step
@@ -97,11 +126,11 @@ class WorldSimulator {
 		/*!
 		 * \brief Saves the state of the entire world.
 		 * Data is written to the given fileName
-		 * Data written contains world objects, user database 
+		 * Data written contains world objects, user database
 		 * and world global data (items, characteristics, etc...)
 		 **/
 		void save(const string fileName);
-		
+
 		/*!
 		 * \brief Creates a simulation starting from a saved file.
 		 **/

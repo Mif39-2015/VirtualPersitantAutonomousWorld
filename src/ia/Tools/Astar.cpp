@@ -38,7 +38,9 @@ bool operator==(Node const& a, Node const& b)
 
 bool operator<(Node const &a, Node const& b)
 {
-    if(a.getCout() < b.getCout())
+    if(a.getxPos() < b.getxPos())
+		return true;
+	else if(a.getyPos() < b.getyPos())
 		return true;
     return false;	
 }
@@ -59,7 +61,7 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 	stack<Position> cheminStack;
 	// tant que openList n'est pas vide
 	while(!openList.empty()){
-		Node u = openList.top();
+		Node u = openList.top(); 
 		for(std::vector<Node>::iterator  it = saveOpenList.begin(); it != saveOpenList.end(); ++it) {
 			if((*it) == u){
 				saveOpenList.erase(it);
@@ -79,12 +81,13 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 				cheminStack.push(Position(chemin.getxPos(), chemin.getyPos()));	
 							
 				map<Node, int>::iterator p;
-				for(p = closedList.begin(); p != closedList.end(); p++){	
-					if(Node(chemin.px, chemin.py) == (p->first)){
+				for(p = closedList.begin(); p != closedList.end(); p++){
+					if((p->first).getxPos() == chemin.px && (p->first).getyPos() == chemin.py){
 						chemin = p->first;
+						break;
 					}
 				}	
-			}
+			}			
 			cheminStack.push(Position(chemin.getxPos(), chemin.getyPos()));	
 			return cheminStack;			
 		}
@@ -114,24 +117,33 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 							}
 							if(!nerienfaire){
 								if(x == u.getxPos() || y == u.getyPos())
-									v.setCout(u.getCout() +1); // cout de 1 si case adjacente 
+									v.setCout(u.getCout() + 1); // cout de 1 si case adjacente 
 								else
 									v.setCout(u.getCout() + sqrt(2)); // cout de sqrt(2) sinon
+									
 								v.updateHeuristique(xArrivee, yArrivee);
 								v.px = u.getxPos();
 								v.py = u.getyPos();
 								
-								openList.push(v);
-								saveOpenList.push_back(v);
+								map<Node, int>::iterator p;
+								bool add = true;
+								for(p = closedList.begin(); p != closedList.end(); p++){	
+									if(v.getxPos() == (p->first).getxPos() && v.getyPos() == (p->first).getyPos())
+										add = false;
+										
+								}			
+								if(add){
+									openList.push(v);
+									saveOpenList.push_back(v);
+								}
 							}		
 						}	
 					}
 				}			
 			}
 		}
-		closedList.emplace(u, u.getCout());
+		closedList.insert(make_pair(u, u.getCout()));	
 	}
-	
 	return cheminStack;
 }
 

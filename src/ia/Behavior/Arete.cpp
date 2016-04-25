@@ -5,7 +5,10 @@ Arete::Arete() {
 	noeudDepart = nullptr;
 	noeudFin = nullptr;
 }
-Arete::Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {}
+Arete::Arete(Noeud * nD, Noeud * nF) : noeudDepart(nD) , noeudFin(nF) {
+	noeudDepart->ajouterAreteOut(this);
+	noeudFin->ajouterAreteIn(this);
+}
 
 // ******** GETTERS ********
 Noeud * Arete::getNoeudDepart() {
@@ -67,24 +70,25 @@ bool Arete::isTrue(Sentient_Entity * a) {
 		}
 		cout << "la val2 est : " << val2 << endl;
 		switch (it->op) {
-			case Inf :
-				if (!(val1 < val2)) return false;
-				break;
-			case Inf_Eg :
-				if (!(val1 <= val2)) return false;
-				break;
-			case Eg :
-				if (!(val1 == val2)) return false;
-				break;
-			case Sup_Eg :
-				if (!(val1 >= val2)) return false;
-				break;
-			case Sup :
-				if (!(val1 > val2)) return false;
-				break;
-			default :
-				break;
+		case Inf :
+			if (!(val1 < val2)) return false;
+			break;
+		case Inf_Eg :
+			if (!(val1 <= val2)) return false;
+			break;
+		case Eg :
+			if (!(val1 == val2)) return false;
+			break;
+		case Sup_Eg :
+			if (!(val1 >= val2)) return false;
+			break;
+		case Sup :
+			if (!(val1 > val2)) return false;
+			break;
+		default :
+			break;
 		}
 	}
+
 	return true;
 }

@@ -52,7 +52,7 @@ int SQLiteAccess::sqlDelUser(std::string username){
 	return sqlRequest(deluser);
 }
 int SQLiteAccess::sqlDelUser(int id){
-	std::string deluser = "delete from user where id = "+id+";";
+	std::string deluser = "delete from user where id = "+id+';';
 	return sqlRequest(deluser);
 }
 

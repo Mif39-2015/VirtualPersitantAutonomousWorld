@@ -77,20 +77,21 @@ TEST_CASE("Test_Item", "[item]")
 		REQUIRE(loadResult2 != -1);
 
 		std::cout << "Creation de la ressource" << std::endl;
-		Insentient_Entity * resource = Factories::createResource(T_PIERRE);
+		Insentient_Entity * resource = Factories::createResource(T_LEGUME);
 
 		REQUIRE(resource != nullptr);
 
 		resource->afficheStock();
-		std::cout << resource->getVal(C_RESPAWN_VALUE) << std::endl;
+		std::cout << "Repawn de " << resource->getVal(C_RESPAWN_VALUE) << " tout les " << resource->getVal(C_RESPAWN_RATE) << " ticks"<< std::endl;
 
 		std::cout << "Demarrage de la boucle" << std::endl;
 		unsigned int t = 0;
-		while(t < 500){
-			Item * i = Item::getItemByName("Pierre");
+		while(t < 600){
+			Item * i = Item::getItemByName("Legume");
 			resource->removeItemFromStock(i, 1);
 			resource->updateResource(t);
-			resource->afficheStock();
+			if(t%10 == 0)
+				resource->afficheStock();
 			t++;
 		}
 

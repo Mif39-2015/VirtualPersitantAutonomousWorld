@@ -19,7 +19,9 @@
 enum ResourceType {
 	T_BOIS,/*!< Signifie que la ressource contient du bois*/
 	T_PIERRE,/*!< Signifie que la ressource contient de la pierre*/
-	T_METAL/*!< Signifie que la ressource contient du metal*/
+	T_METAL,/*!< Signifie que la ressource contient du metal*/
+	T_LEGUME,/*!< Signifie que la ressource contient des légumes*/
+	T_VIANDE/*!< Signifie que la ressource contient de la viande*/
 };
 
 /*!

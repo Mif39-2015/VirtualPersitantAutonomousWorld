@@ -14,6 +14,7 @@ using namespace std;
 
 typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
 	IDLE
+	, EAT
 	, DORMIR
 	, GOTO_HAUT
 	, GOTO_BAS
@@ -63,6 +64,15 @@ class MapEnumPointeur {
 		static map<FONC_ENTITY_ENTITY	, Entity *(*)	(Sentient_Entity * a, Entity * e)> mapFoncEntityEntity;
 };
 
+class MapEnumString {
+	public :
+		static map<std::string	, FONC_VOID			> mapFoncVoid;
+		static map<std::string	, FONC_BOOL			> mapFoncBool;
+		static map<std::string	, FONC_VOID_ENTITY	> mapFoncVoidEntity;
+		static map<std::string	, FONC_INT_ENTITY	> mapFoncIntEntity;
+		static map<std::string	, FONC_ENTITY_ENTITY> mapFoncEntityEntity;
+};
+
 //FONC_BOOL
 bool fonction_true(Sentient_Entity * a);
 bool fonction_false(Sentient_Entity * a);
@@ -76,6 +86,7 @@ int fonction_getFaim(Sentient_Entity * a, Entity * e);
 
 //FONC_VOID
 void idle(Sentient_Entity * agent);
+void eat(Sentient_Entity * agent);
 void dormir(Sentient_Entity * agent);
 void goto_haut(Sentient_Entity * agent);
 void goto_bas(Sentient_Entity * agent);

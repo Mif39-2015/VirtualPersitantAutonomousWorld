@@ -23,7 +23,45 @@ NetworkAdapter::NetworkAdapter(NetworkManager* _netManager, bool logNetwork)
 
 
 int NetworkAdapter::Init(int maxPendingConnections){
-	
+    //Create socket
+    listenSocket = socket(AF_INET , SOCK_STREAM , 0);
+    if (listenSocket == -1)
+    {
+        printf("Could not create socket\n");
+        return -1;
+    }
+    puts("Socket created");
+
+    //Prepare the sockaddr_in structure
+    struct sockaddr_in server;
+    server.sin_family = AF_INET;
+    server.sin_addr.s_addr = INADDR_ANY;
+    server.sin_port = htons( 8887 );
+
+    //Bind
+    if( bind(listenSocket,(struct sockaddr *)&server , sizeof(server)) < 0)
+    {
+        //print the error message
+        perror("bind failed. Error");
+        return -2;
+    }
+    puts("bind done");
+
+    //Listen
+    listen(listenSocket , maxPendingConnections);
+
+    return 0;
+
+    //Accept and incoming connection
+    // puts("Waiting for incoming connections...");
+    // c = sizeof(struct sockaddr_in);
+
+
+    // //Accept and incoming connection
+    // puts("Waiting for incoming connections...");
+    // c = sizeof(struct sockaddr_in);
+
+	/*~~
     //Create socket
     listenSocket = socket(AF_INET , SOCK_STREAM , 0);
     if (listenSocket == -1)
@@ -42,6 +80,7 @@ int NetworkAdapter::Init(int maxPendingConnections){
     {
         return -2;
     }
+    cout << "bound" << endl;
 
     // //Listen
     // listen(listenSocket , maxPendingConnections);
@@ -54,6 +93,8 @@ int NetworkAdapter::Init(int maxPendingConnections){
     // //Accept and incoming connection
     // puts("Waiting for incoming connections...");
     // c = sizeof(struct sockaddr_in);
+
+    ~~*/
 }
 
 // void concat (char * mess1, char * mess2){
@@ -182,34 +223,19 @@ int NetworkAdapter::Init(int maxPendingConnections){
 
 
 void NetworkAdapter::Run(){
-    int clientSock;
-    int addrlen;
-
-    struct sockaddr_in client;
-
-    while( (clientSock = accept(listenSocket, (struct sockaddr *)&client, (socklen_t*)&addrlen)) )
+    socklen_t addrlen = sizeof(struct sockaddr_in);
+    while( (clientSock = accept(listenSocket, (struct sockaddr *)&client, &addrlen)) )
     {
         if (clientSock > 0){
+            puts("Connection accepted");
             netManager->addClient(clientSock);
-
-            // puts("Connection accepted");
-            // pthread_t sniffer_thread;
-            // new_sock = (int*) malloc(sizeof(int));
-            // *new_sock = client_sock;
-            // info = (infos*) malloc(sizeof(infos));
-            // info->val = client_sock;
-            // info->nom = "buffer";
-
-            // if( pthread_create( &sniffer_thread , NULL ,  connection_handler , (void*) info) < 0)
-            // {
-            //     perror("could not create thread");
-            //     return;
-            // }
-
-            //Now join the thread , so that we dont terminate before the thread
-            //pthread_join( sniffer_thread , NULL);
-            // puts("Handler assigned");
         }
+    }
+
+    if (clientSock < 0)
+    {
+        perror("Accept failed");
+        return;
     }
 }
 
@@ -219,5 +245,6 @@ void NetworkAdapter::sendMessageToClient(int socket, string message){
 
 string NetworkAdapter::receiveMessage(int socket){
     // TODO
+    while(true); // A supprimer une fois la méthode implémentée (permet de ne pas faire bugger)
     return "";
 } 

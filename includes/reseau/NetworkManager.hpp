@@ -8,9 +8,10 @@
 #include "reseau/Client.hpp"
 #include "reseau/NetworkAdapter.hpp"
 #include "logging/Logger.hpp"
-#include "reseau/AuthenticationModule.hpp"
+// #include "reseau/AuthenticationModule.hpp"
 #include "server/WorldSimulator.hpp"
 
+#include <thread>
 
 class WorldSimulator;
 class NetworkAdapter;
@@ -24,8 +25,10 @@ class NetworkManager {
 	private:
 		WorldSimulator* simulator;
 		NetworkAdapter* netAdapter;
-		AuthenticationModule* authModule;
+		// AuthenticationModule* authModule;
 		vector<Client*> clients;
+		thread networkAdapterThread;
+
 	public:
 		NetworkManager(WorldSimulator* _simulator);
 		// void addClient(Client* _newClient);

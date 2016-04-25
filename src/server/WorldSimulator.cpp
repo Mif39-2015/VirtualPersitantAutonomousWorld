@@ -77,7 +77,7 @@ void WorldSimulator::worldRun(){
 	        	guardCV.wait(lk);
 	        }
 		} else {
-			facade->runAll(simulationTime);
+			// facade->runAll(simulationTime);
 			facade->updateWorld(simulationTime);
 
 			/* Logging AI & World */
@@ -292,6 +292,11 @@ void WorldSimulator::stopSimulation(int sig_num){
 	    guardCV.notify_one();
 	} else {
 		state = SimulationState::STOPPING_SIMULATION;
+	}
+	
+	if(sig_num != 0){
+		this_thread::sleep_for( chrono::milliseconds( 500 ));
+		exit(0);
 	}
 }
 

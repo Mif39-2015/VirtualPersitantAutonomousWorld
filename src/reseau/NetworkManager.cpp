@@ -5,9 +5,12 @@
 #include "reseau/NetworkManager.hpp"
 
 NetworkManager::NetworkManager(WorldSimulator* _simulator):
-simulator(_simulator), netAdapter(new NetworkAdapter(this, true)), authModule(new AuthenticationModule())
+simulator(_simulator),
+netAdapter(new NetworkAdapter(this, true))
+// authModule(new AuthenticationModule())
 {
-
+	netAdapter->Init(10);
+	networkAdapterThread = thread(&NetworkAdapter::Run, netAdapter);
 }
 
 // void NetworkManager::addClient(Client* _newClient){
@@ -40,6 +43,9 @@ Client* NetworkManager::getClientById(int _clientId){
 
 void NetworkManager::handleUserCommand(Client* c, string message)
 {
+	cout << "Received user command : " << endl;
+	cout << message << endl;
+
 	//TODO
 }
 

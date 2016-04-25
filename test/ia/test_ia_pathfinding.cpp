@@ -51,7 +51,7 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		cout << endl << "On crée un agent et on lui set sa poos à 4,4" << endl;
 		Sentient_Entity * agent = Factories::createAgent();
 		agent->setPos(4,4);
-
+/*
 		cout << endl << "On cherche un chemin pour arriver en 15,20, on le stocke dans ses chemins mémorisés et on l'affiche" << endl;
 		stack<Position> chemin = pathFind(agent->getPos().getX(), agent->getPos().getY(),15,20, carte);
 		agent->addCheminMemorise(chemin);
@@ -66,7 +66,7 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		while (!chemin2.empty()) {
 			cout << chemin2.top().getX() << ";" << chemin2.top().getY() << endl;
 			chemin2.pop();
-		}		
+		}		*/
 		
 	}
 	

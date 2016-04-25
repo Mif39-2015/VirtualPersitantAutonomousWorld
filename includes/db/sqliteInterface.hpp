@@ -19,6 +19,8 @@ class SQLiteAccess{
 		std::string sqlGetRequest(std::string sql);
 		int sqlRequest(std::string sqlStatement);
 		int sqlAddUser(std::string username, std::string password, std::string addmail);
+		int SQLiteAccess::sqlDelUser(std::string username);
+		int SQLiteAccess::sqlDelUser(int id);
 		void sqlSetTableUp();
 };
 

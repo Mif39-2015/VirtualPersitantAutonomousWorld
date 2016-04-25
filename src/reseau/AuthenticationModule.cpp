@@ -3,36 +3,30 @@
  * \brief Implementation of AuthenticationModule.hpp
  */
 #include "reseau/AuthenticationModule.hpp"
+#include "db/sqliteInterface.hpp"
 
-
-AuthenticationModule::AuthenticationModule()/* :
-dbAccess(SQLiteAccess("user"))*/
+AuthenticationModule::AuthenticationModule() :
+dbAccess(SQLiteAccess("user.db"))
 {
 }
 
-int AuthenticationModule::registerClient(string username, string password){
-	//~ dbAccess.sqlAddUser(username, password, "");
-    return 0;
+int AuthenticationModule::registerClient(string username, string password, string mail){
+	return dbAccess.sqlAddUser(username, password, mail);
 }
 
-bool AuthenticationModule::removeClient(string username){
-
-    return false;
+int AuthenticationModule::removeClient(string username){
+	return dbAccess.sqlDelUser(username);
 }
 
-bool AuthenticationModule::removeClient(int id){
-
-    return false;
+int AuthenticationModule::removeClient(int id){
+	return dbAccess.sqlDelUser(id);
 }
 
-bool AuthenticationModule::authClient(string username, string password){
-	//~ string result= dbAccess.sqlGetRequest("Select id from user where nickname = '" + username + "' and password = '" + password + "'");
-	//~ vector<string>results=split(result,'\n');
-	//~ result=split(results[1],'|')[0];
-	//~ if(result.length()<=0){
-		//~ return false;
-	//~ }
-    return true;
+int AuthenticationModule::authClient(string username, string password){
+	string result= dbAccess.sqlGetRequest("Select id from user where nickname = '" + username + "' and password = '" + password + "'");
+	vector<string>results=split(result,'\n');
+	result=split(results[1],'|')[0];
+	return (result.length()<=0);
 }
 
 vector<string> AuthenticationModule::split(string str,char delimiter){

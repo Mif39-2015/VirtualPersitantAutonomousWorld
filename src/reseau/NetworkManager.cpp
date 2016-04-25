@@ -15,7 +15,7 @@ simulator(_simulator), netAdapter(new NetworkAdapter(this, true)), authModule(ne
 // }
 
 void NetworkManager::addClient(int socket){
-	this->clients.push_back(new Client(this->netAdapter, socket));
+	this->clients.push_back(new Client(this->netAdapter, this, socket));
 }
 
 void NetworkManager::deleteClient(int _clientId){
@@ -38,5 +38,9 @@ Client* NetworkManager::getClientById(int _clientId){
 	return NULL;
 }
 
+void NetworkManager::handleUserCommand(Client* c, string message)
+{
+	//TODO
+}
 
 

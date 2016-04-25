@@ -10,8 +10,10 @@
 #include <thread>
 
 #include "NetworkAdapter.hpp"
+#include "NetworkManager.hpp"
 
 class NetworkAdapter;
+class NetworkManager;
 
 using namespace std;
 
@@ -21,7 +23,7 @@ using namespace std;
  */
 class Client {
 public:
-    Client(NetworkAdapter* _netAdapter, int _socket);
+    Client(NetworkAdapter* _netAdapter, NetworkManager* _netManager, int _socket);
 		
     void setId(int _id);
 
@@ -34,6 +36,7 @@ public:
 		
 private:
     NetworkAdapter* netAdapter; // used to send and receive data
+    NetworkManager* netManager; // used to access handle_user_command
     int id; // database ID
     int socket; // Socket fd
     thread* requestHandler; // Client thread

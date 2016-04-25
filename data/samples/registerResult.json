@@ -1,0 +1,9 @@
+{
+	"messageType": "registerResult",
+	"comment": "Message du serveur en réponse à un message de register.",
+	"comment2": "Le champ status peut contenir les valeurs suivantes :",
+	"comment3": "success -> la création de compte a fonctionné",
+	"comment4": "duplicate -> un compte avec cet username existe déjà",
+	"comment5": "failiure -> erreur de type inconnu, rééssayer",
+	"status": "success"
+}

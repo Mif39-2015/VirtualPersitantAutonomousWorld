@@ -14,7 +14,8 @@ WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool log
 	simulationTime(0),
 	simulationTimeWarp(100000),
 	facade(new Facade()),
-	multiThread(false)
+	multiThread(false),
+	maxThreads(100)
 {
 	facade->initSimulation(nbAgents, nbAnimals);
 	state = SimulationState::IDLE_SIMULATION;
@@ -292,4 +293,8 @@ void WorldSimulator::stopSimulation(int sig_num){
 	} else {
 		state = SimulationState::STOPPING_SIMULATION;
 	}
+}
+
+int WorldSimulator::nbEntities(){
+	return facade->listAgent.size() + facade->listTribe.size() + facade->listIE.size();
 }

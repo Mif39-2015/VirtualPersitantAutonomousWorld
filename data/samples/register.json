@@ -1,0 +1,6 @@
+{
+	"messageType": "register",
+	"comment": "Message envoyé par le client pour créer un compte utilisateur",
+	"username": "bruno",
+	"password": "pwd"
+}

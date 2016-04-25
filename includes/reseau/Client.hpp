@@ -33,7 +33,7 @@ public:
     void sendMessage(string _message);
 		
 private:
-    NetworkAdapter* netAdapter; // used to access database
+    NetworkAdapter* netAdapter; // used to send and receive data
     int id; // database ID
     int socket; // Socket fd
     thread* requestHandler; // Client thread

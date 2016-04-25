@@ -47,6 +47,10 @@ public:
 	* \param wstime: Le temps actuel de la simulation
 	*/
 	void updateResource(unsigned int wstime);
+	
+	 cJSON* toJson();
+	
+	void affiche();
 
 protected:
 	std::map<int, int> characteristics;/*!< la map de correspondance entre l'entité et les caractéristiques*/

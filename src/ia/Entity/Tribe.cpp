@@ -75,35 +75,44 @@ void Tribe::afficheStock(){
 	}
 }
 
+void Tribe::afficheMembres()
+{
+	for(auto it = members.begin(); it != members.end(); it++)
+	{
+		(*it)->affiche();
+	}
+}
+
+void Tribe::affiche(){}
+
 cJSON* Tribe::toJson(){
 	cJSON *entity = Entity::toJson();
-	/*cJSON_AddNumberToObject(root, "goal_index", this->goal_index);
+	cJSON_AddNumberToObject(entity, "goal_index", this->goal_index);
 
-	cJSON_CreateArray(ids,4);
-	cJSON *members;
-	members = cJSON_CreateArray();
+	//ajout des membres de la tribu dans le JSON
+	//cJSON_CreateArray(ids,4);
+	cJSON * members_list;
+	members_list = cJSON_CreateArray();
 
-	for(auto it = tribe.begin(); it != members.end(); it++){
-		cJSON_AddItemToArray(members, *(it)->toJson());
+	for(auto it = members.begin(); it != members.end(); it++){ 
+		cJSON_AddItemToArray(members_list, (*it)->toJson());
 	}
+	
+	//cout << it->first->getName() << ", " << it->second << endl;
 
-	cJSON_AddItemToObject(entity,"members", members);
+	cJSON_AddItemToObject(entity,"members", members_list);
 
+	//ajout des items possédés par la tribu dans le JSON
+	cJSON * items;
 	items = cJSON_CreateArray();
 
-	for(auto it = stock.begin(); it != stock.end(); it++){
-		cJSON_AddItemToArray(members, *(it)->toJson());
+	for(auto it2 = stock.begin(); it2 != stock.end(); it2++){
+		cJSON* item = cJSON_CreateObject();
+		cJSON_AddNumberToObject(item, (it2->first->getName()).c_str(),it2->second);
+		cJSON_AddItemToArray(items, item);
 	}
 
-	cJSON_AddItemToObject(entity,"members", members);
-
-
-	cJSON *root;
-	root = cJSON_CreateObject();
-	cJSON_AddNumberToObject(root, "id", this->id);
-	cJSON_AddStringToObject(root, "typeId", TypeNames[this->typeId]);
-	cJSON_AddStringToObject(root, "name", this->name.c_str());
-	cout << cJSON_Print(root) << endl;*/
+	cJSON_AddItemToObject(entity,"items", items);
 
 	return entity;
 }

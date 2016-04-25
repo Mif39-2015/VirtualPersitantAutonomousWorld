@@ -4,15 +4,12 @@
 
 Sentient_Entity * Factories::createAgent() {
 	std::vector<int> characs;
-
 	ifstream file (PATH_DATA"/Characteristics_Agent.json", ios::in);
 	if (file.is_open()) {
 		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
 
 		file.close();
-
 		cJSON *root = cJSON_Parse(str.c_str());
-
 		cJSON *child = cJSON_GetObjectItem(root, "characteristicsAgent");
 		int	nb = cJSON_GetArraySize(child);
 		cJSON *item;
@@ -23,9 +20,7 @@ Sentient_Entity * Factories::createAgent() {
 			if (id->type == cJSON_Number) {
 				characs.push_back(id->valueint);
 			}
-
 		}
-
 	} else {
 		std::cout << "Unable to open file for the Agent Characteristics" << std::endl;
 		return nullptr;

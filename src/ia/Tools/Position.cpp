@@ -36,3 +36,13 @@ bool Position::operator<(Position const &p2) const
     return false;	
 }
 
+//cJSON* Position::toJson()
+//{
+//	cJSON* pos = cJSON_CreateObject();
+//	
+//	cJSON_AddNumberToObject(pos, "x", x);
+//	cJSON_AddNumberToObject(pos, "y", y);
+//	
+//	return pos;
+//}
+

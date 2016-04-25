@@ -110,7 +110,7 @@ cJSON* Entity::toJson() {
 	cJSON_AddNumberToObject(root, "id", this->id);
 	cJSON_AddStringToObject(root, "typeId", TypeNames[this->typeId]);
 	cJSON_AddStringToObject(root, "name", this->name.c_str());
-	cout << cJSON_Print(root) << endl;
+	//cout << cJSON_Print(root) << endl;
 
 	return root;
 }
@@ -135,5 +135,8 @@ unsigned int Entity::isTired(void) {
 	}
 	return -1;
 }
+
+void Entity::affiche()
+{}
 
 Entity::~Entity(void) {}

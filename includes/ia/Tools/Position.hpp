@@ -1,5 +1,6 @@
 #ifndef POSITION_HPP
 #define POSITION_HPP
+//#include "tool/cJSON.hpp"
 
 /*!
  * \file Position.hpp
@@ -39,6 +40,8 @@ class Position {
 		bool isInCircle(Position* p, int rayon);
 		
 		bool operator<(Position const &) const; 
+		
+		//cJSON* toJson();
 		
 		/*!
 		 	*\brief Destructeur

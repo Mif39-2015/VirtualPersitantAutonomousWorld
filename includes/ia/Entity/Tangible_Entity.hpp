@@ -5,8 +5,9 @@
 * \brief contient la classe Tangible_Entity
 * \author Groupe IA
 */
-#include "ia/Entity/Entity.hpp"
+
 #include "ia/Tools/Position.hpp"
+#include "ia/Entity/Entity.hpp"
 #include "ia/Entity/Item.hpp"
 
 using namespace std;
@@ -60,6 +61,13 @@ public:
     *  \brief Affiche la liste de stock
     */
 	void afficheStock();
+	
+	void affiche();
+	
+	/*!
+	* \brief conversion de l'objet en objet CJson
+	*/
+	cJSON* toJson();
 
 protected:
 

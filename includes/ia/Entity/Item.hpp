@@ -61,6 +61,8 @@ public:
 	* Retourne l'Item correspondant
 	*/
 	static Item * getItemByName(std::string n);
+	
+	void affiche();
 
 	/*!
 	*  \brief Destructeur pour la classe Item

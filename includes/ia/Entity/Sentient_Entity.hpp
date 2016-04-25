@@ -112,6 +112,10 @@ class Sentient_Entity : public Tangible_Entity{
 		* \brief un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 		*/
 		stack<Position> connaitChemin(Position);
+		
+		 cJSON* toJson();
+		
+		void affiche();
 
 
 

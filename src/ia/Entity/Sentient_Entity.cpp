@@ -111,3 +111,13 @@ stack<Position> Sentient_Entity::connaitChemin(Position posFinale){
 	}
 	return cheminTemp;
 }
+
+cJSON* Sentient_Entity:: toJson(){
+	cJSON * tangible_entity = Tangible_Entity::toJson();
+	return tangible_entity;
+}
+
+void Sentient_Entity::affiche()
+{
+	std::cout<<"id : "<<id<<" name : "<<name<<std::endl;
+}

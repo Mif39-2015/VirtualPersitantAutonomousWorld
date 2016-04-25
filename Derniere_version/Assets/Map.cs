@@ -77,7 +77,7 @@ public class Map {
 											(center * mapGeneratorData.mapChunkSize) + mapGeneratorData.offset,
 											mapGenerator.normalizeMode);
 
-				chunks[x, y] = new Chunk(this, center, heightMap);
+				chunks[x, y] = new Chunk(this, center, heightMap, mapGenerator.texture, mapGenerator.biomes);
 			}
 		}
 	}
@@ -163,18 +163,12 @@ public class Chunk {
 
     public Map map;
 
-	public Chunk(Map map, Vector2 position, float[,] heightMap) {
+	public Chunk(Map map, Vector2 position, float[,] heightMap, Texture2D texture, Texture2D biomes) {
 		this.map = map;
 		this.position = position;
 		this.heightMap = heightMap;
 
-		mesh = new ChunkMesh(this, position, MapGenerator.mapChunkSize, map.chunkContainer.transform);
-
-		/*MeshRenderer meshRenderer = meshObject.AddComponent<MeshRenderer>();
-		MeshFilter meshFilter = meshObject.AddComponent<MeshFilter>();
-		meshFilter.sharedMesh = meshData.CreateMesh ();
-		Texture t = Resources.Load("test 1.tga") as Texture;//texture;///////////////////////////////////
-		meshRenderer.sharedMaterial.mainTexture = t;*/
+		mesh = new ChunkMesh(this, position, MapGenerator.mapChunkSize, map.chunkContainer.transform, texture, biomes);
 	}
 
     //necessaire pour la sérialisation
@@ -200,16 +194,17 @@ public class ChunkMesh {
 
 	Chunk chunk;
 
-	public ChunkMesh(Chunk chunk, Vector2 coord, int size, Transform parent) {
+	public ChunkMesh(Chunk chunk, Vector2 coord, int size, Transform parent, Texture2D texture, Texture2D biomes) {
 		this.chunk = chunk;
 
 		Vector2 pos2D = coord * size;
 		position = new Vector3(pos2D.x, 0, pos2D.y);
 
 		meshObject = new GameObject("Terrain Chunk");
-		meshRenderer = meshObject.AddComponent<MeshRenderer>();
-
-		meshFilter = meshObject.AddComponent<MeshFilter>();
+		meshObject.AddComponent<MeshRenderer>();
+		meshRenderer = meshObject.GetComponent<MeshRenderer>();
+		meshObject.AddComponent<MeshFilter>();
+		meshFilter = meshObject.GetComponent<MeshFilter>();
 
 		meshObject.transform.position = position * Map.scale;
 		meshObject.transform.parent = parent;
@@ -218,12 +213,20 @@ public class ChunkMesh {
 		MeshData meshData = MeshGenerator.GenerateTerrainMesh(	chunk.heightMap,
 											chunk.map.mapGenerator.meshHeightMultiplier,
 											chunk.map.mapGenerator.meshHeightCurve,
-											0
+											0,
+		                                    biomes
 										);
 
-		meshFilter.mesh = meshData.CreateMesh();
+		//meshFilter.mesh = meshData.CreateMesh();
 
 
+
+		meshFilter.mesh = meshData.CreateMesh ();
+		Texture2D t = Resources.Load("test 1.tga") as Texture2D;//texture;///////////////////////////////////
+		//meshRenderer.sharedMaterial.mainTexture = t;
+		//meshRenderer.material.color = Color.green;
+		//meshRenderer.sharedMaterial.color = Color.green;
+		meshRenderer.material.mainTexture = texture;
 
 		meshObject.SetActive (true);
 

@@ -16,7 +16,7 @@ public static class MeshGenerator
 	static float[,]			heightMap;
 	static float            heightMultiplier;
 	
-	public static MeshData GenerateTerrainMesh(float[,] _heightMap, float _heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail/*, Texture2D biomes*/) 
+	public static MeshData GenerateTerrainMesh(float[,] _heightMap, float _heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail, Texture2D biomes) 
 	{
 		//initialisation
 		heightCurve 				= new AnimationCurve (_heightCurve.keys);
@@ -78,7 +78,7 @@ public static class MeshGenerator
 				meshData.AddTriangle (vertexIndex + 2, vertexIndex + 3, vertexIndex);
 				
 				//Textures
-				/*Color pixel = biomes.GetPixel(x,y);
+				Color pixel = biomes.GetPixel(x,y);
 				if((pixel.r == 1) && (pixel.g == 1) && (pixel.b == 1))//Neige
 				{
 					meshData.uvs [vertexIndex + 0] = new Vector2 (0.66f, 0);
@@ -86,7 +86,7 @@ public static class MeshGenerator
 					meshData.uvs [vertexIndex + 2] = new Vector2 (1, 1);
 					meshData.uvs [vertexIndex + 3] = new Vector2 (1, 0);
 				}
-				else*/
+				else
 				{
 					meshData.uvs [vertexIndex + 0] = new Vector2 (0.33f, 0);
 					meshData.uvs [vertexIndex + 1] = new Vector2 (0.33f, 1);
@@ -97,7 +97,7 @@ public static class MeshGenerator
 				//
 				//Droite
 				//
-				if(x < width - meshSimplificationIncrement)
+				//if(x < width - meshSimplificationIncrement)
 				{
 					//Points
 					meshData.vertices [vertexIndex + 4]  = meshData.vertices [vertexIndex + 2];
@@ -126,13 +126,13 @@ public static class MeshGenerator
 				//
 				//Bas
 				//
-				if(y < height - meshSimplificationIncrement)
+				//if(y < height - meshSimplificationIncrement)
 				{
 					float avr_height_bas = get_height(x, y, x, y + meshSimplificationIncrement);
+
 					float distance = Mathf.Abs(avr_height - avr_height_bas);
 					float taille_tile = Mathf.Abs(meshData.vertices [vertexIndex].x - meshData.vertices [vertexIndex + 1].x);
 					float proportion = distance/taille_tile;
-					
 					meshData.vertices [vertexIndex + 8]  = meshData.vertices [vertexIndex + 3];
 					meshData.vertices [vertexIndex + 9]  = meshData.vertices [vertexIndex + 2];
 					meshData.vertices [vertexIndex + 10] = new Vector3 (meshData.vertices [vertexIndex + 9].x, 

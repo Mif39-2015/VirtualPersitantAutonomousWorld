@@ -32,6 +32,7 @@ class NetworkManager {
 		void addClient(int socket);
 		void deleteClient(int _clientId);
 		Client* getClientById(int _clientId);
+		void handleUserCommand(Client* c, string message);
 
 		void broadcastMessage(string message);
 };

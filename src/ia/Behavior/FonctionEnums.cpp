@@ -4,6 +4,7 @@
 
 map<FONC_VOID, void(*)(Sentient_Entity * a)> MapEnumPointeur::mapFoncVoid = {
 	{IDLE, idle}
+	, {EAT, eat}
 	, {DORMIR, dormir}
 	, {GOTO_HAUT, goto_haut}
 	, {GOTO_DROITE, goto_droite}
@@ -37,6 +38,7 @@ map<FONC_INT_ENTITY, int(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur::m
 
 map<std::string	, FONC_VOID			> MapEnumString::mapFoncVoid = {
 	{"idle", IDLE}
+	, {"eat", EAT}
 	, {"dormir", DORMIR}
 	, {"goto_haut", GOTO_HAUT}
 	, {"goto_droite", GOTO_DROITE}
@@ -70,7 +72,12 @@ map<std::string	, FONC_ENTITY_ENTITY> MapEnumString::mapFoncEntityEntity = {
 void idle(Sentient_Entity * agent) {
 	cout << "L'agent IDLE" << endl;
 }
-void dormir(Sentient_Entity * agent) {}
+void eat(Sentient_Entity * agent) {
+	// agent->eat();
+}
+void dormir(Sentient_Entity * agent) {
+	// agent->sleep();
+}
 void goto_haut(Sentient_Entity * agent) {}
 void goto_bas(Sentient_Entity * agent) {}
 void goto_gauche(Sentient_Entity * agent) {}
@@ -101,22 +108,22 @@ bool fonction_false(Sentient_Entity * a) {
 	return false;
 }
 
-bool fct_entity_is_hungry(Sentient_Entity * a){
+bool fct_entity_is_hungry(Sentient_Entity * a) {
 	cout << a->getName() << " a faim !" << endl;
 	return a->isHungry() == 1;
 }
 
-bool fct_entity_is_tired(Sentient_Entity * a){
+bool fct_entity_is_tired(Sentient_Entity * a) {
 	cout << a->getName() << " est fatigué(e) !" << endl;
 	return a->isTired()  == 1;
 }
 
-bool fct_entity_isnt_hungry_anymore(Sentient_Entity * a){
+bool fct_entity_isnt_hungry_anymore(Sentient_Entity * a) {
 	cout << a->getName() << " n'a plus faim !" << endl;
 	return a->getVal(Characs::C_SATIETY) >= Characteristics::getCharacById(Characs::C_SATIETY)->getMax();
 }
 
-bool fct_entity_isnt_tired_anymore(Sentient_Entity * a){
+bool fct_entity_isnt_tired_anymore(Sentient_Entity * a) {
 	cout << a->getName() << " n'est plus fatigué(e) !" << endl;
 	return a->getVal(Characs::C_STAMINA) >= Characteristics::getCharacById(Characs::C_STAMINA)->getMax();
 }

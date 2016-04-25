@@ -68,7 +68,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 		vector<struct_condition> vecStructCondFaim20;
 		struct_condition condFaim20;
 		condFaim20.fIE1 = Fonc_GetFaim;
-		condFaim20.e1 = nullptr;
+		// condFaim20.e1 = nullptr;
 		condFaim20.op = Inf;
 		condFaim20.comp = 20;
 		condFaim20.fIE2 = FONC_I_E_NULL;
@@ -83,7 +83,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 		vector<struct_condition> vecStructCondFaim80;
 		struct_condition condFaim80;
 		condFaim80.fIE1 = Fonc_GetFaim;
-		condFaim80.e1 = nullptr;
+		// condFaim80.e1 = nullptr;
 		condFaim80.op = Sup;
 		condFaim80.comp = 80;
 		condFaim80.fIE2 = FONC_I_E_NULL;

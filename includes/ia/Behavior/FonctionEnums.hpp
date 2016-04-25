@@ -14,6 +14,7 @@ using namespace std;
 
 typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
 	IDLE
+	, EAT
 	, DORMIR
 	, GOTO_HAUT
 	, GOTO_BAS
@@ -85,6 +86,7 @@ int fonction_getFaim(Sentient_Entity * a, Entity * e);
 
 //FONC_VOID
 void idle(Sentient_Entity * agent);
+void eat(Sentient_Entity * agent);
 void dormir(Sentient_Entity * agent);
 void goto_haut(Sentient_Entity * agent);
 void goto_bas(Sentient_Entity * agent);

@@ -56,8 +56,8 @@ TEST_CASE("Test_Agent", "[agent]")
 		while ( time < 500) {
 			agent->decade(time);
 			agent->setIdle(false);
-			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << std::endl;
-			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << std::endl;
+			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << "ticks" << std::endl;
+			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << "ticks" << std::endl;
 			time++;
 		}
 	}

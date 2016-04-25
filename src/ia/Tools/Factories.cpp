@@ -277,21 +277,31 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 
 	std::string name;
 	Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
+	int val2 = rand (c->getMin(), c->getMax() + 1);
 	switch (type) {
 	case ResourceType::T_BOIS:
 		name = "Arbre";
 		res->setVal(C_RESPAWN_VALUE, res->getVal(C_RESPAWN_VALUE) + 5);
-		res->addItemToStock(Item::getItemByName("Bois"), c->getMax());
+		res->addItemToStock(Item::getItemByName("Bois"), val2);
 		break;
 	case ResourceType::T_PIERRE:
 		name = "Caillou";
 		res->setVal(C_RESPAWN_VALUE, 0);
-		res->addItemToStock(Item::getItemByName("Pierre"), c->getMax());
+		res->addItemToStock(Item::getItemByName("Pierre"), val2);
 		break;
 	case ResourceType::T_METAL:
 		name = "Gisement de metal";
 		res->setVal(C_RESPAWN_VALUE, 0);
-		res->addItemToStock(Item::getItemByName("Metal"), c->getMax());
+		res->addItemToStock(Item::getItemByName("Metal"), val2);
+		break;
+	case ResourceType::T_LEGUME:
+		name = "Un légume";
+		res->addItemToStock(Item::getItemByName("Legume"), val2);
+		break;
+	case ResourceType::T_VIANDE:
+		name = "Un steak";
+		res->setVal(C_RESPAWN_VALUE, 0);
+		res->addItemToStock(Item::getItemByName("Viande"), val2);
 		break;
 	}
 

@@ -63,6 +63,15 @@ class MapEnumPointeur {
 		static map<FONC_ENTITY_ENTITY	, Entity *(*)	(Sentient_Entity * a, Entity * e)> mapFoncEntityEntity;
 };
 
+class MapEnumString {
+	public :
+		static map<std::string	, FONC_VOID			> mapFoncVoid;
+		static map<std::string	, FONC_BOOL			> mapFoncBool;
+		static map<std::string	, FONC_VOID_ENTITY	> mapFoncVoidEntity;
+		static map<std::string	, FONC_INT_ENTITY	> mapFoncIntEntity;
+		static map<std::string	, FONC_ENTITY_ENTITY> mapFoncEntityEntity;
+};
+
 //FONC_BOOL
 bool fonction_true(Sentient_Entity * a);
 bool fonction_false(Sentient_Entity * a);

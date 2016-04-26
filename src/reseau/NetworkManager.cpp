@@ -6,8 +6,8 @@
 
 NetworkManager::NetworkManager(WorldSimulator* _simulator):
 simulator(_simulator),
-netAdapter(new NetworkAdapter(this, true))
-// authModule(new AuthenticationModule())
+netAdapter(new NetworkAdapter(this, true)),
+authModule(new AuthenticationModule())
 {
 	netAdapter->Init(10);
 	networkAdapterThread = thread(&NetworkAdapter::Run, netAdapter);

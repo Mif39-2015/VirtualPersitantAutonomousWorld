@@ -73,7 +73,7 @@ std::vector<std::string> cutString(std::string & str, std::string delimiter) {
     return res;
 }
 
-map<pair<int, int>, char>getMap(string nomFichier) {
+map<pair<int, int>, char> getMap(string nomFichier) {
     ifstream fichier(nomFichier, ios::in);  // on ouvre
     string ligne;
     map<pair<int, int>, char> carte;
@@ -90,10 +90,14 @@ map<pair<int, int>, char>getMap(string nomFichier) {
             l++;
         }
         fichier.close();
-        return carte;
     }
     else
+    {
         cerr << "Impossible d'ouvrir le fichier de la Map !" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return carte;
 }
 
 

@@ -1,3 +1,6 @@
+#ifndef _SQLITEACCESS_
+#define _SQLITEACCESS_
+
 #include <iostream>
 #include <cstdio>
 #include <sqlite3.h> 
@@ -19,7 +22,11 @@ class SQLiteAccess{
 		std::string sqlGetRequest(std::string sql);
 		int sqlRequest(std::string sqlStatement);
 		int sqlAddUser(std::string username, std::string password, std::string addmail);
+		int sqlDelUser(std::string username);
+		int sqlDelUser(int id);
 		void sqlSetTableUp();
 };
 
 int callback(void *data, int argc, char **argv, char **azColName);
+
+#endif

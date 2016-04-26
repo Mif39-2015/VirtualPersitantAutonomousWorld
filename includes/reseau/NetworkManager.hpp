@@ -11,6 +11,7 @@
 #include "reseau/AuthenticationModule.hpp"
 #include "server/WorldSimulator.hpp"
 
+#include <thread>
 
 class WorldSimulator;
 class NetworkAdapter;
@@ -26,12 +27,15 @@ class NetworkManager {
 		NetworkAdapter* netAdapter;
 		AuthenticationModule* authModule;
 		vector<Client*> clients;
+		thread networkAdapterThread;
+
 	public:
 		NetworkManager(WorldSimulator* _simulator);
 		// void addClient(Client* _newClient);
 		void addClient(int socket);
 		void deleteClient(int _clientId);
 		Client* getClientById(int _clientId);
+		void handleUserCommand(Client* c, string message);
 
 		void broadcastMessage(string message);
 };

@@ -23,11 +23,6 @@
 #include "AuthenticationModule.hpp"
 #include "reseau/NetworkManager.hpp"
 
-typedef struct arg{
-    const char * nom;
-    int val;
-} infos;
-
 class NetworkManager;
 using namespace std;
 
@@ -42,6 +37,8 @@ private:
     int listenSocket;
     // int client_sock, c , *new_sock;
     // infos *info;
+    int socket_desc, clientSock;
+    struct sockaddr_in server , client;
 	
 
 public:

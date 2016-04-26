@@ -1,0 +1,10 @@
+{
+	"messageType": "loginResult",
+	"comment": "Message du serveur en réponse à un message de login.",
+	"comment2": "Le champ status peut contenir les valeurs suivantes :",
+	"comment3": "success -> l'authentification a fonctionné",
+	"comment4": "notFound -> username inconnu",
+	"comment5": "badPassword -> mauvais password",
+	"comment6": "failiure -> erreur de type inconnu, rééssayer",
+	"status": "success"
+}

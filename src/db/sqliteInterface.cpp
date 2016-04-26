@@ -47,6 +47,14 @@ int SQLiteAccess::sqlAddUser(std::string username, std::string password, std::st
 	std::string adduser = "INSERT into user values((Select (max(id)+1) from user),'"+username+"','"+password+"','"+addmail+"',1);";
 	return sqlRequest(adduser);
 }
+int SQLiteAccess::sqlDelUser(std::string username){
+	std::string deluser = "delete from user where nickname = '"+username+"';";
+	return sqlRequest(deluser);
+}
+int SQLiteAccess::sqlDelUser(int id){
+	std::string deluser = "delete from user where id = "+id+';';
+	return sqlRequest(deluser);
+}
 
 void SQLiteAccess::sqlSetTableUp(){
 

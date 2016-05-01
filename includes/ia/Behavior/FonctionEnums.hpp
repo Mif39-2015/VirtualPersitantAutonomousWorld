@@ -12,7 +12,7 @@ using namespace std;
 
 //La nomination des enum est faite ainsi : FONC + type de retour + type de paramètre (s'il y en a un autre que la Sentient_Entity, qui est obligatoire
 
-typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
+typedef enum { //FONC_VOID - Basiquement, ça, c'est les fonction d'action ne prenant pas de paramètres et ne renvoyant rien
 	IDLE
 	, EAT
 	, DORMIR
@@ -25,18 +25,24 @@ typedef enum { // Basiquement, ça, c'est les fonction d'action ne prenant pas d
 	, FONC_V_NULL
 } FONC_VOID;
 
-typedef enum { //Des fonction d'action prenant un paramètre spécifique(une Entity) et ne renvoyant rien du tout
+typedef enum { //FONC_VOID_ENTITY - Des fonction d'action prenant un paramètre spécifique(une Entity) et ne renvoyant rien du tout
 	GoTo
 	, FONC_V_E_NULL
 } FONC_VOID_ENTITY;
 
-typedef enum { //Des fonctions prenant un paramètre spécifique et renvoyant une Entity
+typedef enum { //FONC_ENTITY - Des fonctions renvoyant une espèce de template d'Entity, contenant les informations minimum nécessaires pour définir un Arbre, une Ressource, etc...
+	GetArbre
+	, GetRessource
+	, GetPierre
+} FONC_ENTITY;
+
+typedef enum { //FONC_ENTITY_ENTITY - Des fonctions prenant un paramètre spécifique et renvoyant une Entity
 	GetHallOf
 	, GetNearestOf
 	, FONC_E_E_NULL
 } FONC_ENTITY_ENTITY;
 
-typedef enum {
+typedef enum { //FONC_BOOL
 	Fonction_BOOL_TRUE
 	, Fonction_BOOL_FALSE
 	, FONC_B_NULL
@@ -46,17 +52,18 @@ typedef enum {
 	, FONC_AG_NOT_TIRED_ANYMORE
 } FONC_BOOL;
 
-typedef enum {
+typedef enum { //FONC_BOOl_ENTITY
 	FONC_B_E_NULL
 } FONC_BOOl_ENTITY;
 
-typedef enum {
+typedef enum { //FONC_INT_ENTITY
 	Fonc_GetFaim
 	, FONC_I_E_NULL
 } FONC_INT_ENTITY;
 
 class MapEnumPointeur {
 	public :
+		static map<FONC_ENTITY			, Entity *(*)	()> mapFoncEntity;
 		static map<FONC_BOOL			, bool(*)		(Sentient_Entity * a)> mapFoncBool;
 		static map<FONC_VOID			, void(*)		(Sentient_Entity * a)> mapFoncVoid;
 		static map<FONC_VOID_ENTITY		, void(*)		(Sentient_Entity * a, Entity * e)> mapFoncVoidEntity;
@@ -97,6 +104,10 @@ void faim_m5(Sentient_Entity * agent);
 
 //FONC_VOID_ENTITY
 void go_to(Sentient_Entity * agent, Entity * e);
+
+//FONC_ENTITY
+Entity * getArbre();
+Entity * getRessource();
 
 //FONC_ENTITY_ENTITY
 Entity * getHallOf(Sentient_Entity * agent, Entity * e);

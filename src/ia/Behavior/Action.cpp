@@ -10,7 +10,7 @@ void ActionSimple::Executer(Sentient_Entity * agent) {
 		MapEnumPointeur::mapFoncVoid[fV](agent);
 	}
 	else {
-		Entity * e = nullptr;
+		Entity * e = MapEnumPointeur::mapFoncEntity[paramFinal]();
 		while (!sFEE.empty()) {
 			e = MapEnumPointeur::mapFoncEntityEntity[sFEE.top()](agent, e);
 			sFEE.pop();

@@ -23,10 +23,12 @@ typedef enum {
 struct struct_condition {
 	FONC_INT_ENTITY fIE1;
 	stack<FONC_ENTITY_ENTITY> fEE1;
+	FONC_ENTITY param1;
 	// Entity * e1;
 	Operator op;
 	FONC_INT_ENTITY fIE2;
 	stack<FONC_ENTITY_ENTITY> fEE2;
+	FONC_ENTITY param2;
 	// Entity * e2;
 	int comp;
 };

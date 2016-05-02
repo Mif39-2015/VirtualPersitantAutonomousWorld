@@ -7,7 +7,8 @@
 			"name": "vitality",
 			"definition": "PointsDeVie",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 1,
@@ -16,7 +17,8 @@
 			"name": "gender",
 			"definition": "Genre",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 2,
@@ -25,7 +27,8 @@
 			"name": "Age",
 			"definition": "Age",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 3,
@@ -34,7 +37,8 @@
 			"name": "Agressiveness",
 			"definition": "Agressivité",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 4,
@@ -43,7 +47,8 @@
 			"name": "Fitness",
 			"definition": "Forme",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 5,
@@ -52,7 +57,8 @@
 			"name": "Satiety",
 			"definition": "Faim",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 6,
@@ -61,7 +67,8 @@
 			"name": "StatietyTreshold",
 			"definition": "SeuilFaim",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 7,
@@ -70,7 +77,8 @@
 			"name": "Reflex",
 			"definition": "Reflexes",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 8,
@@ -79,7 +87,8 @@
 			"name": "Perception",
 			"definition": "Perception",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 9,
@@ -88,7 +97,8 @@
 			"name": "Independence",
 			"definition": "Indépendance",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 10 ,
@@ -97,7 +107,8 @@
 			"name": "Charisma",
 			"definition": "Charisme",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 11,
@@ -106,7 +117,8 @@
 			"name": "Capacity",
 			"definition": "Capacité",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 12,
@@ -115,7 +127,8 @@
 			"name": "Stamina",
 			"definition": "Endurance",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 13,
@@ -124,7 +137,8 @@
 			"name": "StaminaThreshold",
 			"definition": "SeuilEndurance",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 14,
@@ -133,7 +147,8 @@
 			"name": "Sanity",
 			"definition": "Sanité",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 15,
@@ -142,7 +157,8 @@
 			"name": "RespawnRate",
 			"definition": "TauxRepop",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 16,
@@ -151,7 +167,8 @@
 			"name": "RespawnValue",
 			"definition": "ValeurRepop",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 17,
@@ -160,7 +177,8 @@
 			"name": "Orientation",
 			"definition": "Orientation",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 18,
@@ -169,7 +187,8 @@
 			"name": "StructuralPoints",
 			"definition": "PointsdeStructure",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 19,
@@ -178,7 +197,8 @@
 			"name": "Weight",
 			"definition": "PoidsItem",
 			"type": "type",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 20,
@@ -187,7 +207,8 @@
 			"name": "MaxResStock",
 			"definition": "Le stock maximum d'une ressource",
 			"type": "unite",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 21,
@@ -196,7 +217,8 @@
 			"name": "SatietyDecade",
 			"definition": "Le taux de décadence de la Satiety d'un agent",
 			"type": "tours",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 22,
@@ -205,7 +227,8 @@
 			"name": "SatietyDecadeValue",
 			"definition": "La valeur de décadence de la Satiety d'un agent",
 			"type": "unite",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 23,
@@ -214,7 +237,8 @@
 			"name": "StaminaDecade",
 			"definition": "Le taux de décadence de la Stamina d'un agent",
 			"type": "tours",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		},
 		{
 			"id": 24,
@@ -223,7 +247,8 @@
 			"name": "StaminaDecadeValue",
 			"definition": "La valeur de décadence de la Stamina d'un agent",
 			"type": "unite",
-			"precision": 1
+			"precision": 1,
+			"modif":true
 		}
 	]
 }

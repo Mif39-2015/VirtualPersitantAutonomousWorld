@@ -19,6 +19,7 @@ std::string Entity::getName() {
 
 void Entity::setName(std::string n) {
 	name = n;
+	setModif(true);
 }
 
 type Entity::getTypeId() {
@@ -39,6 +40,7 @@ void Entity::setModif(bool m) {
 
 void Entity::setIdle(bool i) {
 	idle = i;
+	setModif(true);
 }
 
 int Entity::getVal(int id) {
@@ -56,17 +58,20 @@ int Entity::setVal(int id, int v) {
 	//sinon on met à jour la valeur de la clé existante
 	if (v <= Characteristics::listCharacteristics[id].getMax() && v >= Characteristics::listCharacteristics[id].getMin()) {
 		charact_correspondence.at(id) = v;
-		modif = true;
+		Characteristics::listCharacteristics[id].setModif(true);
+		// modif = true;
 		return 1;
 	}
 	if (v > Characteristics::listCharacteristics[id].getMax()) {
 		charact_correspondence.at(id) = Characteristics::listCharacteristics[id].getMax();
-		modif = true;
+		Characteristics::listCharacteristics[id].setModif(true);
+		// modif = true;
 		return -2;
 	}
 	else {
 		charact_correspondence.at(id) = Characteristics::listCharacteristics[id].getMin();
-		modif = true;
+		Characteristics::listCharacteristics[id].setModif(true);
+		// modif = true;
 		return -3;
 	}
 }

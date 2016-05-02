@@ -32,7 +32,8 @@ thread* Client::getThread(){
 void Client::handleRequests(){
     while(true){
         // listen for user messages
-        std::string message = netAdapter->receiveMessage(socket);
+        std::string message;
+        netAdapter->receiveMessage(socket,message);
         netManager->handleUserCommand(this, message);
     }
 }

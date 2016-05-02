@@ -2,8 +2,12 @@
 #include "ia/Behavior/Noeud.hpp"
 #include "ia/Entity/Sentient_Entity.hpp"
 #include "ia/Behavior/Comportement.hpp"
+#include "ia/Behavior/EtatEnum.hpp"
 
-Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){}
+Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){
+	etat_entity = ETAT::NORD;
+	target = nullptr;
+}
 
 void Sentient_Entity::setComportement(Comportement * comp){
     addToTrace(comp, comp->getNoeudDepart(), false);
@@ -117,6 +121,12 @@ stack<Position> Sentient_Entity::connaitChemin(Position posFinale){
 
 cJSON* Sentient_Entity:: toJson(){
     cJSON * tangible_entity = Tangible_Entity::toJson();
+    
+    cJSON_AddNumberToObject(tangible_entity, "etat", etat_entity);
+    
+    if (target != nullptr)
+    	cJSON_AddNumberToObject(tangible_entity, "cible", target->getId());
+    
     return tangible_entity;
 }
 

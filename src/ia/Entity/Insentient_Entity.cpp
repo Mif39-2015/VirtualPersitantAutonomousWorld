@@ -19,9 +19,7 @@ void Insentient_Entity::updateResource(unsigned int wstime) {
 	}
 }
 
-void Insentient_Entity::affiche(){
-
-}
+void Insentient_Entity::affiche(){}
 
 cJSON* Insentient_Entity::toJson(){
 		cJSON * tangible_entity = Tangible_Entity::toJson();

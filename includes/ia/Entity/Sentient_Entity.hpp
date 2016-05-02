@@ -116,9 +116,6 @@ class Sentient_Entity : public Tangible_Entity{
 		
 		void affiche();
 
-
-
-
 };
 
 #endif

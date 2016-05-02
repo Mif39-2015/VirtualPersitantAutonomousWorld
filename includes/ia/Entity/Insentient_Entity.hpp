@@ -36,7 +36,7 @@ public:
 	 cJSON* toJson();
 	
 	void affiche();
-
+	
 protected:
 };
 

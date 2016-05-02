@@ -43,6 +43,10 @@ cJSON* Tangible_Entity::toJson()
 	cJSON *entity = Entity::toJson();
 	
 	//ajout de la position 
+	cJSON * position = cJSON_CreateObject();
+	cJSON_AddNumberToObject(position, "x",pos.getX());
+	cJSON_AddNumberToObject(position, "y",pos.getY());
+	cJSON_AddItemToObject(entity,"position", position);
 	//cJSON_AddItemToObject(entity, "position", pos.toJson());
 	
 	//ajout des items

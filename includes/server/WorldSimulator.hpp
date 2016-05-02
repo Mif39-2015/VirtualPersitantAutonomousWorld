@@ -80,6 +80,11 @@ class WorldSimulator {
 		 bool multiThread;
 
 		/*!
+		 * \brief Max number of simultaneous threads
+		 **/
+		 int maxThreads;
+
+		/*!
 		 * \brief Runs one step of the world simulation.
 		 * Called every step by the run method when multithread argument is false
 		 **/
@@ -99,6 +104,11 @@ class WorldSimulator {
 		 * \brief Stops the simulation. Called when ctching ctrl+c signal
 		 **/
 		static void stopSimulation(int sig_num);
+
+		/*!
+		 * \brief Counts the nomber of entities in the simulation
+		 **/
+		int nbEntities();
 
 
 	public:

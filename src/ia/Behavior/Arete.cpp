@@ -45,8 +45,7 @@ bool Arete::isTrue(Sentient_Entity * a) {
 	}
 
 	for (auto it = condition_Complexe.begin(); it != condition_Complexe.end(); ++it) {
-		// Entity * e = it->e1;
-		Entity * e = nullptr;
+		Entity * e = MapEnumPointeur::mapFoncEntity[it->param1]();
 		stack<FONC_ENTITY_ENTITY> stackFEE(it->fEE1);
 		while (!it->fEE1.empty()) {
 			e = MapEnumPointeur::mapFoncEntityEntity[stackFEE.top()](a, e);
@@ -59,7 +58,7 @@ bool Arete::isTrue(Sentient_Entity * a) {
 		int val2;
 		if (it->fIE2 != FONC_I_E_NULL) {
 			stack<FONC_ENTITY_ENTITY> stackFEE2(it->fEE2);
-			// e = it->e2;
+			Entity * e = MapEnumPointeur::mapFoncEntity[it->param2]();
 			e = nullptr;
 			while (!stackFEE2.empty()) {
 				e = MapEnumPointeur::mapFoncEntityEntity[stackFEE2.top()](a, e);

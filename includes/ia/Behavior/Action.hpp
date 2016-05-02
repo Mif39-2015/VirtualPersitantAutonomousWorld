@@ -75,6 +75,7 @@ class ActionSimple : public Action {
 		FONC_VOID_ENTITY fVE = FONC_V_E_NULL;
 
 		stack<FONC_ENTITY_ENTITY> sFEE;
+		FONC_ENTITY paramFinal;
 		// Entity * parametreFinal;
 
 	public :
@@ -87,12 +88,14 @@ class ActionSimple : public Action {
 		FONC_VOID getFonc_Void() {return fV;}
 		FONC_VOID_ENTITY getFonc_Void_Entity() {return fVE;}
 		stack<FONC_ENTITY_ENTITY> getStackFonc_Entity_Entity() {return sFEE;}
+		FONC_ENTITY getParamFinal() {return paramFinal;}
 		//Entity * getParametreFinal() {return parametreFinal;}
 
 		// ******** SETTERS ********
 		void setFonc_Void(FONC_VOID foncVoid) {fV = foncVoid;}
 		void setFonc_Void_Entity(FONC_VOID_ENTITY foncVoidEntity) {fVE = foncVoidEntity;}
 		void setStackFonc_Entity_Entity(stack<FONC_ENTITY_ENTITY> stackFoncEntityEntity) {sFEE = stackFoncEntityEntity;}
+		void setParamFinal(FONC_ENTITY fe) {paramFinal = fe;}
 		//void setParametreFinal(Entity * e) {parametreFinal = e;}
 
 		// ******** AJOUTS ********

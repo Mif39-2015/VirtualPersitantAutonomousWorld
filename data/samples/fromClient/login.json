@@ -1,0 +1,6 @@
+{
+	"messageType": "login",
+	"comment": "Message envoyé par le client pour authentifier l'utilisateur",
+	"username": "bruno",
+	"password": "pwd"
+}

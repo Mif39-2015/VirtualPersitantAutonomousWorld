@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.6)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror -Wextra -Wno-unused-variable -Wno-unused-parameter -Wno-return-type")
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror -Wextra -Wno-unused-variable -Wno-unused-parameter -O0")
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 add_subdirectory(${PROJECT_SOURCE_DIR}/test)
@@ -22,6 +21,6 @@ if(DOXYGEN_FOUND)
     add_custom_target(doc
       ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
-      )    
+      )
   endif()
 endif()

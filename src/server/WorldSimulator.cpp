@@ -14,7 +14,8 @@ WorldSimulator::WorldSimulator(int nbAgents, int nbAnimals, bool logAi, bool log
 	simulationTime(0),
 	simulationTimeWarp(100000),
 	facade(new Facade()),
-	multiThread(false)
+	multiThread(false),
+	maxThreads(100)
 {
 	facade->initSimulation(nbAgents, nbAnimals);
 	state = SimulationState::IDLE_SIMULATION;
@@ -76,7 +77,7 @@ void WorldSimulator::worldRun(){
 	        	guardCV.wait(lk);
 	        }
 		} else {
-			facade->runAll(simulationTime);
+			// facade->runAll(simulationTime);
 			facade->updateWorld(simulationTime);
 
 			/* Logging AI & World */
@@ -292,4 +293,13 @@ void WorldSimulator::stopSimulation(int sig_num){
 	} else {
 		state = SimulationState::STOPPING_SIMULATION;
 	}
+	
+	if(sig_num != 0){
+		this_thread::sleep_for( chrono::milliseconds( 500 ));
+		exit(0);
+	}
+}
+
+int WorldSimulator::nbEntities(){
+	return facade->listAgent.size() + facade->listTribe.size() + facade->listIE.size();
 }

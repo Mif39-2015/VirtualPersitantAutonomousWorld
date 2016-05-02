@@ -18,6 +18,11 @@ map<FONC_VOID_ENTITY, void(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur:
 	{GoTo, go_to}
 };
 
+map<FONC_ENTITY, Entity *(*)()> MapEnumPointeur::mapFoncEntity = {
+	{GetArbre, getArbre}
+	, {GetRessource, getRessource}
+};
+
 map<FONC_ENTITY_ENTITY, Entity *(*)(Sentient_Entity * a, Entity * e)> MapEnumPointeur::mapFoncEntityEntity = {
 	{GetHallOf, getHallOf},
 	{GetNearestOf, getNearesOf}
@@ -88,6 +93,18 @@ void faim_p10(Sentient_Entity * agent) {
 }
 void faim_m5(Sentient_Entity * agent) {
 	int i = agent->setVal(5, agent->getVal(5) - 5);
+}
+
+//FONC_ENTITY
+Entity * getArbre(){
+	//Entity e;
+	//define e as a tree
+	return nullptr;
+}
+Entity * getRessource(){
+	// Entity e;
+	//define e as a Ressource
+	return nullptr;
 }
 
 //FONC_VOID_ENTITY

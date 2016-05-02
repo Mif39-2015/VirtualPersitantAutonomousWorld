@@ -30,21 +30,21 @@ std::string readFileForName(std::string filename) {
         return vect[i];
     }
 
-    //~ std::ifstream fichier(filename, std::ios::in);  // on ouvre le fichier en lecture
-//~
-    //~ if(fichier){  // si l'ouverture a réussi
-    //~ std::vector<std::string> vect;
-    //~ std::string line;
-    //~ while(std::getline(fichier, line)){
-    //~ if (line != "")
-    //~ vect.push_back(line);
-    //~ }
-    //~ fichier.close();  // on ferme le fichier
-//~
-    //~ int i = rand<int>(0, vect.size());
-//~
-    //~ return vect[i];
-    //~ }
+    // std::ifstream fichier(filename, std::ios::in);  // on ouvre le fichier en lecture
+//
+    // if(fichier){  // si l'ouverture a réussi
+    // std::vector<std::string> vect;
+    // std::string line;
+    // while(std::getline(fichier, line)){
+    // if (line != "")
+    // vect.push_back(line);
+    // }
+    // fichier.close();  // on ferme le fichier
+//
+    // int i = rand<int>(0, vect.size());
+//
+    // return vect[i];
+    // }
 
     else {
         return "noname";
@@ -73,7 +73,7 @@ std::vector<std::string> cutString(std::string & str, std::string delimiter) {
     return res;
 }
 
-map<pair<int, int>, char>getMap(string nomFichier) {
+map<pair<int, int>, char> getMap(string nomFichier) {
     ifstream fichier(nomFichier, ios::in);  // on ouvre
     string ligne;
     map<pair<int, int>, char> carte;
@@ -90,10 +90,14 @@ map<pair<int, int>, char>getMap(string nomFichier) {
             l++;
         }
         fichier.close();
-        return carte;
     }
     else
+    {
         cerr << "Impossible d'ouvrir le fichier de la Map !" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    return carte;
 }
 
 

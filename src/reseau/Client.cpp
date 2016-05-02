@@ -2,11 +2,13 @@
  * \file Client.cpp
  * \brief Implementation of Client.hpp
  */
+#include <string>
+ 
 #include "reseau/Client.hpp"
 
 
-Client::Client(NetworkAdapter* _netAdapter, int _socket):
-netAdapter(_netAdapter), id(-1), socket(_socket)
+Client::Client(NetworkAdapter* _netAdapter, NetworkManager* _netManager, int _socket):
+netAdapter(_netAdapter), netManager(_netManager), id(-1), socket(_socket)
 {
     this->requestHandler = new thread(&Client::handleRequests, this);
 }
@@ -30,6 +32,8 @@ thread* Client::getThread(){
 void Client::handleRequests(){
     while(true){
         // listen for user messages
+        std::string message = netAdapter->receiveMessage(socket);
+        netManager->handleUserCommand(this, message);
     }
 }
 

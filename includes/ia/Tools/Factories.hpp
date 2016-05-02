@@ -32,33 +32,33 @@ class Factories {
 
 public:
 	/*!
-	 	*\brief Factory permettant d'instancier les Agents
-	 	*/
+ 	*\brief Factory permettant d'instancier les Agents
+ 	*\return Un nouvel Agent
+ 	*/
 	static Sentient_Entity * createAgent();
 
 	/*!
-	 	*\brief Factory permettant d'instancier les Animaux
-	 	*/
+ 	*\brief Factory permettant d'instancier les Animaux
+ 	*\return Un nouvel Animal
+ 	*/
 	static Sentient_Entity * createAnimal();
 
 	/*!
-	 	*\brief Factory permettant d'instancier les Items
-	 	*/
-	static Item * createItem();
-
-	/*!
-	 	*\brief Factory permettant d'instancier les Clans
-	 	*/
+ 	*\brief Factory permettant d'instancier les Clans
+ 	*\return Un nouveau Clan (Tribu)
+ 	*/
 	static Tribe * createTribe();
 
 	/*!
-	 	*\brief Factory permettant d'instancier les Ressources
-	 	*/
+ 	*\brief Factory permettant d'instancier les Ressources
+ 	*\return Une nouvelle Ressource
+ 	*/
 	static Insentient_Entity * createResource(ResourceType type);
 
 	/*!
-	 	*\brief Factory permettant d'instancier les Buildings
-	 	*/
+ 	*\brief Factory permettant d'instancier les Buildings
+ 	*\return Un nouveau Building
+ 	*/
 	static Insentient_Entity * createBuilding();
 
 };

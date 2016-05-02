@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ia/Entity/Insentient_Entity.hpp"
 
-Insentient_Entity::Insentient_Entity(std::string n, type tid, std::map<int, int> charac, int o, int x, int y) : Tangible_Entity(n, tid, charac, Position(x, y)) {}
+Insentient_Entity::Insentient_Entity(std::string n, type tid, std::map<int, int> charac, int x, int y) : Tangible_Entity(n, tid, charac, Position(x, y)) {}
 
 int Insentient_Entity::getValById(int id) {
 	if (characteristics.find(id) == characteristics.end()) {

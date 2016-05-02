@@ -26,7 +26,10 @@ int AuthenticationModule::authClient(string username, string password){
 	string result= dbAccess.sqlGetRequest("Select id from user where nickname = '" + username + "' and password = '" + password + "'");
 	vector<string>results=split(result,'\n');
 	result=split(results[1],'|')[0];
-	return (result.length()<=0);
+	if(!(result.length()<=0)){
+		result = -1;
+	}
+	return atoi(result.c_str());
 }
 
 vector<string> AuthenticationModule::split(string str,char delimiter){

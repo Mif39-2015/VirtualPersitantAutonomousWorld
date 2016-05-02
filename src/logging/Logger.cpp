@@ -26,4 +26,6 @@ bool Logger::log(const string& text){
 
 ostream& Logger::operator<<(const string& text){
     this->log(text);
+    
+    return file;
 }

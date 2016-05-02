@@ -48,7 +48,8 @@ public:
     void Run();
 
     void sendMessageToClient(int socket, string message);
-    string receiveMessage(int socket);
+    int receiveMessage(int socket, string &message);
+    void retablirBuffer(string &message);
 
 };
 

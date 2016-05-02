@@ -116,10 +116,6 @@ public:
 	cJSON* toJson();
 
 	void affiche();
-
-
-
-
 };
 
 #endif

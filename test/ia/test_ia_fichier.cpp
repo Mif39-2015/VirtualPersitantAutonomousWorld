@@ -23,6 +23,8 @@
 #include "ia/Tools/Position.hpp"
 #include "ia/Tools/Astar.hpp"
 
+#include "tool/cJSON.hpp"
+
 using namespace std;
 
 TEST_CASE("Test_File", "[file]")
@@ -42,4 +44,11 @@ TEST_CASE("Test_File", "[file]")
         std::cout << agent->getName() << std::endl;
 
     }
+    
+    SECTION("Parsage JSON map")
+    {
+		ifstream fichier(PATH_DATA"/map.json", ios::in);  // on ouvre
+
+    }
+    
 }

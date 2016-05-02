@@ -28,21 +28,6 @@ public:
 	Insentient_Entity(std::string n, type tid, std::map<int, int> charac, int o, int x, int y);
 
 	/*!
-	* \brief Renvoie la valeur de la clé id de la map.
-	* \param id: la clé dans le map
-	* \return La valeur de la clé existante, -1 sinon
-	* */
-	int getValById(int id);
-
-	/*!
-	* \brief Met à jour la valeur de la clé associée
-	* \param id: la clé dans le map
-	* \param v: la valeur associée à la clé
-	* \return 1 si la mise à jour a réussi, -1 sinon
-	* */
-	int setValById(int id, int v);
-
-	/*!
 	* \brief Fonction qui update la ressource, qui regenere ses item etc.
 	* \param wstime: Le temps actuel de la simulation
 	*/
@@ -53,7 +38,6 @@ public:
 	void affiche();
 
 protected:
-	std::map<int, int> characteristics;/*!< la map de correspondance entre l'entité et les caractéristiques*/
 };
 
 #endif

@@ -28,7 +28,6 @@ class Sentient_Entity : public Tangible_Entity{
 		ETAT etat_entity;
 		map<Position, Entity> memorisation; /*!<map de mémorisation de l'agent : on stocke pour chaque position qu'il a visionné l'entity présent à cette position à ce moment*/
 		Entity* target; /*!<L'endroit que l'entité souhaite atteindre via le chemin'*/
-		map<int, int> charact_correspondence; /*!<un map de correspondance entre la caracteristique et le sentient entity.*/
 		stack<Position> path; /*!<Le chemin a parcourir pour atteindre la cible'*/
 		stack<std::tuple<Comportement *,Noeud *, bool>> trace;
 		vector<stack<Position>> cheminMemorise;/*!<Le chemin pour aller de la position initiale à la position voulue'*/

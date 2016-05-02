@@ -45,8 +45,52 @@ void NetworkManager::handleUserCommand(Client* c, string message)
 {
 	cout << "Received user command : " << endl;
 	cout << message << endl;
+	cJSON * messageJSON = cJSON_Parse(message);
+	cJSON * messageTypeJSON = cJSON_GetObjectItem(messageJSON, "messageType");
+	string messageType = cJSON_Print(messageTypeJSON);
+	switch(messageType)
+	{
+		case "login":
+			cJSON * usernameJSON = cJSON_GetObjectItem(messageJSON, "username");
+			cJSON * passwordJSON = cJSON_GetObjectItem(messageJSON, "password");
+			string username = cJSON_Print(usernameJSON);
+			string password = cJSON_Print(passwordJSON);
+			//Vérifier id mdp dans la bdd
+			int id = authModule->authClient(username, password);
+			if(id != -1)
+			{
+				//Récupérer l'id et le stocker dans la structure client 
+				c->setId(id);				
+				c->sendMessage("{\"messageType\":\"loginResult\",\"status\":\"success\"}");
+			}
+			else
+			{
+				//Message d'erreur auth fail
+				c->sendMessage("{\"messageType\":\"error\",\"errorMessage\":\"Auth fail\",\"code\": \"1001\"\"status\":\"fail\"}");
+			}	
+		break;
+		case "register":
+			cJSON * usernameJSON = cJSON_GetObjectItem(messageJSON, "username");
+			cJSON * passwordJSON = cJSON_GetObjectItem(messageJSON, "password");
+			string username = cJSON_Print(usernameJSON);
+			string password = cJSON_Print(passwordJSON);
+			int id = authModule->registerClient(username, password);
+			if(id != -1)
+			{
+				//Récupérer l'id et le stocker dans la structure client 
+				c->setId(id);
+				c->sendMessage("{\"messageType\":\"registerResult\",\"status\":\"success\"}");
+			}
+			else
+			{
+				//Message d'erreur register fail
+				c->sendMessage("{\"messageType\":\"error\",\"errorMessage\":\"Register fail\",\"code\":\"1002\"\"status\":\"fail\"}");
+			}	
+		break;
+		default:
+			c->sendMessage("{\"messageType\":\"error\",\"errorMessage\":\"Unknown command\",\"code\":\"1003\"\"status\":\"fail\"}");
 
-	//TODO
+	}
 }
 
 

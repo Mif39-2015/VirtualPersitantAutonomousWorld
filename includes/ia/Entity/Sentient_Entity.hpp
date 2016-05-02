@@ -12,6 +12,7 @@
 
 
 #include "ia/Entity/Tangible_Entity.hpp"
+#include "ia/Entity/Insentient_Entity.hpp"
 #include "ia/Behavior/EtatEnum.hpp"
 #include "ia/Tools/Position.hpp"
 #include "ia/Tools/Astar.hpp"
@@ -112,6 +113,12 @@ public:
 	* \brief un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 	*/
 	stack<Position> connaitChemin(Position);
+
+	/*!
+	* \brief Permet à l'agent de récolter la ressource
+	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si erreur
+	*/
+	bool harvestResource(Insentient_Entity * resource);
 
 	cJSON* toJson();
 

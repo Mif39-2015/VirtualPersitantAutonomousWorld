@@ -4,7 +4,11 @@
 Insentient_Entity::Insentient_Entity(std::string n, type tid, std::map<int, int> charac, int x, int y) : Tangible_Entity(n, tid, charac, Position(x, y)) {}
 
 void Insentient_Entity::updateResource(unsigned int wstime) {
-	if (typeId == ID_RESSOURCE) {
+	if (this->getTypeId() == type::ID_RESSOURCE_BOIS
+	        || this->getTypeId() == type::ID_RESSOURCE_PIERRE
+	        || this->getTypeId() == type::ID_RESSOURCE_METAL
+	        || this->getTypeId() == type::ID_RESSOURCE_VIANDE
+	        || this->getTypeId() == type::ID_RESSOURCE_LEGUME) {
 		if (this->getVal(C_RESPAWN_RATE) != 0 && (wstime % this->getVal(C_RESPAWN_RATE)) == 0) {
 			Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
 			for (auto it = stock.begin(); it != stock.end(); it++) {
@@ -19,11 +23,11 @@ void Insentient_Entity::updateResource(unsigned int wstime) {
 	}
 }
 
-void Insentient_Entity::affiche(){
+void Insentient_Entity::affiche() {
 
 }
 
-cJSON* Insentient_Entity::toJson(){
-		cJSON * tangible_entity = Tangible_Entity::toJson();
-		return tangible_entity;
+cJSON* Insentient_Entity::toJson() {
+	cJSON * tangible_entity = Tangible_Entity::toJson();
+	return tangible_entity;
 }

@@ -225,7 +225,7 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 		characs_val.insert(std::pair<int, int>(*it, val));
 	}
 
-	Insentient_Entity * res = new Insentient_Entity("", ID_RESSOURCE, characs_val, 0, 0);
+	Insentient_Entity * res = new Insentient_Entity("", ID_VOID, characs_val, 0, 0);
 
 	std::string name;
 	Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
@@ -233,25 +233,30 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 	switch (type) {
 	case ResourceType::T_BOIS:
 		name = "Arbre";
+		res->setTypeId(ID_RESSOURCE_BOIS);
 		res->setVal(C_RESPAWN_VALUE, res->getVal(C_RESPAWN_VALUE) + 5);
 		res->addItemToStock(Item::getItemByName("Bois"), val2);
 		break;
 	case ResourceType::T_PIERRE:
 		name = "Caillou";
+		res->setTypeId(ID_RESSOURCE_PIERRE);
 		res->setVal(C_RESPAWN_VALUE, 0);
 		res->addItemToStock(Item::getItemByName("Pierre"), val2);
 		break;
 	case ResourceType::T_METAL:
 		name = "Gisement de metal";
+		res->setTypeId(ID_RESSOURCE_METAL);
 		res->setVal(C_RESPAWN_VALUE, 0);
 		res->addItemToStock(Item::getItemByName("Metal"), val2);
 		break;
 	case ResourceType::T_LEGUME:
 		name = "Un légume";
+		res->setTypeId(ID_RESSOURCE_LEGUME);
 		res->addItemToStock(Item::getItemByName("Legume"), val2);
 		break;
 	case ResourceType::T_VIANDE:
 		name = "Un steak";
+		res->setTypeId(ID_RESSOURCE_VIANDE);
 		res->setVal(C_RESPAWN_VALUE, 0);
 		res->addItemToStock(Item::getItemByName("Viande"), val2);
 		break;
@@ -310,5 +315,5 @@ Insentient_Entity * Factories::createBuilding() {
 	// else
 	// 	name = getRandomFemaleName();
 
-	return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0);
+	return new Insentient_Entity(name,  ID_BUILDING, characs_val, 0, 0);
 }

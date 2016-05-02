@@ -43,6 +43,11 @@ void Entity::setIdle(bool i) {
 	setModif(true);
 }
 
+void Entity::setTypeId(type tid){
+	typeId = tid;
+	setModif(true);
+}
+
 int Entity::getVal(int id) {
 	if (charact_correspondence.find(id) == charact_correspondence.end()) {
 		return -1;

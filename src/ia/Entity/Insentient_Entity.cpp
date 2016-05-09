@@ -24,7 +24,7 @@ void Insentient_Entity::updateResource(unsigned int wstime) {
 }
 
 void Insentient_Entity::affiche() {
-
+	std::cout << "TODO" << std::endl;
 }
 
 cJSON* Insentient_Entity::toJson() {

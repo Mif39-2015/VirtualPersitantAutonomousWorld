@@ -56,7 +56,7 @@ TEST_CASE("Test_Tribe", "[tribe]")
 		Insentient_Entity *b1 = Factories::createResource(T_BOIS);
 		t->addNewEntity(b1);
 		cout << "on l'a ajouté la ressource bois dans le tribe" << endl;
-		Insentient_Entity *building1 = Factories::createBuilding();
+		Insentient_Entity *building1 = Factories::createBuilding(B_CITYHALL);
 		REQUIRE(building1 != NULL);
 		cout << "on l'a ajouté la ressource building dans le tribe" << endl;
 		t->addNewEntity(building1);

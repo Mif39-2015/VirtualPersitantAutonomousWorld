@@ -136,10 +136,10 @@ int Sentient_Entity::getInventoryWeight() {
     return res;
 }
 
-//La récolte des ressources n'est pas optimiser. TODO Optimisation
+//La récolte des ressources n'est pas optimisé. TODO Optimisation
 int Sentient_Entity::removeQuantityAndAddToAgent(Insentient_Entity * resource, Item * i, int qtt) {
     /*if ((getInventoryWeight() + (i->getVal(C_WEIGHT)*qtt)) >= getVal(C_CAPACITY) && qtt > 1) {
-        // removeQuantityAndAddToAgent(resource, i, qtt - 1);
+        removeQuantityAndAddToAgent(resource, i, qtt - 1);
     }
     else */if ((getInventoryWeight() + (i->getVal(C_WEIGHT)*qtt)) >= getVal(C_CAPACITY) /*&& qtt <= 1*/) {
         return -2;
@@ -181,4 +181,43 @@ int Sentient_Entity::harvestResource(Insentient_Entity * resource, int qtt) {
         return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
     return -3;
+}
+
+int Sentient_Entity::removeQuantityAndAddToBuilding(Insentient_Entity * building, Item * i, int qtt) {
+    if (getQuantityByItem(i) > 0) {
+        this->removeItemFromStock(i, qtt);
+        building->addItemToStock(i, qtt);
+        return 0;
+    }
+    else return -1;
+}
+
+int Sentient_Entity::dropResourceInBuilding(type typeRes, Insentient_Entity * building) {
+    if (typeRes == ID_RESSOURCE_BOIS) {
+        Item * i = Item::getItemByName("Bois");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_PIERRE) {
+        Item * i = Item::getItemByName("Pierre");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_METAL) {
+        Item * i = Item::getItemByName("Metal");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_VIANDE) {
+        Item * i = Item::getItemByName("Viande");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_LEGUME) {
+        Item * i = Item::getItemByName("Legume");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+
+    }
+    return -2;
 }

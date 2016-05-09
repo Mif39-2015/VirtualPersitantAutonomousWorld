@@ -37,6 +37,8 @@ protected:
 private:
 	int removeQuantityAndAddToAgent(Insentient_Entity * resource, Item * i, int qtt);
 
+	int removeQuantityAndAddToBuilding(Insentient_Entity * building, Item * i, int qtt);
+
 public:
 	/*!
 	* \brief constructeur avec 2 parametres oú le premier est la
@@ -130,6 +132,14 @@ public:
 	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si le poids des items dépasse la capacité de l'agent, -3 si erreur
 	*/
 	int harvestResource(Insentient_Entity * resource, int qtt);
+
+	/*!
+	* \brief Permet de déposer la ressource de type typeRes dans le batiment building
+	* \param typeRes: Type de  la ressource à déposer
+	* \param building: Batiment dans lequel déposer la ressource
+	* \return 0 si tout va bien, -1 si l'item n'est pas dans l'inventaire, -2 si erreur
+	*/
+	int dropResourceInBuilding(type typeRes, Insentient_Entity * building);
 
 	cJSON* toJson();
 

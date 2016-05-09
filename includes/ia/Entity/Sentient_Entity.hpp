@@ -63,10 +63,11 @@ public:
 	/*!
 	* \brief Trouve le plus cours chemin jusqu'à une position
 	* \param pos: la position à atteindre
-	* \param carte: la carte
+	* \param carte: la carte des ressources
+	* \param carteH: la carte des hauteurs
 	* \return un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 	* */
-	stack<Position> pathFindTo(Position pos, map<pair<int, int>, char> carte);
+	stack<Position> pathFindTo(Position pos, map<pair<int, int>, char> carte, map<pair<int, int>, float> carteH);
 
 	/*!
 	* \brief Compare deux position et sur la base de la proximité avec la position courante
@@ -144,6 +145,7 @@ public:
 	cJSON* toJson();
 
 	void affiche();
+	
 };
 
 #endif

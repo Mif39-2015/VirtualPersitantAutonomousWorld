@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "ia/Tools/Tools.hpp"
 #include "ia/Entity/Item.hpp"
 #include "ia/Entity/Characteristics.hpp"
@@ -73,31 +71,110 @@ std::vector<std::string> cutString(std::string & str, std::string delimiter) {
     return res;
 }
 
-map<pair<int, int>, char> getMap(string nomFichier) {
-    ifstream fichier(nomFichier, ios::in);  // on ouvre
-    string ligne;
-    map<pair<int, int>, char> carte;
-    int l = 0;
-    if (fichier)
-    {
-        while (getline(fichier, ligne)) // tant que l'on peut mettre la ligne dans "contenu"
-        {
-            for (unsigned int i = 0; i < ligne.size(); i++)
-            {
-                char caractere = ligne.at(i);// notre variable où sera stocké le caractère
-                carte[make_pair(i, l)] = caractere;
-            }
-            l++;
-        }
-        fichier.close();
-    }
-    else
-    {
-        cerr << "Impossible d'ouvrir le fichier de la Map !" << endl;
-        exit(EXIT_FAILURE);
-    }
+map<pair<int, int>, char> getResourcesMap(string nomFichier) {
+	ifstream fichier(PATH_DATA"/map.json", ios::in);  // on ouvre
+	
+	string fichierjsonstring = "";
+	string ligne;
+	
+	map<pair<int,int>, char> carte;
+	
+	if(fichier)
+	{
+		while(getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
+		{
+		 fichierjsonstring += ligne;
+		}
+		fichier.close();
+	}
+	else{
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
+		return carte;
+	}
+	
+	char *fichierjson = (char *) malloc(fichierjsonstring.size());
+	strcpy(fichierjson, fichierjsonstring.c_str());
+	cJSON* root = cJSON_Parse(fichierjson);
+
+	cJSON* mapSize = cJSON_GetObjectItem(root,"mapSize");
+	char* size = cJSON_Print(mapSize);
+
+	cJSON* mapGenerator = cJSON_GetObjectItem(root,"mapGeneratorData");
+	cJSON* mapChunkSize = cJSON_GetObjectItem(mapGenerator,"mapChunkSize");
+	char* sizeChunk = cJSON_Print(mapChunkSize);
+
+	cJSON* chunks = cJSON_GetObjectItem(root,"chunks");
+	cJSON *chunks_array = cJSON_GetArrayItem(chunks, 0);
+	for (int i = 0 ; i < cJSON_GetArraySize(chunks_array) ; i++){		
+		cJSON *chunk = cJSON_GetArrayItem(chunks_array, i);
+		cJSON *resourceMap = cJSON_GetObjectItem(chunk, "resourceMap");
+		
+		for (int y = 0 ; y < cJSON_GetArraySize(resourceMap) ; y++){			
+			cJSON *lignechunk = cJSON_GetArrayItem(resourceMap, y);
+			for (int x = 0 ; x < cJSON_GetArraySize(lignechunk) ; x++){
+				cJSON *val = cJSON_GetArrayItem(lignechunk, x);
+				char* value = cJSON_Print(val);
+				carte[make_pair(x,y)] = value[0];		
+			}
+		}			
+	}
+	
+	free(fichierjson);
 
     return carte;
+}
+
+map<pair<int, int>, float> getHauteursMap(string nomFichier) {
+	ifstream fichier(PATH_DATA"/map.json", ios::in);  // on ouvre
+	
+	string fichierjsonstring = "";
+	string ligne;
+	
+	map<pair<int,int>, float> carteH;
+	
+	if(fichier)
+	{
+		while(getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
+		{
+		 fichierjsonstring += ligne;
+		}
+		fichier.close();
+	}
+	else{
+		cerr << "Impossible d'ouvrir le fichier !" << endl;
+		return carteH;
+	}
+	
+	char *fichierjson = (char *) malloc(fichierjsonstring.size());
+	strcpy(fichierjson, fichierjsonstring.c_str());
+	cJSON* root = cJSON_Parse(fichierjson);
+
+	cJSON* mapSize = cJSON_GetObjectItem(root,"mapSize");
+	char* size = cJSON_Print(mapSize);
+
+	cJSON* mapGenerator = cJSON_GetObjectItem(root,"mapGeneratorData");
+	cJSON* mapChunkSize = cJSON_GetObjectItem(mapGenerator,"mapChunkSize");
+	char* sizeChunk = cJSON_Print(mapChunkSize);
+
+	cJSON* chunks = cJSON_GetObjectItem(root,"chunks");
+	cJSON *chunks_array = cJSON_GetArrayItem(chunks, 0);
+	for (int i = 0 ; i < cJSON_GetArraySize(chunks_array) ; i++){		
+		cJSON *chunk = cJSON_GetArrayItem(chunks_array, i);
+	
+		cJSON *heightMap = cJSON_GetObjectItem(chunk, "heightMap");
+		for (int y = 0 ; y < cJSON_GetArraySize(heightMap) ; y++){			
+			cJSON *lignechunk = cJSON_GetArrayItem(heightMap, y);
+			for (int x = 0 ; x < cJSON_GetArraySize(lignechunk) ; x++){
+				cJSON *val = cJSON_GetArrayItem(lignechunk, x);
+				float value = atof(cJSON_Print(val));
+				carteH[make_pair(x,y)] = value;				
+			}
+		}				
+	}
+	
+	free(fichierjson);
+
+    return carteH;
 }
 
 

@@ -1,10 +1,12 @@
 #include <iostream>
+#include <cstdlib>
+#include <string>
 #include "ia/Entity/Entity.hpp"
 #include "ia/Entity/Characteristics.hpp"
 
 unsigned int Entity::idCount = 0;
 
-Entity::Entity(std::string n, type tid, std::map<int, int> charac) : typeId(tid), name(n), charact_correspondence(charac), modif(false), idle(true) {
+Entity::Entity(std::string n, type tid, std::map<int, int> charac) : typeId(tid), name(n), charact_correspondence(charac), modif(true), idle(true) {
 	id = idCount;
 	idCount++;
 }
@@ -109,18 +111,25 @@ void Entity::decade(unsigned int wstime) {
 }
 
 cJSON* Entity::toJson() {
-	/*
-	{
-		"id": "this->is",
-		"typeId": "this->typeId",
-		"name": "this->name",
-	 */
+
 	cJSON *root;
 	root = cJSON_CreateObject();
 	cJSON_AddNumberToObject(root, "id", this->id);
 	cJSON_AddStringToObject(root, "typeId", TypeNames[this->typeId]);
 	cJSON_AddStringToObject(root, "name", this->name.c_str());
-	//cout << cJSON_Print(root) << endl;
+	
+	//ajout des caractéristiques
+	cJSON * characs;
+	characs = cJSON_CreateArray();
+
+	for(auto it = charact_correspondence.begin(); it != charact_correspondence.end(); it++){
+		string charID = std::to_string(it->first);
+		cJSON* charac = cJSON_CreateObject();
+		cJSON_AddNumberToObject(charac, charID.c_str(),it->second);
+		cJSON_AddItemToArray(characs, charac);
+	}
+	
+	cJSON_AddItemToObject(root,"characteristics", characs);
 
 	return root;
 }
@@ -144,6 +153,10 @@ unsigned int Entity::isTired(void) {
 		else if (s > s_t) return 0;
 	}
 	return -1;
+}
+
+void Entity::reinitModif(){
+	modif = false;
 }
 
 void Entity::affiche()

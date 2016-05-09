@@ -97,15 +97,15 @@ cJSON* Tribe::toJson(){
 	cJSON_AddNumberToObject(entity, "goal_index", this->goal_index);
 
 	//ajout des membres de la tribu dans le JSON
-	//cJSON_CreateArray(ids,4);
 	cJSON * members_list;
 	members_list = cJSON_CreateArray();
 
 	for(auto it = members.begin(); it != members.end(); it++){
-		cJSON_AddItemToArray(members_list, (*it)->toJson());
+		cJSON* member = cJSON_CreateObject();
+		cJSON_AddNumberToObject(member, "id", (*it)->getId());
+		cJSON_AddStringToObject(member, "type", TypeNames[(*it)->getTypeId()]);
+		cJSON_AddItemToArray(members_list, member);
 	}
-
-	//cout << it->first->getName() << ", " << it->second << endl;
 
 	cJSON_AddItemToObject(entity,"members", members_list);
 

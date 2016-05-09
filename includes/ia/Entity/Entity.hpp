@@ -132,6 +132,8 @@ public:
 	* \return 1 si l'entity est fatiguée, 0 si non, et -1 si erreur
 	*/
 	unsigned int isTired(void);
+	
+	void reinitModif();
 
 	virtual void affiche();
 

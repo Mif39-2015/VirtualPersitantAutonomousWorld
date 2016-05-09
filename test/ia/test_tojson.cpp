@@ -23,22 +23,28 @@
 #include "ia/Tools/Position.hpp"
 #include "ia/Tools/Astar.hpp"
 
+#include "ia/Facade.hpp"
+
 TEST_CASE("Test toJSON", "[toJSON]")
 {
 	bool loadResult = loadAllFiles();
 	REQUIRE(loadResult);
 	REQUIRE(Item::listItems.size() != 0);
+	
+	Facade facade;
+	facade.initSimulation(2,2);
+	
+	//facade.serializeEntities();
+	
+	facade.serializeEntitiesIfModified();
+	
+	for (int i = 0; i<50; i++)
+		std::cout<<"TEST"<<std::endl;
+	
+	(facade.getAgentById(5))->setName("Barbapapa");
+	
+	facade.serializeEntitiesIfModified();
 		
-	Tribe* t = Factories::createTribe();
-	Sentient_Entity * agent = Factories::createAgent();
-	t->addNewEntity(agent);
-	
-	t->addItemToStock(&(Item::listItems[0]), 10);
-	t->addItemToStock(&(Item::listItems[1]), 10);
-	//REQUIRE(t->getQuantityByItem(&(Item::listItems[0])) == 10);
-	t->afficheStock();
-	
-	t->toJson();
-	cout << cJSON_Print(t->toJson()) << endl;
+		
 	
 }

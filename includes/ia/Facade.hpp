@@ -9,6 +9,7 @@
 #include "Entity/Insentient_Entity.hpp"
 #include "Entity/Tribe.hpp"
 #include "Tools/Factories.hpp"
+#include "tool/cJSON.hpp"
 
 /*!
 * \class Facade
@@ -16,8 +17,8 @@
 */
 class Facade {
 public:
-	std::vector<Sentient_Entity *> listAgent;
 	std::vector<Tribe *> listTribe;
+	std::vector<Sentient_Entity *> listAgent;
 	std::vector<Insentient_Entity *> listIE;
 
 	/*!
@@ -53,8 +54,16 @@ public:
 	* \brief Retourne la liste des objets qui ont été modifiés lors de la dernière itération
 	*/
 	std::vector<Entity *> getUpdatedAgents();
-
-
+	
+	/*!
+	* \brief Réalise une sérialisation globale des entités de la simulation
+	*/
+	void serializeEntities();
+	
+	/*!
+	* \brief Réalise une sérialisation des entités modifiée depuis la dernière sérialisation
+	*/
+	void serializeEntitiesIfModified();
 
 private:
 };

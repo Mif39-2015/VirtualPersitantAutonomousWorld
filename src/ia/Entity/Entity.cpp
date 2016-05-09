@@ -6,7 +6,7 @@
 
 unsigned int Entity::idCount = 0;
 
-Entity::Entity(std::string n, type tid, std::map<int, int> charac) : typeId(tid), name(n), charact_correspondence(charac), modif(false), idle(true) {
+Entity::Entity(std::string n, type tid, std::map<int, int> charac) : typeId(tid), name(n), charact_correspondence(charac), modif(true), idle(true) {
 	id = idCount;
 	idCount++;
 }
@@ -153,6 +153,10 @@ unsigned int Entity::isTired(void) {
 		else if (s > s_t) return 0;
 	}
 	return -1;
+}
+
+void Entity::reinitModif(){
+	modif = false;
 }
 
 void Entity::affiche()

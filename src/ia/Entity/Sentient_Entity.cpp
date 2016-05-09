@@ -71,10 +71,9 @@ void Sentient_Entity::addToTrace(Comportement * c, Noeud * n, bool b) {
 }
 
 stack<Position> Sentient_Entity::pathFindTo(Position posTo, map<pair<int,int>, char> carte, map<pair<int,int>, float> carteH){
-	//float maxHauteur = (float)charact_correspondence.at(4) / 100;
-	//cout << maxHauteur;
-	//cout << endl << (float)charact_correspondence.at(4);
-	float maxHauteur = 1;
+	float maxHauteur = (float) getVal(C_FITNESS) / 100;
+	cout << getVal(C_FITNESS) << endl;
+	cout << maxHauteur << endl;
     stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY(), carte, carteH, maxHauteur);
     
     return chemin;

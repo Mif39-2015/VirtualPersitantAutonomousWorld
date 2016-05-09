@@ -45,8 +45,8 @@ bool operator<(Node const &a, Node const& b)
     return false;	
 }
 
-stack<Position> pathFind(const int & xDepart, const int & yDepart, 
-                const int & xArrivee, const int & yArrivee, map<pair<int,int>, char> carte, map<pair<int,int>, float> carteH, int maxHauteur)
+stack<Position> pathFind(const int & xDepart, const int & yDepart, const int & xArrivee, const int & yArrivee,
+                map<pair<int,int>, char> carte, map<pair<int,int>, float> carteH, float maxHauteur)
 {	
 	map<Node, int> closedList;			
 	priority_queue<Node, vector<Node>, CompareNode> openList;
@@ -98,9 +98,10 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 					if(x != u.getxPos() || y != u.getyPos()) // On vérifie que ce n'est pas la même case
 					{
 						Node v = Node(x,y);
+						float absHauteur = abs(carteH[make_pair(x,y)] - carteH[make_pair(u.getxPos(),u.getyPos())]);
 						map<Node, int>::iterator p;
 						// si v est une case libre
-						if(carte[make_pair(x,y)] == '0'){
+						if(carte[make_pair(x,y)] == '0' && absHauteur < maxHauteur){
 							// si v est dans la closedList avec un cout inférieur 
 							for(p = closedList.begin(); p != closedList.end(); p++){
 								if(p->first == v && p->second < u.getCout()){
@@ -117,9 +118,9 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 							}
 							if(!nerienfaire){
 								if(x == u.getxPos() || y == u.getyPos())
-									v.setCout(u.getCout() + 1 + abs(carteH[make_pair(x,y)] - carteH[make_pair(u.getxPos(),u.getyPos())])); // cout de 1 si case adjacente 
+									v.setCout(u.getCout() + 1 + absHauteur); // cout de 1 si case adjacente 
 								else
-									v.setCout(u.getCout() + sqrt(2) + abs(carteH[make_pair(x,y)] - carteH[make_pair(u.getxPos(),u.getyPos())])); // cout de sqrt(2) sinon
+									v.setCout(u.getCout() + sqrt(2) + absHauteur); // cout de sqrt(2) sinon
 									
 								v.updateHeuristique(xArrivee, yArrivee);
 								v.px = u.getxPos();

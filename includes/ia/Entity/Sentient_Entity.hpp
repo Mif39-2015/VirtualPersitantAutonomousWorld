@@ -34,6 +34,9 @@ protected:
 	stack<std::tuple<Comportement *, Noeud *, bool>> trace;
 	vector<stack<Position>> cheminMemorise;/*!<Le chemin pour aller de la position initiale à la position voulue'*/
 
+private:
+	int removeQuantityAndAddToAgent(Insentient_Entity * resource, Item * i, int qtt);
+
 public:
 	/*!
 	* \brief constructeur avec 2 parametres oú le premier est la
@@ -58,10 +61,11 @@ public:
 	/*!
 	* \brief Trouve le plus cours chemin jusqu'à une position
 	* \param pos: la position à atteindre
-	* \param carte: la carte
+	* \param carte: la carte des ressources
+	* \param carteH: la carte des hauteurs
 	* \return un stack de Position séparant l'entity de la pos si le chemin existe, un stack vide sinon
 	* */
-	stack<Position> pathFindTo(Position pos, map<pair<int, int>, char> carte);
+	stack<Position> pathFindTo(Position pos, map<pair<int, int>, char> carte, map<pair<int, int>, float> carteH);
 
 	/*!
 	* \brief Compare deux position et sur la base de la proximité avec la position courante
@@ -115,10 +119,18 @@ public:
 	stack<Position> connaitChemin(Position);
 
 	/*!
-	* \brief Permet à l'agent de récolter la ressource
-	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si erreur
+	* \brief Retourne le poids total de l'inventaire de l'agent
+	* \return Poids de l'inventaire de l'agent (int)
 	*/
-	bool harvestResource(Insentient_Entity * resource);
+	int getInventoryWeight();
+
+	/*!
+	* \brief Permet à l'agent de récolter la ressource
+	* \param resource: La ressource à récolter
+	* \param qtt: La quantité de ressource à récolter à chaque appel de fonction
+	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si le poids des items dépasse la capacité de l'agent, -3 si erreur
+	*/
+	int harvestResource(Insentient_Entity * resource, int qtt);
 
 	cJSON* toJson();
 

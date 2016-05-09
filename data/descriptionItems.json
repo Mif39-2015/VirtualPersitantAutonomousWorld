@@ -2,23 +2,23 @@
 	"items": [
 		{
 			"name": "Bois",
-			"weight": 75
+			"weight": 5
 		},
 		{
 			"name": "Pierre",
-			"weight": 75
+			"weight": 6
 		},
 		{
 			"name": "Metal",
-			"weight": 75
+			"weight": 8
 		},
 		{
 			"name": "Legume",
-			"weight": 75
+			"weight": 1
 		},
 		{
 			"name": "Viande",
-			"weight": 75
+			"weight": 3
 		}
 	]
 }

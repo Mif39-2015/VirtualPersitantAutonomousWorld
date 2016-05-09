@@ -27,10 +27,11 @@ Sentient_Entity * Factories::createAgent() {
 	}
 
 	std::map<int, int> characs_val;
-	for (unsigned int i = 0; i < characs_val.size(); i++)
+	for (unsigned int i = 0; i < characs.size(); i++)
 	{
 		characs_val.insert(std::pair<int, int>(characs[i], -1));
 	}
+	std::cout << std::endl;
 
 	characs_val[C_VITALITY]             = 100;
 	characs_val[C_AGE]                  = rand (0, 11);
@@ -40,6 +41,7 @@ Sentient_Entity * Factories::createAgent() {
 	characs_val[C_STAMINA_THRESHOLD]    = rand(20, 31);
 	characs_val[C_SATIETY_DECADE_VALUE] = 1;
 	characs_val[C_STAMINA_DECADE_VALUE] = 1;
+	characs_val[C_CAPACITY] = 0;
 
 	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
 	{
@@ -65,6 +67,10 @@ Sentient_Entity * Factories::createAgent() {
 		characs_val[C_SATIETY_DECADE] = 5;
 		characs_val[C_STAMINA_DECADE] = 5;
 	}
+
+	// std::cout << "fitness = " << fitness << std::endl;
+	characs_val[C_CAPACITY] = 150 + (8 * fitness);
+
 
 	std::string name;
 	if (characs_val[1] == 0)

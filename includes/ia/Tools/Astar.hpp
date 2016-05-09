@@ -59,7 +59,7 @@ public:
 	}
 };
 
-stack<Position> pathFind(const int &, const int &, const int &, const int &, map<pair<int,int>,char>);
+stack<Position> pathFind(const int &, const int &, const int &, const int &, map<pair<int,int>,char>, map<pair<int,int>, float>, float);
 
 #endif
 

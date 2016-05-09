@@ -10,7 +10,11 @@ void Facade::runAll(unsigned int wstime) {
 
 void Facade::updateWorld(unsigned int wstime) {
 	for(Insentient_Entity * ie : Facade::listIE){
-		if(ie->getTypeId() == type::ID_RESSOURCE){
+		if(ie->getTypeId() == type::ID_RESSOURCE_BOIS
+			|| ie->getTypeId() == type::ID_RESSOURCE_PIERRE
+			|| ie->getTypeId() == type::ID_RESSOURCE_METAL
+			|| ie->getTypeId() == type::ID_RESSOURCE_VIANDE
+			|| ie->getTypeId() == type::ID_RESSOURCE_LEGUME){
 			ie->updateResource(wstime);
 		}
 	}

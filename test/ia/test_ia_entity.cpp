@@ -29,7 +29,7 @@ TEST_CASE("Test_Agent", "[agent]")
 {
 	SECTION("TEST AGENT")
 	{
-
+		std::cout << "TEST AGENT" << std::endl << std::endl;
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
@@ -46,6 +46,7 @@ TEST_CASE("Test_Agent", "[agent]")
 
 	SECTION("TEST AGENT LIFE")
 	{
+		std::cout << "TEST AGENT LIFE" << std::endl << std::endl;
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
@@ -56,9 +57,29 @@ TEST_CASE("Test_Agent", "[agent]")
 		while ( time < 500) {
 			agent->decade(time);
 			agent->setIdle(false);
-			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << "ticks" << std::endl;
-			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << "ticks" << std::endl;
+			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << " ticks" << std::endl;
+			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << " ticks" << std::endl;
 			time++;
+		}
+	}
+
+	SECTION("TEST AGENT RECOLTE")
+	{
+		std::cout << "TEST AGENT RECOLTE" << std::endl << std::endl;
+		bool loadResult = loadAllFiles();
+		REQUIRE(loadResult);
+
+		Sentient_Entity * agent = Factories::createAgent();
+		REQUIRE(agent != nullptr);
+		Insentient_Entity *ress = Factories::createResource(T_BOIS);
+		REQUIRE(ress != nullptr);
+
+		unsigned int t = 0;
+		while(t < 200){
+			t++;
+			ress->updateResource(t);
+			agent->harvestResource(ress);
+			ress->afficheStock();
 		}
 	}
 }

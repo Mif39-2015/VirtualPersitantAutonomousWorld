@@ -52,7 +52,11 @@ int Tribe::getNbBuildings(){
 int Tribe::getNbRessources(){
     int sizet=0;
     for(Entity* a: members){
-        if(a->getTypeId()==ID_RESSOURCE){
+        if(a->getTypeId() == type::ID_RESSOURCE_BOIS
+            || a->getTypeId() == type::ID_RESSOURCE_PIERRE
+            || a->getTypeId() == type::ID_RESSOURCE_METAL
+            || a->getTypeId() == type::ID_RESSOURCE_VIANDE
+            || a->getTypeId() == type::ID_RESSOURCE_LEGUME){
             sizet++;
         }
     }

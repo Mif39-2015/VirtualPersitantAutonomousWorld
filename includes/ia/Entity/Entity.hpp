@@ -15,22 +15,33 @@ using namespace std;
 * pour les entités
 * */
 enum type {
-	ID_AGENT,/*!< signifie que l'entity est un agent*/
-	ID_ANIMAL,/*!< signifie que l'entity est un animal*/
-	ID_BUILDING,/*!< signifie que l'entity est un building*/
-	ID_RESSOURCE,/*!< signifie que l'entity est une ressource*/
-	ID_ITEM,/*!< signifie que l'entity est un item*/
-	ID_TRIBE /*!< signifie que l'entity est un tribu*/
+	ID_AGENT,            /*!< signifie que l'entity est un agent*/
+	ID_ANIMAL,           /*!< signifie que l'entity est un animal*/
+	ID_BUILDING,         /*!< signifie que l'entity est un building*/
+	ID_RESSOURCE_BOIS,   /*!< signifie que l'entity est un arbre*/
+	ID_RESSOURCE_PIERRE, /*!< signifie que l'entity est une pierre*/
+	ID_RESSOURCE_METAL,  /*!< signifie que l'entity est un gisement de métal*/
+	ID_RESSOURCE_VIANDE, /*!< signifie que l'entity est un animal mort (conteneur de viande en général)*/
+	ID_RESSOURCE_LEGUME, /*!< signifie que l'entity est un plant de légume*/
+	ID_ITEM,             /*!< signifie que l'entity est un item*/
+	ID_TRIBE,            /*!< signifie que l'entity est un tribu*/
+	ID_VOID              /*!< ID null, signifi que l'entity n'est rien*/
 };
 
 static const char* TypeNames[] = {
 	"ID_AGENT",
 	"ID_ANIMAL",
 	"ID_BUILDING",
-	"ID_RESSOURCE",
+	"ID_RESSOURCE_BOIS",
+	"ID_RESSOURCE_PIERRE",
+	"ID_RESSOURCE_METAL",
+	"ID_RESSOURCE_VIANDE",
+	"ID_RESSOURCE_LEGUME",
 	"ID_ITEM",
-	"ID_TRIBE"
+	"ID_TRIBE",
+	"ID_VOID"
 };
+
 /*! \class Entity
    * \brief Classe contenant les attributs et methodes nécessaires pour la gestion des entités
    */
@@ -79,6 +90,11 @@ public:
 	void setIdle(bool i);
 
 	/*!
+	* \brief Modifie le type de l'entity
+	*/
+	void setTypeId(type tid);
+
+	/*!
 	* \brief Met à jour le nom de l'entity
 	* \param n: le nom
 	*/
@@ -116,7 +132,7 @@ public:
 	* \return 1 si l'entity est fatiguée, 0 si non, et -1 si erreur
 	*/
 	unsigned int isTired(void);
-	
+
 	virtual void affiche();
 
 	virtual cJSON* toJson();

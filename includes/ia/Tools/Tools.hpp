@@ -6,7 +6,8 @@
  * \brief contient des fonctions utiles aux Factories (entre autres)
  * \author Groupe IA
  */
-
+ 
+#include <fstream>
 #include <ctime>
 #include <iomanip>
 #include <limits>
@@ -14,7 +15,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
-
+#include <cstring>
 
 #include "tool/cJSON.hpp"
 
@@ -59,7 +60,17 @@ int findInVector(std::vector<T> v, T element) {
 	return -1;
 }
 
-map<pair<int,int>, char>getMap(string);
+/*!
+*\brief map des ressources présentes sur la carte
+*\param string : le nom du fichier json de la carte à ouvrir
+*/
+map<pair<int,int>, char>getResourcesMap(string);
+
+/*!
+*\brief map des hauteurs de la carte
+*\param string : le nom du fichier json de la carte à ouvrir
+*/
+map<pair<int,int>, float>getHauteursMap(string);
 
 bool loadAllFiles();
 

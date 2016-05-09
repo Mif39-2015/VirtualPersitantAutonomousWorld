@@ -35,8 +35,9 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		int yDep = 1;
 		int xArr = 2;
 		int yArr = 3;
-		map<pair<int,int>, char> carte = getMap(PATH_DATA"/mapTest.txt");
-		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr, carte);
+		map<pair<int,int>, char> carte = getResourcesMap(PATH_DATA"/map.json");
+		map<pair<int,int>, float> carteH = getHauteursMap(PATH_DATA"/map.json");
+		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr, carte, carteH, 1);
 		while (!chemin.empty()) {
 			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
 			chemin.pop();
@@ -48,15 +49,16 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
-		map<pair<int,int>, char> carte = getMap(PATH_DATA"/mapTest.txt");
+		map<pair<int,int>, char> carte = getResourcesMap(PATH_DATA"/map.json");
+		map<pair<int,int>, float> carteH = getHauteursMap(PATH_DATA"/map.json");
 		cout << endl << "Memoire chemin agent" << endl;
 
 		cout << endl << "On crée un agent et on lui set sa pos à 2,2" << endl;
 		Sentient_Entity * agent = Factories::createAgent();
 		agent->setPos(2,2);
 
-		cout << endl << "On cherche un chemin pour arriver en 9,8, on le stocke dans ses chemins mémorisés et on l'affiche" << endl;
-		stack<Position> chemin = pathFind(agent->getPos().getX(), agent->getPos().getY(),8,1, carte);
+		cout << endl << "On cherche un chemin pour arriver en 63,0, on le stocke dans ses chemins mémorisés et on l'affiche" << endl;
+		stack<Position> chemin = agent->pathFindTo(Position(63,0), carte, carteH);
 		agent->addCheminMemorise(chemin);
 		while (!chemin.empty()) {
 			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
@@ -72,32 +74,4 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		}
 
 	}
-
-	SECTION("Map")
-	{
-		cout << endl << "On récupere la map" << endl;
-		ifstream fichier(PATH_DATA"/mapTest.txt", ios::in);  // on ouvre
-		string ligne;
-		map<pair<int,int>, char> carte;
-		int l = 0;
-		if(fichier)
-		{
-			while(getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
-			{
-				for(unsigned int i = 0; i < ligne.size(); i++)
-				{
-					char caractere = ligne.at(i);// notre variable où sera stocké le caractère
-					carte[make_pair(i,l)] = caractere;
-					cout << carte[make_pair(i,l)];
-
-				}
-				l++;
-				cout << endl;
-			}
-			fichier.close();
-		}
-		else
-			cerr << "Impossible d'ouvrir le fichier !" << endl;
-	}
-
 }

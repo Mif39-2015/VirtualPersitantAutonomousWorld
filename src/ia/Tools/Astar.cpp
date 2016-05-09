@@ -46,7 +46,7 @@ bool operator<(Node const &a, Node const& b)
 }
 
 stack<Position> pathFind(const int & xDepart, const int & yDepart, 
-                const int & xArrivee, const int & yArrivee, map<pair<int,int>, char> carte)
+                const int & xArrivee, const int & yArrivee, map<pair<int,int>, char> carte, map<pair<int,int>, float> carteH, int maxHauteur)
 {	
 	map<Node, int> closedList;			
 	priority_queue<Node, vector<Node>, CompareNode> openList;
@@ -117,9 +117,9 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart,
 							}
 							if(!nerienfaire){
 								if(x == u.getxPos() || y == u.getyPos())
-									v.setCout(u.getCout() + 1); // cout de 1 si case adjacente 
+									v.setCout(u.getCout() + 1 + abs(carteH[make_pair(x,y)] - carteH[make_pair(u.getxPos(),u.getyPos())])); // cout de 1 si case adjacente 
 								else
-									v.setCout(u.getCout() + sqrt(2)); // cout de sqrt(2) sinon
+									v.setCout(u.getCout() + sqrt(2) + abs(carteH[make_pair(x,y)] - carteH[make_pair(u.getxPos(),u.getyPos())])); // cout de sqrt(2) sinon
 									
 								v.updateHeuristique(xArrivee, yArrivee);
 								v.px = u.getxPos();

@@ -51,6 +51,10 @@ public:
 	* \brief Renvoie la précision
 	* */
 	int getPrecision();
+	/*!
+	* \brief Renvoie la modification
+	* */
+	bool getModif();
 
 	/*!
 	* \brief Met à jour l'id de la caractéristique
@@ -87,17 +91,23 @@ public:
 	* \param p: la précision
 	* */
 	void setPrecision(int p);
+	/*!
+	* \brief Met à jour la modification
+	* \param p: la nouvelle modification
+	* */
+	void setModif(bool b);
 
 
 
 private:
-	int id;/*! <l'id de la caractéristique*/
-	int min;/*! <la valeur minimale de l'intervalle [min, max] parmi les valeurs possibles*/
-	int max;/*!< la valeur maximale de l'intervalle [min, max] parmi les valeurs possibles*/
-	std::string name;/*!< le nom de la caracterstique*/
-	std::string definition;/*!< la definition de la caractéristique*/
-	std::string type;/*! le type de la caractéristique<*/
-	int precision;/*!< la précision */
+	int id;                 /*! <l'id de la caractéristique*/
+	int min;                /*! <la valeur minimale de l'intervalle [min, max] parmi les valeurs possibles*/
+	int max;                /*!< la valeur maximale de l'intervalle [min, max] parmi les valeurs possibles*/
+	std::string name;       /*!< le nom de la caracterstique*/
+	std::string definition; /*!< la definition de la caractéristique*/
+	std::string type;       /*! le type de la caractéristique<*/
+	int precision;          /*!< la précision */
+	bool modif;             /*!< Boolean qui indique si la charac a été modifié*/
 };
 
 enum Characs {

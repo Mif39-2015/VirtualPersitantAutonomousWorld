@@ -46,6 +46,10 @@ int Characteristics::getPrecision() {
 	return this->precision;
 }
 
+bool Characteristics::getModif() {
+	return this->modif;
+}
+
 
 //setter
 void Characteristics::setId(int i) {
@@ -76,6 +80,9 @@ void Characteristics::setPrecision(int p) {
 	this->precision = p;
 }
 
+void Characteristics::setModif(bool b) {
+	this->modif = b;
+}
 
 //récupere les données des chractéristiques du fichier de description et construit une liste de charactéristiques
 int Characteristics::loadCharacteristicsFile(std::string fileName){
@@ -134,6 +141,12 @@ int Characteristics::loadCharacteristicsFile(std::string fileName){
 			if(precision->type == cJSON_Number){
 				charac.setPrecision(precision->valueint);
 				// cout << "precision: " << precision->valueint << endl;
+			}
+
+			cJSON *modif = cJSON_GetObjectItem(item,"modif");
+			if(modif->type == cJSON_True || modif->type == cJSON_False){
+				charac.setModif((bool)modif->valueint);
+				// cout << "modif: " << modif->valuebool << endl;
 			}
 
 

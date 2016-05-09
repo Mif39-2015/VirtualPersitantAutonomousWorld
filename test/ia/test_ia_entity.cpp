@@ -29,7 +29,7 @@ TEST_CASE("Test_Agent", "[agent]")
 {
 	SECTION("TEST AGENT")
 	{
-
+		std::cout << "TEST AGENT" << std::endl << std::endl;
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
@@ -46,6 +46,7 @@ TEST_CASE("Test_Agent", "[agent]")
 
 	SECTION("TEST AGENT LIFE")
 	{
+		std::cout << "TEST AGENT LIFE" << std::endl << std::endl;
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
@@ -56,9 +57,56 @@ TEST_CASE("Test_Agent", "[agent]")
 		while ( time < 500) {
 			agent->decade(time);
 			agent->setIdle(false);
-			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << "ticks" << std::endl;
-			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << "ticks" << std::endl;
+			if (agent->isHungry() == 1) std::cout << "J'ai faim à " << time << " ticks" << std::endl;
+			if (agent->isTired() == 1) std::cout << "Je suis crevé à " << time << " ticks" << std::endl;
 			time++;
 		}
+	}
+
+	SECTION("TEST AGENT RECOLTE")
+	{
+		std::cout << "TEST AGENT RECOLTE" << std::endl << std::endl;
+		bool loadResult = loadAllFiles();
+		REQUIRE(loadResult);
+
+		Sentient_Entity * agent = Factories::createAgent();
+		REQUIRE(agent != nullptr);
+		Insentient_Entity *ress = Factories::createResource(T_BOIS);
+		REQUIRE(ress != nullptr);
+
+		unsigned int t = 0;
+		while(t < 200){
+			t++;
+			std::cout << "Tick n° " << t << std::endl;
+			int nbh = 5;
+			int res = agent->harvestResource(ress, nbh);
+			if(res == -1){
+				std::cout << "Plus de ressource !" << std::endl;
+				break;
+			}
+			else if (res == -2){
+				std::cout << "Inventaire plein !" << std::endl;
+				std::cout << "Poids de l'inventaire de l'agent : " << agent->getInventoryWeight() << std::endl;
+				std::cout << "Capacité de l'agent : " << agent->getVal(C_CAPACITY) << std::endl;
+				break;
+			}
+			else if (res == -3){
+				std::cout << "Erreur !" << std::endl;
+				break;
+			}
+			std::cout << "Harvest de la ressources" << std::endl;
+			std::cout << "Update de la ressources" << std::endl;
+			ress->updateResource(t);
+
+			std::cout << "Stock Ressource" << std::endl;
+			ress->afficheStock();
+			std::cout << "Stock Agent" << std::endl;
+			agent->afficheStock();
+			std::cout << "Poids de l'inventaire de l'agent : " << agent->getInventoryWeight() << std::endl;
+			std::cout << "Capacité de l'agent : " << agent->getVal(C_CAPACITY) << std::endl;
+			std::cout << std::endl;
+		}
+
+		std::cout << "Fin du test à " << t << " ticks" << std::endl;
 	}
 }

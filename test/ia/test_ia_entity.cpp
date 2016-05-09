@@ -38,7 +38,7 @@ TEST_CASE("Test_Agent", "[agent]")
 		REQUIRE(agent != nullptr);
 		Sentient_Entity * agent1 = Factories::createAnimal();
 		REQUIRE(agent1 != nullptr);
-		Insentient_Entity *building1 = Factories::createBuilding();
+		Insentient_Entity *building1 = Factories::createBuilding(B_CITYHALL);
 		REQUIRE(building1 != nullptr);
 		Insentient_Entity *ress = Factories::createResource(T_BOIS);
 		REQUIRE(ress != nullptr);
@@ -63,9 +63,9 @@ TEST_CASE("Test_Agent", "[agent]")
 		}
 	}
 
-	SECTION("TEST AGENT RECOLTE")
+	SECTION("TEST AGENT RECOLTE ET STOCK")
 	{
-		std::cout << "TEST AGENT RECOLTE" << std::endl << std::endl;
+		std::cout << "TEST AGENT RECOLTE ET STOCK" << std::endl << std::endl;
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
@@ -73,6 +73,8 @@ TEST_CASE("Test_Agent", "[agent]")
 		REQUIRE(agent != nullptr);
 		Insentient_Entity *ress = Factories::createResource(T_BOIS);
 		REQUIRE(ress != nullptr);
+		Insentient_Entity * cityHall = Factories::createBuilding(B_CITYHALL);
+		REQUIRE(cityHall != nullptr);
 
 		unsigned int t = 0;
 		while(t < 200){
@@ -106,6 +108,8 @@ TEST_CASE("Test_Agent", "[agent]")
 			std::cout << "Capacité de l'agent : " << agent->getVal(C_CAPACITY) << std::endl;
 			std::cout << std::endl;
 		}
+
+		//TODO : Stocker la ressource récolter dans le cityhall
 
 		std::cout << "Fin du test à " << t << " ticks" << std::endl;
 	}

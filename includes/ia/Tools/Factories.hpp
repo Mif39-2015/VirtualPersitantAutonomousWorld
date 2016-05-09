@@ -24,6 +24,10 @@ enum ResourceType {
 	T_VIANDE/*!< Signifie que la ressource contient de la viande*/
 };
 
+enum BuildingType {
+	B_CITYHALL /*!< Signifie que le batiment est la mairie (City Hall)*/
+};
+
 /*!
 *\class Factories
 *\brief Classe contenant les outils permettant d'instancier les différentes entités
@@ -50,16 +54,18 @@ public:
 	static Tribe * createTribe();
 
 	/*!
- 	*\brief Factory permettant d'instancier les Ressources
- 	*\return Une nouvelle Ressource
+ 	* \brief Factory permettant d'instancier les Ressources
+ 	* \param type: Type de la ressource à créer
+ 	* \return Une nouvelle Ressource
  	*/
 	static Insentient_Entity * createResource(ResourceType type);
 
 	/*!
- 	*\brief Factory permettant d'instancier les Buildings
- 	*\return Un nouveau Building
+ 	* \brief Factory permettant d'instancier les Buildings
+ 	* \param bt: Type du batiment à créer
+ 	* \return Un nouveau Building
  	*/
-	static Insentient_Entity * createBuilding();
+	static Insentient_Entity * createBuilding(BuildingType bt);
 
 };
 

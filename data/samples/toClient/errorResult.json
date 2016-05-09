@@ -1,0 +1,7 @@
+{
+	"messageType": "error",
+	"comment": "Code: 1001 Auth fail, 1002 register fail 1003, unknown command"
+	"errorMessage": "Un message d'erreur.",
+	"code": "6787"
+	"status": "fail"
+}

@@ -77,7 +77,7 @@ void WorldSimulator::worldRun(){
 	        	guardCV.wait(lk);
 	        }
 		} else {
-			// facade->runAll(simulationTime);
+			facade->runAll(simulationTime);
 			facade->updateWorld(simulationTime);
 
 			/* Logging AI & World */

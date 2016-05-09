@@ -42,16 +42,11 @@ class Position {
 		bool operator<(Position const &) const; 
 		bool operator==(Position const &) const; 
 		
-		//cJSON* toJson();
-		
 		/*!
 		 	*\brief Destructeur
 		 */
 		~Position(void);
 		
-
-
-
 	private:
 		int x; /*!<Coordonnées x de la position*/
 		int y; /*!<Coordonnées y de la position*/

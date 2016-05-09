@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string>
 #include <iostream>
 #include <vector>
 #include <map>
 
 #include "db/sqliteInterface.hpp"
+
+#include "tool/StringTool.hpp"
 
 using std::vector;
 using std::map;
@@ -45,7 +48,12 @@ int SQLiteAccess::sqlRequest(std::string sqlStatement){
 
 int SQLiteAccess::sqlAddUser(std::string username, std::string password, std::string addmail){
 	std::string adduser = "INSERT into user values((Select (max(id)+1) from user),'"+username+"','"+password+"','"+addmail+"',1);";
-	return sqlRequest(adduser);
+	int result = -1;
+	if(sqlRequest(adduser)){
+		std::string req = sqlGetRequest("SELECT id FROM USER WHERE nickname = '"+username+"';");		
+		result=atoi((StringTool::split( StringTool::split(req,'\n')[1],'|')[0]).c_str());
+	}
+	return result;
 }
 int SQLiteAccess::sqlDelUser(std::string username){
 	std::string deluser = "delete from user where nickname = '"+username+"';";

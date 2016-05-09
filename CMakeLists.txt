@@ -5,10 +5,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror -Wextra -Wno-un
 add_subdirectory(${PROJECT_SOURCE_DIR}/src)
 add_subdirectory(${PROJECT_SOURCE_DIR}/test)
 
-#
-# Doxygen
-#
-
+# --[ Doxygen
 option(BUILD_DOCUMENTATION_ALL "Compiler la documentation" OFF)
 FIND_PACKAGE(Doxygen)
 if(DOXYGEN_FOUND)

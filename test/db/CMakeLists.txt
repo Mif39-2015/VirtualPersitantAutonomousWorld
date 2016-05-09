@@ -14,7 +14,7 @@ foreach(FILE ${list_unit_test})
   # recupere le chemin de fichier sans l'extension
   get_filename_component(FILE_WE ${FILE} NAME_WE)
 
-  message(STATUS "${FILE_WE}")
+  message(STATUS "\t${FILE_WE}")
 
   add_executable(${FILE_WE} ${FILE})
   target_link_libraries(${FILE_WE} serv pthread)

@@ -272,7 +272,7 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 	return res;
 }
 
-Insentient_Entity * Factories::createBuilding() {
+Insentient_Entity * Factories::createBuilding(BuildingType bt) {
 	std::vector<int> characs;
 
 	ifstream file (PATH_DATA"/Characteristics_Building.json", ios::in);
@@ -315,11 +315,14 @@ Insentient_Entity * Factories::createBuilding() {
 
 	}
 
-	std::string name = "Building";
-	// if (characs_val[1] == 0)
-	// 	name = getRandomMaleName();
-	// else
-	// 	name = getRandomFemaleName();
+	std::string name;
+	switch (bt) {
+	case BuildingType::B_CITYHALL:
+		name = "City Hall";
+		break;
+	default:
+		name = "Building";
+	}
 
 	return new Insentient_Entity(name,  ID_BUILDING, characs_val, 0, 0);
 }

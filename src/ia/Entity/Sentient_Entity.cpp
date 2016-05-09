@@ -2,9 +2,13 @@
 #include "ia/Behavior/Noeud.hpp"
 #include "ia/Entity/Sentient_Entity.hpp"
 #include "ia/Behavior/Comportement.hpp"
+#include "ia/Behavior/EtatEnum.hpp"
 #include "ia/Tools/Factories.hpp"
 
-Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p) {}
+Sentient_Entity::Sentient_Entity(Position p, std::map<int, int> charac, std::string n, type tid) : Tangible_Entity(n, tid, charac, p){
+	etat_entity = ETAT::NORD;
+	target = nullptr;
+}
 
 void Sentient_Entity::setComportement(Comportement * comp) {
     addToTrace(comp, comp->getNoeudDepart(), false);
@@ -73,7 +77,7 @@ void Sentient_Entity::addToTrace(Comportement * c, Noeud * n, bool b) {
 stack<Position> Sentient_Entity::pathFindTo(Position posTo, map<pair<int,int>, char> carte, map<pair<int,int>, float> carteH){
 	float maxHauteur = (float) getVal(C_FITNESS) / 100;
     stack<Position> chemin = pathFind(pos.getX(), pos.getY(), posTo.getX(), posTo.getY(), carte, carteH, maxHauteur);
-    
+
     return chemin;
 }
 
@@ -118,6 +122,12 @@ stack<Position> Sentient_Entity::connaitChemin(Position posFinale) {
 
 cJSON* Sentient_Entity:: toJson() {
     cJSON * tangible_entity = Tangible_Entity::toJson();
+
+    cJSON_AddNumberToObject(tangible_entity, "etat", etat_entity);
+
+    if (target != nullptr)
+    	cJSON_AddNumberToObject(tangible_entity, "cible", target->getId());
+
     return tangible_entity;
 }
 
@@ -136,10 +146,10 @@ int Sentient_Entity::getInventoryWeight() {
     return res;
 }
 
-//La récolte des ressources n'est pas optimiser. TODO Optimisation
+//La récolte des ressources n'est pas optimisé. TODO Optimisation
 int Sentient_Entity::removeQuantityAndAddToAgent(Insentient_Entity * resource, Item * i, int qtt) {
     /*if ((getInventoryWeight() + (i->getVal(C_WEIGHT)*qtt)) >= getVal(C_CAPACITY) && qtt > 1) {
-        // removeQuantityAndAddToAgent(resource, i, qtt - 1);
+        removeQuantityAndAddToAgent(resource, i, qtt - 1);
     }
     else */if ((getInventoryWeight() + (i->getVal(C_WEIGHT)*qtt)) >= getVal(C_CAPACITY) /*&& qtt <= 1*/) {
         return -2;
@@ -181,4 +191,43 @@ int Sentient_Entity::harvestResource(Insentient_Entity * resource, int qtt) {
         return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
     return -3;
+}
+
+int Sentient_Entity::removeQuantityAndAddToBuilding(Insentient_Entity * building, Item * i, int qtt) {
+    if (getQuantityByItem(i) > 0) {
+        this->removeItemFromStock(i, qtt);
+        building->addItemToStock(i, qtt);
+        return 0;
+    }
+    else return -1;
+}
+
+int Sentient_Entity::dropResourceInBuilding(type typeRes, Insentient_Entity * building) {
+    if (typeRes == ID_RESSOURCE_BOIS) {
+        Item * i = Item::getItemByName("Bois");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_PIERRE) {
+        Item * i = Item::getItemByName("Pierre");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_METAL) {
+        Item * i = Item::getItemByName("Metal");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_VIANDE) {
+        Item * i = Item::getItemByName("Viande");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+    }
+    else if (typeRes == ID_RESSOURCE_LEGUME) {
+        Item * i = Item::getItemByName("Legume");
+        int qtt = getQuantityByItem(i);
+        return removeQuantityAndAddToBuilding(building, i, qtt);
+
+    }
+    return -2;
 }

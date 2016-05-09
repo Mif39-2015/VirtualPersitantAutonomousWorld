@@ -17,7 +17,6 @@
 #include <fstream>
 #include <string>
 #include "message/Message.hpp"
-#include "message/WorldChangeMessage.hpp"
 #include "server/WorldSimulator.hpp"
 #include "logging/Logger.hpp"
 #include "AuthenticationModule.hpp"
@@ -48,7 +47,8 @@ public:
     void Run();
 
     void sendMessageToClient(int socket, string message);
-    string receiveMessage(int socket);
+    int receiveMessage(int socket, string &message);
+    void retablirBuffer(string &message);
 
 };
 

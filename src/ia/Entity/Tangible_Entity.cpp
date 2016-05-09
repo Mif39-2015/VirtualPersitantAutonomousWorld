@@ -9,6 +9,7 @@ Position Tangible_Entity::getPos(){
 
 void Tangible_Entity::setPos(int x, int y){
     pos = Position(x,y);
+    setModif(true);
 }
 
 int Tangible_Entity::getQuantityByItem(Item* i){
@@ -21,6 +22,7 @@ void Tangible_Entity::addItemToStock(Item* i, int quantity){
         stock.insert(std::pair<Item*, int>(i, quantity));
     else
         stock.at(i)=stock.find(i)->second+quantity;
+    setModif(true);
 }
 
 void Tangible_Entity::afficheStock(){
@@ -34,6 +36,7 @@ void Tangible_Entity::removeItemFromStock(Item * i, int quantity){
         if(it->first == i){
             it->second = it->second - quantity;
             if(it->second < 0) it->second = 0;
+            setModif(true);
         }
     }
 }
@@ -47,8 +50,8 @@ cJSON* Tangible_Entity::toJson()
 	cJSON_AddNumberToObject(position, "x",pos.getX());
 	cJSON_AddNumberToObject(position, "y",pos.getY());
 	cJSON_AddItemToObject(entity,"position", position);
-	//cJSON_AddItemToObject(entity, "position", pos.toJson());
-	
+
+
 	//ajout des items
 	cJSON * items;
 	items = cJSON_CreateArray();
@@ -60,7 +63,7 @@ cJSON* Tangible_Entity::toJson()
 	}
 
 	cJSON_AddItemToObject(entity,"items", items);
-	
+
 	return entity;
 }
 

@@ -72,7 +72,7 @@ Sentient_Entity * Factories::createAgent() {
 	else
 		name = getRandomFemaleName();
 
-	Sentient_Entity * res = new Sentient_Entity(Position(0, 0), characs_val, name,  ID_AGENT);
+	Sentient_Entity * res = new Sentient_Entity(Position(0, 0), characs_val, name, ID_AGENT);
 
 	res->setComportement(Comportement::listComportements[0]);
 
@@ -152,49 +152,6 @@ Sentient_Entity * Factories::createAnimal() {
 	return res;
 }
 
-Item * Factories::createItem() {
-	std::vector<int> characs;
-
-	ifstream file (PATH_DATA"/Characteristics_Item.json", ios::in);
-	if (file.is_open()) {
-		string str((std::istreambuf_iterator<char>(file)), istreambuf_iterator<char>());
-
-		file.close();
-
-		cJSON *root = cJSON_Parse(str.c_str());
-
-		cJSON *child = cJSON_GetObjectItem(root, "characteristicsItem");
-		int	nb = cJSON_GetArraySize(child);
-		for (int i = 0; i < nb; i++) {
-			cJSON *item = cJSON_GetArrayItem(child, i);
-			cJSON *id = cJSON_GetObjectItem(item, "id");
-			if (id->type == cJSON_Number) {
-				characs.push_back(id->valueint);
-			}
-		}
-
-	} else {
-		std::cout << "Unable to open file for the Item Characteristics" << std::endl;
-		return nullptr;
-	}
-
-	std::map<int, int> characs_val;
-	for (unsigned int i = 0; i < characs_val.size(); i++)
-	{
-		characs_val.insert(std::pair<int, int>(characs[i], -1));
-	}
-
-	for (std::vector<int>::iterator it = characs.begin(); it != characs.end(); it++)
-	{
-		int min = Characteristics::listCharacteristics[*it].getMin();
-		int max = Characteristics::listCharacteristics[*it].getMax();
-		int val = rand (min, max + 1);
-		characs_val[*it] = val;
-	}
-
-	return new Item("placeholder_item_name", ID_ITEM, characs_val);
-}
-
 
 Tribe * Factories::createTribe() {
 	std::vector<int> characs;
@@ -268,7 +225,7 @@ Insentient_Entity * Factories::createResource(ResourceType type) {
 		characs_val.insert(std::pair<int, int>(*it, val));
 	}
 
-	Insentient_Entity * res = new Insentient_Entity("", ID_RESSOURCE, characs_val, 0, 0, 0);
+	Insentient_Entity * res = new Insentient_Entity("", ID_RESSOURCE, characs_val, 0, 0);
 
 	std::string name;
 	Characteristics * c = Characteristics::getCharacById(Characs::C_MAXRESSTOCK);
@@ -347,11 +304,11 @@ Insentient_Entity * Factories::createBuilding() {
 
 	}
 
-	std::string name;
-	if (characs_val[1] == 0)
-		name = getRandomMaleName();
-	else
-		name = getRandomFemaleName();
+	std::string name = "Building";
+	// if (characs_val[1] == 0)
+	// 	name = getRandomMaleName();
+	// else
+	// 	name = getRandomFemaleName();
 
-	return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0, 0);
+	return new Insentient_Entity(name,  ID_RESSOURCE, characs_val, 0, 0);
 }

@@ -13,6 +13,7 @@ unsigned int Tribe::getGoalIndex(){
 /*setters*/
 void Tribe::setGoalIndex(unsigned int _goal_index){
     goal_index=_goal_index;
+    setModif(true);
 }
 
 int Tribe::getTribeSize(){
@@ -25,6 +26,7 @@ int Tribe::getTribeSize(){
 
 void Tribe::addNewEntity(Entity* a){
     members.push_back(a);
+    setModif(true);
 }
 
 int Tribe::getPopulationSize(){
@@ -67,6 +69,7 @@ void Tribe::addItemToStock(Item* i, int quantity){
         stock.insert(std::pair<Item*, int>(i, quantity));
     else
         stock.at(i)=stock.find(i)->second+quantity;
+    setModif(true);
 }
 
 void Tribe::afficheStock(){
@@ -94,10 +97,10 @@ cJSON* Tribe::toJson(){
 	cJSON * members_list;
 	members_list = cJSON_CreateArray();
 
-	for(auto it = members.begin(); it != members.end(); it++){ 
+	for(auto it = members.begin(); it != members.end(); it++){
 		cJSON_AddItemToArray(members_list, (*it)->toJson());
 	}
-	
+
 	//cout << it->first->getName() << ", " << it->second << endl;
 
 	cJSON_AddItemToObject(entity,"members", members_list);

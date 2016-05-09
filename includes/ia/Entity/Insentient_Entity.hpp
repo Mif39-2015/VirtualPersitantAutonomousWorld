@@ -25,16 +25,16 @@ public:
 	* \param x : la coordonée x de l'entite
 	* \param y : la coordonée y de l'entite
 	* */
-	Insentient_Entity(std::string n, type tid, std::map<int, int> charac, int o, int x, int y);
+	Insentient_Entity(std::string n, type tid, std::map<int, int> charac, int x, int y);
 
 	/*!
 	* \brief Fonction qui update la ressource, qui regenere ses item etc.
 	* \param wstime: Le temps actuel de la simulation
 	*/
 	void updateResource(unsigned int wstime);
-	
+
 	 cJSON* toJson();
-	
+
 	void affiche();
 	
 protected:

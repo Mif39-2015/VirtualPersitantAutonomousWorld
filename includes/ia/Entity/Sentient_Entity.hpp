@@ -115,7 +115,6 @@ class Sentient_Entity : public Tangible_Entity{
 		 cJSON* toJson();
 		
 		void affiche();
-
 };
 
 #endif

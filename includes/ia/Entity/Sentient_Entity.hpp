@@ -118,7 +118,7 @@ public:
 	* \brief Permet à l'agent de récolter la ressource
 	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si erreur
 	*/
-	bool harvestResource(Insentient_Entity * resource);
+	int harvestResource(Insentient_Entity * resource);
 
 	cJSON* toJson();
 

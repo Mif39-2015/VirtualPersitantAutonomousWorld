@@ -77,9 +77,18 @@ TEST_CASE("Test_Agent", "[agent]")
 		unsigned int t = 0;
 		while(t < 200){
 			t++;
+			std::cout << "Tick n° " << t << std::endl;
+			std::cout << "Update de la ressources" << std::endl;
 			ress->updateResource(t);
-			agent->harvestResource(ress);
+			std::cout << "Harvest de la ressources" << std::endl;
+			if(agent->harvestResource(ress) == -1) break;
+			std::cout << "Stock Ressource" << std::endl;
 			ress->afficheStock();
+			std::cout << "Stock Agent" << std::endl;
+			agent->afficheStock();
+			std::cout << std::endl;
 		}
+
+		std::cout << "Fin du test à " << t << " ticks" << std::endl;
 	}
 }

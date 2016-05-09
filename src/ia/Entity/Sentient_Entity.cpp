@@ -126,51 +126,81 @@ void Sentient_Entity::affiche()
     std::cout << "id : " << id << " name : " << name << std::endl;
 }
 
-bool Sentient_Entity::harvestResource(Insentient_Entity * resource) {
+int Sentient_Entity::harvestResource(Insentient_Entity * resource) {
     if (resource->getTypeId() == ID_RESSOURCE_BOIS) {
         Item * i = Item::getItemByName("Bois");
-        if (resource->getQuantityByItem(i)) {
-            return -1;
+        if (resource->getQuantityByItem(i) >= 10) {
+            resource->removeItemFromStock(i, 10);
+            this->addItemToStock(i, 10);
+            return 0;
         }
-        resource->removeItemFromStock(i, 10);
-        this->addItemToStock(i, 10);
-        return 0;
+        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
+            int q = resource->getQuantityByItem(i);
+            resource->removeItemFromStock(i, q);
+            this->addItemToStock(i, q);
+            return 0;
+        }
+        return -1;
     }
     else if (resource->getTypeId() == ID_RESSOURCE_PIERRE) {
         Item * i = Item::getItemByName("Pierre");
-        if (resource->getQuantityByItem(i)) {
-            return -1;
+        if (resource->getQuantityByItem(i) >= 10) {
+            resource->removeItemFromStock(i, 10);
+            this->addItemToStock(i, 10);
+            return 0;
         }
-        resource->removeItemFromStock(i, 10);
-        this->addItemToStock(i, 10);
-        return 0;
+        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
+            int q = resource->getQuantityByItem(i);
+            resource->removeItemFromStock(i, q);
+            this->addItemToStock(i, q);
+            return 0;
+        }
+        return -1;
     }
     else if(resource->getTypeId() == ID_RESSOURCE_METAL){
         Item * i = Item::getItemByName("Metal");
-        if(resource->getQuantityByItem(i)){
-            return -1;
+        if (resource->getQuantityByItem(i) >= 10) {
+            resource->removeItemFromStock(i, 10);
+            this->addItemToStock(i, 10);
+            return 0;
         }
-        resource->removeItemFromStock(i, 10);
-        this->addItemToStock(i, 10);
-        return 0;
+        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
+            int q = resource->getQuantityByItem(i);
+            resource->removeItemFromStock(i, q);
+            this->addItemToStock(i, q);
+            return 0;
+        }
+        return -1;
     }
     else if(resource->getTypeId() == ID_RESSOURCE_VIANDE){
         Item * i = Item::getItemByName("Viande");
-        if(resource->getQuantityByItem(i)){
-            return -1;
+        if (resource->getQuantityByItem(i) >= 10) {
+            resource->removeItemFromStock(i, 10);
+            this->addItemToStock(i, 10);
+            return 0;
         }
-        resource->removeItemFromStock(i, 10);
-        this->addItemToStock(i, 10);
-        return 0;
+        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
+            int q = resource->getQuantityByItem(i);
+            resource->removeItemFromStock(i, q);
+            this->addItemToStock(i, q);
+            return 0;
+        }
+        return -1;
     }
     else if(resource->getTypeId() == ID_RESSOURCE_LEGUME){
         Item * i = Item::getItemByName("Legume");
-        if(resource->getQuantityByItem(i)){
-            return -1;
+        if (resource->getQuantityByItem(i) >= 10) {
+            resource->removeItemFromStock(i, 10);
+            this->addItemToStock(i, 10);
+            return 0;
         }
-        resource->removeItemFromStock(i, 10);
-        this->addItemToStock(i, 10);
-        return 0;
+        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
+            int q = resource->getQuantityByItem(i);
+            resource->removeItemFromStock(i, q);
+            this->addItemToStock(i, q);
+            return 0;
+        }
+        return -1;
     }
     return -2;
 }

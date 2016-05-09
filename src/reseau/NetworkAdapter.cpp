@@ -101,9 +101,9 @@ int NetworkAdapter::Init(int maxPendingConnections){
 //     strcat(mess1, mess2);
 // }
 
-// void retablir_buffer(char * message){
-//     memset(message, 0, strlen(message));
-// }
+void retablir_buffer(char * message){
+     memset(message, 0, strlen(message));
+}
 
 
 
@@ -230,8 +230,15 @@ void NetworkAdapter::Run(){
             puts("Connection accepted");
             netManager->addClient(clientSock);
         }
+        string message = "ceci est un test\n";
+        string message2 = "Ceci est un autre test\n";
+        string message3;
+        sendMessageToClient(clientSock, message);
+        sendMessageToClient(clientSock, message2);
+        
+        receiveMessage(clientSock, message3);
+        
     }
-
     if (clientSock < 0)
     {
         perror("Accept failed");
@@ -240,11 +247,21 @@ void NetworkAdapter::Run(){
 }
 
 void NetworkAdapter::sendMessageToClient(int socket, string message){
-    // TODO
+    write(socket , (message.c_str()) , strlen(message.c_str()));
 }
 
-string NetworkAdapter::receiveMessage(int socket){
-    // TODO
-    while(true); // A supprimer une fois la méthode implémentée (permet de ne pas faire bugger)
-    return "";
+void NetworkAdapter::retablirBuffer(string &message){
+	message.clear();
+	memset((char *) message.c_str(), 0, strlen(message.c_str()));
+}
+
+int NetworkAdapter::receiveMessage(int socket, string &message){
+	int result =0;
+	retablirBuffer(message);
+ 	result = recv(socket , (char *) message.c_str() , 2000 , 0);
+ 	if(result > 0){
+		string test = message.c_str();
+		message = test;
+	}		
+ 	return result ;
 } 

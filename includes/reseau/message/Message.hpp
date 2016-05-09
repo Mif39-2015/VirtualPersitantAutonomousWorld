@@ -9,21 +9,26 @@
 //  * Recieved from client (starts from 0)
 
 
-//  * Sent to client (starts from 1000)
-#define WORLDCHANGEMESSAGE_ID 1000
 
-
+#include <string>
 #include <iostream>
+#include "reseau/Client.hpp"
+
+class Client;
 
 /**
  * \class Message
  * \brief Abstract super-class for all messages sent and recieved over the network
  */
 class Message {
+	public:
+		Message(Client* c, std::string m);
+		Client* getClient();
+		std::string getMessage();
+			
 	private:
-		short messageId;
-	protected:
-		Message(short _messageId);
+		Client* client;
+		std::string message;
 };
 
 #endif

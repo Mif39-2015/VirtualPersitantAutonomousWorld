@@ -7,9 +7,10 @@
 
 #include "reseau/Client.hpp"
 #include "reseau/NetworkAdapter.hpp"
-#include "logging/Logger.hpp"
 #include "reseau/AuthenticationModule.hpp"
+#include "logging/Logger.hpp"
 #include "server/WorldSimulator.hpp"
+#include "tool/cJSON.hpp"
 
 #include <thread>
 

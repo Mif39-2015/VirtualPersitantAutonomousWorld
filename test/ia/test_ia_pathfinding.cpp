@@ -65,9 +65,9 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 			chemin.pop();
 		}
 
-		cout << endl << "On set la pos de l'agent en 4,4 et on veut lui faire atteindre 6,2 sans recalculer AStar grâce à ses chemins connus" << endl;
-		agent->setPos(4,4);
-		stack<Position> chemin2 = agent->connaitChemin(Position(6,2));
+		cout << endl << "On set la pos de l'agent en 28,16 et on veut lui faire atteindre 60,9 sans recalculer AStar grâce à ses chemins connus" << endl;
+		agent->setPos(28,16);
+		stack<Position> chemin2 = agent->connaitChemin(Position(60,9));
 		while (!chemin2.empty()) {
 			cout << chemin2.top().getX() << ";" << chemin2.top().getY() << endl;
 			chemin2.pop();

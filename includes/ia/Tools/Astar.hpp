@@ -5,6 +5,7 @@
 #include <queue> 
 #include <cmath>
 #include <map>
+#include <set>
 #include <cstdio>
 #include <stack>
 
@@ -39,12 +40,6 @@ class Node
 		
         void updateHeuristique(const int &, const int &);
 
-       /* // give better priority to going strait instead of diagonally
-        void nextLevel(const int & i) // i: direction
-        {
-             level+=(dir==8?(i%2==0?10:14):10);
-        }*/
-        
         //  Fonction d'estimation de la distance restante pour atteindre l'arrivée
         const float & estimate(const int &, const int &) const;
 };

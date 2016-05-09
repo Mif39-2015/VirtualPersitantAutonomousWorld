@@ -49,26 +49,25 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart, const int & x
                 map<pair<int,int>, char> carte, map<pair<int,int>, float> carteH, float maxHauteur)
 {	
 	map<Node, int> closedList;			
-	priority_queue<Node, vector<Node>, CompareNode> openList;
-	
-	// vector copie de la priority_queue pour pouvoir itérer dessus
 	vector<Node> saveOpenList;  
 	
 	Node depart = Node(xDepart, yDepart, 0, 0);
-	openList.push(depart);
 	saveOpenList.push_back(depart);
 	
 	stack<Position> cheminStack;
 	// tant que openList n'est pas vide
-	while(!openList.empty()){
-		Node u = openList.top(); 
-		for(std::vector<Node>::iterator  it = saveOpenList.begin(); it != saveOpenList.end(); ++it) {
-			if((*it) == u){
-				saveOpenList.erase(it);
-				break;
-			}
+	while(!saveOpenList.empty()){		
+		// On prend le noeud avec la plus faible heuristique dans l'openList
+		std::vector<Node>::iterator itsave = saveOpenList.begin();
+		for(std::vector<Node>::iterator it = saveOpenList.begin(); it != saveOpenList.end(); ++it) {
+			if((*it).getHeuristique() < (*itsave).getHeuristique()){
+				 itsave = it;
+			}		
 		}
-		openList.pop();
+		
+		Node u = *itsave; 	
+		saveOpenList.erase(itsave);
+
 		// si la case correspond à la case d'arrivée
 		if(u.getxPos() == xArrivee && u.getyPos() == yArrivee){
 			// Reconstruction du chemin et fin de l'algo avec succès
@@ -128,13 +127,21 @@ stack<Position> pathFind(const int & xDepart, const int & yDepart, const int & x
 								
 								map<Node, int>::iterator p;
 								bool add = true;
+								
+								// si v n'est pas déjà dans la closedList
 								for(p = closedList.begin(); p != closedList.end(); p++){	
 									if(v.getxPos() == (p->first).getxPos() && v.getyPos() == (p->first).getyPos())
 										add = false;
 										
-								}			
+								}	
 								if(add){
-									openList.push(v);
+									for(std::vector<Node>::iterator  it = saveOpenList.begin(); it != saveOpenList.end(); ) {
+										if((*it).getxPos() == v.getxPos() && (*it).getyPos() == v.getyPos()){
+											 saveOpenList.erase(it);
+										}		
+										else
+											++it;
+									}
 									saveOpenList.push_back(v);
 								}
 							}		

@@ -6,22 +6,26 @@
 
 
 Logger::Logger(const string& _fileName) :
-fileName(_fileName)
+    fileName(_fileName)
 {
-	file.open(fileName);
+    file.open(fileName);
 }
 
 Logger::~Logger()
 {
-	file.close();
+    file.close();
 }
+
 bool Logger::log(const string& text){
-	if (file.is_open()) {
-		file << text << endl;
-		return true;
-	} else {
-		return false;
-	}
+    /*
+    if (file.is_open()) {
+        file << text << endl;
+        return true;
+    } else {
+        return false;
+    }
+    */    
+    return false;
 }
 
 ostream& Logger::operator<<(const string& text){

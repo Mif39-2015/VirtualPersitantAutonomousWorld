@@ -34,6 +34,9 @@ protected:
 	stack<std::tuple<Comportement *, Noeud *, bool>> trace;
 	vector<stack<Position>> cheminMemorise;/*!<Le chemin pour aller de la position initiale à la position voulue'*/
 
+private:
+	int removeQuantityAndAddToAgent(Insentient_Entity * resource, Item * i, int qtt);
+
 public:
 	/*!
 	* \brief constructeur avec 2 parametres oú le premier est la
@@ -115,10 +118,18 @@ public:
 	stack<Position> connaitChemin(Position);
 
 	/*!
-	* \brief Permet à l'agent de récolter la ressource
-	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si erreur
+	* \brief Retourne le poids total de l'inventaire de l'agent
+	* \return Poids de l'inventaire de l'agent (int)
 	*/
-	int harvestResource(Insentient_Entity * resource);
+	int getInventoryWeight();
+
+	/*!
+	* \brief Permet à l'agent de récolter la ressource
+	* \param resource: La ressource à récolter
+	* \param qtt: La quantité de ressource à récolter à chaque appel de fonction
+	* \return 0 si tout s'est bien passé, -1 si la ressource est vide, -2 si le poids des items dépasse la capacité de l'agent, -3 si erreur
+	*/
+	int harvestResource(Insentient_Entity * resource, int qtt);
 
 	cJSON* toJson();
 

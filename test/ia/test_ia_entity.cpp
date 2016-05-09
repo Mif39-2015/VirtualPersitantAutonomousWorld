@@ -78,14 +78,32 @@ TEST_CASE("Test_Agent", "[agent]")
 		while(t < 200){
 			t++;
 			std::cout << "Tick n° " << t << std::endl;
+			int nbh = 5;
+			int res = agent->harvestResource(ress, nbh);
+			if(res == -1){
+				std::cout << "Plus de ressource !" << std::endl;
+				break;
+			}
+			else if (res == -2){
+				std::cout << "Inventaire plein !" << std::endl;
+				std::cout << "Poids de l'inventaire de l'agent : " << agent->getInventoryWeight() << std::endl;
+				std::cout << "Capacité de l'agent : " << agent->getVal(C_CAPACITY) << std::endl;
+				break;
+			}
+			else if (res == -3){
+				std::cout << "Erreur !" << std::endl;
+				break;
+			}
+			std::cout << "Harvest de la ressources" << std::endl;
 			std::cout << "Update de la ressources" << std::endl;
 			ress->updateResource(t);
-			std::cout << "Harvest de la ressources" << std::endl;
-			if(agent->harvestResource(ress) == -1) break;
+
 			std::cout << "Stock Ressource" << std::endl;
 			ress->afficheStock();
 			std::cout << "Stock Agent" << std::endl;
 			agent->afficheStock();
+			std::cout << "Poids de l'inventaire de l'agent : " << agent->getInventoryWeight() << std::endl;
+			std::cout << "Capacité de l'agent : " << agent->getVal(C_CAPACITY) << std::endl;
 			std::cout << std::endl;
 		}
 

@@ -47,12 +47,12 @@ int Item::loadItemsFile(std::string fileName){
             }
 
             std::map<int, int> charact;
-            charact.insert(std::pair<int, int>(19, weightItem));
+            charact.insert(std::pair<int, int>(C_WEIGHT, weightItem));
             Item createdItem(nameItem, type::ID_ITEM, charact);
             listItems.push_back(createdItem);
         }
-        
-        return 0;        
+
+        return 0;
     } else {
         std::cout << "Unable to open general Item file" << std::endl;
         return -1;

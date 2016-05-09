@@ -126,81 +126,59 @@ void Sentient_Entity::affiche()
     std::cout << "id : " << id << " name : " << name << std::endl;
 }
 
-int Sentient_Entity::harvestResource(Insentient_Entity * resource) {
+int Sentient_Entity::getInventoryWeight() {
+    int res = 0;
+    for (auto it = stock.begin(); it != stock.end(); it++) {
+        int add = it->first->getVal(C_WEIGHT);
+        if (add != -1)
+            res += add * it->second;
+    }
+    return res;
+}
+
+//La récolte des ressources n'est pas optimiser. TODO Optimisation
+int Sentient_Entity::removeQuantityAndAddToAgent(Insentient_Entity * resource, Item * i, int qtt) {
+    /*if ((getInventoryWeight() + (i->getVal(C_WEIGHT)*qtt)) >= getVal(C_CAPACITY) && qtt > 1) {
+        // removeQuantityAndAddToAgent(resource, i, qtt - 1);
+    }
+    else */if ((getInventoryWeight() + (i->getVal(C_WEIGHT)*qtt)) >= getVal(C_CAPACITY) /*&& qtt <= 1*/) {
+        return -2;
+    }
+
+    if (resource->getQuantityByItem(i) >= qtt) {
+        resource->removeItemFromStock(i, qtt);
+        this->addItemToStock(i, qtt);
+        return 0;
+    }
+    else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < qtt) {
+        int q = resource->getQuantityByItem(i);
+        resource->removeItemFromStock(i, q);
+        this->addItemToStock(i, q);
+        return 0;
+    }
+    return -1;
+}
+
+int Sentient_Entity::harvestResource(Insentient_Entity * resource, int qtt) {
     if (resource->getTypeId() == ID_RESSOURCE_BOIS) {
         Item * i = Item::getItemByName("Bois");
-        if (resource->getQuantityByItem(i) >= 10) {
-            resource->removeItemFromStock(i, 10);
-            this->addItemToStock(i, 10);
-            return 0;
-        }
-        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
-            int q = resource->getQuantityByItem(i);
-            resource->removeItemFromStock(i, q);
-            this->addItemToStock(i, q);
-            return 0;
-        }
-        return -1;
+        return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
     else if (resource->getTypeId() == ID_RESSOURCE_PIERRE) {
         Item * i = Item::getItemByName("Pierre");
-        if (resource->getQuantityByItem(i) >= 10) {
-            resource->removeItemFromStock(i, 10);
-            this->addItemToStock(i, 10);
-            return 0;
-        }
-        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
-            int q = resource->getQuantityByItem(i);
-            resource->removeItemFromStock(i, q);
-            this->addItemToStock(i, q);
-            return 0;
-        }
-        return -1;
+        return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
-    else if(resource->getTypeId() == ID_RESSOURCE_METAL){
+    else if (resource->getTypeId() == ID_RESSOURCE_METAL) {
         Item * i = Item::getItemByName("Metal");
-        if (resource->getQuantityByItem(i) >= 10) {
-            resource->removeItemFromStock(i, 10);
-            this->addItemToStock(i, 10);
-            return 0;
-        }
-        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
-            int q = resource->getQuantityByItem(i);
-            resource->removeItemFromStock(i, q);
-            this->addItemToStock(i, q);
-            return 0;
-        }
-        return -1;
+        return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
-    else if(resource->getTypeId() == ID_RESSOURCE_VIANDE){
+    else if (resource->getTypeId() == ID_RESSOURCE_VIANDE) {
         Item * i = Item::getItemByName("Viande");
-        if (resource->getQuantityByItem(i) >= 10) {
-            resource->removeItemFromStock(i, 10);
-            this->addItemToStock(i, 10);
-            return 0;
-        }
-        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
-            int q = resource->getQuantityByItem(i);
-            resource->removeItemFromStock(i, q);
-            this->addItemToStock(i, q);
-            return 0;
-        }
-        return -1;
+        return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
-    else if(resource->getTypeId() == ID_RESSOURCE_LEGUME){
+    else if (resource->getTypeId() == ID_RESSOURCE_LEGUME) {
         Item * i = Item::getItemByName("Legume");
-        if (resource->getQuantityByItem(i) >= 10) {
-            resource->removeItemFromStock(i, 10);
-            this->addItemToStock(i, 10);
-            return 0;
-        }
-        else if (resource->getQuantityByItem(i) > 0 && resource->getQuantityByItem(i) < 10){
-            int q = resource->getQuantityByItem(i);
-            resource->removeItemFromStock(i, q);
-            this->addItemToStock(i, q);
-            return 0;
-        }
-        return -1;
+        return this->removeQuantityAndAddToAgent(resource, i, qtt);
     }
-    return -2;
+    return -3;
 }

@@ -1,185 +1,208 @@
- {
- 	"_comment":"Liste des comportements",
- 	"behaviors":[
- 	{
- 		"IDLE":[
- 		{
- 			"id_dep":1,
- 			"id_arr":[
- 			],
- 			"_comment":"Liste des neouds présent dans le comportement IDLE",
- 			"nodes":[
- 				{
- 					"id":1,
- 					"_comment":"Action Idle",
-					"action":[{
-						"comp": "null",
-						"fv":"idle",
-						"fve":"null",
-						"sfee":[
-							{"fee":"null"}
-						]
-					}]
- 				},
- 				{
- 					"id":2,
- 					"_comment":"Action eat",
-					"action":[{
-						"comp": "null",
-						"fv":"eat",
-						"fve":"null",
-						"sfee":[
-							{"fee":"null"}
-						]
-					}]
- 				}
-				{
- 					"id":3,
- 					"_comment":"Action sleep",
-					"action":[{
-						"comp": "null",
-						"fv":"dormir",
-						"fve":"null",
-						"sfee":[
-							"null"
-						]
-					}]
- 				}
- 			],
- 			"aretes":[
- 			{
- 				"arete":[{
- 					"id_dep":1,
- 					"id_arr":2,
- 					"cond_simple":[
- 						"ag_hungry"
- 					],
- 					"cond_complex":[
- 						{
-	 						"fie1":"null",
-	 						"sfee1":[
-	 							"null"
-	 						],
-	 						"fie2":"null",
-	 						"sfee2":[
-	 							"null"
-	 						],
-	 						"operator":"null"
- 						}
- 					]
- 				}]
- 			},
- 			{
-				"arete":[{
-				"id_dep":2,
-				"id_arr":2,
-				"cond_simple":[
-					"ag_hungry"
-				],
-				"cond_complex":[
-					{
-						"fie1":"null",
-						"sfee1":[
-							"null"
-						],
-						"fie2":"null",
-						"sfee2":[
-							"null"
-						],
-						"operator":"null"
-					}
-				]
- 				}]
- 			},
- 			{
-				"arete":[{
-				"id_dep":2,
-				"id_arr":1,
-				"cond_simple":[
-					"ag_not_hungry_anymore"
-				],
-				"cond_complex":[
-					{
-						"fie1":"null",
-						"sfee1":[
-							"null"
-						],
-						"fie2":"null",
-						"sfee2":[
-							"null"
-						],
-						"operator":"null"
-					}
-				]
- 				}]
- 			},
- 			{
-				"arete":[{
-				"id_dep":1,
-				"id_arr":3,
-				"cond_simple":[
-					"ag_tired"
-				],
-				"cond_complex":[
-					{
-						"fie1":"null",
-						"sfee1":[
-							"null"
-						],
-						"fie2":"null",
-						"sfee2":[
-							"null"
-						],
-						"operator":"null"
-					}
-				]
- 				}]
- 			},
- 			{
-				"arete":[{
-				"id_dep":3,
-				"id_arr":3,
-				"cond_simple":[
-					"ag_tired"
-				],
-				"cond_complex":[
-					{
-						"fie1":"null",
-						"sfee1":[
-							"null"
-						],
-						"fie2":"null",
-						"sfee2":[
-							"null"
-						],
-						"operator":"null"
-					}
-				]
- 				}]
- 			},
- 			{
-				"arete":[{
-				"id_dep":3,
-				"id_arr":1,
-				"cond_simple":[
-					"ag_not_tired_anymore"
-				],
-				"cond_complex":[
-					{
-						"fie1":"null",
-						"sfee1":[
-							"null"
-						],
-						"fie2":"null",
-						"sfee2":[
-							"null"
-						],
-						"operator":"null"
-					}
-				]
- 				}]
- 			},
- 			]
- 		}]
- 	}
- ]}
+{
+  "_comment": "Liste des comportements",
+  "behaviors": [
+    {
+      "IDLE": [
+        {
+          "id_dep": 1,
+          "id_arr": [],
+          "_comment": "Liste des neouds présent dans le comportement IDLE",
+          "nodes": [
+            {
+              "id": 1,
+              "_comment": "Action Idle",
+              "action": [
+                {
+                  "comp": "null",
+                  "fv": "idle",
+                  "fve": "null",
+                  "sfee": [
+                    {
+                      "fee": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "_comment": "Action eat",
+              "action": [
+                {
+                  "comp": "null",
+                  "fv": "eat",
+                  "fve": "null",
+                  "sfee": [
+                    {
+                      "fee": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "_comment": "Action sleep",
+              "action": [
+                {
+                  "comp": "null",
+                  "fv": "dormir",
+                  "fve": "null",
+                  "sfee": [
+                    "null"
+                  ]
+                }
+              ]
+            }
+          ],
+          "aretes": [
+            {
+              "arete": [
+                {
+                  "id_dep": 1,
+                  "id_arr": 2,
+                  "cond_simple": [
+                    "ag_hungry"
+                  ],
+                  "cond_complex": [
+                    {
+                      "fie1": "null",
+                      "sfee1": [
+                        "null"
+                      ],
+                      "fie2": "null",
+                      "sfee2": [
+                        "null"
+                      ],
+                      "operator": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "arete": [
+                {
+                  "id_dep": 2,
+                  "id_arr": 2,
+                  "cond_simple": [
+                    "ag_hungry"
+                  ],
+                  "cond_complex": [
+                    {
+                      "fie1": "null",
+                      "sfee1": [
+                        "null"
+                      ],
+                      "fie2": "null",
+                      "sfee2": [
+                        "null"
+                      ],
+                      "operator": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "arete": [
+                {
+                  "id_dep": 2,
+                  "id_arr": 1,
+                  "cond_simple": [
+                    "ag_not_hungry_anymore"
+                  ],
+                  "cond_complex": [
+                    {
+                      "fie1": "null",
+                      "sfee1": [
+                        "null"
+                      ],
+                      "fie2": "null",
+                      "sfee2": [
+                        "null"
+                      ],
+                      "operator": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "arete": [
+                {
+                  "id_dep": 1,
+                  "id_arr": 3,
+                  "cond_simple": [
+                    "ag_tired"
+                  ],
+                  "cond_complex": [
+                    {
+                      "fie1": "null",
+                      "sfee1": [
+                        "null"
+                      ],
+                      "fie2": "null",
+                      "sfee2": [
+                        "null"
+                      ],
+                      "operator": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "arete": [
+                {
+                  "id_dep": 3,
+                  "id_arr": 3,
+                  "cond_simple": [
+                    "ag_tired"
+                  ],
+                  "cond_complex": [
+                    {
+                      "fie1": "null",
+                      "sfee1": [
+                        "null"
+                      ],
+                      "fie2": "null",
+                      "sfee2": [
+                        "null"
+                      ],
+                      "operator": "null"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "arete": [
+                {
+                  "id_dep": 3,
+                  "id_arr": 1,
+                  "cond_simple": [
+                    "ag_not_tired_anymore"
+                  ],
+                  "cond_complex": [
+                    {
+                      "fie1": "null",
+                      "sfee1": [
+                        "null"
+                      ],
+                      "fie2": "null",
+                      "sfee2": [
+                        "null"
+                      ],
+                      "operator": "null"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

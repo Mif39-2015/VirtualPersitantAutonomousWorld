@@ -11,7 +11,7 @@ class Sentient_Entity;
 using namespace std;
 
 typedef enum {
-	  NORD = 0
+	NORD = 0
 	, SUD = 1
 	, EST = 2
 	, OUEST = 3

@@ -20,14 +20,15 @@ using namespace std;
 *\class Action
 *\brief Classe abstraite mère des classes ActionComportement et ActionSimple
 */
-class Action {
+class Action
+{
 	public :
 		/*!
 		 	*\brief Execute l'action courante à l'agent passé en paramètre
 		 	*\param agent : agent qui éxecute l'action'
 		 	*/
 		virtual void Executer(Sentient_Entity * agent) {};
-		virtual ~Action(){};
+		virtual ~Action() {};
 };
 
 // ******** CLASSE ACTION COMPORTEMENT********
@@ -36,7 +37,8 @@ class Action {
 *\class ActionComportement
 *\brief Classe décrivant les actions contenant un comportement
 */
-class ActionComportement : public Action {
+class ActionComportement : public Action
+{
 
 	private :
 
@@ -68,7 +70,8 @@ class ActionComportement : public Action {
 
 // ******** CLASSE ACTION SIMPLE********
 
-class ActionSimple : public Action {
+class ActionSimple : public Action
+{
 	private :
 
 		FONC_VOID fV = FONC_V_NULL;

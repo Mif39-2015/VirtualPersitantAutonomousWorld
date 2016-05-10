@@ -61,7 +61,8 @@ typedef enum { //FONC_INT_ENTITY
 	, FONC_I_E_NULL
 } FONC_INT_ENTITY;
 
-class MapEnumPointeur {
+class MapEnumPointeur
+{
 	public :
 		static map<FONC_ENTITY			, Entity *(*)	()> mapFoncEntity;
 		static map<FONC_BOOL			, bool(*)		(Sentient_Entity * a)> mapFoncBool;
@@ -71,7 +72,8 @@ class MapEnumPointeur {
 		static map<FONC_ENTITY_ENTITY	, Entity *(*)	(Sentient_Entity * a, Entity * e)> mapFoncEntityEntity;
 };
 
-class MapEnumString {
+class MapEnumString
+{
 	public :
 		static map<std::string	, FONC_VOID			> mapFoncVoid;
 		static map<std::string	, FONC_BOOL			> mapFoncBool;

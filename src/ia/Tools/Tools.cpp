@@ -192,7 +192,7 @@ map<pair<int, int>, float> getHauteursMap(string nomFichier)
 	return carteH;
 }
 
-void getComportements(string nomFichier)
+int getComportements(string nomFichier)
 {
 	ifstream fichier(nomFichier, ios::in);
 
@@ -250,7 +250,10 @@ void getComportements(string nomFichier)
 	}
 
 	cout << "FIN ? " << endl;
-
+	cout << "FIN2 ? " << endl;
+	cout << "FIN3 ? " << endl;
+	cout << "FIN4 ? " << endl;
+	return 0;
 }
 
 bool loadAllFiles()
@@ -258,6 +261,7 @@ bool loadAllFiles()
 	int loadResult  = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");
 	int loadResult2 = Comportement::initVectorComp(PATH_DATA"/foo.json");
 	int loadResult3 = Item::loadItemsFile(PATH_DATA"/descriptionItems.json");
+	int loadResult4 = 0; //TODO le chargement des comportements
 
-	return loadResult != -1 && loadResult2 != -1 && loadResult3 != -1;
+	return loadResult != -1 && loadResult2 != -1 && loadResult3 != -1 && loadResult4 != -1;
 }

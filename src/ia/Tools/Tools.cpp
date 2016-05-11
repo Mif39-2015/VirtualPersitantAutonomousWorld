@@ -211,42 +211,42 @@ int getComportements(string nomFichier)
 	}
 
 	char * fileChar = (char *) malloc(sizeof(char) * fileString.size());
-	strcpy(fileChar , fileString.c_str());
+	strncpy(fileChar , fileString.c_str(), fileString.size());
 
-	cJSON * root = cJSON_Parse(fileChar);
+        cJSON * root = cJSON_Parse(fileChar);
 
-	cJSON * behaviors = cJSON_GetObjectItem(root, "behaviors");
+        cJSON * behaviors = cJSON_GetObjectItem(root, "behaviors");
 
-	// cout << cJSON_Print(behaviors) << endl;
+        // cout << cJSON_Print(behaviors) << endl;
 
-	cJSON * behavior;
-	cJSON * nodes;
-	cJSON * node;
+        cJSON * behavior;
+        cJSON * nodes;
+        cJSON * node;
 
-	cJSON * aretes;
-	cJSON * arete;
+        cJSON * aretes;
+        cJSON * arete;
 
-	map<int, Noeud> mapNoeuds;
-	map<int, Arete> mapAretes;
+        map<int, Noeud> mapNoeuds;
+        map<int, Arete> mapAretes;
 
-	for (int b = 0; b < cJSON_GetArraySize(behaviors) ; ++b) {
-		behavior = cJSON_GetArrayItem(behaviors, b);
-		nodes = cJSON_GetObjectItem(behavior, "nodes");
+        for (int b = 0; b < cJSON_GetArraySize(behaviors) ; ++b) {
+            behavior = cJSON_GetArrayItem(behaviors, b);
+            nodes = cJSON_GetObjectItem(behavior, "nodes");
 
-		for (int n = 0 ; n < cJSON_GetArraySize(nodes) ; ++n) {
-			node = cJSON_GetArrayItem(nodes, n);
-			int id = cJSON_GetObjectItem(node, "id")->valueint;
-			cout << " id : " << id << endl;
-		}
+            for (int n = 0 ; n < cJSON_GetArraySize(nodes) ; ++n) {
+                node = cJSON_GetArrayItem(nodes, n);
+                int id = cJSON_GetObjectItem(node, "id")->valueint;
+                cout << " id : " << id << endl;
+            }
 
-		aretes = cJSON_GetObjectItem(behavior, "aretes");
+            aretes = cJSON_GetObjectItem(behavior, "aretes");
 
-		cout << endl << "ARETES : " << endl;
+            cout << endl << "ARETES : " << endl;
 
-		for (int a = 0; a < cJSON_GetArraySize(aretes) ; ++a) {
-			arete = cJSON_GetArrayItem(aretes, a);
-			cout << cJSON_Print(arete) << endl;
-		}
+            for (int a = 0; a < cJSON_GetArraySize(aretes) ; ++a) {
+                arete = cJSON_GetArrayItem(aretes, a);
+                cout << cJSON_Print(arete) << endl;
+            }
 	}
 
 	cout << "FIN ? " << endl;

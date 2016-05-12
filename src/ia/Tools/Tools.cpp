@@ -2,6 +2,7 @@
 #include "ia/Entity/Item.hpp"
 #include "ia/Entity/Characteristics.hpp"
 #include "ia/Behavior/Comportement.hpp"
+#include "ia/Behavior/FonctionEnums.hpp"
 
 std::string readFileForName(std::string filename)
 {
@@ -157,7 +158,7 @@ map<pair<int, int>, float> getHauteursMap(string nomFichier)
 		return carteH;
 	}
 
-	char *fichierjson = (char *) malloc(fichierjsonstring.size());
+	char *fichierjson = (char *) malloc(fichierjsonstring.size() + 1);
 	strcpy(fichierjson, fichierjsonstring.c_str());
 	cJSON* root = cJSON_Parse(fichierjson);
 
@@ -183,6 +184,7 @@ map<pair<int, int>, float> getHauteursMap(string nomFichier)
 				cJSON *val = cJSON_GetArrayItem(lignechunk, x);
 				float value = atof(cJSON_Print(val));
 				carteH[make_pair(x, y)] = value;
+
 			}
 		}
 	}
@@ -192,7 +194,7 @@ map<pair<int, int>, float> getHauteursMap(string nomFichier)
 	return carteH;
 }
 
-int getComportements(string nomFichier)
+vector<Comportement *> getComportements(string nomFichier)
 {
 	ifstream fichier(nomFichier, ios::in);
 
@@ -210,50 +212,259 @@ int getComportements(string nomFichier)
 		exit(0);
 	}
 
-	char * fileChar = (char *) malloc(sizeof(char) * fileString.size());
-	strncpy(fileChar , fileString.c_str(), fileString.size());
+	char * fileChar = (char *) malloc(sizeof(char) * (fileString.size() + 1));
+	strcpy(fileChar , fileString.c_str());
 
-        cJSON * root = cJSON_Parse(fileChar);
+	cJSON * root = cJSON_Parse(fileChar);
 
-        cJSON * behaviors = cJSON_GetObjectItem(root, "behaviors");
+	cJSON * behaviors = cJSON_GetObjectItem(root, "behaviors");
 
-        // cout << cJSON_Print(behaviors) << endl;
+	map<int, Noeud *> mapNoeuds;
+	map<int, Comportement *> mapComportement;
 
-        cJSON * behavior;
-        cJSON * nodes;
-        cJSON * node;
+	vector<Comportement *> retour;
 
-        cJSON * aretes;
-        cJSON * arete;
+	for (int b = 0; b < cJSON_GetArraySize(behaviors) ; ++b) {
+		cJSON *	behaviorCJSON = cJSON_GetArrayItem(behaviors, b);
+		cJSON * nodes = cJSON_GetObjectItem(behaviorCJSON, "nodes");
 
-        map<int, Noeud> mapNoeuds;
-        map<int, Arete> mapAretes;
+		int idBehavior = cJSON_GetObjectItem(behaviorCJSON, "id")->valueint;
 
-        for (int b = 0; b < cJSON_GetArraySize(behaviors) ; ++b) {
-            behavior = cJSON_GetArrayItem(behaviors, b);
-            nodes = cJSON_GetObjectItem(behavior, "nodes");
+		cJSON * idDepartCJSON = cJSON_GetObjectItem(behaviorCJSON, "id_depart");
+		int idDepart;
 
-            for (int n = 0 ; n < cJSON_GetArraySize(nodes) ; ++n) {
-                node = cJSON_GetArrayItem(nodes, n);
-                int id = cJSON_GetObjectItem(node, "id")->valueint;
-                cout << " id : " << id << endl;
-            }
+		if (idDepartCJSON->type == cJSON_Number)
+			idDepart = idDepartCJSON->valueint;
+		else
+			idDepart =  -1;
 
-            aretes = cJSON_GetObjectItem(behavior, "aretes");
+		cJSON * idFinCJSON = cJSON_GetObjectItem(behaviorCJSON, "id_fin");
 
-            cout << endl << "ARETES : " << endl;
+		vector<int> idFin;
 
-            for (int a = 0; a < cJSON_GetArraySize(aretes) ; ++a) {
-                arete = cJSON_GetArrayItem(aretes, a);
-                cout << cJSON_Print(arete) << endl;
-            }
+		for (int iidFin = 0 ; iidFin < cJSON_GetArraySize(idFinCJSON) ; ++iidFin) {
+			idFin.push_back(cJSON_GetArrayItem(idFinCJSON, iidFin)->valueint);
+		}
+
+		Comportement * behavior = new Comportement();
+
+		for (int n = 0 ; n < cJSON_GetArraySize(nodes) ; ++n) {
+			cJSON * node = cJSON_GetArrayItem(nodes, n);
+
+			int idNode = cJSON_GetObjectItem(node, "id")->valueint;
+
+			cJSON * action = cJSON_GetObjectItem(node, "action");
+
+			cJSON * comportement = cJSON_GetObjectItem(action, "comportement");
+
+			Noeud * noeud = new Noeud();
+			mapNoeuds[idNode] = noeud;
+
+			if (comportement->type == cJSON_String) {
+				string fvString(cJSON_GetObjectItem(action, "fv")->valuestring);
+
+				if (fvString != "null") {
+					FONC_VOID fvAction = MapEnumString::mapFoncVoid[fvString];
+					ActionSimple * as = new ActionSimple(fvAction);
+					noeud->setAction(as);
+				} else {
+					string fveString(cJSON_GetObjectItem(action, "fve")->valuestring);
+
+					if (fveString != "null") {
+
+						if (MapEnumString::mapFoncVoidEntity.find(fveString.c_str()) != MapEnumString::mapFoncVoidEntity.end()) {
+
+							FONC_VOID_ENTITY fve = MapEnumString::mapFoncVoidEntity[fveString.c_str()];
+
+							cJSON * sfeeCJSON = cJSON_GetObjectItem(action, "sfee");
+							stack<FONC_ENTITY_ENTITY> sfee;
+
+							for (int isfee = 0; isfee < cJSON_GetArraySize(sfeeCJSON) ; ++isfee) {
+								string feeString(cJSON_GetArrayItem(sfeeCJSON, isfee)->valuestring);
+
+								if (feeString != "null") {
+									if (MapEnumString::mapFoncEntityEntity.find(feeString) != MapEnumString::mapFoncEntityEntity.end()) {
+										sfee.push(MapEnumString::mapFoncEntityEntity[feeString]);
+									} else {
+										cout << "Erreur dans sfee : " << feeString << " n'est pas une fonction de FONC_ENTITY_ENTITY" << endl;
+									}
+								}
+							}
+
+							string paramFinalString(cJSON_GetObjectItem(action, "paramFinal")->valuestring);
+
+							if (paramFinalString != "null") {
+								if (MapEnumString::mapFoncEntity.find(paramFinalString.c_str()) != MapEnumString::mapFoncEntity.end()) {
+
+									FONC_ENTITY paramFinal = MapEnumString::mapFoncEntity[paramFinalString.c_str()];
+
+									ActionSimple * as = new ActionSimple(fve, sfee, paramFinal);
+									noeud->setAction(as);
+								}
+							}
+						} else {
+							cout << "Erreur dans fve : " << fveString << " n'est pas une fonction de FONC_VOID_ENTITY" << endl;
+						}
+					}
+				}
+			} else {
+				mapComportement[comportement->valueint] = new Comportement();
+				ActionComportement * ac = new ActionComportement(mapComportement[comportement->valueint]);
+				noeud->setAction(ac);
+			}
+
+			behavior->ajouterNoeud(noeud);
+
+			if (idDepart == idNode) {
+				behavior->setNoeudDepart(noeud);
+			}
+
+			if (findInVector(idFin , idNode) != -1) {
+				behavior->ajouterNoeudFin(noeud);
+			}
+		}
+
+		cJSON * aretes = cJSON_GetObjectItem(behaviorCJSON, "aretes");
+
+		for (int a = 0; a < cJSON_GetArraySize(aretes) ; ++a) {
+			cJSON * areteCJSON = cJSON_GetArrayItem(aretes, a);
+			// cout << cJSON_Print(arete) << endl;
+			int idDepart = cJSON_GetObjectItem(areteCJSON, "id_depart")->valueint;
+			int idFin = cJSON_GetObjectItem(areteCJSON, "id_fin")->valueint;
+
+			Noeud * nDepart = mapNoeuds[idDepart];
+			Noeud * nFin = mapNoeuds[idFin];
+
+			Arete * arete = new Arete(nDepart, nFin);
+
+			vector<FONC_BOOL> condition_simples;
+
+			cJSON * conditionSimpleArrayCJSON = cJSON_GetObjectItem(areteCJSON, "condition_simple");
+
+			for (int cs = 0 ; cs < cJSON_GetArraySize(conditionSimpleArrayCJSON) ; ++cs) {
+				cJSON * conditionSimpleCJSON = cJSON_GetArrayItem(conditionSimpleArrayCJSON, cs);
+				string cond(conditionSimpleCJSON->valuestring);
+
+				if (cond != "null") {
+					if (MapEnumString::mapFoncBool.find(cond) != MapEnumString::mapFoncBool.end()) {
+						condition_simples.push_back(MapEnumString::mapFoncBool[cond]);
+					} else {
+						cout << "Erreur dans condition_simple : " << cond << " n'est pas une FONC_BOOL" << endl;
+					}
+				}
+			}
+
+			arete->setCondition_Simple(condition_simples);
+
+			vector<struct_condition> condition_complexes;
+			cJSON * conditionComplexeArrayCJSON = cJSON_GetObjectItem(areteCJSON, "condition_complexe");
+
+			for (int cc = 0 ; cc < cJSON_GetArraySize(conditionComplexeArrayCJSON) ; ++cc) {
+				cJSON * conditionComplexeCJSON = cJSON_GetArrayItem(conditionComplexeArrayCJSON , cc);
+
+				string fie1(cJSON_GetObjectItem(conditionComplexeCJSON, "fie1")->valuestring);
+				string fie2(cJSON_GetObjectItem(conditionComplexeCJSON, "fie2")->valuestring);
+				string operatorString(cJSON_GetObjectItem(conditionComplexeCJSON, "operator")->valuestring);
+
+				cJSON * compareCJSON = cJSON_GetObjectItem(conditionComplexeCJSON, "comp");
+
+				struct_condition struct_cond;
+
+				stack<FONC_ENTITY_ENTITY> sfee1;
+
+				if (fie1 != "null") {
+					if (MapEnumString::mapFoncIntEntity.find(fie1) != MapEnumString::mapFoncIntEntity.end()) {
+						struct_cond.fIE1 = MapEnumString::mapFoncIntEntity[fie1];
+
+						cJSON * sfee1CJSON = cJSON_GetObjectItem(conditionComplexeCJSON, "sfee1");
+
+						for (int isfee1 = 0 ; isfee1 < cJSON_GetArraySize(sfee1CJSON) ; ++isfee1) {
+							string fee1(cJSON_GetArrayItem(sfee1CJSON, isfee1)->valuestring);
+
+							if (fee1 != "null") {
+								if (MapEnumString::mapFoncEntityEntity.find(fee1) != MapEnumString::mapFoncEntityEntity.end()) {
+									sfee1.push(MapEnumString::mapFoncEntityEntity[fee1]);
+								} else {
+									cout << "Erreur dans condition_complexe::sfee1 : " << fee1 << " n'est pas une FONC_INT_ENTITY" << endl;
+								}
+							}
+						}
+
+						struct_cond.fEE1 = sfee1;
+
+						bool deuxiemeConditionValide = false;
+
+						if (fie2 != "null") {
+							if (MapEnumString::mapFoncIntEntity.find(fie2) != MapEnumString::mapFoncIntEntity.end()) {
+								struct_cond.fIE2 = MapEnumString::mapFoncIntEntity[fie2];
+
+								cJSON * sfee2CJSON = cJSON_GetObjectItem(conditionComplexeCJSON, "sfee2");
+
+								stack<FONC_ENTITY_ENTITY> sfee2;
+
+								for (int isfee2 = 0 ; isfee2 < cJSON_GetArraySize(sfee2CJSON) ; ++isfee2) {
+									string fee2(cJSON_GetArrayItem(sfee2CJSON, isfee2)->valuestring);
+
+									if (fee2 != "null") {
+										if (MapEnumString::mapFoncEntityEntity.find(fee2) != MapEnumString::mapFoncEntityEntity.end()) {
+											sfee2.push(MapEnumString::mapFoncEntityEntity[fee2]);
+										} else {
+											cout << "Erreur dans condition_complexe::sfee2 : " << fee2 << " n'est pas une FONC_INT_ENTITY" << endl;
+										}
+									}
+								}
+
+								struct_cond.fEE2 = sfee2;
+
+								deuxiemeConditionValide = true;
+							} else {
+								cout << "Erreur dans condition_complexe::fie2 : " << fie2 << " n'est pas une FONC_INT_ENTITY" << endl;
+							}
+						} else {
+							if (compareCJSON->type == cJSON_Number) {
+								struct_cond.comp = compareCJSON->valueint;
+								deuxiemeConditionValide = true;
+							}
+						}
+
+						if (deuxiemeConditionValide) {
+							if (operatorString == "Inf")
+								struct_cond.op = Inf;
+							else if (operatorString == "Inf_eg")
+								struct_cond.op = Inf_Eg;
+							else if (operatorString == "Eg")
+								struct_cond.op = Inf_Eg;
+							else if (operatorString == "Sup_eg")
+								struct_cond.op = Inf_Eg;
+							else if (operatorString == "Sup")
+								struct_cond.op = Inf_Eg;
+
+							if (operatorString != "null") {
+								condition_complexes.push_back(struct_cond);
+							}
+						}
+					} else {
+						cout << "Erreur dans condition_complexe::fie1 : " << fie1 << " n'est pas une FONC_INT_ENTITY" << endl;
+					}
+				}
+			}
+
+			arete->setCondition_Complexe(condition_complexes);
+		}
+
+		Comportement::addToComportements(behavior);
+
+		mapComportement[idBehavior] = behavior;
+
+		retour.push_back(behavior);
+
 	}
 
-	cout << "FIN ? " << endl;
-	cout << "FIN2 ? " << endl;
-	cout << "FIN3 ? " << endl;
-	cout << "FIN4 ? " << endl;
-	return 0;
+	cJSON_Delete(root);
+
+	free(fileChar);
+
+	return retour;
 }
 
 bool loadAllFiles()

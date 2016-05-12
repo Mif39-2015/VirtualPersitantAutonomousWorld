@@ -17,6 +17,8 @@ class Comportement
 		Noeud * noeudDepart;
 		vector<Noeud *> noeudsFin;
 
+		string nom;
+
 	public :
 
 		// ******** STATICS CONTAINERS ********

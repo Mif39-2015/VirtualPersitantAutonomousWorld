@@ -75,11 +75,12 @@ class MapEnumPointeur
 class MapEnumString
 {
 	public :
-		static map<std::string	, FONC_VOID			> mapFoncVoid;
-		static map<std::string	, FONC_BOOL			> mapFoncBool;
-		static map<std::string	, FONC_VOID_ENTITY	> mapFoncVoidEntity;
-		static map<std::string	, FONC_INT_ENTITY	> mapFoncIntEntity;
-		static map<std::string	, FONC_ENTITY_ENTITY> mapFoncEntityEntity;
+		static map<string	, FONC_ENTITY 		> mapFoncEntity;
+		static map<string	, FONC_VOID			> mapFoncVoid;
+		static map<string	, FONC_BOOL			> mapFoncBool;
+		static map<string	, FONC_VOID_ENTITY	> mapFoncVoidEntity;
+		static map<string	, FONC_INT_ENTITY	> mapFoncIntEntity;
+		static map<string	, FONC_ENTITY_ENTITY> mapFoncEntityEntity;
 };
 
 //FONC_BOOL

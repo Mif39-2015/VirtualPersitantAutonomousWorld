@@ -25,13 +25,9 @@ using namespace std;
 
 TEST_CASE("Test_GetComportement", "[getComp]")
 {
-	SECTION("Parsing de Comportement")
-	{
+	SECTION("Parsing de Comportement") {
 		cout << " on essaie de parser " << PATH_DATA"/behavior_test.json" << endl;
-		REQUIRE(true);
-		int l = getComportements(PATH_DATA"/behavior_test.json");
-		REQUIRE(true);
-		cout << " FIN DU TEST FFS " << endl;
-		REQUIRE(l != 0);
+		getComportements(PATH_DATA"/behavior_test.json");
+		cout << " fin du test" << endl;
 	}
 }

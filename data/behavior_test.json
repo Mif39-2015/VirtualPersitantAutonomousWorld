@@ -1,90 +1,184 @@
 {
-  "_comment": "Liste des comportements",
-  "behaviors": [
-    {
-      "name": "IDLE",
-      "id": 1,
-      "id_depart": 0,
-      "id_fin": [
-        1,
-        2
-      ],
-      "nodes": [
-        {
-          "_comment": "IDLE",
-          "id": 1,
-          "action": {
-            "type": "simple",
-            "fv": "idle"
-          }
-        },
-        {
-          "_comment": "EAT",
-          "id": 2,
-          "action": {
-            "type": "simple",
-            "fv": "eat"
-          }
-        },
-        {
-          "_comment": "SLEEP",
-          "id": 3,
-          "action": {
-            "type": "simple",
-            "fv": "dormir"
-          }
-        }
-      ],
-      "aretes": [
-        {
-          "id_depart": 1,
-          "id_fin": 2,
-          "condition_simple": [
-            "ag_hungry"
-          ],
-          "condition_complexe": []
-        },
-        {
-          "id_depart": 2,
-          "id_fin": 2,
-          "condition_simple": [
-            "ag_hungry"
-          ],
-          "condition_complexe": []
-        },
-        {
-          "id_depart": 2,
-          "id_fin": 1,
-          "condition_simple": [
-            "ag_not_hungry_anymore"
-          ],
-          "condition_complexe": []
-        },
-        {
-          "id_depart": 1,
-          "id_fin": 3,
-          "condition_simple": [
-            "ag_tired"
-          ],
-          "condition_complexe": []
-        },
-        {
-          "id_depart": 3,
-          "id_fin": 3,
-          "condition_simple": [
-            "ag_tired"
-          ],
-          "condition_complexe": []
-        },
-        {
-          "id_depart": 3,
-          "id_fin": 1,
-          "condition_simple": [
-            "ag_not_tired_anymore"
-          ],
-          "condition_complexe": []
-        }
-      ]
-    }
-  ]
+   "_comment": "Liste des comportements",
+   "behaviors": [
+      {
+         "name": "IDLE",
+         "id": 1,
+         "id_depart": 0,
+         "id_fin": [
+            1,
+            2
+         ],
+         "nodes": [
+            {
+               "_comment": "IDLE",
+               "id": 1,
+               "action": {
+                  "comportement": "null",
+                  "fv": "idle",
+                  "fve": "null",
+                  "sfee": [
+                     "null"
+                  ],
+                  "paramFinal": "null"
+               }
+            },
+            {
+               "_comment": "EAT",
+               "id": 2,
+               "action": {
+                  "comportement": "null",
+                  "fv": "eat",
+                  "fve": "null",
+                  "sfee": [
+                     "null",
+                     "null"
+                  ],
+                  "paramFinal": "null"
+               }
+            },
+            {
+               "_comment": "SLEEP",
+               "id": 3,
+               "action": {
+                  "comportement": "null",
+                  "fv": "dormir",
+                  "fve": "null",
+                  "sfee": [
+                     "null"
+                  ],
+                  "paramFinal": "getArbre"
+               }
+            }
+         ],
+         "aretes": [
+            {
+               "id_depart": 1,
+               "id_fin": 2,
+               "condition_simple": [
+                  "ag_hungry"
+               ],
+               "condition_complexe": [
+                  {
+                     "fie1": "null",
+                     "sfee1": [
+                        "null"
+                     ],
+                     "operator": "null",
+                     "fie2": "null",
+                     "sfee2": [
+                        "null"
+                     ],
+                     "comp": "null"
+                  }
+               ]
+            },
+            {
+               "id_depart": 2,
+               "id_fin": 2,
+               "condition_simple": [
+                  "ag_hungry"
+               ],
+               "condition_complexe": [
+                  {
+                     "fie1": "null",
+                     "sfee1": [
+                        "null"
+                     ],
+                     "operator": "null",
+                     "fie2": "null",
+                     "sfee2": [
+                        "null"
+                     ],
+                     "comp": "null"
+                  }
+               ]
+            },
+            {
+               "id_depart": 2,
+               "id_fin": 1,
+               "condition_simple": [
+                  "ag_not_hungry_anymore"
+               ],
+               "condition_complexe": [
+                  {
+                     "fie1": "null",
+                     "sfee1": [
+                        "null"
+                     ],
+                     "operator": "null",
+                     "fie2": "null",
+                     "sfee2": [
+                        "null"
+                     ],
+                     "comp": "null"
+                  }
+               ]
+            },
+            {
+               "id_depart": 1,
+               "id_fin": 3,
+               "condition_simple": [
+                  "ag_tired"
+               ],
+               "condition_complexe": [
+                  {
+                     "fie1": "null",
+                     "sfee1": [
+                        "null"
+                     ],
+                     "operator": "null",
+                     "fie2": "null",
+                     "sfee2": [
+                        "null"
+                     ],
+                     "comp": "null"
+                  }
+               ]
+            },
+            {
+               "id_depart": 3,
+               "id_fin": 3,
+               "condition_simple": [
+                  "ag_tired"
+               ],
+               "condition_complexe": [
+                  {
+                     "fie1": "null",
+                     "sfee1": [
+                        "null"
+                     ],
+                     "operator": "null",
+                     "fie2": "null",
+                     "sfee2": [
+                        "null"
+                     ],
+                     "comp": "null"
+                  }
+               ]
+            },
+            {
+               "id_depart": 3,
+               "id_fin": 1,
+               "condition_simple": [
+                  "ag_not_tired_anymore"
+               ],
+               "condition_complexe": [
+                  {
+                     "fie1": "null",
+                     "sfee1": [
+                        "null"
+                     ],
+                     "operator": "null",
+                     "fie2": "null",
+                     "sfee2": [
+                        "null"
+                     ],
+                     "comp": "null"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
 }

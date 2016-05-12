@@ -77,7 +77,7 @@ map<pair<int, int>, char>getResourcesMap(string);
 */
 map<pair<int, int>, float>getHauteursMap(string);
 
-int getComportements(string);
+vector<Comportement *> getComportements(string);
 
 bool loadAllFiles();
 

@@ -39,6 +39,15 @@ public class MapGenerator : MonoBehaviour {
 	Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
 	Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
+	public void configure(MapGeneratorData mapGeneratorData) {
+        this.noiseScale = mapGeneratorData.noiseScale;
+        this.octaves = mapGeneratorData.octaves;
+        this.persistance = mapGeneratorData.persistance;
+        this.lacunarity = mapGeneratorData.lacunarity;
+        this.seed = mapGeneratorData.seed;
+        this.offset = mapGeneratorData.offset;
+	}
+
 	public void DrawMapInEditor() {
 		MapData mapData = GenerateMapData (Vector2.zero);
 
@@ -144,6 +153,25 @@ public class MapGenerator : MonoBehaviour {
 		return new MapData (noiseMap, colourMap);
 	}
 
+	public ResourceEnum[,] generateResourcesFromNoiseMap(float[,] noiseMap) {
+		ResourceEnum[,] resourceMap = new ResourceEnum[noiseMap.GetLength(0), noiseMap.GetLength(1)];
+
+		//a modifier c'est pour tester là
+		for(int x = 0; x < noiseMap.GetLength(0); ++x) {
+			for(int y = 0; y < noiseMap.GetLength(1); ++y) {
+				if(noiseMap[x, y] >= 0.7f && noiseMap[x, y] < 0.8f) {
+					resourceMap[x, y] = ResourceEnum.Arbre;
+				} else if(noiseMap[x, y] >= 0.5f && noiseMap[x, y] < 0.6f) {
+					resourceMap[x, y] = ResourceEnum.Pierre;
+				} else if(noiseMap[x, y] >= 0.1f && noiseMap[x, y] < 0.2f) {
+					resourceMap[x, y] = ResourceEnum.Nourriture;
+				} else resourceMap[x, y] = ResourceEnum.None;
+			}
+		}
+
+		return resourceMap;
+	}
+
 	void OnValidate() {
 		if (lacunarity < 1) {
 			lacunarity = 1;
@@ -179,11 +207,21 @@ public struct TerrainType {
 
 public struct MapData {
 	public readonly float[,] heightMap;
+//	public readonly ResourceEnum[,] resourceMap;
 	public readonly Color[] colourMap;
 
-	public MapData (float[,] heightMap, Color[] colourMap)
+	public MapData (float[,] heightMap, Color[] colourMap/*,ResourceEnum[,] resourceMap*/)
 	{
 		this.heightMap = heightMap;
+//		this.resourceMap = resourceMap;
 		this.colourMap = colourMap;
 	}
+}
+
+public enum ResourceEnum {
+		None,
+		Arbre,
+		Pierre,
+		Nourriture,
+		Metal
 }

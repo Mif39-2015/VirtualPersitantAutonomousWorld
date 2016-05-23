@@ -4,26 +4,39 @@ using System.Collections;
 using System.Runtime.Serialization;
 using System.IO;
 using MsgPack.Serialization;
+using Newtonsoft.Json;
 
 [Serializable]
 public class Map {
 
+	[JsonIgnore]
+	[IgnoreDataMember]
     public MapGenerator mapGenerator;
     //pour la sérialistation
+
     [MessagePackMember(0)]
+	[DataMember]
     public MapGeneratorData mapGeneratorData;
     //the map size in chunk
+    [DataMember]
     [MessagePackMember(1)]
     public int mapSize;
+
     [MessagePackMember(2)]
+    [DataMember]
     public Chunk[,] chunks;
 
+	[JsonIgnore]
+	[IgnoreDataMember]
     public GameObject chunkContainer;
 
 
     //rendering scale
+    [JsonIgnore]
+	[IgnoreDataMember]
     public const float scale = 10.0f;
 
+	//création a partir du MapGenerator, génération de toute la map dans le but de l'envoyer au server
 	public Map(MapGenerator mapGenerator, int mapSize) {
 		this.mapGenerator = mapGenerator;
 		this.mapSize = mapSize;
@@ -42,6 +55,19 @@ public class Map {
 
         //Debug.Log("generating map");
         generateChunks();
+	}
+
+	//création a partir d'un MapGeneratorData dans le but de recevoir les infos de la map du server
+	public Map(MapGeneratorData mapGeneratorData, int mapSize) {
+		mapGenerator = GameObject.FindObjectOfType<MapGenerator>();
+		mapGenerator.configure(mapGeneratorData);
+
+		this.mapGeneratorData = mapGeneratorData;
+		this.mapSize= mapSize;
+
+		chunkContainer = new GameObject("Terrain");
+
+		chunks = new Chunk[mapSize, mapSize];
 	}
 
     //necessaire pour la sérialisation
@@ -77,7 +103,15 @@ public class Map {
 											(center * mapGeneratorData.mapChunkSize) + mapGeneratorData.offset,
 											mapGenerator.normalizeMode);
 
-				chunks[x, y] = new Chunk(this, center, heightMap);
+				float[,] resourceMapNoise = Noise.GenerateResourceNoise (mapGeneratorData.mapChunkSize,
+                                            mapGeneratorData.mapChunkSize,
+                                            mapGeneratorData.seed,
+                                            mapGeneratorData.noiseScale,
+											(center * mapGeneratorData.mapChunkSize) + mapGeneratorData.offset
+											);
+				ResourceEnum[,] resourceMap = mapGenerator.generateResourcesFromNoiseMap(resourceMapNoise);
+
+				chunks[x, y] = new Chunk(this, center, heightMap, resourceMap);
 			}
 		}
 	}
@@ -85,7 +119,7 @@ public class Map {
 	public void test_write() {
 
        // MemoryStream stream = new MemoryStream();
-        FileStream file = new FileStream("./test_map.map", FileMode.Create);
+        FileStream file = new FileStream("./test_map.map", FileMode.Truncate);
 
         MessagePackSerializer<Map> serializer = MessagePackSerializer.Get<Map>();
         serializer.Pack(file, this);
@@ -94,24 +128,33 @@ public class Map {
         file = new FileStream("./test_map.map", FileMode.Open);
         Map map;
         map = serializer.Unpack(file);
-        map.debug();
+//        map.debug();
         file.Close();
 
     }
 
-   /*public void test_write_JSON()
+   public void test_write_JSON()
     {
-
+		//string json = JsonConvert.SerializeObject(this);
         // MemoryStream stream = new MemoryStream();
+		/*string json = JsonConvert.SerializeObject(this, Formatting.Indented,
+												new JsonSerializerSettings {
+														ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+												});
+		*/
         FileStream file = new FileStream("./test_map.json", FileMode.OpenOrCreate);
         StreamWriter writer = new StreamWriter(file);
+		JsonTextWriter jsonWriter = new JsonTextWriter(writer);
+		JsonSerializer ser = new JsonSerializer();
+		ser.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+		ser.Formatting = Newtonsoft.Json.Formatting.Indented;
+		ser.Serialize(jsonWriter, this);
 
-        string json = JsonUtility.ToJson(this);
-        writer.Write(json);
         writer.Close();
         file.Close();
 
-    }*/
+
+    }
 
     public void debug()
     {
@@ -155,18 +198,28 @@ public class MapGeneratorData
 public class Chunk {
 
     [MessagePackMember(0)]
+    [DataMember]
     public Vector2 position;
     [MessagePackMember(1)]
+    [DataMember]
     public float[,] heightMap;
+    [MessagePackMember(2)]
+    [DataMember]
+    public ResourceEnum[,] resourceMap;
 
+	[JsonIgnore]
+	[IgnoreDataMember]
     public ChunkMesh mesh;
 
+	[JsonIgnore]
+	[IgnoreDataMember]
     public Map map;
 
-	public Chunk(Map map, Vector2 position, float[,] heightMap) {
+	public Chunk(Map map, Vector2 position, float[,] heightMap, ResourceEnum[,] resourceMap) {
 		this.map = map;
 		this.position = position;
 		this.heightMap = heightMap;
+		this.resourceMap = resourceMap;
 
 		mesh = new ChunkMesh(this, position, MapGenerator.mapChunkSize, map.chunkContainer.transform);
 	}

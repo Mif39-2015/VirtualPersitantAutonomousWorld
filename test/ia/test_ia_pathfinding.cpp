@@ -24,6 +24,7 @@
 #include "ia/Tools/Position.hpp"
 #include "ia/Tools/Astar.hpp"
 
+#include <cmath>
 using namespace std;
 
 TEST_CASE("Test_Pathfinding", "[astar]")
@@ -35,8 +36,8 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		int yDep = 1;
 		int xArr = 2;
 		int yArr = 3;
-		map<pair<int,int>, char> carte = getResourcesMap(PATH_DATA"/map.json");
-		map<pair<int,int>, float> carteH = getHauteursMap(PATH_DATA"/map.json");
+		map<pair<int,int>, char> carte = getResourcesMap("/map.json");
+		map<pair<int,int>, float> carteH = getHauteursMap("/map.json");
 		stack<Position> chemin = pathFind(xDep, yDep, xArr, yArr, carte, carteH, 1);
 		while (!chemin.empty()) {
 			cout << chemin.top().getX() << ";" << chemin.top().getY() << endl;
@@ -49,8 +50,8 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
 
-		map<pair<int,int>, char> carte = getResourcesMap(PATH_DATA"/map.json");
-		map<pair<int,int>, float> carteH = getHauteursMap(PATH_DATA"/map.json");
+		map<pair<int,int>, char> carte = getResourcesMap("/map.json");
+		map<pair<int,int>, float> carteH = getHauteursMap("/map.json");
 		cout << endl << "Memoire chemin agent" << endl;
 
 		cout << endl << "On crée un agent et on lui set sa pos à 2,2" << endl;
@@ -74,4 +75,32 @@ TEST_CASE("Test_Pathfinding", "[astar]")
 		}
 
 	}
+	
+	SECTION("Test big map")
+	{
+		bool loadResult = loadAllFiles();
+		REQUIRE(loadResult);
+
+		cout << endl << "Test big map" << endl;
+		map<pair<int,int>, char> carte = getResourcesMap("/bigmap.json");
+		map<pair<int,int>, float> carteH = getHauteursMap("/bigmap.json");
+		
+		
+	    string const nomFichier("mapsortie.txt");
+		ofstream monFlux(nomFichier.c_str());
+		if(monFlux)    
+		{
+			for(unsigned int i=0; i<sqrt(carte.size()); i++){
+				for(unsigned int j=0; j<sqrt(carte.size()); j++){
+					monFlux << carte[make_pair(i, j)];
+				}
+				monFlux << endl;
+			}
+		}
+		else
+		{
+			cout << "ERREUR: Impossible d'ouvrir le fichier." << endl;
+		}
+	}
+	
 }

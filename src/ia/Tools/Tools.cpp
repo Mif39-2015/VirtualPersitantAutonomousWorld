@@ -72,7 +72,7 @@ std::vector<std::string> cutString(std::string & str, std::string delimiter) {
 }
 
 map<pair<int, int>, char> getResourcesMap(string nomFichier) {
-	ifstream fichier(PATH_DATA"/map.json", ios::in);  // on ouvre
+	ifstream fichier(PATH_DATA + nomFichier, ios::in);  // on ouvre
 	
 	string fichierjsonstring = "";
 	string ligne;
@@ -105,18 +105,31 @@ map<pair<int, int>, char> getResourcesMap(string nomFichier) {
 
 	cJSON* chunks = cJSON_GetObjectItem(root,"chunks");
 	cJSON *chunks_array = cJSON_GetArrayItem(chunks, 0);
-	for (int i = 0 ; i < cJSON_GetArraySize(chunks_array) ; i++){		
-		cJSON *chunk = cJSON_GetArrayItem(chunks_array, i);
-		cJSON *resourceMap = cJSON_GetObjectItem(chunk, "resourceMap");
-		
-		for (int y = 0 ; y < cJSON_GetArraySize(resourceMap) ; y++){			
-			cJSON *lignechunk = cJSON_GetArrayItem(resourceMap, y);
-			for (int x = 0 ; x < cJSON_GetArraySize(lignechunk) ; x++){
-				cJSON *val = cJSON_GetArrayItem(lignechunk, x);
-				char* value = cJSON_Print(val);
-				carte[make_pair(x,y)] = value[0];		
+	
+	int saveX = 0;
+	int saveY = 0;
+	
+	for (int i = 0 ; i < cJSON_GetArraySize(chunks) ; i++){	
+		saveY = 0;
+		cJSON *chunks_array = cJSON_GetArrayItem(chunks, i);
+		for (int j = 0 ; j < cJSON_GetArraySize(chunks_array) ; j++){	
+			
+			cJSON *chunk = cJSON_GetArrayItem(chunks_array, j);
+			cJSON* positionMap = cJSON_GetObjectItem(chunk, "position");
+			cJSON* positionX = cJSON_GetObjectItem(positionMap,"x");
+			cJSON* positionY = cJSON_GetObjectItem(positionMap,"y");				
+			cJSON *resourceMap = cJSON_GetObjectItem(chunk, "resourceMap");
+			for (int y = 0 ; y < cJSON_GetArraySize(resourceMap) ; y++){			
+				cJSON *lignechunk = cJSON_GetArrayItem(resourceMap, y);
+				for (int x = 0 ; x < cJSON_GetArraySize(lignechunk) ; x++){
+					cJSON *val = cJSON_GetArrayItem(lignechunk, x);
+					char* value = cJSON_Print(val);
+					carte[make_pair(x+saveX,y+saveY)] = value[0];	
+				} 
 			}
-		}			
+			saveY += atoi(sizeChunk);			
+		}
+		saveX += atoi(sizeChunk);		
 	}
 	
 	free(fichierjson);
@@ -125,12 +138,12 @@ map<pair<int, int>, char> getResourcesMap(string nomFichier) {
 }
 
 map<pair<int, int>, float> getHauteursMap(string nomFichier) {
-	ifstream fichier(PATH_DATA"/map.json", ios::in);  // on ouvre
+	ifstream fichier(PATH_DATA + nomFichier, ios::in);  // on ouvre
 	
 	string fichierjsonstring = "";
 	string ligne;
 	
-	map<pair<int,int>, float> carteH;
+	map<pair<int,int>, float> carte;
 	
 	if(fichier)
 	{
@@ -142,7 +155,7 @@ map<pair<int, int>, float> getHauteursMap(string nomFichier) {
 	}
 	else{
 		cerr << "Impossible d'ouvrir le fichier !" << endl;
-		return carteH;
+		return carte;
 	}
 	
 	char *fichierjson = (char *) malloc(fichierjsonstring.size());
@@ -158,25 +171,38 @@ map<pair<int, int>, float> getHauteursMap(string nomFichier) {
 
 	cJSON* chunks = cJSON_GetObjectItem(root,"chunks");
 	cJSON *chunks_array = cJSON_GetArrayItem(chunks, 0);
-	for (int i = 0 ; i < cJSON_GetArraySize(chunks_array) ; i++){		
-		cJSON *chunk = cJSON_GetArrayItem(chunks_array, i);
 	
-		cJSON *heightMap = cJSON_GetObjectItem(chunk, "heightMap");
-		for (int y = 0 ; y < cJSON_GetArraySize(heightMap) ; y++){			
-			cJSON *lignechunk = cJSON_GetArrayItem(heightMap, y);
-			for (int x = 0 ; x < cJSON_GetArraySize(lignechunk) ; x++){
-				cJSON *val = cJSON_GetArrayItem(lignechunk, x);
-				float value = atof(cJSON_Print(val));
-				carteH[make_pair(x,y)] = value;				
+	int saveX = 0;
+	int saveY = 0;
+	
+	for (int i = 0 ; i < cJSON_GetArraySize(chunks) ; i++){	
+		saveY = 0;
+		cJSON *chunks_array = cJSON_GetArrayItem(chunks, i);
+		for (int j = 0 ; j < cJSON_GetArraySize(chunks_array) ; j++){	
+			
+			cJSON *chunk = cJSON_GetArrayItem(chunks_array, j);
+			cJSON* positionMap = cJSON_GetObjectItem(chunk, "position");
+			cJSON* positionX = cJSON_GetObjectItem(positionMap,"x");
+			cJSON* positionY = cJSON_GetObjectItem(positionMap,"y");					
+			cJSON *heightMap = cJSON_GetObjectItem(chunk, "heightMap");
+			for (int y = 0 ; y < cJSON_GetArraySize(heightMap) ; y++){			
+				cJSON *lignechunk = cJSON_GetArrayItem(heightMap, y);
+				for (int x = 0 ; x < cJSON_GetArraySize(lignechunk) ; x++){
+					cJSON *val = cJSON_GetArrayItem(lignechunk, x);
+					float value = atof(cJSON_Print(val));
+					carte[make_pair(x+saveX,y+saveY)] = value;				
+				}
 			}
-		}				
+			saveY += atoi(sizeChunk);	
+					
+		}
+		saveX += atoi(sizeChunk);		
 	}
 	
 	free(fichierjson);
 
-    return carteH;
+    return carte;
 }
-
 
 bool loadAllFiles() {
     int loadResult  = Characteristics::loadCharacteristicsFile(PATH_DATA"/descriptionCharacteristics.json");

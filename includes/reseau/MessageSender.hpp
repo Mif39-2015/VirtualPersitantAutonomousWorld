@@ -15,6 +15,7 @@
 
 class NetworkAdapter;
 class NetworkManager;
+class Message;
 
 using namespace std;
 

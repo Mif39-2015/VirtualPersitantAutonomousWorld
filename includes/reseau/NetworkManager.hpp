@@ -7,6 +7,7 @@
 
 #include "reseau/Client.hpp"
 #include "reseau/NetworkAdapter.hpp"
+#include "reseau/MessageSender.hpp"
 #include "reseau/AuthenticationModule.hpp"
 #include "logging/Logger.hpp"
 #include "server/WorldSimulator.hpp"
@@ -16,6 +17,7 @@
 
 class WorldSimulator;
 class NetworkAdapter;
+class MessageSender;
 class Client;
 
 using namespace std;
@@ -29,6 +31,7 @@ class NetworkManager {
 		WorldSimulator* simulator;
 		NetworkAdapter* netAdapter;
 		AuthenticationModule* authModule;
+    MessageSender* messSender;
 		vector<Client*> clients;
 		thread networkAdapterThread;
 
@@ -38,8 +41,9 @@ class NetworkManager {
 		void addClient(int socket);
 		void deleteClient(int _clientId);
 		Client* getClientById(int _clientId);
+    	Client* getClientBySocket(int _clientSocket);
 		vector<Client*> getClients();
-		void handleUserCommand(Client* c, string message);
+		void handleUserCommand(int socket_message, string message);
 
 		void broadcastMessage(string message);
 };

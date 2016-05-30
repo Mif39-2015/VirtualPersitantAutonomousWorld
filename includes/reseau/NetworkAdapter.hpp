@@ -11,10 +11,13 @@
 #include <string.h>    //strlen
 #include <cstdlib>    //strlen
 #include <sys/socket.h>
+#include <sys/types.h>
+#include <signal.h>
 #include <poll.h>
 #include <arpa/inet.h> //inet_addr
 #include <unistd.h>    //write
-#include <pthread.h> //for threading , link with lpthread
+// #include <pthread.h> //for threading , link with lpthread
+#include <thread>
 #include <fstream>
 #include <string>
 #include "message/Message.hpp"
@@ -52,6 +55,7 @@ public:
     void retablirBuffer(string &message);
 
     void pollSockets();
+    void readAndHandleMessage(int socket);
 
 };
 

@@ -286,8 +286,8 @@ void NetworkAdapter::pollSockets(){
             // Nothing to read
         } else {
             for(unsigned int i = 0; i < clients.size(); i++){
-                if(ufds[i].revents & POLLING){
-                    thread(&NetworkAdapter::readAndHandleMessage, ufds[i].fd);
+                if(ufds[i].revents & POLLIN){
+                    thread(&NetworkAdapter::readAndHandleMessage, this, ufds[i].fd);
                     // receiveMessage(ufds[i].fd, message);
                 }
             }
@@ -295,8 +295,8 @@ void NetworkAdapter::pollSockets(){
     }
 }
 
-void readAndHandleMessage(int socket){
-    string* message;
+void NetworkAdapter::readAndHandleMessage(int socket){
+    string message;
     receiveMessage(socket, message);
-    
+
 }

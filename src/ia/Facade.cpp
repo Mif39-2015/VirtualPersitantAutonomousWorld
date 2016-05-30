@@ -80,10 +80,16 @@ std::vector<Entity *> Facade::getUpdatedAgents() {
 	return updatedObjects;
 }
 
-void Facade::serializeEntities(){
+std::string Facade::serializeEntities(){
 
 	cJSON * population;
 	population = cJSON_CreateObject();
+	
+	//entete du message
+	cJSON_AddStringToObject(population, "messageType", "data from AI module");
+	cJSON_AddStringToObject(population, "comment", "L'ensemble des données des entités");
+	cJSON_AddBoolToObject(population, "onlyModifiedEntities", false);
+	cJSON_AddStringToObject(population, "status", "success");
 	
 	//serialisation des tribus
 	cJSON * tribes;
@@ -112,16 +118,23 @@ void Facade::serializeEntities(){
 	}
 	cJSON_AddItemToObject(population, "insentient_entities", ies);
 	
-	std::cout<<cJSON_Print(population)<<std::endl;
+	std::string output = cJSON_Print(population);
+	
+	return output;
 }
 
-void Facade::serializeEntitiesIfModified(){
+std::string Facade::serializeEntitiesIfModified(){
 	
 	cJSON * population;
 	population = cJSON_CreateObject();
 	
+	//entete du message
+	cJSON_AddStringToObject(population, "messageType", "data from AI module");
+	cJSON_AddStringToObject(population, "comment", "L'ensemble des données des entités qui ont été modifiées depuis la dernière transmission");
+	cJSON_AddBoolToObject(population, "onlyModifiedEntities", true);
+	cJSON_AddStringToObject(population, "status", "success");
+	
 	//serialisation des tribus
-	std::cout<<"serialisation tribus"<<std::endl;
 	cJSON * tribes;
 	tribes = cJSON_CreateArray();
 	for (auto it = listTribe.begin(); it != listTribe.end(); it++)
@@ -134,7 +147,6 @@ void Facade::serializeEntitiesIfModified(){
 	cJSON_AddItemToObject(population, "tribes", tribes);
 	
 	//serialisation des Sentient_Entity (agents/animaux)
-	std::cout<<"serialisation SE"<<std::endl;
 	cJSON * ses;
 	ses = cJSON_CreateArray();
 	for (auto it2 = listAgent.begin(); it2 != listAgent.end(); it2++)
@@ -147,12 +159,10 @@ void Facade::serializeEntitiesIfModified(){
 	cJSON_AddItemToObject(population, "sentient_entities", ses);
 	
 	//serialisation des Insentient_Entity (batiments/ressources)
-	std::cout<<"serialisation IE"<<std::endl;
 	cJSON * ies;
 	ies = cJSON_CreateArray();
 	for (auto it3 = listIE.begin(); it3 != listIE.end(); it3++)
 	{
-		std::cout<<(*it3)->getModif()<<std::endl;
 		if ((*it3)->getModif()){
 			cJSON_AddItemToArray(ies, (*it3)->toJson());
 			(*it3)->reinitModif();
@@ -160,5 +170,7 @@ void Facade::serializeEntitiesIfModified(){
 	}
 	cJSON_AddItemToObject(population, "insentient_entities", ies);
 	
-	std::cout<<cJSON_Print(population)<<std::endl;
+	std::string output = cJSON_Print(population);
+	
+	return output;
 }

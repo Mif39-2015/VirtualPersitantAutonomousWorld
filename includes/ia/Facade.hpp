@@ -58,12 +58,12 @@ public:
 	/*!
 	* \brief Réalise une sérialisation globale des entités de la simulation
 	*/
-	void serializeEntities();
+	std::string serializeEntities();
 	
 	/*!
 	* \brief Réalise une sérialisation des entités modifiée depuis la dernière sérialisation
 	*/
-	void serializeEntitiesIfModified();
+	std::string serializeEntitiesIfModified();
 
 private:
 };

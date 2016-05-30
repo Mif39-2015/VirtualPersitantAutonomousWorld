@@ -18,6 +18,8 @@ class WorldSimulator;
 class NetworkAdapter;
 class Client;
 
+using namespace std;
+
 /**
  * \class NetworkManager
  * \brief Link with the network block
@@ -36,6 +38,7 @@ class NetworkManager {
 		void addClient(int socket);
 		void deleteClient(int _clientId);
 		Client* getClientById(int _clientId);
+		vector<Client*> getClients();
 		void handleUserCommand(Client* c, string message);
 
 		void broadcastMessage(string message);

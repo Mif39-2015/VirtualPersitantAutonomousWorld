@@ -264,4 +264,39 @@ int NetworkAdapter::receiveMessage(int socket, string &message){
 		message = test;
 	}		
  	return result ;
-} 
+}
+
+void NetworkAdapter::pollSockets(){
+    int result = 0;
+    while(result != -1){
+
+        vector<Client*> clients = this->netManager->getClients();
+        struct pollfd * ufds;
+        ufds = (struct pollfd*)malloc(clients.size() * sizeof(struct pollfd));
+        for(unsigned int i = 0; i < clients.size(); i++){
+            Client* cl = clients.at(i);
+            ufds[i].fd = cl->getSocket();
+            ufds[i].events = POLLIN;
+        }
+        result = poll(ufds, clients.size(), 100);
+
+        if (result == -1) {
+            // Error occurred in poll()
+        } else if (result == 0) {
+            // Nothing to read
+        } else {
+            for(unsigned int i = 0; i < clients.size(); i++){
+                if(ufds[i].revents & POLLING){
+                    thread(&NetworkAdapter::readAndHandleMessage, ufds[i].fd);
+                    // receiveMessage(ufds[i].fd, message);
+                }
+            }
+        }
+    }
+}
+
+void readAndHandleMessage(int socket){
+    string* message;
+    receiveMessage(socket, message);
+    
+}

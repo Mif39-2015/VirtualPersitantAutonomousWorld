@@ -41,6 +41,10 @@ Client* NetworkManager::getClientById(int _clientId){
 	return NULL;
 }
 
+vector<Client*> NetworkManager::getClients(){
+	return this->clients;
+}
+
 void NetworkManager::handleUserCommand(Client* c, string message)
 {
 	cout << "Received user command : " << endl;

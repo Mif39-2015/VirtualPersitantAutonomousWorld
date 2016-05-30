@@ -11,6 +11,7 @@
 #include <string.h>    //strlen
 #include <cstdlib>    //strlen
 #include <sys/socket.h>
+#include <poll.h>
 #include <arpa/inet.h> //inet_addr
 #include <unistd.h>    //write
 #include <pthread.h> //for threading , link with lpthread
@@ -49,6 +50,8 @@ public:
     void sendMessageToClient(int socket, string message);
     int receiveMessage(int socket, string &message);
     void retablirBuffer(string &message);
+
+    void pollSockets();
 
 };
 

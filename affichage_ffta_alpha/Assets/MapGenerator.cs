@@ -110,13 +110,16 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback) {
+
 		MeshData meshData = MeshGenerator.GenerateTerrainMesh (mapData.heightMap, meshHeightMultiplier, meshHeightCurve, lod);
+
 		lock (meshDataThreadInfoQueue) {
 			meshDataThreadInfoQueue.Enqueue (new MapThreadInfo<MeshData> (callback, meshData));
 		}
 	}
 
 	void Update() {
+
 		if (mapDataThreadInfoQueue.Count > 0) {
 			for (int i = 0; i < mapDataThreadInfoQueue.Count; i++) {
 				MapThreadInfo<MapData> threadInfo = mapDataThreadInfoQueue.Dequeue ();

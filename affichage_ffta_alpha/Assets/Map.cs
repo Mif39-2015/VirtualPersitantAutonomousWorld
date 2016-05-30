@@ -7,7 +7,7 @@ using MsgPack.Serialization;
 using Newtonsoft.Json;
 
 [Serializable]
-public class Map {
+public class Map : MonoBehaviour {
 
 	[JsonIgnore]
 	[IgnoreDataMember]
@@ -38,8 +38,32 @@ public class Map {
 
     private int currentLOD = 0;
 
+	void Start() {
+		mapGenerator = FindObjectOfType<MapGenerator> ();
+		mapSize = mapGenerator.mapSizeInChunk;
+
+		mapGeneratorData = new MapGeneratorData();
+
+        mapGeneratorData.mapChunkSize = MapGenerator.mapChunkSize;
+        mapGeneratorData.noiseScale = mapGenerator.noiseScale;
+        mapGeneratorData.octaves = mapGenerator.octaves;
+        mapGeneratorData.persistance = mapGenerator.persistance;
+        mapGeneratorData.lacunarity = mapGenerator.lacunarity;
+        mapGeneratorData.seed = mapGenerator.seed;
+        mapGeneratorData.offset = mapGenerator.offset;
+
+
+		chunkContainer = new GameObject("Terrain");
+
+		generateChunks();
+	}
+
+	void Update() {
+		updateChunks();
+	}
+
 	//création a partir du MapGenerator, génération de toute la map dans le but de l'envoyer au server
-	public Map(MapGenerator mapGenerator, int mapSize) {
+	/*public Map(MapGenerator mapGenerator, int mapSize) {
 		this.mapGenerator = mapGenerator;
 		this.mapSize = mapSize;
         mapGeneratorData = new MapGeneratorData();
@@ -57,10 +81,10 @@ public class Map {
 
         //Debug.Log("generating map");
         generateChunks();
-	}
+	}*/
 
 	//création a partir d'un MapGeneratorData dans le but de recevoir les infos de la map du server
-	public Map(MapGeneratorData mapGeneratorData, int mapSize) {
+	/*public Map(MapGeneratorData mapGeneratorData, int mapSize) {
 		mapGenerator = GameObject.FindObjectOfType<MapGenerator>();
 		mapGenerator.configure(mapGeneratorData);
 
@@ -70,7 +94,7 @@ public class Map {
 		chunkContainer = new GameObject("Terrain");
 
 		chunks = new Chunk[mapSize, mapSize];
-	}
+	}*/
 
     //necessaire pour la sérialisation
     public Map()
@@ -180,7 +204,6 @@ public class Map {
 		else if(newLOD > 5)
 			newLOD = 5;
 		currentLOD = newLOD;
-		updateChunks();
 	}
 
 	public void updateChunks() {
@@ -239,7 +262,7 @@ public class Chunk {
     public Map map;
 
 	public Chunk(Map map, Vector2 position, float[,] heightMap, ResourceEnum[,] resourceMap) {
-		Debug.Log("Chunk constructor");
+		//Debug.Log("Chunk constructor");
 		this.map = map;
 		this.position = position;
 		this.heightMap = heightMap;
@@ -278,7 +301,7 @@ public class ChunkMesh {
 	Chunk chunk;
 
 	public ChunkMesh(Chunk chunk, Vector2 coord, int size, Transform parent) {
-		Debug.Log("ChunkMesh constructor");
+		//Debug.Log("ChunkMesh constructor");
 		this.chunk = chunk;
 
 		Vector2 pos2D = coord * size;
@@ -298,7 +321,7 @@ public class ChunkMesh {
 		}
 
 
-		MeshData meshData = MeshGenerator.GenerateTerrainMesh(	chunk.heightMap,
+		/*MeshData meshData = MeshGenerator.GenerateTerrainMesh(	chunk.heightMap,
 											chunk.map.mapGenerator.meshHeightMultiplier,
 											chunk.map.mapGenerator.meshHeightCurve,
 											0
@@ -306,21 +329,22 @@ public class ChunkMesh {
 		meshFilter.mesh = meshData.CreateMesh();
 
 		meshObject.SetActive (true);
-
-		Debug.Log("pre updating");
+*/
+		//Debug.Log("pre updating");
 		UpdateChunkMesh();
 
 	}
 
 	public void UpdateChunkMesh() {
-		Debug.Log("updating");
+		//Debug.Log("updating");
 		int lod = chunk.map.getCurrentLOD();
 		LODChunkMesh lodMesh = lodMeshes[lod];
 
 		if(lodMesh.hasMesh) {
 			meshFilter.mesh = lodMesh.mesh;
-			Debug.Log("updating 1");
+			//Debug.Log("updating 1");
 		} else if (!lodMesh.hasRequestedMesh) {
+			//Debug.Log("updating 2");
 			MapData mapData = new MapData(chunk.getHeightMap(), null);
 			lodMesh.RequestMesh (mapData);
 		}
@@ -340,7 +364,7 @@ class LODChunkMesh {
 	System.Action updateCallback;
 
 	public LODChunkMesh(MapGenerator mapGen, int lod, System.Action updateCallback) {
-		Debug.Log("LODMesh constructor");
+		//Debug.Log("LODMesh constructor");
 		this.mapGenerator = mapGen;
 		this.lod = lod + 1;
 		this.updateCallback = updateCallback;
@@ -349,6 +373,7 @@ class LODChunkMesh {
 	}
 
 	void OnMeshDataReceived(MeshData meshData) {
+		Debug.Log("mesh recieved");
 		mesh = meshData.CreateMesh ();
 		hasMesh = true;
 		updateCallback ();
@@ -356,6 +381,7 @@ class LODChunkMesh {
 
 	public void RequestMesh(MapData mapData) {
 		hasRequestedMesh = true;
+		Debug.Log("requesting mesh");
 		mapGenerator.RequestMeshData (mapData, lod, OnMeshDataReceived);
 	}
 }

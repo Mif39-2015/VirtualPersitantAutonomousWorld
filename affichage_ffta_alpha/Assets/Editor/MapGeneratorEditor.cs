@@ -20,6 +20,8 @@ public class MapGeneratorEditor : Editor {
 
 		if (GUILayout.Button ("Generate Map file")) {
 			Map map = new Map(mapGen, mapGen.mapSizeInChunk);
+			map.changeLOD(6);
+			map.updateChunks();
 			//map.test_write();
             map.test_write_JSON();
         }

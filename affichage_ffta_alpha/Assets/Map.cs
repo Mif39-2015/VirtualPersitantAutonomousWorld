@@ -36,6 +36,8 @@ public class Map {
 	[IgnoreDataMember]
     public const float scale = 10.0f;
 
+    private int currentLOD = 0;
+
 	//création a partir du MapGenerator, génération de toute la map dans le but de l'envoyer au server
 	public Map(MapGenerator mapGenerator, int mapSize) {
 		this.mapGenerator = mapGenerator;
@@ -171,6 +173,27 @@ public class Map {
     public Chunk[,] getMapChunks() {
 		return chunks;
 	}
+
+	public void changeLOD(int newLOD) {
+		if(newLOD < 0)
+			newLOD = 0;
+		else if(newLOD > 5)
+			newLOD = 5;
+		currentLOD = newLOD;
+		updateChunks();
+	}
+
+	public void updateChunks() {
+		for(int i = 0; i < mapSize; ++i) {
+			for(int j = 0; j < mapSize; ++j) {
+				chunks[i,j].UpdateChunk();
+			}
+		}
+	}
+
+	public int getCurrentLOD() {
+		return currentLOD;
+	}
 }
 
 [Serializable]
@@ -216,6 +239,7 @@ public class Chunk {
     public Map map;
 
 	public Chunk(Map map, Vector2 position, float[,] heightMap, ResourceEnum[,] resourceMap) {
+		Debug.Log("Chunk constructor");
 		this.map = map;
 		this.position = position;
 		this.heightMap = heightMap;
@@ -236,6 +260,10 @@ public class Chunk {
 	public Vector2 getPosition() {
 		return position;
 	}
+
+	public void UpdateChunk() {
+		mesh.UpdateChunkMesh();
+	}
 }
 
 public class ChunkMesh {
@@ -243,11 +271,14 @@ public class ChunkMesh {
 	MeshRenderer meshRenderer;
 	MeshFilter meshFilter;
 
+	LODChunkMesh[] lodMeshes;
+
 	Vector3 position;
 
 	Chunk chunk;
 
 	public ChunkMesh(Chunk chunk, Vector2 coord, int size, Transform parent) {
+		Debug.Log("ChunkMesh constructor");
 		this.chunk = chunk;
 
 		Vector2 pos2D = coord * size;
@@ -261,6 +292,12 @@ public class ChunkMesh {
 		meshObject.transform.parent = parent;
 		meshObject.transform.localScale = Vector3.one * Map.scale;
 
+		lodMeshes = new LODChunkMesh[6];
+		for (int i = 0; i < 6; i++) {
+			lodMeshes[i] = new LODChunkMesh(chunk.map.mapGenerator, i, UpdateChunkMesh);
+		}
+
+
 		MeshData meshData = MeshGenerator.GenerateTerrainMesh(	chunk.heightMap,
 											chunk.map.mapGenerator.meshHeightMultiplier,
 											chunk.map.mapGenerator.meshHeightCurve,
@@ -269,8 +306,56 @@ public class ChunkMesh {
 		meshFilter.mesh = meshData.CreateMesh();
 
 		meshObject.SetActive (true);
+
+		Debug.Log("pre updating");
+		UpdateChunkMesh();
+
+	}
+
+	public void UpdateChunkMesh() {
+		Debug.Log("updating");
+		int lod = chunk.map.getCurrentLOD();
+		LODChunkMesh lodMesh = lodMeshes[lod];
+
+		if(lodMesh.hasMesh) {
+			meshFilter.mesh = lodMesh.mesh;
+			Debug.Log("updating 1");
+		} else if (!lodMesh.hasRequestedMesh) {
+			MapData mapData = new MapData(chunk.getHeightMap(), null);
+			lodMesh.RequestMesh (mapData);
+		}
+		meshObject.SetActive(true);
 	}
 
 }
 
-//public class
+class LODChunkMesh {
+	public Mesh mesh;
+	public bool hasRequestedMesh;
+	public bool hasMesh;
+	int lod;
+
+	public MapGenerator mapGenerator;
+
+	System.Action updateCallback;
+
+	public LODChunkMesh(MapGenerator mapGen, int lod, System.Action updateCallback) {
+		Debug.Log("LODMesh constructor");
+		this.mapGenerator = mapGen;
+		this.lod = lod + 1;
+		this.updateCallback = updateCallback;
+		this.hasMesh = false;
+		hasRequestedMesh = false;
+	}
+
+	void OnMeshDataReceived(MeshData meshData) {
+		mesh = meshData.CreateMesh ();
+		hasMesh = true;
+		updateCallback ();
+	}
+
+	public void RequestMesh(MapData mapData) {
+		hasRequestedMesh = true;
+		mapGenerator.RequestMeshData (mapData, lod, OnMeshDataReceived);
+	}
+}

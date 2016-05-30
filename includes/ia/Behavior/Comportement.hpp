@@ -8,7 +8,8 @@ using namespace std;
 
 class Noeud;
 
-class Comportement {
+class Comportement
+{
 
 	private :
 

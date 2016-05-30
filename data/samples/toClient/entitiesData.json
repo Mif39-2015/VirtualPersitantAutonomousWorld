@@ -1,0 +1,92 @@
+{
+	"messageType": "data from AI module",
+	"comment": "L'ensemble des données des entités qui ont été modifiées depuis la dernière transmission",
+	"onlyModifiedEntities":"true",
+	"status": "success",
+	"tribes":		[{
+			"id":	10,
+			"typeId":	"ID_TRIBE",
+			"name":	"placeholder_tribe_name",
+			"characteristics":	[],
+			"goal_index":	0,
+			"members":	[{
+					"id":	5,
+					"type":	"ID_AGENT"
+				}],
+			"items":	[{
+					"Bois":	10
+				}]
+		}],
+	"sentient_entities":	[{
+			"id":	5,
+			"typeId":	"ID_AGENT",
+			"name":	"Antoine",
+			"characteristics":	[{
+					"0":	100
+				}, {
+					"1":	0
+				}, {
+					"2":	8
+				}, {
+					"3":	75
+				}, {
+					"4":	77
+				}, {
+					"5":	100
+				}, {
+					"6":	29
+				}, {
+					"7":	42
+				}, {
+					"8":	86
+				}, {
+					"9":	86
+				}, {
+					"10":	0
+				}, {
+					"11":	766
+				}, {
+					"12":	100
+				}, {
+					"13":	29
+				}, {
+					"14":	70
+				}, {
+					"21":	15
+				}, {
+					"22":	1
+				}, {
+					"23":	15
+				}, {
+					"24":	1
+				}],
+			"position":	{
+				"x":	0,
+				"y":	0
+			},
+			"items":	[{
+					"Pierre":	10
+				}],
+			"etat":	0
+		}],
+	"insentient_entities":	[{
+			"id":	9,
+			"typeId":	"ID_RESSOURCE_BOIS",
+			"name":	"Arbre",
+			"characteristics":	[{
+					"15":	33
+				}, {
+					"16":	14
+				}, {
+					"20":	487
+				}],
+			"position":	{
+				"x":	0,
+				"y":	0
+			},
+			"items":	[{
+					"Bois":	432
+				}]
+		}]
+		
+}

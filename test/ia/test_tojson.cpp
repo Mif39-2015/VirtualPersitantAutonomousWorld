@@ -33,18 +33,27 @@ TEST_CASE("Test toJSON", "[toJSON]")
 	
 	Facade facade;
 	facade.initSimulation(2,2);
+
+	Tribe* t = Factories::createTribe();
+	facade.listTribe.push_back(t);
 	
-	//facade.serializeEntities();
+	t->addNewEntity(facade.getAgentById(5));
+	t->addItemToStock(&(Item::listItems[0]), 10);
 	
-	facade.serializeEntitiesIfModified();
+	facade.getAgentById(5)->addItemToStock(&(Item::listItems[1]), 10);
 	
-	for (int i = 0; i<50; i++)
-		std::cout<<"TEST"<<std::endl;
+	std::string s1 = facade.serializeEntities();
 	
+	std::cout<<s1<<std::endl;
+	
+	std::string s2 = facade.serializeEntitiesIfModified();
+	
+	std::cout<<s2<<std::endl;
+
 	(facade.getAgentById(5))->setName("Barbapapa");
 	
-	facade.serializeEntitiesIfModified();
+	std::string s3 = facade.serializeEntitiesIfModified();
 		
-		
+	std::cout<<s3<<std::endl;
 	
 }

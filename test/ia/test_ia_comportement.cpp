@@ -29,8 +29,7 @@ using namespace std;
 
 TEST_CASE("Test_Comportement", "[comp]")
 {
-	SECTION("TEST COMPORTEMENT")
-	{
+	SECTION("TEST COMPORTEMENT") {
 
 		bool loadResult = loadAllFiles();
 		REQUIRE(loadResult);
@@ -47,10 +46,10 @@ TEST_CASE("Test_Comportement", "[comp]")
 
 		cout << "declaration des Aretes" << endl;
 
-        noeudFaimM5->ajouterAreteOut(areteFaim20);
-        noeudFaimM5->ajouterAreteIn(areteFaim80);
-        noeudFaimP10->ajouterAreteIn(areteFaim20);
-        noeudFaimP10->ajouterAreteOut(areteFaim80);
+		noeudFaimM5->ajouterAreteOut(areteFaim20);
+		noeudFaimM5->ajouterAreteIn(areteFaim80);
+		noeudFaimP10->ajouterAreteIn(areteFaim20);
+		noeudFaimP10->ajouterAreteOut(areteFaim80);
 
 		ActionSimple * actionFaimM5 = new ActionSimple();
 		ActionSimple * actionFaimP10 = new ActionSimple();
@@ -119,8 +118,7 @@ TEST_CASE("Test_Comportement", "[comp]")
 		std::cout << std::endl;
 	}
 
-	SECTION("TEST LISTE COMPORTEMENT")
-	{
+	SECTION("TEST LISTE COMPORTEMENT") {
 
 		std::cout << "TEST LISTE COMPORTEMENT" << std::endl;
 		bool loadResult = loadAllFiles();
@@ -132,7 +130,8 @@ TEST_CASE("Test_Comportement", "[comp]")
 		REQUIRE(agent != nullptr);
 
 		int i = 0;
-		while(i < 50){
+
+		while (i < 50) {
 			agent->run(i);
 			i++;
 		}

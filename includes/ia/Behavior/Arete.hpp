@@ -33,8 +33,8 @@ struct struct_condition {
 	int comp;
 };
 
-class Arete {
-
+class Arete
+{
 	private :
 		Noeud * noeudDepart;
 		Noeud * noeudFin;

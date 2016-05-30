@@ -11,14 +11,12 @@ authModule(new AuthenticationModule())
 {
 	netAdapter->Init(10);
 	networkAdapterThread = thread(&NetworkAdapter::Run, netAdapter);
+  messSender = new MessageSender(netAdapter, this);
 }
 
-// void NetworkManager::addClient(Client* _newClient){
-// 	this->clients.push_back(_newClient);
-// }
 
 void NetworkManager::addClient(int socket){
-	this->clients.push_back(new Client(this->netAdapter, this, socket));
+	this->clients.push_back(new Client(this->netAdapter, this, socket, authModule, messSender));
 }
 
 void NetworkManager::deleteClient(int _clientId){
@@ -41,56 +39,28 @@ Client* NetworkManager::getClientById(int _clientId){
 	return NULL;
 }
 
-void NetworkManager::handleUserCommand(Client* c, string message)
+Client* NetworkManager::getClientBySocket(int _clientSocket){
+	for(Client* cl : this->clients){
+		if(cl->getSocket() == _clientSocket){
+			return cl;
+		}
+	}
+	return NULL;
+}
+
+void NetworkManager::handleUserCommand(int socket_message, string message)
 {
-	cout << "Received user command : " << endl;
-	cout << message << endl;
-	cJSON * messageJSON = cJSON_Parse(message.c_str());
-	cJSON * messageTypeJSON = cJSON_GetObjectItem(messageJSON, "messageType");
-	string messageType = cJSON_Print(messageTypeJSON);
-	if(messageType == "login")
-	{
-		cJSON * usernameJSON = cJSON_GetObjectItem(messageJSON, "username");
-		cJSON * passwordJSON = cJSON_GetObjectItem(messageJSON, "password");
-		string username = cJSON_Print(usernameJSON);
-		string password = cJSON_Print(passwordJSON);
-		//Vérifier id mdp dans la bdd
-		int id = authModule->authClient(username, password);
-		if(id != -1)
-		{
-			//Récupérer l'id et le stocker dans la structure client 
-			c->setId(id);				
-			c->sendMessage("{\"messageType\":\"loginResult\",\"status\":\"success\"}");
-		}
-		else
-		{
-			//Message d'erreur auth fail
-			c->sendMessage("{\"messageType\":\"error\",\"errorMessage\":\"Auth fail\",\"code\": \"1001\"\"status\":\"fail\"}");
-		}	
-	}
-	else if(messageType == "register")
-	{
-		cJSON * usernameJSON = cJSON_GetObjectItem(messageJSON, "username");
-		cJSON * passwordJSON = cJSON_GetObjectItem(messageJSON, "password");
-		string username = cJSON_Print(usernameJSON);
-		string password = cJSON_Print(passwordJSON);
-		int id = authModule->registerClient(username, password, ""); // MAIL A SUPPRIMER
-		if(id != -1)
-		{
-			//Récupérer l'id et le stocker dans la structure client 
-			c->setId(id);
-			c->sendMessage("{\"messageType\":\"registerResult\",\"status\":\"success\"}");
-		}
-		else
-		{
-			//Message d'erreur register fail
-			c->sendMessage("{\"messageType\":\"error\",\"errorMessage\":\"Register fail\",\"code\":\"1002\"\"status\":\"fail\"}");
-		}	
-	}
-	else
-	{
-		c->sendMessage("{\"messageType\":\"error\",\"errorMessage\":\"Unknown command\",\"code\":\"1003\"\"status\":\"fail\"}");
-	}
+  Client* c = getClientBySocket(socket_message);
+  if(c != NULL)
+  {
+    c->handleRequests(message);
+  }
+  else 
+  {
+    c = new Client(this->netAdapter, this, socket_message, authModule, messSender);
+    messSender->addMessage(Message(c, "{\"messageType\":\"error\",\"errorMessage\":\"Unknow client\",\"code\": \"1004\"\"status\":\"fail\"}"));
+  }
+	
 }
 
 

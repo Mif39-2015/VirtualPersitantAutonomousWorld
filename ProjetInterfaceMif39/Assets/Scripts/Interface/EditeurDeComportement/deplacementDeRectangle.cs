@@ -7,18 +7,17 @@ public class deplacementDeRectangle : MonoBehaviour {
 
     private int id;
     private bool keyUp;
+    private Animation annie;
+    private RaycastResult rcr;
 
-    // Use this for initialization
     void Start () {
 
         keyUp = true;
         id = 0;
     }
 
-    // Update is called once per frame
     void Update () {
 
-        
         if (Input.GetButton("Fire1"))
         {
 
@@ -31,10 +30,6 @@ public class deplacementDeRectangle : MonoBehaviour {
             for (int i = 0; i < count; i++)
             {
 
-                //Debug.Log("MACHIN x:" + objectsHit[i].gameObject.tag);
-                //                Debug.Log("MACHIN y:" + objectsHit[i].gameObject.transform.position.y);
-                //              Debug.Log("MACHIN z:" + objectsHit[i].gameObject.transform.position.z);
-
                 if (objectsHit[i].gameObject.tag == "UnRectangle")
                 {
                     if(id == 0)
@@ -44,44 +39,27 @@ public class deplacementDeRectangle : MonoBehaviour {
                                         
                     if(id == objectsHit[i].gameObject.GetInstanceID())
                     {
-                        objectsHit[i].gameObject.transform.position = Input.mousePosition;
-
-
+                        keyUp = false;
+                        rcr = objectsHit[i];
 
                     }
                 }
 
-
-
             }
 
-
-            /*if (keyUp == true )
+            if (keyUp == false)
             {
-                keyUp = false;
-               
-                Debug.Log("Je rentre bien dans la boucle");
-
-
-
-                if (Input.GetButtonUp("Fire1"))
-                {
-                    keyUp = true;
-                    id = -666;
-                }
+                rcr.gameObject.transform.position = Input.mousePosition;
+                annie = rcr.gameObject.GetComponent<Animation>();
+                annie.Play();
             }
-*/
-
-
-
-
-
-
         }
+
         if (Input.GetButtonUp("Fire1"))
         {
+            annie.Stop();
             id = 0;
-            Debug.Log("Je passe dedans !!");
+            keyUp = true;
         }
 
     }

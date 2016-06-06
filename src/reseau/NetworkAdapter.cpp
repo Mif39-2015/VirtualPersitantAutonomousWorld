@@ -267,28 +267,37 @@ int NetworkAdapter::receiveMessage(int socket, string &message){
 }
 
 void NetworkAdapter::pollSockets(){
+    cout << "start" << endl;
     int result = 0;
     while(result != -1){
+    cout << "loop" << endl;
 
         vector<Client*> clients = this->netManager->getClients();
+    cout << "loop" << endl;
         struct pollfd * ufds;
         ufds = (struct pollfd*)malloc(clients.size() * sizeof(struct pollfd));
+    cout << "aft init" << endl;
         for(unsigned int i = 0; i < clients.size(); i++){
+            cout << "addClient = " << i << endl;
             Client* cl = clients.at(i);
             ufds[i].fd = cl->getSocket();
             ufds[i].events = POLLIN;
         }
-        result = poll(ufds, clients.size(), 100);
+        if(clients.size() > 0){
+            cout << "b4 poll" << endl;
+            result = poll(ufds, clients.size(), 100);
+                cout << "RESULT = " << result << endl;
 
-        if (result == -1) {
-            // Error occurred in poll()
-        } else if (result == 0) {
-            // Nothing to read
-        } else {
-            for(unsigned int i = 0; i < clients.size(); i++){
-                if(ufds[i].revents & POLLIN){
-                    thread(&NetworkAdapter::readAndHandleMessage, this, ufds[i].fd);
-                    // receiveMessage(ufds[i].fd, message);
+            if (result == -1) {
+                // Error occurred in poll()
+            } else if (result == 0) {
+                // Nothing to read
+            } else {
+                for(unsigned int i = 0; i < clients.size(); i++){
+                    if(ufds[i].revents & POLLIN){
+                        thread(&NetworkAdapter::readAndHandleMessage, this, ufds[i].fd);
+                        // receiveMessage(ufds[i].fd, message);
+                    }
                 }
             }
         }
@@ -298,5 +307,5 @@ void NetworkAdapter::pollSockets(){
 void NetworkAdapter::readAndHandleMessage(int socket){
     string message;
     receiveMessage(socket, message);
-
+    this->netManager->handleUserCommand(socket, message);
 }

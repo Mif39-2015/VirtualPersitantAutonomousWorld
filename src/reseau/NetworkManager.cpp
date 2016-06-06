@@ -11,6 +11,7 @@ authModule(new AuthenticationModule())
 {
 	netAdapter->Init(10);
 	networkAdapterThread = thread(&NetworkAdapter::Run, netAdapter);
+	thread(&NetworkAdapter::pollSockets, netAdapter);
   messSender = new MessageSender(netAdapter, this);
 }
 

@@ -36,7 +36,7 @@ int NetworkAdapter::Init(int maxPendingConnections){
     struct sockaddr_in server;
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port = htons( 8887 );
+    server.sin_port = htons( 8888 );
 
     //Bind
     if( bind(listenSocket,(struct sockaddr *)&server , sizeof(server)) < 0)
@@ -224,20 +224,32 @@ void retablir_buffer(char * message){
 
 void NetworkAdapter::Run(){
     socklen_t addrlen = sizeof(struct sockaddr_in);
+    
+    string message3;
     while( (clientSock = accept(listenSocket, (struct sockaddr *)&client, &addrlen)) )
     {
-        if (clientSock > 0){
-            puts("Connection accepted");
+		 int recep = 1;
+		 if (clientSock > 0){
+            printf("Connection %d accepted", clientSock);
             netManager->addClient(clientSock);
         }
-        string message = "ceci est un test\n";
-        string message2 = "Ceci est un autre test\n";
-        string message3;
-        sendMessageToClient(clientSock, message);
-        sendMessageToClient(clientSock, message2);
-        
-        receiveMessage(clientSock, message3);
-        
+		sendMessageToClient(clientSock, "HAHAHAHAHAHAFHSKLQDJF");
+		
+        while( recep > 0 )
+		{
+			recep = receiveMessage(clientSock, message3);
+			printf("%s\n", message3.c_str());
+			
+			//ICI DEROULEMENT : GROS SWITCH
+
+		}
+		if(recep == 0){
+			printf("Client %d deconnecté\n", clientSock);
+		}
+		else if (recep == -1){
+			perror("recv failed");
+		}
+		
     }
     if (clientSock < 0)
     {
@@ -262,42 +274,34 @@ int NetworkAdapter::receiveMessage(int socket, string &message){
  	if(result > 0){
 		string test = message.c_str();
 		message = test;
-	}		
+	}	
+	printf("%d\n",result);
  	return result ;
 }
 
 void NetworkAdapter::pollSockets(){
-    cout << "start" << endl;
     int result = 0;
     while(result != -1){
-    cout << "loop" << endl;
 
         vector<Client*> clients = this->netManager->getClients();
-    cout << "loop" << endl;
         struct pollfd * ufds;
         ufds = (struct pollfd*)malloc(clients.size() * sizeof(struct pollfd));
-    cout << "aft init" << endl;
         for(unsigned int i = 0; i < clients.size(); i++){
-            cout << "addClient = " << i << endl;
             Client* cl = clients.at(i);
             ufds[i].fd = cl->getSocket();
             ufds[i].events = POLLIN;
         }
-        if(clients.size() > 0){
-            cout << "b4 poll" << endl;
-            result = poll(ufds, clients.size(), 100);
-                cout << "RESULT = " << result << endl;
+        result = poll(ufds, clients.size(), 100);
 
-            if (result == -1) {
-                // Error occurred in poll()
-            } else if (result == 0) {
-                // Nothing to read
-            } else {
-                for(unsigned int i = 0; i < clients.size(); i++){
-                    if(ufds[i].revents & POLLIN){
-                        thread(&NetworkAdapter::readAndHandleMessage, this, ufds[i].fd);
-                        // receiveMessage(ufds[i].fd, message);
-                    }
+        if (result == -1) {
+            // Error occurred in poll()
+        } else if (result == 0) {
+            // Nothing to read
+        } else {
+            for(unsigned int i = 0; i < clients.size(); i++){
+                if(ufds[i].revents & POLLIN){
+                    thread(&NetworkAdapter::readAndHandleMessage, this, ufds[i].fd);
+                    // receiveMessage(ufds[i].fd, message);
                 }
             }
         }
@@ -307,5 +311,5 @@ void NetworkAdapter::pollSockets(){
 void NetworkAdapter::readAndHandleMessage(int socket){
     string message;
     receiveMessage(socket, message);
-    this->netManager->handleUserCommand(socket, message);
+
 }
